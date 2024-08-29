@@ -54,3 +54,9 @@ app/category-data.json
 .idea/
 /public/tags/
 /public/categories/
+
+# Posts and Images
+data/blog
+public/images/
+!public/images/logo.png
+!public/images/projects

@@ -221,6 +221,9 @@ const syncContentFromGit = async (contentDir: string) => {
       cpSync(contentDir + '/blog-tmp/blog-posts/', contentDir + '/blog', {
         recursive: true,
       })
+      cpSync(contentDir + '/blog-tmp/static/images', root + '/public/static/images', {
+        recursive: true,
+      })
       readdirSync(contentDir + '/blog', { recursive: true }).forEach((file) => {
         if (file.endsWith('.md')) {
           renameSync(
