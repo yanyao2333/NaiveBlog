@@ -1,6 +1,7 @@
 import categoryMapping from './data/category-mapping'
-import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/source-files'
-import { writeFileSync } from 'fs'
+import { ComputedFields, defineDocumentType } from 'contentlayer2/source-files'
+import { makeSource } from 'contentlayer2/source-remote-files'
+import { writeFileSync, readdirSync, renameSync, mkdirSync, rmSync, cpSync } from 'fs'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 import * as console from 'node:console'
@@ -25,6 +26,7 @@ import remarkGfm from 'remark-gfm'
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkMath from 'remark-math'
 import siteMetadata from './data/siteMetadata'
+import { spawn } from 'node:child_process'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
@@ -201,7 +203,80 @@ export const Authors = defineDocumentType(() => ({
   computedFields,
 }))
 
+const syncContentFromGit = async (contentDir: string) => {
+  // 这一块根据我需求硬编码的东西比较多，需要根据实际情况修改
+  const syncRun = async () => {
+    try {
+      if (!process.env.GIT_URL) {
+        return
+      }
+      const gitUrl = process.env.GIT_URL
+      console.log(contentDir)
+      await runBashCommand(
+        `git clone --depth 1 --single-branch ${gitUrl} ${contentDir + '/blog-tmp'}`
+      )
+      console.log('Content files synced from git')
+      mkdirSync(contentDir + '/blog', { recursive: true })
+      // renameSync(contentDir + '/blog-tmp/blog-posts', contentDir + '/blog')
+      cpSync(contentDir + '/blog-tmp/blog-posts/', contentDir + '/blog', {
+        recursive: true,
+      })
+      readdirSync(contentDir + '/blog', { recursive: true }).forEach((file) => {
+        if (file.endsWith('.md')) {
+          renameSync(
+            contentDir + `/blog/${file}`,
+            contentDir + `/blog/${file.replace('.md', '.mdx')}`
+          )
+        }
+      })
+    } finally {
+      rmSync(contentDir + '/blog-tmp', { recursive: true })
+    }
+  }
+
+  let wasCancelled = false
+  let syncInterval
+
+  const syncLoop = async () => {
+    console.log('Syncing content files from git')
+
+    await syncRun()
+
+    if (wasCancelled) return
+
+    syncInterval = setTimeout(syncLoop, 1000 * 60)
+  }
+
+  // Block until the first sync is done
+  await syncLoop()
+
+  return () => {
+    wasCancelled = true
+    clearTimeout(syncInterval)
+  }
+}
+
+const runBashCommand = (command: string) =>
+  new Promise((resolve, reject) => {
+    const child = spawn(command, [], { shell: true })
+
+    child.stdout.setEncoding('utf8')
+    child.stdout.on('data', (data) => process.stdout.write(data))
+
+    child.stderr.setEncoding('utf8')
+    child.stderr.on('data', (data) => process.stderr.write(data))
+
+    child.on('close', function (code) {
+      if (code === 0) {
+        resolve(void 0)
+      } else {
+        reject(new Error(`Command failed with exit code ${code}`))
+      }
+    })
+  })
+
 export default makeSource({
+  syncFiles: syncContentFromGit,
   contentDirPath: 'data',
   documentTypes: [Blog, Authors],
   mdx: {
