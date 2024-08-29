@@ -1,18 +1,19 @@
 'use client'
 
-import { useState } from 'react'
-import { usePathname } from 'next/navigation'
-import { formatDate } from 'pliny/utils/formatDate'
-import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
+import type { Blog } from 'contentlayer/generated'
+import { usePathname } from 'next/navigation'
+import { CoreContent } from 'pliny/utils/contentlayer'
+import { formatDate } from 'pliny/utils/formatDate'
+import { useState } from 'react'
 
 interface PaginationProps {
   totalPages: number
   currentPage: number
 }
+
 interface ListLayoutProps {
   posts: CoreContent<Blog>[]
   title: string
@@ -136,6 +137,26 @@ export default function ListLayout({
                     </div>
                     <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                       {summary}
+                      <br />
+                      <div className="mt-3 flex text-[12px]">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="size-[18px]"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                          />
+                        </svg>
+                        预计阅读时长：
+                        {Math.ceil(post.readingTime.minutes)}
+                        分钟
+                      </div>
                     </div>
                   </div>
                 </article>

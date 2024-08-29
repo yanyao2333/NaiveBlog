@@ -1,28 +1,30 @@
-import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
+import categoryMapping from './data/category-mapping'
+import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/source-files'
 import { writeFileSync } from 'fs'
-import readingTime from 'reading-time'
 import { slug } from 'github-slugger'
-import path from 'path'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
-// Remark packages
-import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math'
-import { remarkAlert } from 'remark-github-blockquote-alert'
+import * as console from 'node:console'
+import path from 'path'
 import {
-  remarkExtractFrontmatter,
-  remarkCodeTitles,
-  remarkImgToJsx,
   extractTocHeadings,
+  remarkCodeTitles,
+  remarkExtractFrontmatter,
+  remarkImgToJsx,
 } from 'pliny/mdx-plugins/index.js'
+import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
+import readingTime from 'reading-time'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeCitation from 'rehype-citation'
+import rehypeKatex from 'rehype-katex'
+import rehypePresetMinify from 'rehype-preset-minify'
+import rehypePrismPlus from 'rehype-prism-plus'
 // Rehype packages
 import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeKatex from 'rehype-katex'
-import rehypeCitation from 'rehype-citation'
-import rehypePrismPlus from 'rehype-prism-plus'
-import rehypePresetMinify from 'rehype-preset-minify'
+// Remark packages
+import remarkGfm from 'remark-gfm'
+import { remarkAlert } from 'remark-github-blockquote-alert'
+import remarkMath from 'remark-math'
 import siteMetadata from './data/siteMetadata'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
@@ -57,6 +59,56 @@ const computedFields: ComputedFields = {
   toc: { type: 'string', resolve: (doc) => extractTocHeadings(doc.body.raw) },
 }
 
+export type TreeNode = {
+  name: string
+  count: number
+  children: Record<string, TreeNode>
+  showName: string
+  fullPath: string
+}
+
+function createCategoryTree(allBlogs) {
+  const root: TreeNode = {
+    name: 'blog',
+    count: 0,
+    children: {},
+    showName: categoryMapping['blog'] ? categoryMapping['blog'] : 'Blog',
+    fullPath: 'blog',
+  }
+
+  allBlogs.forEach((file) => {
+    if (file._raw.sourceFileDir && (!isProduction || file.draft !== true)) {
+      if (file._raw.sourceFileDir == 'blog') {
+        root.count += 1
+        return
+      }
+      const relativePath: string = file._raw.sourceFileDir.replace(/^blog\//, '')
+      const pathParts = relativePath.split('/')
+      let currentNode = root
+
+      pathParts.forEach((part) => {
+        if (!currentNode.children[part]) {
+          currentNode.children[part] = {
+            name: part,
+            count: 0,
+            children: {},
+            showName: categoryMapping[part] ? categoryMapping[part] : part,
+            fullPath: [currentNode.fullPath, part].join('/'),
+          }
+        }
+
+        currentNode = currentNode.children[part]
+        currentNode.count += 1
+      })
+    }
+  })
+  Object.values(root.children).forEach((node) => {
+    root.count += node.count
+  })
+  console.log('Category tree generated...')
+  writeFileSync('./app/category-data.json', JSON.stringify(root, null, 2))
+}
+
 /**
  * Count the occurrences of all tags across blog posts and write to json file
  */
@@ -74,6 +126,7 @@ function createTagCount(allBlogs) {
       })
     }
   })
+  console.log('Tag count generated...')
   writeFileSync('./app/tag-data.json', JSON.stringify(tagCount))
 }
 
@@ -84,7 +137,11 @@ function createSearchIndex(allBlogs) {
   ) {
     writeFileSync(
       `public/${path.basename(siteMetadata.search.kbarConfig.searchDocumentsPath)}`,
-      JSON.stringify(allCoreContent(sortPosts(allBlogs)))
+      JSON.stringify(
+        allCoreContent(
+          sortPosts(allBlogs).filter((post) => !(post.private && post.private == true))
+        )
+      )
     )
     console.log('Local search index generated...')
   }
@@ -106,6 +163,7 @@ export const Blog = defineDocumentType(() => ({
     layout: { type: 'string' },
     bibliography: { type: 'string' },
     canonicalUrl: { type: 'string' },
+    private: { type: 'boolean', default: false },
   },
   computedFields: {
     ...computedFields,
@@ -178,5 +236,6 @@ export default makeSource({
     const { allBlogs } = await importData()
     createTagCount(allBlogs)
     createSearchIndex(allBlogs)
+    createCategoryTree(allBlogs)
   },
 })

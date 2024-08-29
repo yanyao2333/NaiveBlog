@@ -1,18 +1,18 @@
 import 'css/prism.css'
 import 'katex/dist/katex.css'
 
-import PageTitle from '@/components/PageTitle'
 import { components } from '@/components/MDXComponents'
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
-import { sortPosts, coreContent, allCoreContent } from 'pliny/utils/contentlayer'
-import { allBlogs, allAuthors } from 'contentlayer/generated'
-import type { Authors, Blog } from 'contentlayer/generated'
-import PostSimple from '@/layouts/PostSimple'
-import PostLayout from '@/layouts/PostLayout'
-import PostBanner from '@/layouts/PostBanner'
-import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
+import PostBanner from '@/layouts/PostBanner'
+import PostLayout from '@/layouts/PostLayout'
+import PostSimple from '@/layouts/PostSimple'
+import type { Authors, Blog } from 'contentlayer/generated'
+import { allAuthors, allBlogs } from 'contentlayer/generated'
+import { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { MDXLayoutRenderer } from 'pliny/mdx-components'
+import { allCoreContent, coreContent, sortPosts } from 'pliny/utils/contentlayer'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -105,6 +105,27 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   })
 
   const Layout = layouts[post.layout || defaultLayout]
+
+  if (post.private) {
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+          这篇文章是私密文章，只能在存储库中访问。
+          <br />
+          访问链接：
+          <Link href={siteMetadata.siteRepo + '/tree/main/data/blog/' + slug + '.mdx'}>
+            {siteMetadata.siteRepo + '/tree/main/data/blog/' + slug + '.mdx'}
+          </Link>
+          <br />
+          （实际上是我还没写好密码保护机制啦~ 暂时先这样。）
+        </Layout>
+      </>
+    )
+  }
 
   return (
     <>

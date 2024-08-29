@@ -1,14 +1,14 @@
 import {
-  Mail,
-  Github,
   Facebook,
-  Youtube,
+  Github,
+  Instagram,
   Linkedin,
-  Twitter,
-  X,
+  Mail,
   Mastodon,
   Threads,
-  Instagram,
+  Twitter,
+  X,
+  Youtube,
 } from './icons'
 
 const components = {

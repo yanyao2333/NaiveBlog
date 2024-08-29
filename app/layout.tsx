@@ -1,16 +1,15 @@
 import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
-
-import { Space_Grotesk } from 'next/font/google'
-import { Analytics, AnalyticsConfig } from 'pliny/analytics'
-import { SearchProvider, SearchConfig } from 'pliny/search'
+import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
-import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
-import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
+
+import { Space_Grotesk } from 'next/font/google'
+import { SearchConfig, SearchProvider } from 'pliny/search'
+import { ThemeProviders } from './theme-providers'
 
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -30,7 +29,8 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     url: './',
     siteName: siteMetadata.title,
-    images: [siteMetadata.socialBanner],
+    // 还没想好图片放啥，先注释掉
+    // images: [siteMetadata.socialBanner],
     locale: 'en_US',
     type: 'website',
   },
@@ -53,8 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: siteMetadata.title,
-    card: 'summary_large_image',
-    images: [siteMetadata.socialBanner],
+    // 还没想好图片放啥，先注释掉
+    card: 'summary',
+    // images: [siteMetadata.socialBanner],
   },
 }
 
@@ -85,18 +86,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         href={`${basePath}/static/favicons/favicon-16x16.png`}
       />
       <link rel="manifest" href={`${basePath}/static/favicons/site.webmanifest`} />
-      <link
-        rel="mask-icon"
-        href={`${basePath}/static/favicons/safari-pinned-tab.svg`}
-        color="#5bbad5"
-      />
+      {/*<link*/}
+      {/*  rel="mask-icon"*/}
+      {/*  href={`${basePath}/static/favicons/safari-pinned-tab.svg`}*/}
+      {/*  color="#5bbad5"*/}
+      {/*/>*/}
       <meta name="msapplication-TileColor" content="#000000" />
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <ThemeProviders>
-          <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
+          {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
+          {/* 定义了一个container，规范内容页面宽高 */}
           <SectionContainer>
             <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
               <Header />

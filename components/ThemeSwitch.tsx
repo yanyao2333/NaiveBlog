@@ -1,8 +1,8 @@
 'use client'
 
-import { Fragment, useEffect, useState } from 'react'
-import { useTheme } from 'next-themes'
 import { Menu, RadioGroup, Transition } from '@headlessui/react'
+import { useTheme } from 'next-themes'
+import { Fragment, useEffect, useState } from 'react'
 
 const Sun = () => (
   <svg

@@ -1,10 +1,12 @@
 # How can I customize the `kbar` search?
 
-Add a `SearchProvider` component such as the one shown below and use it in place of the default `SearchProvider` component in `app/layout.tsx`.
+Add a `SearchProvider` component such as the one shown below and use it in place of the default `SearchProvider`
+component in `app/layout.tsx`.
 
 `defaultActions` are the initial list of actions.
 
-`onSearchDocumentsLoad` is a callback function that is called when the documents specified by `searchDocumentsPath` are loaded. Set `searchDocumentsPath` to `false` to disable the dynamically loaded search feature.
+`onSearchDocumentsLoad` is a callback function that is called when the documents specified by `searchDocumentsPath` are
+loaded. Set `searchDocumentsPath` to `false` to disable the dynamically loaded search feature.
 
 ```tsx
 'use client'
@@ -56,7 +58,8 @@ export const SearchProvider = ({ children }) => {
 }
 ```
 
-You can even choose to do a full text search over the entire generated blog content though this would come at the expense of a larger search index file by modifying the `createSearchIndex` function in `contentlayer.config.ts` to:
+You can even choose to do a full text search over the entire generated blog content though this would come at the
+expense of a larger search index file by modifying the `createSearchIndex` function in `contentlayer.config.ts` to:
 
 ```tsx
 function createSearchIndex(allBlogs) {
@@ -75,7 +78,8 @@ function createSearchIndex(allBlogs) {
 
 Note the change from `JSON.stringify(allCoreContent(sortPosts(allBlogs)))` to `JSON.stringify((sortPosts(allBlogs)))`.
 
-Next, in the modified `SearchProvider`, dump the raw content to the `keywords` field in the `onSearchDocumentsLoad` prop:
+Next, in the modified `SearchProvider`, dump the raw content to the `keywords` field in the `onSearchDocumentsLoad`
+prop:
 
 ```tsx
 onSearchDocumentsLoad(json) {
