@@ -1,7 +1,7 @@
-import {spawn} from "node:child_process";
+import { spawn } from 'node:child_process'
 import categoryMapping from './data/category-mapping'
 import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/source-files'
-import { writeFileSync , mkdirSync, cpSync, readdirSync, renameSync, rmSync } from 'fs'
+import { writeFileSync, mkdirSync, cpSync, readdirSync, renameSync, rmSync } from 'fs'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 import * as console from 'node:console'
@@ -202,7 +202,6 @@ export const Authors = defineDocumentType(() => ({
   },
   computedFields,
 }))
-
 
 export default makeSource({
   contentDirPath: 'data',

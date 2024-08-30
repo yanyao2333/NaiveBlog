@@ -9,7 +9,7 @@ import { Metadata } from 'next'
 
 import { Space_Grotesk } from 'next/font/google'
 import { SearchConfig, SearchProvider } from 'pliny/search'
-import {Toaster} from "react-hot-toast";
+import { Toaster } from 'react-hot-toast'
 import { ThemeProviders } from './theme-providers'
 
 const space_grotesk = Space_Grotesk({
