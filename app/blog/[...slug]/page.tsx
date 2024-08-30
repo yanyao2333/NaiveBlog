@@ -2,6 +2,7 @@ import 'css/prism.css'
 import 'katex/dist/katex.css'
 
 import { components } from '@/components/MDXComponents'
+import PasswordInput from '@/components/PasswordInput'
 import siteMetadata from '@/data/siteMetadata'
 import PostBanner from '@/layouts/PostBanner'
 import PostLayout from '@/layouts/PostLayout'
@@ -114,14 +115,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
-          这篇文章是私密文章，只能在存储库中访问。
-          <br />
-          访问链接：
-          <Link href={siteMetadata.siteRepo + '/tree/main/data/blog/' + slug + '.mdx'}>
-            {siteMetadata.siteRepo + '/tree/main/data/blog/' + slug + '.mdx'}
-          </Link>
-          <br />
-          （实际上是我还没写好密码保护机制啦~ 暂时先这样。）
+          {post.password ? <PasswordInput /> : '该文章为私密且没有设置密码，不能给你看哦~'}
         </Layout>
       </>
     )

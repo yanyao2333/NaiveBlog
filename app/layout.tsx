@@ -9,6 +9,7 @@ import { Metadata } from 'next'
 
 import { Space_Grotesk } from 'next/font/google'
 import { SearchConfig, SearchProvider } from 'pliny/search'
+import {Toaster} from "react-hot-toast";
 import { ThemeProviders } from './theme-providers'
 
 const space_grotesk = Space_Grotesk({
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+        <Toaster />
         <ThemeProviders>
           {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
           {/* 定义了一个container，规范内容页面宽高 */}

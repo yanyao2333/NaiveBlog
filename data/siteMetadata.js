@@ -7,7 +7,8 @@ const siteMetadata = {
   language: 'zh-cn',
   theme: 'system', // system, dark or light
   siteUrl: 'https://blog-build.yanyaolab.xyz',
-  siteRepo: 'https://github.com/yanyao2333/blog',
+  siteRepo: 'https://github.com/yanyao2333/blog-main',
+  siteContentRepo: 'https://github.com/yanyao2333/blog-content',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   email: 'me@yanyaolab.xyz',
@@ -51,10 +52,10 @@ const siteMetadata = {
     // content security policy in the `next.config.js` file.
     // Select a provider and use the environment variables associated to it
     // https://vercel.com/docs/environment-variables
-    provider: 'disqus', // supported providers: giscus, utterances, disqus
-    disqusConfig: {
-      shortname: 'roitium',
-    },
+    provider: '', // supported providers: giscus, utterances, disqus
+    // disqusConfig: {
+    //   shortname: 'roitium',
+    // },
     // giscusConfig: {
     //   // Visit the link below, and follow the steps in the 'configuration' section
     //   // https://giscus.app/
