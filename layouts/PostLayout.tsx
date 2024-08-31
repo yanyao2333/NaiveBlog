@@ -10,9 +10,7 @@ import type { Authors, Blog } from 'contentlayer/generated'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { ReactNode } from 'react'
 
-const editUrl = (path) => `${siteMetadata.siteContentRepo}/blob/main/blog-posts/${path}`
-const discussUrl = (path) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetadata.siteUrl}/${path}`)}`
+const editUrl = (path) => `${siteMetadata.siteContentRepo}/blob/main/blog-posts/${path.replace('blog/', '')}`
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   weekday: 'long',
