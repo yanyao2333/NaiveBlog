@@ -10,7 +10,8 @@ import type { Authors, Blog } from 'contentlayer/generated'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { ReactNode } from 'react'
 
-const editUrl = (path) => `${siteMetadata.siteContentRepo}/blob/main/blog-posts/${path.replace('blog/', '')}`
+const editUrl = (path) =>
+  `${siteMetadata.siteContentRepo}/blob/main/blog-posts/${path.replace('blog/', '')}`
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   weekday: 'long',
@@ -72,19 +73,19 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       <dl className="whitespace-nowrap text-sm font-medium leading-5">
                         <dt className="sr-only">Name</dt>
                         <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
-                        <dt className="sr-only">Twitter</dt>
-                        <dd>
-                          {author.twitter && (
-                            <Link
-                              href={author.twitter}
-                              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            >
-                              {author.twitter
-                                .replace('https://twitter.com/', '@')
-                                .replace('https://x.com/', '@')}
-                            </Link>
-                          )}
-                        </dd>
+                        {/*<dt className="sr-only">Twitter</dt>*/}
+                        {/*<dd>*/}
+                        {/*  {author.twitter && (*/}
+                        {/*    <Link*/}
+                        {/*      href={author.twitter}*/}
+                        {/*      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"*/}
+                        {/*    >*/}
+                        {/*      {author.twitter*/}
+                        {/*        .replace('https://twitter.com/', '@')*/}
+                        {/*        .replace('https://x.com/', '@')}*/}
+                        {/*    </Link>*/}
+                        {/*  )}*/}
+                        {/*</dd>*/}
                       </dl>
                     </li>
                   ))}

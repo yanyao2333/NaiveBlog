@@ -42,7 +42,7 @@ export default async function CategoriesPage() {
             Categories
           </h1>
         </div>
-        <ul className=" max-w-full list-disc pt-3">
+        <ul className="max-w-full list-disc pt-3">
           <TreeNodeComponent node={categoryData} />
         </ul>
       </div>

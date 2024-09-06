@@ -7,13 +7,14 @@ import siteMetadata from '@/data/siteMetadata'
 import PostBanner from '@/layouts/PostBanner'
 import PostLayout from '@/layouts/PostLayout'
 import PostSimple from '@/layouts/PostSimple'
+import TOCInline from 'components/TOCInline'
 import type { Authors, Blog } from 'contentlayer/generated'
 import { allAuthors, allBlogs } from 'contentlayer/generated'
 import { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { allCoreContent, coreContent, sortPosts } from 'pliny/utils/contentlayer'
+import { MdxComponentRenderer } from '../../../utils/mdx_component'
+import { Toc } from '../../../utils/mdx_plugins/toc'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -128,7 +129,9 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
-        <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
+        <TOCInline toc={post.toc as unknown as Toc} />
+        <hr />
+        <MdxComponentRenderer doc={post} mdxComponents={components} />
       </Layout>
     </>
   )

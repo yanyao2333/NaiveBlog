@@ -1,13 +1,10 @@
-import { spawn } from 'node:child_process'
-import categoryMapping from './data/category-mapping'
 import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/source-files'
-import { writeFileSync, mkdirSync, cpSync, readdirSync, renameSync, rmSync } from 'fs'
+import { writeFileSync } from 'fs'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 import * as console from 'node:console'
 import path from 'path'
 import {
-  extractTocHeadings,
   remarkCodeTitles,
   remarkExtractFrontmatter,
   remarkImgToJsx,
@@ -25,7 +22,9 @@ import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkMath from 'remark-math'
+import categoryMapping from './data/category-mapping'
 import siteMetadata from './data/siteMetadata'
+import { extractTocHeadings } from './utils/mdx_plugins/toc'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
