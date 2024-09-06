@@ -52,5 +52,10 @@ app/category-data.json
 
 # IDEA
 .idea/
+
+# public
 /public/tags/
 /public/categories/
+
+# posts
+/data/blog
