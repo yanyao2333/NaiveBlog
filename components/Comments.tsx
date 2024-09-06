@@ -4,12 +4,14 @@ import siteMetadata from '@/data/siteMetadata'
 import { Comments as CommentsComponent } from 'pliny/comments'
 import { useState } from 'react'
 
+// 已废弃，直接加载评论组件
 export default function Comments({ slug }: { slug: string }) {
   const [loadComments, setLoadComments] = useState(false)
 
   if (!siteMetadata.comments?.provider) {
     return null
   }
+  console.log(siteMetadata.comments)
   return (
     <>
       {loadComments ? (

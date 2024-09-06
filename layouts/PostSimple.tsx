@@ -1,10 +1,10 @@
-import Comments from '@/components/Comments'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import type { Blog } from 'contentlayer/generated'
+import { Comments as CommentsComponent } from 'pliny/comments'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { formatDate } from 'pliny/utils/formatDate'
 import { ReactNode } from 'react'
@@ -36,6 +36,25 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               </dl>
               <div>
                 <PageTitle>{title}</PageTitle>
+                <div className="mt-3 flex justify-center text-[12px]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-[18px]"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                    />
+                  </svg>
+                  预计阅读时长：
+                  {Math.ceil(content.readingTime.minutes)}
+                  分钟
+                </div>
               </div>
             </div>
           </header>
@@ -45,7 +64,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             </div>
             {siteMetadata.comments && (
               <div className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300" id="comment">
-                <Comments slug={slug} />
+                <CommentsComponent commentsConfig={siteMetadata.comments} slug={slug} />
               </div>
             )}
             <footer>
