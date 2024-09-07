@@ -167,7 +167,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         return (
                           <div
                             key={name}
-                            className={`flex items-center gap-2 ml-[${nowIndex * 5}px]`}
+                            style={{ marginLeft: `${nowIndex == 1 ? 0 : nowIndex * 5}px` }}
+                            className="flex content-center gap-2"
                           >
                             &gt;
                             <Link
