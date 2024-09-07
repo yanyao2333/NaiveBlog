@@ -1,4 +1,5 @@
 /** From https://github.com/timlrx/pliny */
+import { slug } from 'github-slugger'
 import { Heading } from 'mdast'
 import { toString } from 'mdast-util-to-string'
 import { remark } from 'remark'
@@ -23,10 +24,10 @@ export function remarkTocHeadings() {
     const toc: Toc = []
     visit(tree, 'heading', (node: Heading) => {
       const textContent = toString(node)
-      const slug = textContent.replaceAll(' ', '-').toLowerCase()
+      const slugUrl = slug(textContent)
       toc.push({
         value: textContent,
-        url: '#' + slug,
+        url: '#' + slugUrl,
         depth: node.depth,
       })
     })
