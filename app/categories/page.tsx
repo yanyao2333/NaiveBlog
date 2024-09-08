@@ -2,6 +2,12 @@ import categoryData from 'app/category-data.json'
 import Link from 'next/link'
 import React from 'react'
 import { TreeNode } from '../../contentlayer.config'
+import { genPageMetadata } from '../seo'
+
+export const metadata = genPageMetadata({
+  title: 'Categories',
+  description: 'Browse posts by category',
+})
 
 function TreeNodeComponent({ node }: { node: TreeNode }) {
   return (

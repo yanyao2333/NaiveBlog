@@ -1,5 +1,6 @@
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
+import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
 import { Blog } from 'contentlayer/generated'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
@@ -17,7 +18,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
             Latest
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.description}
+            {siteMetadata.description ? siteMetadata.description : <YiYan />}
           </p>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">

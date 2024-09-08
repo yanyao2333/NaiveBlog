@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Roitiumの自留地',
   author: 'Roitium',
   headerTitle: 'Roitiumの自留地',
-  description: '随便玩玩',
+  description: '',
   language: 'zh-cn',
   theme: 'system', // system, dark or light
   siteUrl: 'https://blog-build.yanyaolab.xyz',
