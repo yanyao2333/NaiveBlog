@@ -15,21 +15,6 @@ import { ThemeProviders } from './theme-providers'
 const misansFont = localFont({
   src: [
     {
-      path: './fonts/MiSans-Thin.woff2',
-      weight: '100',
-      style: 'normal',
-    },
-    {
-      path: './fonts/MiSans-ExtraLight.woff2',
-      weight: '200',
-      style: 'normal',
-    },
-    {
-      path: './fonts/MiSans-Light.woff2',
-      weight: '300',
-      style: 'normal',
-    },
-    {
       path: './fonts/MiSans-Regular.woff2',
       weight: '400',
       style: 'normal',
@@ -51,7 +36,7 @@ const misansFont = localFont({
     },
     {
       path: './fonts/MiSans-Heavy.woff2',
-      weight: '900',
+      weight: '800',
       style: 'normal',
     },
   ],

@@ -24,10 +24,13 @@ export default function Footer() {
           <div>{` • `}</div>
           <Link href="/">{siteMetadata.title}</Link>
         </div>
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+        <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
           <Link href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
             Based on ♥️ Tailwind Next.js Theme
           </Link>
+        </div>
+        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+          Build at {new Date().toLocaleString()}
         </div>
       </div>
     </footer>

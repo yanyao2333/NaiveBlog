@@ -20,10 +20,10 @@ const syncContentFromGit = async (contentDir) => {
       )
       console.log('Synced content files from git successfully!')
       mkdirSync(contentDir + '/blog', { recursive: true })
-      cpSync(contentDir + '/blog-tmp/blog-posts/*', contentDir + '/blog', {
+      cpSync(contentDir + '/blog-tmp/blog-posts/', contentDir + '/blog', {
         recursive: true,
       })
-      cpSync(contentDir + '/blog-tmp/static/images/*', process.cwd() + '/public/static/images', {
+      cpSync(contentDir + '/blog-tmp/static/images/', process.cwd() + '/public/static/images', {
         recursive: true,
       })
       readdirSync(contentDir + '/blog', { recursive: true }).forEach((file) => {
