@@ -6,41 +6,39 @@ import Header from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
-
-import localFont from 'next/font/local'
 import { SearchConfig, SearchProvider } from 'pliny/search'
 import { Toaster } from 'react-hot-toast'
 import { ThemeProviders } from './theme-providers'
 
-const misansFont = localFont({
-  src: [
-    {
-      path: './fonts/MiSans-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: './fonts/MiSans-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: './fonts/MiSans-Demibold.woff2',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: './fonts/MiSans-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: './fonts/MiSans-Heavy.woff2',
-      weight: '800',
-      style: 'normal',
-    },
-  ],
-})
+// const misansFont = localFont({
+//   src: [
+//     {
+//       path: './fonts/MiSans-Regular.woff2',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//     {
+//       path: './fonts/MiSans-Medium.woff2',
+//       weight: '500',
+//       style: 'normal',
+//     },
+//     {
+//       path: './fonts/MiSans-Demibold.woff2',
+//       weight: '600',
+//       style: 'normal',
+//     },
+//     {
+//       path: './fonts/MiSans-Bold.woff2',
+//       weight: '700',
+//       style: 'normal',
+//     },
+//     {
+//       path: './fonts/MiSans-Heavy.woff2',
+//       weight: '800',
+//       style: 'normal',
+//     },
+//   ],
+// })
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -88,11 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const basePath = process.env.BASE_PATH || ''
 
   return (
-    <html
-      lang={siteMetadata.language}
-      className={`${misansFont.className} scroll-smooth`}
-      suppressHydrationWarning
-    >
+    <html lang={siteMetadata.language} className={` scroll-smooth`} suppressHydrationWarning>
       <head>
         <link
           rel="apple-touch-icon"
