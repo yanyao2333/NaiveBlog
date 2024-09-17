@@ -30,7 +30,7 @@ export default function Footer() {
           </Link>
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          Build at {new Date().toLocaleString()}
+          Build on {new Date().toUTCString()}
         </div>
       </div>
     </footer>
