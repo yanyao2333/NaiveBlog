@@ -2,6 +2,7 @@ import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/so
 import { writeFileSync } from 'fs'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
+import lunr from 'lunr'
 import * as console from 'node:console'
 import path from 'path'
 import {
@@ -9,7 +10,6 @@ import {
   remarkExtractFrontmatter,
   remarkImgToJsx,
 } from 'pliny/mdx-plugins/index.js'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import readingTime from 'reading-time'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeCitation from 'rehype-citation'
@@ -25,6 +25,7 @@ import remarkMath from 'remark-math'
 import categoryMapping from './data/category-mapping'
 import siteMetadata from './data/siteMetadata'
 import { extractTocHeadings } from './utils/mdx_plugins/toc'
+import 'lunr-languages/lunr.zh.js'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
@@ -131,20 +132,42 @@ function createTagCount(allBlogs) {
 }
 
 function createSearchIndex(allBlogs) {
-  if (
-    siteMetadata?.search?.provider === 'kbar' &&
-    siteMetadata.search.kbarConfig.searchDocumentsPath
-  ) {
-    writeFileSync(
-      `public/${path.basename(siteMetadata.search.kbarConfig.searchDocumentsPath)}`,
-      JSON.stringify(
-        allCoreContent(
-          sortPosts(allBlogs).filter((post) => !(post.private && post.private == true))
-        )
-      )
-    )
-    console.log('✅ Search index generated successfully!')
-  }
+  // if (
+  //   siteMetadata?.search?.provider === 'kbar' &&
+  //   siteMetadata.search.kbarConfig.searchDocumentsPath
+  // ) {
+  //   writeFileSync(
+  //     `public/${path.basename(siteMetadata.search.kbarConfig.searchDocumentsPath)}`,
+  //     JSON.stringify(
+  //       allCoreContent(
+  //         sortPosts(allBlogs).filter((post) => !(post.private && post.private == true))
+  //       ),
+  //       null,
+  //       2
+  //     )
+  //   )
+  //   console.log('✅ Search index generated successfully!')
+  // }
+  const docs = allBlogs.map((doc) => {
+    if (doc.draft !== true && !doc.private) {
+      return {
+        path: doc.path,
+        title: doc.title,
+        body: doc.body.raw,
+      }
+    }
+  })
+  const index = lunr(() => {
+    this.use(lunr.zh)
+    this.ref('path')
+    this.field('title')
+    this.field('body')
+    this.forEach((doc) => {
+      this.add(doc)
+    })
+  })
+  writeFileSync('./public/search.json', JSON.stringify(index))
+  console.log('✅ Search index generated successfully!')
 }
 
 export const Blog = defineDocumentType(() => ({
