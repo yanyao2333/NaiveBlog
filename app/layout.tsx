@@ -52,8 +52,7 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     url: './',
     siteName: siteMetadata.title,
-    // 还没想好图片放啥，先注释掉
-    // images: [siteMetadata.socialBanner],
+    images: [siteMetadata.socialBanner],
     locale: 'en_US',
     type: 'website',
   },
