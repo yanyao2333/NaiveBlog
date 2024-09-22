@@ -37,13 +37,21 @@ export default function MemosPage() {
 
   return (
     <>
+      <div className="mb-8 space-y-2 border-b pb-8 pt-6 md:space-y-5">
+        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          Memos
+        </h1>
+        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+          写点什么吧，在一切还没太糟糕之前~
+        </p>
+      </div>
       {memos
         ? memos.map((memo, index) => (
-            <div key={index} className="border-b border-gray-200 py-4 dark:border-gray-700">
+            <div key={index} className="border-gray-200 py-6 dark:border-gray-700">
               <div className="text-sm text-gray-500 dark:text-gray-400">
                 {new Date(memo.createTime).toLocaleString()}
               </div>
-              <div className="prose text-lg text-gray-800 dark:prose-invert dark:text-gray-200">
+              <div className="prose text-gray-800  dark:prose-invert prose-p:my-2 dark:text-gray-200">
                 {memo.parsedContent ? (
                   <div dangerouslySetInnerHTML={{ __html: memo.parsedContent }} />
                 ) : (
@@ -52,7 +60,7 @@ export default function MemosPage() {
               </div>
             </div>
           ))
-        : '...'}
+        : null}
     </>
   )
 }
