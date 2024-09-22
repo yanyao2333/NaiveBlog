@@ -1,8 +1,8 @@
 import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/source-files'
 import { writeFileSync } from 'fs'
+import Fuse from 'fuse.js'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
-import lunr from 'lunr'
 import * as console from 'node:console'
 import path from 'path'
 import {
@@ -25,7 +25,6 @@ import remarkMath from 'remark-math'
 import categoryMapping from './data/category-mapping'
 import siteMetadata from './data/siteMetadata'
 import { extractTocHeadings } from './utils/mdx_plugins/toc'
-import 'lunr-languages/lunr.zh.js'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
@@ -132,42 +131,28 @@ function createTagCount(allBlogs) {
 }
 
 function createSearchIndex(allBlogs) {
-  // if (
-  //   siteMetadata?.search?.provider === 'kbar' &&
-  //   siteMetadata.search.kbarConfig.searchDocumentsPath
-  // ) {
-  //   writeFileSync(
-  //     `public/${path.basename(siteMetadata.search.kbarConfig.searchDocumentsPath)}`,
-  //     JSON.stringify(
-  //       allCoreContent(
-  //         sortPosts(allBlogs).filter((post) => !(post.private && post.private == true))
-  //       ),
-  //       null,
-  //       2
-  //     )
-  //   )
-  //   console.log('✅ Search index generated successfully!')
-  // }
-  const docs = allBlogs.map((doc) => {
-    if (doc.draft !== true && !doc.private) {
-      return {
-        path: doc.path,
-        title: doc.title,
-        body: doc.body.raw,
-      }
-    }
-  })
-  const index = lunr(() => {
-    this.use(lunr.zh)
-    this.ref('path')
-    this.field('title')
-    this.field('body')
-    this.forEach((doc) => {
-      this.add(doc)
-    })
-  })
-  writeFileSync('./public/search.json', JSON.stringify(index))
-  console.log('✅ Search index generated successfully!')
+  const docs = allBlogs
+    .filter((doc) => !doc.draft && !doc.private)
+    .map((doc) => ({
+      path: doc.path,
+      title: doc.title,
+      body: doc.body.raw,
+    }))
+
+  const options = {
+    includeScore: true,
+    keys: ['title', 'body'],
+    threshold: 0.8,
+    ignoreLocation: true,
+    ignoreFieldNorm: true,
+  }
+
+  writeFileSync(
+    './public/search.json',
+    JSON.stringify(Fuse.createIndex(options.keys, docs).toJSON())
+  )
+
+  console.log('✅ Search index generated successfully')
 }
 
 export const Blog = defineDocumentType(() => ({

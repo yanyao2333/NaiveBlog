@@ -6287,6 +6287,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fuse.js@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "fuse.js@npm:7.0.0"
+  checksum: d15750efec1808370c0cae92ec9473aa7261c59bca1f15f1cf60039ba6f804b8f95340b5cabd83a4ef55839c1034764856e0128e443921f072aa0d8a20e4cacf
+  languageName: node
+  linkType: hard
+
 "gensync@npm:^1.0.0-beta.2":
   version: 1.0.0-beta.2
   resolution: "gensync@npm:1.0.0-beta.2"
@@ -7134,15 +7141,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"invariant@npm:^2.2.4":
-  version: 2.2.4
-  resolution: "invariant@npm:2.2.4"
-  dependencies:
-    loose-envify: ^1.0.0
-  checksum: cc3182d793aad82a8d1f0af697b462939cb46066ec48bbf1707c150ad5fad6406137e91a262022c269702e01621f35ef60269f6c0d7fd178487959809acdfb14
-  languageName: node
-  linkType: hard
-
 "ip-address@npm:^9.0.5":
   version: 9.0.5
   resolution: "ip-address@npm:9.0.5"
@@ -7910,7 +7908,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -7952,20 +7950,6 @@ __metadata:
   dependencies:
     yallist: ^4.0.0
   checksum: f97f499f898f23e4585742138a22f22526254fdba6d75d41a1c2526b3b6cc5747ef59c5612ba7375f42aca4f8461950e925ba08c991ead0651b4918b7c978297
-  languageName: node
-  linkType: hard
-
-"lunr-languages@npm:^1.14.0":
-  version: 1.14.0
-  resolution: "lunr-languages@npm:1.14.0"
-  checksum: 05dd6338af6897932f64f9cb735d5b48f9905d892499b22a3f3abc279b2ac71a6bce0fdfe59c01464c6ad3f8e44e2956ba0637f092535239793bbadf4540e72d
-  languageName: node
-  linkType: hard
-
-"lunr@npm:^2.3.9":
-  version: 2.3.9
-  resolution: "lunr@npm:2.3.9"
-  checksum: 176719e24fcce7d3cf1baccce9dd5633cd8bdc1f41ebe6a180112e5ee99d80373fe2454f5d4624d437e5a8319698ca6837b9950566e15d2cae5f2a543a3db4b8
   languageName: node
   linkType: hard
 
@@ -9952,20 +9936,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-lunr@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "react-lunr@npm:1.1.0"
-  dependencies:
-    invariant: ^2.2.4
-    tiny-invariant: ^1.1.0
-    tiny-warning: ^1.0.3
-  peerDependencies:
-    lunr: ">=2.3"
-    react: ">=16"
-  checksum: e8335361b8ff9506164c8d39f86b7da5a7bfae47b8c6dcd01b8ec04153c12bf066b889270e7e97823f385feb8982d0ed3e95584b5ae3a30838a9c9f25bff64b4
-  languageName: node
-  linkType: hard
-
 "react-virtual@npm:^2.8.2":
   version: 2.10.4
   resolution: "react-virtual@npm:2.10.4"
@@ -11502,14 +11472,13 @@ __metadata:
     eslint-config-next: 14.2.3
     eslint-config-prettier: ^8.8.0
     eslint-plugin-prettier: ^5.0.0
+    fuse.js: ^7.0.0
     github-slugger: ^2.0.0
     gray-matter: ^4.0.2
     hast-util-from-html-isomorphic: ^2.0.0
     husky: ^9.0.0
     image-size: 1.0.0
     lint-staged: ^13.0.0
-    lunr: ^2.3.9
-    lunr-languages: ^1.14.0
     next: 14.2.3
     next-contentlayer2: 0.4.6
     next-themes: ^0.3.0
@@ -11520,7 +11489,6 @@ __metadata:
     react: 18.3.1
     react-dom: 18.3.1
     react-hot-toast: ^2.4.1
-    react-lunr: ^1.1.0
     reading-time: 1.5.0
     rehype-autolink-headings: ^7.1.0
     rehype-citation: ^2.0.0
@@ -11637,17 +11605,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tiny-invariant@npm:^1.1.0, tiny-invariant@npm:^1.2.0":
+"tiny-invariant@npm:^1.2.0":
   version: 1.3.3
   resolution: "tiny-invariant@npm:1.3.3"
   checksum: 5e185c8cc2266967984ce3b352a4e57cb89dad5a8abb0dea21468a6ecaa67cd5bb47a3b7a85d08041008644af4f667fb8b6575ba38ba5fb00b3b5068306e59fe
-  languageName: node
-  linkType: hard
-
-"tiny-warning@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "tiny-warning@npm:1.0.3"
-  checksum: da62c4acac565902f0624b123eed6dd3509bc9a8d30c06e017104bedcf5d35810da8ff72864400ad19c5c7806fc0a8323c68baf3e326af7cb7d969f846100d71
   languageName: node
   linkType: hard
 
