@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import remarkParse from 'remark-parse'
@@ -11,8 +12,14 @@ export default function MemosPage() {
   const [memos, setMemos] = useState<Memo[]>([])
 
   useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_MEMOS_ENDPOINT) {
+      toast.error('你还没设置 memos endpoint！')
+      return
+    }
     fetch(
-      process.env.NEXT_PUBLIC_MEMOS_ENDPOINT + '/api/v1/memos' + "?filter=creator == 'users/1'"
+      process.env.NEXT_PUBLIC_MEMOS_ENDPOINT.replace(/\/$/, '') +
+        '/api/v1/memos' +
+        "?filter=creator == 'users/1'"
     ).then((response) => {
       response.json().then((data: MemoListResponse) => {
         data.memos.map(async (memo: Memo) => {
