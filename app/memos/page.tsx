@@ -5,12 +5,7 @@ import rehypeStringify from 'rehype-stringify'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-
-interface Memo {
-  createTime: string
-  content: string
-  parsedContent: string
-}
+import { Memo, MemoListResponse } from '../../types/memos'
 
 export default function MemosPage() {
   const [memos, setMemos] = useState<Memo[]>([])
@@ -19,8 +14,14 @@ export default function MemosPage() {
     fetch(
       process.env.NEXT_PUBLIC_MEMOS_ENDPOINT + '/api/v1/memos' + "?filter=creator == 'users/1'"
     ).then((response) => {
-      response.json().then((data) => {
+      response.json().then((data: MemoListResponse) => {
         data.memos.map(async (memo: Memo) => {
+          memo.resources.map((resource) => {
+            if (resource.type.startsWith('image')) {
+              const imageUrl = `![${resource.filename}](${process.env.NEXT_PUBLIC_MEMOS_ENDPOINT}/file/${resource.name}/${resource.filename})`
+              memo.content += '\n' + imageUrl
+            }
+          })
           memo.parsedContent = await unified()
             .use(remarkParse)
             .use(remarkRehype)
@@ -43,7 +44,11 @@ export default function MemosPage() {
                 {new Date(memo.createTime).toLocaleString()}
               </div>
               <div className="prose text-lg text-gray-800 dark:prose-invert dark:text-gray-200">
-                <div dangerouslySetInnerHTML={{ __html: memo.parsedContent }} />
+                {memo.parsedContent ? (
+                  <div dangerouslySetInnerHTML={{ __html: memo.parsedContent }} />
+                ) : (
+                  ''
+                )}
               </div>
             </div>
           ))
