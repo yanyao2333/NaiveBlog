@@ -7688,7 +7688,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kbar@npm:0.1.0-beta.45":
+"kbar@npm:0.1.0-beta.45, kbar@npm:^0.1.0-beta.45":
   version: 0.1.0-beta.45
   resolution: "kbar@npm:0.1.0-beta.45"
   dependencies:
@@ -11478,6 +11478,7 @@ __metadata:
     hast-util-from-html-isomorphic: ^2.0.0
     husky: ^9.0.0
     image-size: 1.0.0
+    kbar: ^0.1.0-beta.45
     lint-staged: ^13.0.0
     next: 14.2.3
     next-contentlayer2: 0.4.6
