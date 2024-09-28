@@ -48,9 +48,7 @@ export default function MemosPage() {
         <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
           Memos
         </h1>
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          写点什么吧，在一切还没太糟糕之前~
-        </p>
+        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">发癫</p>
       </div>
       {memos
         ? memos.map((memo, index) => (
