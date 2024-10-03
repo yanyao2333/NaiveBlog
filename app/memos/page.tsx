@@ -1,4 +1,9 @@
 'use client'
+import lightGallery from 'lightgallery'
+import 'lightgallery/css/lightgallery.css'
+import lgThumbnail from 'lightgallery/plugins/thumbnail'
+import lgZoom from 'lightgallery/plugins/zoom'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import rehypeSanitize from 'rehype-sanitize'
@@ -19,16 +24,16 @@ export default function MemosPage() {
     fetch(
       process.env.NEXT_PUBLIC_MEMOS_ENDPOINT.replace(/\/$/, '') +
         '/api/v1/memos' +
-        "?filter=creator == 'users/1'"
+        "?pageSize=50&filter=creator == 'users/1'"
     ).then((response) => {
       response.json().then((data: MemoListResponse) => {
         data.memos.map(async (memo: Memo) => {
-          memo.resources.map((resource) => {
-            if (resource.type.startsWith('image')) {
-              const imageUrl = `![${resource.filename}](${process.env.NEXT_PUBLIC_MEMOS_ENDPOINT}/file/${resource.name}/${resource.filename})`
-              memo.content += '\n' + imageUrl
-            }
-          })
+          // memo.resources.map((resource) => {
+          //   if (resource.type.startsWith('image')) {
+          //     const imageUrl = `![${resource.filename}](${process.env.NEXT_PUBLIC_MEMOS_ENDPOINT}/file/${resource.name}/${resource.filename})`
+          //     memo.content += '\n' + imageUrl
+          //   }
+          // })
           memo.parsedContent = await unified()
             .use(remarkParse)
             .use(remarkRehype)
@@ -41,6 +46,13 @@ export default function MemosPage() {
       })
     })
   }, [])
+
+  // useEffect(() => {
+  //   lightGallery(document.getElementById('lightgallery') as HTMLElement, {
+  //     plugins: [lgZoom, lgThumbnail],
+  //     speed: 500,
+  //   })
+  // }, [memos])
 
   return (
     <>
@@ -63,9 +75,41 @@ export default function MemosPage() {
                   ''
                 )}
               </div>
+              {memo.resources ? (
+                <div id={`lightgallery_${memo.name}`} className="flex flex-row gap-2">
+                  {memo.resources.map((resource) => {
+                    const imgUrl = `${process.env.NEXT_PUBLIC_MEMOS_ENDPOINT}/file/${resource.name}/${resource.filename}`
+                    lightGallery(
+                      document.getElementById(`lightgallery_${memo.name}`) as HTMLElement,
+                      {
+                        plugins: [lgZoom, lgThumbnail],
+                        speed: 500,
+                      }
+                    )
+                    return (
+                      <a href={imgUrl} key={resource.name}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          alt={resource.filename}
+                          src={imgUrl}
+                          height={128}
+                          width={128}
+                          className="h-36 w-36 rounded-xl object-cover"
+                        />
+                      </a>
+                    )
+                  })}
+                </div>
+              ) : null}
             </div>
           ))
         : null}
+      <Link
+        href={'https://memos.yanyaolab.xyz/explore'}
+        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+      >
+        查看更多（还没写分页） &rarr;
+      </Link>
     </>
   )
 }
