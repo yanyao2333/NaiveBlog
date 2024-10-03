@@ -7560,6 +7560,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lightgallery@npm:^2.7.2":
+  version: 2.7.2
+  resolution: "lightgallery@npm:2.7.2"
+  checksum: c72177d2125bd58ea3aa87737340ced2f5e295c6e22168ebf965b237f76deec2e982c3cfefc4671c1fd1d78478d99b77f0eda950975fca5072dd3c18501c9d65
+  languageName: node
+  linkType: hard
+
 "lilconfig@npm:2.1.0, lilconfig@npm:^2.1.0":
   version: 2.1.0
   resolution: "lilconfig@npm:2.1.0"
@@ -11300,6 +11307,7 @@ __metadata:
     hast-util-from-html-isomorphic: ^2.0.0
     husky: ^9.0.0
     image-size: 1.0.0
+    lightgallery: ^2.7.2
     lint-staged: ^13.0.0
     next: 14.2.3
     next-contentlayer2: 0.4.6
