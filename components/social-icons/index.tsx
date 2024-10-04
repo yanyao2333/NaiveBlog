@@ -5,6 +5,7 @@ import {
   Linkedin,
   Mail,
   Mastodon,
+  Rss,
   Threads,
   Twitter,
   X,
@@ -22,6 +23,7 @@ const components = {
   mastodon: Mastodon,
   threads: Threads,
   instagram: Instagram,
+  rss: Rss,
 }
 
 type SocialIconProps = {

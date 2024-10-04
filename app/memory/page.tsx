@@ -93,6 +93,9 @@ export default function MemosPage() {
     fetchMemos().then((data) => {
       setMemos(data)
     })
+    return () => {
+      nextPageToken = ''
+    }
   }, [])
 
   function onClickFetchMore() {
