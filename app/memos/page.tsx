@@ -1,8 +1,10 @@
 'use client'
-import lightGallery from 'lightgallery'
 import 'lightgallery/css/lightgallery.css'
+import 'lightgallery/css/lg-zoom.css'
+import 'lightgallery/css/lg-thumbnail.css'
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
+import LightGallery from 'lightgallery/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -47,13 +49,6 @@ export default function MemosPage() {
     })
   }, [])
 
-  // useEffect(() => {
-  //   lightGallery(document.getElementById('lightgallery') as HTMLElement, {
-  //     plugins: [lgZoom, lgThumbnail],
-  //     speed: 500,
-  //   })
-  // }, [memos])
-
   return (
     <>
       <div className="mb-8 space-y-2 border-b pb-8 pt-6 md:space-y-5">
@@ -75,17 +70,21 @@ export default function MemosPage() {
                   ''
                 )}
               </div>
-              {memo.resources ? (
-                <div id={`lightgallery_${memo.name}`} className="flex flex-row gap-2">
+              {memo.resources.length > 0 ? (
+                <LightGallery
+                  speed={500}
+                  plugins={[lgThumbnail, lgZoom]}
+                  elementClassNames="flex flex-row gap-2 flex-wrap"
+                >
                   {memo.resources.map((resource) => {
                     const imgUrl = `${process.env.NEXT_PUBLIC_MEMOS_ENDPOINT}/file/${resource.name}/${resource.filename}`
-                    lightGallery(
-                      document.getElementById(`lightgallery_${memo.name}`) as HTMLElement,
-                      {
-                        plugins: [lgZoom, lgThumbnail],
-                        speed: 500,
-                      }
-                    )
+                    // lightGallery(
+                    //   document.getElementById(`lightgallery_${memo.name}`) as HTMLElement,
+                    //   {
+                    //     plugins: [lgZoom, lgThumbnail],
+                    //     speed: 500,
+                    //   }
+                    // )
                     return (
                       <a href={imgUrl} key={resource.name}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -94,12 +93,12 @@ export default function MemosPage() {
                           src={imgUrl}
                           height={128}
                           width={128}
-                          className="h-36 w-36 rounded-xl object-cover"
+                          className="h-36 w-36 rounded-xl border object-cover shadow-sm hover:shadow-xl"
                         />
                       </a>
                     )
                   })}
-                </div>
+                </LightGallery>
               ) : null}
             </div>
           ))
