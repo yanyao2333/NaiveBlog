@@ -8774,6 +8774,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"moment@npm:^2.30.1":
+  version: 2.30.1
+  resolution: "moment@npm:2.30.1"
+  checksum: 859236bab1e88c3e5802afcf797fc801acdbd0ee509d34ea3df6eea21eb6bcc2abd4ae4e4e64aa7c986aa6cba563c6e62806218e6412a765010712e5fa121ba6
+  languageName: node
+  linkType: hard
+
 "moo@npm:^0.5.1":
   version: 0.5.2
   resolution: "moo@npm:0.5.2"
@@ -11309,6 +11316,7 @@ __metadata:
     image-size: 1.0.0
     lightgallery: ^2.7.2
     lint-staged: ^13.0.0
+    moment: ^2.30.1
     next: 14.2.3
     next-contentlayer2: 0.4.6
     next-themes: ^0.3.0
