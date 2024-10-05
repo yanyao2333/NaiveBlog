@@ -6,6 +6,7 @@ import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import LightGallery from 'lightgallery/react'
 import moment from 'moment/min/moment-with-locales'
+import Link from 'next/link'
 import { memo, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import rehypeSanitize from 'rehype-sanitize'
@@ -71,10 +72,10 @@ const MemoRowComponent = memo(function MemoRowComponent({
   return (
     <div
       key={key}
-      className="flex flex-col justify-center gap-3 border-gray-200 py-6 dark:border-gray-700 lg:w-[720px]"
+      className="flex flex-col gap-3 border-gray-200 py-6 dark:border-gray-700 lg:w-[720px]"
     >
       {/* 头像、日期、名称 */}
-      <div className="flex gap-3">
+      <div className="flex justify-between gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/static/images/logo.png" alt="avater" className="mt-1 size-[40px] rounded-full" />
         <div className="flex flex-col">
@@ -83,7 +84,38 @@ const MemoRowComponent = memo(function MemoRowComponent({
             {formatTime(memo.createTime)}
           </span>
         </div>
-        <div className="ml-auto select-none self-center text-xl">{memo.pinned ? '📌' : null}</div>
+        {memo.relations.length > 0 ? (
+          <div className="ml-auto flex gap-3">
+            <Link
+              className="inline-block self-center align-middle transition hover:opacity-30"
+              href={`https://memos.yanyaolab.xyz/m/${memo.uid}#comments`}
+              target={'_blank'}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="inline-block size-5 align-middle"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
+                />
+              </svg>
+              <span className="align-middle">{memo.relations.length}</span>
+            </Link>
+            <div className="ml-auto select-none self-center text-base">
+              {memo.pinned ? '📌' : null}
+            </div>
+          </div>
+        ) : (
+          <div className="ml-auto select-none self-center text-base">
+            {memo.pinned ? '📌' : null}
+          </div>
+        )}
       </div>
       {/* 内容框 */}
       <div className="prose ml-[52px] rounded-e-md rounded-bl-md border bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm dark:prose-invert prose-p:my-2 dark:bg-gray-900 dark:text-gray-200">
