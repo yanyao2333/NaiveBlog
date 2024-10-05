@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const basePath = process.env.BASE_PATH || ''
 
   return (
-    <html lang={siteMetadata.language} className={` scroll-smooth`} suppressHydrationWarning>
+    <html lang={siteMetadata.language} className={`scroll-smooth`} suppressHydrationWarning>
       <head>
         <link
           rel="apple-touch-icon"
@@ -111,7 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
         <title>{siteMetadata.title}</title>
       </head>
-      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+      <body className="pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <Toaster />
         <ThemeProviders>
           {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}

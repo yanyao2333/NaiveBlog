@@ -6,7 +6,7 @@ import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import LightGallery from 'lightgallery/react'
 import moment from 'moment/min/moment-with-locales'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
@@ -19,16 +19,31 @@ import { Memo, MemoListResponse } from '../../types/memos'
 
 let nextPageToken = ''
 
+function formatTime(timeString) {
+  const targetTime = moment(timeString)
+  const diffDays = moment().diff(targetTime, 'days')
+  switch (true) {
+    case diffDays < 1:
+      return targetTime.fromNow()
+    case diffDays >= 1 && diffDays < 7:
+      return targetTime.calendar()
+    case diffDays >= 7:
+      return targetTime.format('llll')
+  }
+}
+
 async function fetchMemos() {
   if (!process.env.NEXT_PUBLIC_MEMOS_ENDPOINT) {
     return []
   }
-  const response = await fetch(
-    process.env.NEXT_PUBLIC_MEMOS_ENDPOINT?.replace(/\/$/, '') +
-      '/api/v1/memos' +
-      "?pageSize=5&filter=creator == 'users/1'" +
-      (nextPageToken ? `&pageToken=${nextPageToken}` : '')
-  )
+  const apiEndpoint = process.env.NEXT_PUBLIC_MEMOS_ENDPOINT?.replace(/\/$/, '')
+  // 逆天参数，给我整不会了
+  const filter = `filter=creator=='users/1'%26%26order_by_pinned==true`
+  const pageSize = 'pageSize=5'
+  const pageToken = nextPageToken ? `&pageToken=${nextPageToken}` : ''
+  const apiPath = 'api/v1/memos'
+  console.log(`${apiEndpoint}/${apiPath}?${filter}&${pageSize}${pageToken}`)
+  const response = await fetch(`${apiEndpoint}/${apiPath}?${filter}&${pageSize}${pageToken}`)
   const jsonResp: MemoListResponse = await response.json()
   nextPageToken = jsonResp.nextPageToken
   return await Promise.all(
@@ -46,19 +61,38 @@ async function fetchMemos() {
   )
 }
 
-function memoRowComponent(memo: Memo, key: string | number) {
+const MemoRowComponent = memo(function MemoRowComponent({
+  memo,
+  key,
+}: {
+  memo: Memo
+  key: string | number
+}) {
   return (
-    <div key={key} className="justify-center border-gray-200 py-6 dark:border-gray-700">
-      <div className="prose mx-auto  text-gray-800  dark:prose-invert prose-p:my-2 dark:text-gray-200">
-        <div className="mx-auto text-sm text-gray-500 dark:text-gray-400">
-          {moment(memo.createTime).fromNow()}
+    <div
+      key={key}
+      className="flex flex-col justify-center gap-3 border-gray-200 py-6 dark:border-gray-700 lg:w-[720px]"
+    >
+      {/* 头像、日期、名称 */}
+      <div className="flex gap-3">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/static/images/logo.png" alt="avater" className="mt-1 size-[40px] rounded-full" />
+        <div className="flex flex-col">
+          <span className="font-medium">Roitium.</span>
+          <span className="text-xs text-gray-500 dark:text-gray-400">
+            {formatTime(memo.createTime)}
+          </span>
         </div>
+        <div className="ml-auto select-none self-center text-xl">{memo.pinned ? '📌' : null}</div>
+      </div>
+      {/* 内容框 */}
+      <div className="prose ml-[52px] rounded-e-md rounded-bl-md border bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm dark:prose-invert prose-p:my-2 dark:bg-gray-900 dark:text-gray-200">
         {memo.parsedContent ? <div dangerouslySetInnerHTML={{ __html: memo.parsedContent }} /> : ''}
         {memo.resources.length > 0 ? (
           <LightGallery
             speed={500}
             plugins={[lgThumbnail, lgZoom]}
-            elementClassNames="flex flex-row gap-2 flex-wrap"
+            elementClassNames="flex flex-row gap-2 flex-wrap not-prose mt-4 mb-3 mr-2"
           >
             {memo.resources.map((resource) => {
               const imgUrl = `${process.env.NEXT_PUBLIC_MEMOS_ENDPOINT}/file/${resource.name}/${resource.filename}`
@@ -80,7 +114,7 @@ function memoRowComponent(memo: Memo, key: string | number) {
       </div>
     </div>
   )
-}
+})
 
 export default function MemosPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -120,8 +154,8 @@ export default function MemosPage() {
           人生三大乐事：梗图、发癫与暴论
         </p>
       </div>
-      <div className="flex flex-col">
-        {memos ? memos.map((memo, index) => memoRowComponent(memo, index)) : null}
+      <div className="mx-auto flex flex-col">
+        {memos ? memos.map((memo, index) => <MemoRowComponent memo={memo} key={memo.uid} />) : null}
       </div>
       <button
         onClick={onClickFetchMore}
