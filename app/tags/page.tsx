@@ -12,14 +12,17 @@ export default async function Page() {
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
   return (
     <div
-      className={`flex max-w-full flex-col  items-center justify-center divide-gray-200 dark:divide-gray-700 md:mt-24 md:space-x-6 md:divide-y-0`}
+      className={`flex min-w-full flex-col items-center justify-center divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:space-x-6`}
     >
-      <div className="space-x-2 border-b-2 pb-5 pt-6 md:space-y-5">
-        <h1 className="text-center text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14">
+      <div className="space-x-2 space-y-3 pb-5 pt-6 text-center">
+        <h1 className=" text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14">
           Tags
         </h1>
+        <p className="leading-7 text-gray-500 dark:text-gray-400 sm:text-lg">
+          只是些无用的标签罢了
+        </p>
       </div>
-      <div className="flex flex-wrap pt-3 md:max-w-[calc(100%-10rem)]">
+      <div className="mx-auto flex min-w-full flex-wrap justify-center pt-3 md:max-w-[calc(100%-10rem)]">
         {tagKeys.length === 0 && 'No tags found.'}
         {sortedTags.map((t) => {
           return (

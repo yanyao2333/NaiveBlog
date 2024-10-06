@@ -13,7 +13,7 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
   return (
     <>
       {node.name && (
-        <li>
+        <li className="text-center">
           <Link
             href={`/categories/${node.fullPath}`}
             aria-label={`View posts in category ${node.showName}`}
@@ -30,7 +30,7 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
           </Link>
         </li>
       )}
-      <ul className="list-disc pl-8 pt-4">
+      <ul className="list-inside list-disc pl-8 pt-4">
         {Object.values(node.children).map((child) => {
           return <TreeNodeComponent key={child.name} node={child} />
         })}
@@ -42,13 +42,16 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
 export default async function CategoriesPage() {
   return (
     <>
-      <div className="flex max-w-full flex-col items-center justify-center divide-gray-200 dark:divide-gray-700 md:mt-24 md:space-x-6 md:divide-y-0">
-        <div className="space-x-2 border-b-2 pb-5 pt-6 md:space-y-5">
-          <h1 className="text-center text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14">
+      <div className="flex flex-col items-center justify-center divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:space-x-6">
+        <div className="space-x-2 space-y-3 pb-5 pt-6 text-center">
+          <h1 className=" text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14">
             Categories
           </h1>
+          <p className="leading-7 text-gray-500 dark:text-gray-400 sm:text-lg">
+            分类整理方便查找？我没感受到。
+          </p>
         </div>
-        <ul className="max-w-full list-disc pt-3">
+        <ul className="mx-auto min-w-full list-inside list-disc pt-3">
           <TreeNodeComponent node={categoryData} />
         </ul>
       </div>
