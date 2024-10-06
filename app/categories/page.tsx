@@ -1,3 +1,4 @@
+import PageTitle from '@/components/PageTitle'
 import categoryData from 'app/category-data.json'
 import Link from 'next/link'
 import React from 'react'
@@ -42,15 +43,8 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
 export default async function CategoriesPage() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:space-x-6">
-        <div className="space-x-2 space-y-3 pb-5 pt-6 text-center">
-          <h1 className=" text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14">
-            Categories
-          </h1>
-          <p className="leading-7 text-gray-500 dark:text-gray-400 sm:text-lg">
-            分类整理方便查找？我没感受到。
-          </p>
-        </div>
+      <div className="flex flex-col items-center justify-center md:space-x-6">
+        <PageTitle title="Categories" subtitle="分类整理方便查找？我没感受到。" />
         <ul className="mx-auto min-w-full list-inside list-disc pt-3">
           <TreeNodeComponent node={categoryData} />
         </ul>

@@ -3,7 +3,6 @@ import Image from '@/components/Image'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-import SectionContainer from '@/components/SectionContainer'
 import Tag from '@/components/Tag'
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
@@ -54,7 +53,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
   const categories = generateCategoryTree(paths)
 
   return (
-    <SectionContainer>
+    <>
       <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
@@ -74,7 +73,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </div>
               </dl>
               <div>
-                <PageTitle>{title}</PageTitle>
+                <PageTitle title={title} />
                 <div className="mt-3 flex justify-center text-[12px]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -234,6 +233,6 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           </div>
         </div>
       </article>
-    </SectionContainer>
+    </>
   )
 }

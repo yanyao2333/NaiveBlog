@@ -2,6 +2,7 @@
 import 'lightgallery/css/lightgallery.css'
 import 'lightgallery/css/lg-zoom.css'
 import 'lightgallery/css/lg-thumbnail.css'
+import PageTitle from '@/components/PageTitle'
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import LightGallery from 'lightgallery/react'
@@ -177,15 +178,16 @@ export default function MemosPage() {
   }
 
   return (
-    <div className="flex flex-col md:mt-24">
-      <div className="mb-8 space-y-2 border-b pb-8 pt-6 text-center md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          Memories
-        </h1>
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          人生三大乐事：梗图、发癫与暴论
-        </p>
-      </div>
+    <div className="flex flex-col">
+      {/*<div className="mb-8 space-y-2 border-b pb-8 pt-6 text-center md:space-y-5">*/}
+      {/*  <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">*/}
+      {/*    Memories*/}
+      {/*  </h1>*/}
+      {/*  <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">*/}
+      {/*    人生三大乐事：梗图、发癫与暴论*/}
+      {/*  </p>*/}
+      {/*</div>*/}
+      <PageTitle title="Memories" subtitle="人生三大乐事：梗图、发癫与暴论" />
       <div className="mx-auto flex flex-col">
         {memos ? memos.map((memo, index) => <MemoRowComponent memo={memo} key={memo.uid} />) : null}
       </div>

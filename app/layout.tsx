@@ -1,8 +1,8 @@
 import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
+import FloatNavBar from '@/components/FloatNavBar'
 import Footer from '@/components/Footer'
-import Header from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
@@ -116,9 +116,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProviders>
           {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
           {/* 定义了一个container，规范内容页面宽高 */}
+          <FloatNavBar />
           <SectionContainer>
             <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-              <Header />
+              {/*<Header />*/}
               <main className="mb-auto">{children}</main>
             </SearchProvider>
             <Footer />

@@ -1,4 +1,5 @@
 import Link from '@/components/Link'
+import PageTitle from '@/components/PageTitle'
 import Tag from '@/components/Tag'
 import { genPageMetadata } from 'app/seo'
 import tagData from 'app/tag-data.json'
@@ -11,18 +12,9 @@ export default async function Page() {
   const tagKeys = Object.keys(tagCounts)
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
   return (
-    <div
-      className={`flex min-w-full flex-col items-center justify-center divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:space-x-6`}
-    >
-      <div className="space-x-2 space-y-3 pb-5 pt-6 text-center">
-        <h1 className=" text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14">
-          Tags
-        </h1>
-        <p className="leading-7 text-gray-500 dark:text-gray-400 sm:text-lg">
-          只是些无用的标签罢了
-        </p>
-      </div>
-      <div className="mx-auto flex min-w-full flex-wrap justify-center pt-3 md:max-w-[calc(100%-10rem)]">
+    <div className={`flex flex-col items-center justify-center md:space-x-6`}>
+      <PageTitle title="Tags" subtitle="只是些无用的标签罢了" />
+      <div className="mx-auto flex flex-wrap justify-center pt-3 md:max-w-[calc(100%-10rem)] lg:max-w-[calc(100%-20rem)]">
         {tagKeys.length === 0 && 'No tags found.'}
         {sortedTags.map((t) => {
           return (

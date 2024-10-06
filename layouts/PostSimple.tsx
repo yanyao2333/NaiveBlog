@@ -36,7 +36,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 </div>
               </dl>
               <div>
-                <PageTitle>{title}</PageTitle>
+                <PageTitle title={title} />
                 <div className="mt-3 flex justify-center text-[12px]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

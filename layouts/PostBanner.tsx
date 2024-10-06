@@ -37,7 +37,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
               </Bleed>
             </div>
             <div className="relative pt-10">
-              <PageTitle>{title}</PageTitle>
+              <PageTitle title={title} />
               <div className="mt-3 flex justify-center text-[12px]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

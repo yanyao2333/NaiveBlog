@@ -1,8 +1,8 @@
-# Blog
+# Naive Blog
 
-我的博客
+我的博客，名字叫 `Naive Blog`，第一层含义不言自明，第二层含义就是希望我和这个博客一样，永远天真、永远幼稚。
 
-技术栈：Next.js + Tailwind CSS + MDX + Contentlayer2
+技术栈：Next.js + Tailwind CSS + MDX + ContentLayer2
 
 主题基于 [timlrx/tailwind-nextjs-starter-blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) 修改
 
@@ -19,3 +19,7 @@
 ## 部署方式（待完善，或许永远也不会）
 
 .env.example 里是这个项目新增的环境变量，其他环境变量请参考原版项目
+
+## 免责（bushi）声明
+
+只是单纯开源出来了，但里面硬编码的东西太多，估计你部署也很难跑得起来。
