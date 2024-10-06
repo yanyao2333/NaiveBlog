@@ -29,14 +29,13 @@ export default function RecentlyMemos() {
 
   return (
     <Link
-      className="flex cursor-pointer flex-col rounded-lg bg-primary-200 shadow-sm transition-shadow hover:shadow-xl dark:bg-gray-500 sm:col-span-2"
+      className="flex cursor-pointer flex-col rounded-lg bg-primary-200 shadow-lg transition-shadow hover:shadow-xl dark:bg-gray-500 sm:col-span-2"
       href={'/memory'}
     >
       <span className="ml-3 mt-2">💡 最近想法</span>
-      <div className="prose m-3 flex min-w-fit flex-col divide-y divide-dashed rounded-md bg-white px-3 shadow-lg prose-p:my-0">
+      <div className="prose m-3 flex min-w-fit flex-col divide-y divide-dashed rounded-md bg-white px-3 prose-p:my-0">
         {memos
           ? memos.map((memo) => {
-              console.log(memo)
               return (
                 <div className="py-3" key={memo.uid}>
                   {memo.snippet.length > 30 ? memo.snippet.substring(0, 30) + '...' : memo.snippet}

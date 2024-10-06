@@ -1,4 +1,5 @@
 import RecentlyMemos from '@/components/homeComponents/RecentlyMemos'
+import RecentlyMusic from '@/components/homeComponents/RecentlyMusic'
 import PageTitle from '@/components/PageTitle'
 import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
@@ -15,6 +16,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
             subtitle={siteMetadata.description ? siteMetadata.description : <YiYan />}
             className={''}
           />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://secure.gravatar.com/avatar/67fdf38eaecc051ad06a276b8583b051?s=640"
             alt="Website logo"
@@ -30,6 +32,7 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
       {/*</div>*/}
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
         <RecentlyMemos />
+        <RecentlyMusic />
       </div>
     </>
   )
