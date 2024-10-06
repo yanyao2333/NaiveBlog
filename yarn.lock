@@ -11286,6 +11286,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwind-merge@npm:^2.5.3":
+  version: 2.5.3
+  resolution: "tailwind-merge@npm:2.5.3"
+  checksum: 2f91798d1b659911d37f3793b7729dc040e2520bc0ff118a6aa3041e7c003b4c63b45b89f2813b5a9da895c6271c253838f83b2932128e4b9cb87701d4442df2
+  languageName: node
+  linkType: hard
+
 "tailwind-nextjs-starter-blog@workspace:.":
   version: 0.0.0-use.local
   resolution: "tailwind-nextjs-starter-blog@workspace:."
@@ -11341,6 +11348,7 @@ __metadata:
     remark-github-blockquote-alert: ^1.2.1
     remark-math: ^6.0.0
     sharp: ^0.33.5
+    tailwind-merge: ^2.5.3
     tailwindcss: ^3.4.3
     typescript: ^5.5.4
     unist-util-visit: ^5.0.0

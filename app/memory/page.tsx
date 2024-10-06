@@ -63,18 +63,9 @@ async function fetchMemos() {
   )
 }
 
-const MemoRowComponent = memo(function MemoRowComponent({
-  memo,
-  key,
-}: {
-  memo: Memo
-  key: string | number
-}) {
+const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }) {
   return (
-    <div
-      key={key}
-      className="flex flex-col gap-3 border-gray-200 py-6 dark:border-gray-700 lg:w-[720px]"
-    >
+    <div className="flex flex-col gap-3 border-gray-200 py-6 dark:border-gray-700 lg:w-[720px]">
       {/* 头像、日期、名称 */}
       <div className="flex justify-between gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -119,7 +110,7 @@ const MemoRowComponent = memo(function MemoRowComponent({
         )}
       </div>
       {/* 内容框 */}
-      <div className="prose ml-[52px] rounded-e-md rounded-bl-md border bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm dark:prose-invert prose-p:my-2 dark:bg-gray-900 dark:text-gray-200">
+      <div className="prose ml-[52px] rounded-e-md rounded-bl-md bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm dark:prose-invert prose-p:my-2 dark:bg-gray-700 dark:text-gray-100">
         {memo.parsedContent ? <div dangerouslySetInnerHTML={{ __html: memo.parsedContent }} /> : ''}
         {memo.resources.length > 0 ? (
           <LightGallery
@@ -179,14 +170,6 @@ export default function MemosPage() {
 
   return (
     <div className="flex flex-col">
-      {/*<div className="mb-8 space-y-2 border-b pb-8 pt-6 text-center md:space-y-5">*/}
-      {/*  <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">*/}
-      {/*    Memories*/}
-      {/*  </h1>*/}
-      {/*  <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">*/}
-      {/*    人生三大乐事：梗图、发癫与暴论*/}
-      {/*  </p>*/}
-      {/*</div>*/}
       <PageTitle title="Memories" subtitle="人生三大乐事：梗图、发癫与暴论" />
       <div className="mx-auto flex flex-col">
         {memos ? memos.map((memo, index) => <MemoRowComponent memo={memo} key={memo.uid} />) : null}
