@@ -16,7 +16,6 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-import LoadSpinner from '../../components/svgs/load-spinner.svg'
 import { Memo, MemoListResponse } from '../../types/memos'
 
 let nextPageToken = ''
@@ -44,7 +43,6 @@ async function fetchMemos() {
   const pageSize = 'pageSize=5'
   const pageToken = nextPageToken ? `&pageToken=${nextPageToken}` : ''
   const apiPath = 'api/v1/memos'
-  console.log(`${apiEndpoint}/${apiPath}?${filter}&${pageSize}${pageToken}`)
   const response = await fetch(`${apiEndpoint}/${apiPath}?${filter}&${pageSize}${pageToken}`)
   const jsonResp: MemoListResponse = await response.json()
   nextPageToken = jsonResp.nextPageToken
@@ -177,11 +175,15 @@ export default function MemosPage() {
       <button
         onClick={onClickFetchMore}
         disabled={isLoading}
-        className="justify-center text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+        className="mt-3 justify-center text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
       >
         {isLoading ? (
-          <div className="mx-auto w-[24px]">
-            <LoadSpinner />
+          <div className="mx-auto mt-3 w-6">
+            {/*<LoadSpinner />*/}
+            <span className="relative flex size-6">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"></span>
+              <span className="relative inline-flex size-6 rounded-full bg-primary-500"></span>
+            </span>
           </div>
         ) : (
           <>加载更多 &darr;</>

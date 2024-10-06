@@ -4,7 +4,7 @@
 
 技术栈：Next.js + Tailwind CSS + MDX + ContentLayer2
 
-主题基于 [timlrx/tailwind-nextjs-starter-blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) 修改
+基于 [timlrx/tailwind-nextjs-starter-blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) 修改而来
 
 ## 一些自以为是的特性（都是相比起原版的改动）
 
@@ -20,6 +20,16 @@
 
 .env.example 里是这个项目新增的环境变量，其他环境变量请参考原版项目
 
-## 免责（bushi）声明
-
 只是单纯开源出来了，但里面硬编码的东西太多，估计你部署也很难跑得起来。
+
+## 借鉴（~~抄袭~~）博客
+
+自从开始着手写这个博客，就特别关注别人的 ui，学到了不少好设计，就姑且列一下我（可能）参考了的博客：
+
+1. https://www.haydenbleasel.com/
+2. https://innei.in/
+3. Typecho Handsome 主题
+4. Sakura 主题
+5. ...
+
+但 ui 依旧很难看就是了（（（

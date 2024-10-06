@@ -49,7 +49,7 @@ const FloatNavBar = () => {
   }
 
   return (
-    <div className="sticky top-10 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-neutral-50/90 px-5 leading-5 shadow-md backdrop-blur-sm dark:bg-gray-700/90 md:space-x-4">
+    <div className="fixed inset-x-0 top-10 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-neutral-50/90 px-5 leading-5 shadow-md backdrop-blur-sm dark:bg-gray-700/90 md:space-x-4">
       <div className="no-scrollbar hidden items-center space-x-4 overflow-x-auto md:flex md:space-x-6">
         {headerNavLinks.map((link) => (
           <Link key={link.title} href={link.href} className={genTextLinkClassName(link)}>

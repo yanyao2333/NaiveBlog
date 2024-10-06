@@ -111,7 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
         <title>{siteMetadata.title}</title>
       </head>
-      <body className="min-h-screen bg-primary-50/40 pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-900 dark:text-gray-100">
+      <body className="min-h-dvh bg-primary-50/40 pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-900 dark:text-gray-100">
         <Toaster />
         <ThemeProviders>
           {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
@@ -120,7 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SectionContainer>
             <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
               {/*<Header />*/}
-              <main className="mb-auto">{children}</main>
+              <main className="m-auto">{children}</main>
             </SearchProvider>
             <Footer />
           </SectionContainer>
