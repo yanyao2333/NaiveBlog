@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { withContentlayer } = require('next-contentlayer2')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -97,7 +98,7 @@ module.exports = () => {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       })
-
+      config.resolve.alias['./locale'] = 'moment/locale'
       return config
     },
   })
