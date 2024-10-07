@@ -9,7 +9,7 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
   return (
     <>
-      <div className="flex min-h-[calc(100dvh-5rem)] flex-col">
+      <div className="flex min-h-[calc(100vh-5rem)] flex-col">
         <div className="my-auto flex flex-col items-center justify-between gap-12 md:flex-row md:gap-0">
           <PageTitle
             title="Roitiumの自留地"
