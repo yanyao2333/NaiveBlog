@@ -2,21 +2,35 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
 import { PlayList } from '../../types/neteasePlayList'
+import { isTimeDifferenceGreaterThan } from '../../utils/time'
+
+const defaultTTL = 3 * 60 * 60 * 1000
 
 export default function RecentlyMusic() {
   const router = useRouter()
   const [music, setMusic] = useState<PlayList | undefined>()
   useEffect(() => {
     if (!process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID) return
+    const localCache = localStorage.getItem('netease-playlist')
+    if (localCache) {
+      const jsonCache: PlayList = JSON.parse(localCache)
+      if (!isTimeDifferenceGreaterThan(jsonCache.refreshTimestamp, defaultTTL)) {
+        setMusic(jsonCache)
+        return
+      }
+    }
     fetch('/api/3party/netease/playlist?id=' + process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID).then(
       (response) => {
         response.json().then((data) => {
           if (!response.ok) {
-            toast.error(`获取网易云歌单信息失败：${data.message}刷新再试试`)
+            console.error(
+              `获取网易云歌单信息失败：${data.message}。fallback 到 localStorage 缓存数据(如果有)`
+            )
+            localCache ? setMusic(JSON.parse(localCache)) : null
             return
           }
+          localStorage.setItem('netease-playlist', JSON.stringify(data.data))
           setMusic(data.data)
         })
       }

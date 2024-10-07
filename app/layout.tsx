@@ -4,6 +4,7 @@ import 'remark-github-blockquote-alert/alert.css'
 import FloatNavBar from '@/components/FloatNavBar'
 import Footer from '@/components/Footer'
 import SectionContainer from '@/components/SectionContainer'
+import SettingsPanel from '@/components/SettingPanel'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
 import { SearchConfig, SearchProvider } from 'pliny/search'
@@ -122,6 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/*<Header />*/}
               <main className="m-auto min-w-full">{children}</main>
             </SearchProvider>
+            <SettingsPanel />
             <Footer />
           </SectionContainer>
         </ThemeProviders>
