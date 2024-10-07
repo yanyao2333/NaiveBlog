@@ -3,10 +3,8 @@ import RecentlyMusic from '@/components/homeComponents/RecentlyMusic'
 import PageTitle from '@/components/PageTitle'
 import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
-import { Blog } from 'contentlayer/generated'
-import { CoreContent } from 'pliny/utils/contentlayer'
 
-export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
+export default function Home() {
   return (
     <>
       <div className="flex min-h-[calc(100vh-5rem)] flex-col">
@@ -25,11 +23,6 @@ export default function Home({ posts }: { posts: CoreContent<Blog>[] }) {
         </div>
         <div className="mb-2 mt-auto animate-bounce text-center text-lg">&darr;</div>
       </div>
-      {/*<div className="prose mx-auto mt-10 text-center text-xl font-medium">*/}
-      {/*  这里啥也没有，去别处转转？*/}
-      {/*  <br />*/}
-      {/*  （其实是不知道写什么啦，想放点小组件，但放什么好呢？）*/}
-      {/*</div>*/}
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
         <RecentlyMemos />
         <RecentlyMusic />

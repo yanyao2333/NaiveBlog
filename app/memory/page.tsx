@@ -170,7 +170,7 @@ export default function MemosPage() {
     <div className="flex flex-col">
       <PageTitle title="Memories" subtitle="人生三大乐事：梗图、发癫与暴论" />
       <div className="mx-auto flex flex-col">
-        {memos ? memos.map((memo, index) => <MemoRowComponent memo={memo} key={memo.uid} />) : null}
+        {memos ? memos.map((memo) => <MemoRowComponent memo={memo} key={memo.uid} />) : null}
       </div>
       <button
         onClick={onClickFetchMore}

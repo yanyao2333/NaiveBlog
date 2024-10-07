@@ -8,6 +8,7 @@ import SettingsPanel from '@/components/SettingPanel'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
 import { SearchConfig, SearchProvider } from 'pliny/search'
+import { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { ThemeProviders } from './theme-providers'
 
@@ -82,7 +83,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   const basePath = process.env.BASE_PATH || ''
 
   return (

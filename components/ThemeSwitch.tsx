@@ -75,10 +75,10 @@ const ThemeSwitch = () => {
               <div className="p-1">
                 <RadioGroup.Option value="light">
                   <Menu.Item>
-                    {({ active }) => (
+                    {({ focus }) => (
                       <button
                         className={`${
-                          active ? 'bg-primary-600 text-white' : ''
+                          focus ? 'bg-primary-600 text-white' : ''
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
                         <div className="mr-2">
@@ -91,10 +91,10 @@ const ThemeSwitch = () => {
                 </RadioGroup.Option>
                 <RadioGroup.Option value="dark">
                   <Menu.Item>
-                    {({ active }) => (
+                    {({ focus }) => (
                       <button
                         className={`${
-                          active ? 'bg-primary-600 text-white' : ''
+                          focus ? 'bg-primary-600 text-white' : ''
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
                         <div className="mr-2">
@@ -107,10 +107,10 @@ const ThemeSwitch = () => {
                 </RadioGroup.Option>
                 <RadioGroup.Option value="system">
                   <Menu.Item>
-                    {({ active }) => (
+                    {({ focus }) => (
                       <button
                         className={`${
-                          active ? 'bg-primary-600 text-white' : ''
+                          focus ? 'bg-primary-600 text-white' : ''
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
                         <div className="mr-2">

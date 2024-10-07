@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 export default function SettingsPanel() {
   const [isOpen, setIsOpen] = useState(false)
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
   const togglePanel = () => {
     setIsOpen(!isOpen)

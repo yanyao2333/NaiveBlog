@@ -14,7 +14,7 @@ export default function YiYan() {
     fetch('https://international.v1.hitokoto.cn')
       .then((response) => response.json())
       .then((data) => setData(data))
-      .catch((error) => {
+      .catch(() => {
         toast.error('获取一言失败！你运气太差了喵！')
         setData({ hitokoto: '获取失败', from: '' })
       })
