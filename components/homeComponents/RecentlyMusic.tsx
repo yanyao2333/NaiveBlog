@@ -25,7 +25,9 @@ export default function RecentlyMusic() {
             console.error(
               `获取网易云歌单信息失败：${data.message}。fallback 到 localStorage 缓存数据(如果有)`
             )
-            localCache ? setMusic(JSON.parse(localCache)) : null
+            if (localCache) {
+              setMusic(JSON.parse(localCache))
+            }
             return
           }
           localStorage.setItem('netease-playlist', JSON.stringify(data.data))
