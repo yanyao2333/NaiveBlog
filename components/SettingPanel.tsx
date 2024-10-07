@@ -1,23 +1,32 @@
 'use client'
 import { useTheme } from 'next-themes'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function SettingsPanel() {
   const [isOpen, setIsOpen] = useState(false)
   const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   const togglePanel = () => {
     setIsOpen(!isOpen)
   }
 
+  // 好奇怪，但这样做确实就不会出问题
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   function genButtonClassName(_theme: string) {
     switch (_theme == theme) {
       case true:
-        console.log(_theme)
         return 'bg-primary-200 dark:bg-primary-900 select-none'
       case false:
         return 'select-none hover:bg-primary-200 dark:hover:bg-primary-900'
     }
+  }
+
+  if (!mounted) {
+    return null
   }
 
   function onClickThemeBtn(_theme: string) {
@@ -39,21 +48,21 @@ export default function SettingsPanel() {
           <div className="mx-7 my-5 grid max-w-full grid-cols-3 divide-x divide-black overflow-hidden rounded-full border border-black text-center shadow">
             <button
               onClick={() => onClickThemeBtn('light')}
-              disabled={'light' == theme}
+              disabled={theme === 'light'}
               className={genButtonClassName('light')}
             >
               浅色
             </button>
             <button
               onClick={() => onClickThemeBtn('system')}
-              disabled={'system' == theme}
+              disabled={theme === 'system'}
               className={genButtonClassName('system')}
             >
               自动
             </button>
             <button
               onClick={() => onClickThemeBtn('dark')}
-              disabled={'dark' == theme}
+              disabled={theme === 'dark'}
               className={genButtonClassName('dark')}
             >
               深色
