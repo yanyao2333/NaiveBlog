@@ -13,9 +13,10 @@ export default function SettingsPanel() {
   function genButtonClassName(_theme: string) {
     switch (_theme == theme) {
       case true:
+        console.log(_theme)
         return 'bg-primary-200 dark:bg-primary-900 select-none'
       case false:
-        return 'select-none hover:bg-primary-900'
+        return 'select-none hover:bg-primary-200 dark:hover:bg-primary-900'
     }
   }
 
@@ -67,6 +68,7 @@ export default function SettingsPanel() {
         className={`fixed top-2/3 -translate-y-1/2 transform rounded-l-full bg-zinc-100 p-2 transition-all duration-300 ease-in-out hover:bg-neutral-200 dark:bg-gray-700 dark:hover:bg-gray-500 ${
           isOpen ? 'right-64' : 'right-0'
         }`}
+        aria-label="open settings panel"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

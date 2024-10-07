@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Roitiumの自留地',
   author: 'Roitium',
   headerTitle: 'Roitiumの自留地',
-  description: 'Be young, be simple, even sometimes naive. ',
+  description: 'Be young & simple, even sometimes naive. ',
   language: 'zh-cn',
   theme: 'system', // system, dark or light
   siteUrl: 'https://blog-build.yanyaolab.xyz',
