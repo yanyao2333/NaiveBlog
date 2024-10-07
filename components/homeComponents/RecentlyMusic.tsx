@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { PlayList } from '../../types/neteasePlayList'
 import { isTimeDifferenceGreaterThan } from '../../utils/time'
@@ -8,7 +7,6 @@ import { isTimeDifferenceGreaterThan } from '../../utils/time'
 const defaultTTL = 3 * 60 * 60 * 1000
 
 export default function RecentlyMusic() {
-  const router = useRouter()
   const [music, setMusic] = useState<PlayList | undefined>()
   useEffect(() => {
     if (!process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID) return
