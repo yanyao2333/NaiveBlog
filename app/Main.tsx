@@ -1,3 +1,4 @@
+import RecentlyBangumi from '@/components/homeComponents/RecentlyBangumi'
 import RecentlyMemos from '@/components/homeComponents/RecentlyMemos'
 import RecentlyMusic from '@/components/homeComponents/RecentlyMusic'
 import PageTitle from '@/components/PageTitle'
@@ -26,6 +27,7 @@ export default function Home() {
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
         <RecentlyMemos />
         <RecentlyMusic />
+        <RecentlyBangumi />
       </div>
     </>
   )

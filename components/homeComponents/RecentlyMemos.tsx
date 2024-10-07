@@ -1,7 +1,6 @@
 'use client'
 import moment from 'moment/min/moment-with-locales'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Memo, MemoListResponse } from '../../types/memos'
 
@@ -20,7 +19,6 @@ async function fetchMemos() {
 }
 
 export default function RecentlyMemos() {
-  const router = useRouter()
   const [memos, setMemos] = useState<Memo[]>([])
   useEffect(() => {
     moment.locale(navigator.language)
@@ -47,9 +45,7 @@ export default function RecentlyMemos() {
             })
           : null}
       </div>
-      <button className="mb-2 ml-auto mr-4" onClick={() => router.push('/memory')}>
-        查看更多 &rarr;
-      </button>
+      <button className="mb-2 ml-auto mr-4">查看更多 &rarr;</button>
     </Link>
   )
 }

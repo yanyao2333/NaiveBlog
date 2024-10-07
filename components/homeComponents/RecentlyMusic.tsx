@@ -42,9 +42,11 @@ export default function RecentlyMusic() {
       className="flex cursor-pointer flex-col rounded-lg bg-pink-200 shadow-lg transition-shadow hover:shadow-xl dark:bg-zinc-500"
       href={'https://music.163.com/playlist?id=' + process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID}
     >
-      <span className="ml-3 mt-2">🎵 最近在听</span>
+      <span className="ml-3 mt-2">
+        🎵 最近在听<span className="align-bottom text-xs font-light">&nbsp;(网易云)</span>
+      </span>
       {music ? (
-        <div className="m-auto flex flex-col">
+        <div className="m-auto flex flex-col pb-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={music.result.tracks[0].album.picUrl}
@@ -57,7 +59,6 @@ export default function RecentlyMusic() {
           </span>
         </div>
       ) : null}
-      <button className="mb-2 ml-auto mr-4 mt-auto">我也要听 &rarr;</button>
     </Link>
   )
 }
