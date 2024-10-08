@@ -31,12 +31,12 @@ export default function RecentlyMemos() {
       href={'/memory'}
     >
       <span className="ml-3 mt-2">💡 最近想法</span>
-      <div className="prose m-3 flex min-w-fit flex-col divide-y divide-dashed rounded-md bg-white px-3 prose-p:my-0">
+      <div className="prose m-3 flex min-w-fit flex-col divide-y divide-dashed rounded-md bg-white px-3 prose-p:my-0 dark:bg-gray-100">
         {memos
           ? memos.map((memo) => {
               return (
                 <div className="py-3" key={memo.uid}>
-                  {memo.snippet.length > 30 ? memo.snippet.substring(0, 30) + '...' : memo.snippet}
+                  {memo.snippet.length > 30 ? memo.snippet.substring(0, 50) + '...' : memo.snippet}
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     {moment(memo.createTime).fromNow()}
                   </p>
@@ -45,7 +45,7 @@ export default function RecentlyMemos() {
             })
           : null}
       </div>
-      <button className="mb-2 ml-auto mr-4">查看更多 &rarr;</button>
+      <button className="mb-2 ml-auto mr-4 mt-auto">查看更多 &rarr;</button>
     </Link>
   )
 }

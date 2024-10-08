@@ -37,15 +37,15 @@ export default function SettingsPanel() {
     <div>
       {/* 设置面板 */}
       <div
-        className={`h-50 fixed right-0 top-[calc(66.666667%-20px)] flex w-64 transform flex-col bg-primary-50 transition-transform duration-300 dark:bg-gray-900 ${
+        className={`h-50 fixed right-0 top-[calc(66.666667%-20px)] flex w-64 transform flex-col bg-gray-100 transition-transform duration-300 dark:bg-gray-800 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="h-10 min-w-full select-none content-center bg-neutral-50 pl-3 text-lg font-bold ease-in-out dark:bg-gray-700">
+        <div className="h-10 min-w-full select-none content-center bg-gray-200 pl-3 text-lg font-bold ease-in-out dark:bg-gray-700">
           设置
         </div>
-        <div className="bg-white dark:bg-zinc-700">
-          <div className="mx-7 my-5 grid max-w-full grid-cols-3 divide-x divide-black overflow-hidden rounded-full border border-black text-center shadow">
+        <div className="bg-gray-50 dark:bg-gray-700">
+          <div className="mx-7 my-5 grid max-w-full grid-cols-3 divide-x divide-gray-400 overflow-hidden rounded-full border border-gray-400 text-center shadow">
             <button
               onClick={() => onClickThemeBtn('light')}
               disabled={theme === 'light'}
@@ -74,7 +74,7 @@ export default function SettingsPanel() {
       {/* 打开面板按钮 */}
       <button
         onClick={togglePanel}
-        className={`fixed top-2/3 -translate-y-1/2 transform rounded-l-full bg-zinc-100 p-2 transition-all duration-300 ease-in-out hover:bg-neutral-200 dark:bg-gray-700 dark:hover:bg-gray-500 ${
+        className={`fixed top-2/3 -translate-y-1/2 transform rounded-l-full bg-gray-100 p-2 transition-all duration-300 ease-in-out hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-500 ${
           isOpen ? 'right-64' : 'right-0'
         }`}
         aria-label="open settings panel"
