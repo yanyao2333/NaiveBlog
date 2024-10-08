@@ -1,7 +1,9 @@
 import 'css/prism.css'
 import 'katex/dist/katex.css'
+import LightGalleryWrapper from '@/components/LightGalleryWrapper'
 
 import { components } from '@/components/MDXComponents'
+import { MdxComponentRenderer } from '@/components/MdxRenderer'
 import PasswordInput from '@/components/PasswordInput'
 import siteMetadata from '@/data/siteMetadata'
 import PostBanner from '@/layouts/PostBanner'
@@ -13,7 +15,6 @@ import { allAuthors, allBlogs } from 'contentlayer/generated'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { allCoreContent, coreContent, sortPosts } from 'pliny/utils/contentlayer'
-import { MdxComponentRenderer } from '../../../utils/mdx_component'
 import { Toc } from '../../../utils/mdx_plugins/toc'
 
 const defaultLayout = 'PostLayout'
@@ -131,7 +132,9 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
         <TOCInline toc={post.toc as unknown as Toc} />
         <hr />
-        <MdxComponentRenderer doc={post} mdxComponents={components} />
+        <LightGalleryWrapper>
+          <MdxComponentRenderer doc={post} mdxComponents={components} />
+        </LightGalleryWrapper>
       </Layout>
     </>
   )

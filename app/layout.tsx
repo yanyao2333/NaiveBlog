@@ -113,7 +113,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
         <title>{siteMetadata.title}</title>
       </head>
-      <body className="min-h-dvh bg-primary-50/40 pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-900 dark:text-gray-100">
+      <body className="min-h-dvh bg-primary-50/40 pl-[calc(100vw-100%)] text-black antialiased accent-primary-400 dark:bg-gray-900 dark:text-gray-100">
         <Toaster />
         <ThemeProviders>
           {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}

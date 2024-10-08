@@ -4,11 +4,7 @@ import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 import * as console from 'node:console'
 import path from 'path'
-import {
-  remarkCodeTitles,
-  remarkExtractFrontmatter,
-  remarkImgToJsx,
-} from 'pliny/mdx-plugins/index.js'
+import { remarkCodeTitles, remarkExtractFrontmatter } from 'pliny/mdx-plugins/index.js'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import readingTime from 'reading-time'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -24,6 +20,7 @@ import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkMath from 'remark-math'
 import categoryMapping from './data/category-mapping'
 import siteMetadata from './data/siteMetadata'
+import { remarkImgToJsx } from './utils/mdx_plugins/remark-img-to-jsx'
 import { extractTocHeadings } from './utils/mdx_plugins/toc'
 
 const root = process.cwd()
