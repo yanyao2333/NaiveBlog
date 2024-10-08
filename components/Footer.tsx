@@ -1,23 +1,16 @@
 import siteMetadata from '@/data/siteMetadata'
-import SocialIcon from 'components/svgs/social-icons'
+import * as child_process from 'node:child_process'
 import Link from './Link'
 
 export default function Footer() {
+  const commitHash = child_process.execSync('git rev-parse HEAD').toString().trim().slice(0, 6)
+
   return (
     <footer>
-      <div className="mt-auto flex flex-col items-center pt-16">
-        <div className="mb-3 flex space-x-4">
-          <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
-          <SocialIcon kind="github" href={siteMetadata.github} size={6} />
-          <SocialIcon kind="facebook" href={siteMetadata.facebook} size={6} />
-          <SocialIcon kind="youtube" href={siteMetadata.youtube} size={6} />
-          <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size={6} />
-          <SocialIcon kind="twitter" href={siteMetadata.twitter} size={6} />
-          <SocialIcon kind="x" href={siteMetadata.x} size={6} />
-          <SocialIcon kind="instagram" href={siteMetadata.instagram} size={6} />
-          <SocialIcon kind="threads" href={siteMetadata.threads} size={6} />
-          <SocialIcon kind="rss" href={siteMetadata.siteUrl + '/feed.xml'} size={6} />
-        </div>
+      <div className="mb-8 mt-16 flex select-none flex-col items-center">
+        <span className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+          {'Ciallo ～(∠・ω< )⌒★!'}
+        </span>
         <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
           <div>{siteMetadata.author}</div>
           <div>{` • `}</div>
@@ -25,13 +18,13 @@ export default function Footer() {
           <div>{` • `}</div>
           <Link href="/">{siteMetadata.title}</Link>
         </div>
-        <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <Link href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
-            Based on ♥️ Tailwind Next.js Theme
-          </Link>
-        </div>
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          Build on {new Date().toUTCString()}
+        {/*<div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">*/}
+        {/*  <Link href="https://github.com/timlrx/tailwind-nextjs-starter-blog">*/}
+        {/*    Based on ♥️ Tailwind Next.js Theme*/}
+        {/*  </Link>*/}
+        {/*</div>*/}
+        <div className="text-sm text-gray-500 dark:text-gray-400">
+          构建于 {new Date().toUTCString()} (hash: {commitHash})
         </div>
       </div>
     </footer>

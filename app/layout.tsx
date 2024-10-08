@@ -125,8 +125,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <main className="m-auto min-w-full">{children}</main>
             </SearchProvider>
             <SettingsPanel />
-            <Footer />
           </SectionContainer>
+          <Footer />
         </ThemeProviders>
       </body>
     </html>
