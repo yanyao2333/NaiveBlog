@@ -115,6 +115,7 @@ const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }
             speed={500}
             plugins={[lgThumbnail, lgZoom]}
             elementClassNames="flex flex-row gap-2 flex-wrap not-prose mt-4 mb-3 mr-2"
+            licenseKey={process.env.NEXT_PUBLIC_LIGHT_GALLERY_LICENSE_KEY}
           >
             {memo.resources.map((resource) => {
               const imgUrl = `${process.env.NEXT_PUBLIC_MEMOS_ENDPOINT}/file/${resource.name}/${resource.filename}`
