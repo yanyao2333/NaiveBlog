@@ -35,7 +35,7 @@ const FloatNavBar = () => {
     if (nowPath == '/' && link.href == '/') {
       return 'block font-medium text-primary-500 dark:text-primary-400 py-3 border-b border-b-primary-500 dark:border-b-primary-400'
     }
-    return 'block font-medium hover:text-primary-500 text-gray-500 dark:text-gray-400 dark:hover:text-primary-400 py-3'
+    return 'transition-colors block font-medium hover:text-primary-500 text-gray-500 dark:text-gray-400 dark:hover:text-primary-400 py-3'
   }
 
   function genLogoLinkClassName(link: { href: string; title: string }) {
@@ -45,7 +45,7 @@ const FloatNavBar = () => {
     if (nowPath == '/' && link.href == '/') {
       return 'text-primary-500 dark:text-primary-400 py-2 border-b border-b-primary-500 dark:border-b-primary-400'
     }
-    return 'text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400 py-2'
+    return 'transition-colors text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400 py-2'
   }
 
   return (

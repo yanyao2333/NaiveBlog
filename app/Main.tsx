@@ -1,4 +1,3 @@
-import RecentlyBangumi from '@/components/homeComponents/RecentlyBangumi'
 import RecentlyMemos from '@/components/homeComponents/RecentlyMemos'
 import RecentlyPosts from '@/components/homeComponents/RecentlyPosts'
 import PageTitle from '@/components/PageTitle'
@@ -36,7 +35,7 @@ export default function Home() {
         <RecentlyMemos />
         <RecentlyPosts />
         {/*<RecentlyMusic />*/}
-        <RecentlyBangumi />
+        {/*<RecentlyBangumi />*/}
       </div>
     </>
   )

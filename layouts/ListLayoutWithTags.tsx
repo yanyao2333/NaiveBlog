@@ -10,7 +10,7 @@ import type { Blog } from 'contentlayer/generated'
 import { slug } from 'github-slugger'
 import { usePathname } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
-import { formatDate } from 'pliny/utils/formatDate'
+import { formatDate } from '../utils/time'
 
 interface PaginationProps {
   totalPages: number

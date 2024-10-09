@@ -10,3 +10,12 @@ export function isTimeDifferenceGreaterThan(targetTimestamp, diffMilliseconds) {
   const timeDifference = Math.abs(currentTimestamp - targetTimestamp)
   return timeDifference >= diffMilliseconds
 }
+
+export const formatDate = (date: string, locale = 'zh-CN') => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }
+  return new Date(date).toLocaleDateString(locale, options)
+}

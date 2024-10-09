@@ -51,7 +51,7 @@ export default function RecentlyBangumi() {
   }, [])
 
   return (
-    <div className="flex flex-col rounded-lg bg-pink-200 shadow-lg dark:bg-zinc-500 sm:col-span-2">
+    <div className="flex min-h-60 flex-col rounded-lg bg-zinc-200/70 shadow-lg dark:bg-zinc-500 sm:col-span-2">
       <span className="ml-3 mt-2">📺 最近在看</span>
       <div className="mx-auto mt-5 grid grid-cols-3 gap-5 pb-3 sm:gap-8 xl:gap-12">
         {data

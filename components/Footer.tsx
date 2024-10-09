@@ -24,7 +24,7 @@ export default function Footer() {
         {/*  </Link>*/}
         {/*</div>*/}
         <div className="text-sm text-gray-500 dark:text-gray-400">
-          构建于 {new Date().toUTCString()} (hash: {commitHash})
+          {commitHash} - {new Date().toUTCString()}
         </div>
       </div>
     </footer>
