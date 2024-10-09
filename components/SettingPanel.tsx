@@ -19,9 +19,9 @@ export default function SettingsPanel() {
   function genButtonClassName(_theme: string) {
     switch (_theme == theme) {
       case true:
-        return 'bg-primary-200 dark:bg-primary-900 select-none'
+        return 'text-sm font-light bg-primary-200/50 dark:bg-primary-900 select-none'
       case false:
-        return 'select-none hover:bg-primary-200 dark:hover:bg-primary-900'
+        return 'text-sm font-light select-none'
     }
   }
 
@@ -45,27 +45,27 @@ export default function SettingsPanel() {
           设置
         </div>
         <div className="bg-gray-50 dark:bg-gray-700">
-          <div className="mx-7 my-5 grid max-w-full grid-cols-3 divide-x divide-gray-400 overflow-hidden rounded-full border border-gray-400 text-center shadow">
+          <div className="mx-7 my-5 grid min-h-7 max-w-full grid-cols-3 overflow-hidden rounded-full border border-gray-400 text-center shadow">
             <button
               onClick={() => onClickThemeBtn('light')}
               disabled={theme === 'light'}
               className={genButtonClassName('light')}
             >
-              浅色
+              Light
             </button>
             <button
               onClick={() => onClickThemeBtn('system')}
               disabled={theme === 'system'}
               className={genButtonClassName('system')}
             >
-              自动
+              System
             </button>
             <button
               onClick={() => onClickThemeBtn('dark')}
               disabled={theme === 'dark'}
               className={genButtonClassName('dark')}
             >
-              深色
+              Dark
             </button>
           </div>
         </div>
