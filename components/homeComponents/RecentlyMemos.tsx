@@ -27,11 +27,11 @@ export default function RecentlyMemos() {
 
   return (
     <Link
-      className="flex min-h-60 cursor-pointer flex-col rounded-lg bg-zinc-200/90 shadow-lg transition-shadow hover:shadow-xl dark:bg-gray-500 sm:col-span-2"
+      className="flex min-h-60 cursor-pointer flex-col rounded-lg bg-zinc-200/90 dark:bg-gray-500 sm:col-span-2"
       href={'/memory'}
     >
       <span className="ml-3 mt-2">💡 最近想法</span>
-      <div className="prose m-3 flex min-w-fit flex-col divide-y divide-dashed rounded-md bg-white px-3 prose-p:my-0 dark:bg-gray-200">
+      <div className="prose m-3 flex min-w-fit flex-col divide-y divide-dashed rounded-md bg-white px-3 shadow-lg transition-shadow hover:shadow-xl prose-p:my-0 dark:bg-gray-200">
         {memos
           ? memos.map((memo) => {
               return (
