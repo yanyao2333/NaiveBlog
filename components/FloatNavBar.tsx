@@ -1,12 +1,10 @@
 'use client'
 import {
   AboutMeIcon,
-  CategoriesIcon,
   HomeIcon,
   MemoriesIcon,
   PostsIcon,
   ProjectsIcon,
-  TagsIcon,
 } from '@/components/svgs/navBarIcons'
 import { usePathname } from 'next/navigation'
 import Link from './Link'
@@ -16,12 +14,12 @@ const headerNavLinks = [
   { href: '/', title: 'Home', logo: <HomeIcon /> },
   { href: '/blog', title: 'Posts', logo: <PostsIcon /> },
   { href: '/memory', title: 'Memories', logo: <MemoriesIcon /> },
-  { href: '/tags', title: 'Tags', logo: <TagsIcon /> },
-  {
-    href: '/categories',
-    title: 'Categories',
-    logo: <CategoriesIcon />,
-  },
+  // { href: '/tags', title: 'Tags', logo: <TagsIcon /> },
+  // {
+  //   href: '/categories',
+  //   title: 'Categories',
+  //   logo: <CategoriesIcon />,
+  // },
   { href: '/projects', title: 'Projects', logo: <ProjectsIcon /> },
   { href: '/about', title: 'About', logo: <AboutMeIcon /> },
 ]

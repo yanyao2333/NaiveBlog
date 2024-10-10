@@ -10,6 +10,9 @@ import type { Blog } from 'contentlayer/generated'
 import { slug } from 'github-slugger'
 import { usePathname } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
+import React from 'react'
+import categoryData from '../app/category-data.json'
+import { TreeNode } from '../contentlayer.config'
 import { formatDate } from '../utils/time'
 
 interface PaginationProps {
@@ -64,6 +67,36 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
   )
 }
 
+function TreeNodeComponent({ node }: { node: TreeNode }) {
+  return (
+    <>
+      {node.name && (
+        <li className="text-center">
+          <Link
+            href={`/categories/${node.fullPath}`}
+            aria-label={`View posts in category ${node.showName}`}
+            className="inline-block"
+          >
+            <div className="flex">
+              <div className="mr-3 flex text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500">
+                <span className="font-bold text-gray-900">&bull;</span> {node.showName}
+              </div>
+              <div className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-300">
+                {` (${node.count})`}
+              </div>
+            </div>
+          </Link>
+        </li>
+      )}
+      <ul className="list-inside pl-4 pt-4">
+        {Object.values(node.children).map((child) => {
+          return <TreeNodeComponent key={child.name} node={child} />
+        })}
+      </ul>
+    </>
+  )
+}
+
 export default function ListLayoutWithTags({
   posts,
   title,
@@ -83,7 +116,7 @@ export default function ListLayoutWithTags({
         <PageTitle title="Posts" subtitle="思考、发癫与记录" />
         <div className="flex sm:space-x-24">
           <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-800 dark:shadow-gray-800/40 sm:flex">
-            <div className="px-6 py-4">
+            <div className="flex flex-col px-6 py-4">
               {pathname.startsWith('/blog') ? (
                 <h3 className="font-bold uppercase text-primary-500">所有博文</h3>
               ) : (
@@ -94,18 +127,21 @@ export default function ListLayoutWithTags({
                   所有博文
                 </Link>
               )}
+              <span className="px-3 pt-3 text-base font-bold uppercase text-gray-900 dark:text-gray-300">
+                Tags
+              </span>
               <ul>
                 {sortedTags.map((t) => {
                   return (
                     <li key={t} className="my-3">
                       {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
-                        <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-500">
+                        <h3 className=" inline py-2 pl-5 pr-3 text-sm font-bold uppercase text-primary-500">
                           {`${t} (${tagCounts[t]})`}
                         </h3>
                       ) : (
                         <Link
                           href={`/tags/${slug(t)}`}
-                          className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+                          className="py-2 pl-7 pr-3 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                           aria-label={`View posts tagged ${t}`}
                         >
                           {`${t} (${tagCounts[t]})`}
@@ -114,6 +150,12 @@ export default function ListLayoutWithTags({
                     </li>
                   )
                 })}
+              </ul>
+              <span className="px-3 pt-3 text-base font-bold uppercase text-gray-900 dark:text-gray-300">
+                Categories
+              </span>
+              <ul className="mx-auto min-w-full list-inside pl-7 pt-3">
+                <TreeNodeComponent node={categoryData} />
               </ul>
             </div>
           </div>

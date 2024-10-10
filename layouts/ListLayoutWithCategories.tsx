@@ -7,10 +7,12 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import categoryData from 'app/category-data.json'
 import type { Blog } from 'contentlayer/generated'
+import { slug } from 'github-slugger'
 import { usePathname } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { formatDate } from 'pliny/utils/formatDate'
 import React from 'react'
+import tagData from '../app/tag-data.json'
 import { TreeNode } from '../contentlayer.config'
 
 interface PaginationProps {
@@ -66,46 +68,27 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
 }
 
 function TreeNodeComponent({ node }: { node: TreeNode }) {
-  const pathName = usePathname()
-  let blogNode: React.JSX.Element | null = null
-  let nornalNode: React.JSX.Element | null = null
-  if (node.name === 'blog') {
-    if (pathName == '/categories/blog') {
-      blogNode = <h3 className="font-bold uppercase text-primary-500">All Posts</h3>
-    } else {
-      blogNode = (
-        <Link
-          href={`/categories/blog`}
-          className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
-        >
-          All Posts
-        </Link>
-      )
-    }
-  } else {
-    if (pathName == `/categories/${node.fullPath}`) {
-      nornalNode = (
-        <h3 className="inline text-sm font-bold uppercase text-primary-500">
-          {`${node.showName} (${node.count})`}
-        </h3>
-      )
-    } else {
-      nornalNode = (
-        <Link
-          href={decodeURI(`/categories/${node.fullPath}`)}
-          className="text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
-          aria-label={`View posts in category ${node.name}`}
-        >
-          {`${node.showName} (${node.count})`}
-        </Link>
-      )
-    }
-  }
-
   return (
     <>
-      {blogNode ? blogNode : <li>{nornalNode}</li>}
-      <ul className="list-inside list-disc pl-8 pt-4 ">
+      {node.name && (
+        <li className="text-center">
+          <Link
+            href={`/categories/${node.fullPath}`}
+            aria-label={`View posts in category ${node.showName}`}
+            className="inline-block"
+          >
+            <div className="flex">
+              <div className="mr-3 flex text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500">
+                <span className="font-bold text-gray-900">&bull;</span> {node.showName}
+              </div>
+              <div className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-300">
+                {` (${node.count})`}
+              </div>
+            </div>
+          </Link>
+        </li>
+      )}
+      <ul className="list-inside pl-4 pt-4">
         {Object.values(node.children).map((child) => {
           return <TreeNodeComponent key={child.name} node={child} />
         })}
@@ -114,12 +97,66 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
   )
 }
 
+// function TreeNodeComponent({ node }: { node: TreeNode }) {
+//   const pathName = usePathname()
+//   let blogNode: React.JSX.Element | null = null
+//   let nornalNode: React.JSX.Element | null = null
+//   if (node.name === 'blog') {
+//     if (pathName == '/categories/blog') {
+//       blogNode = <h3 className="font-bold uppercase text-primary-500">All Posts</h3>
+//     } else {
+//       blogNode = (
+//         <Link
+//           href={`/categories/blog`}
+//           className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+//         >
+//           All Posts
+//         </Link>
+//       )
+//     }
+//   } else {
+//     if (pathName == `/categories/${node.fullPath}`) {
+//       nornalNode = (
+//         <h3 className="inline text-sm font-bold uppercase text-primary-500">
+//           {`${node.showName} (${node.count})`}
+//         </h3>
+//       )
+//     } else {
+//       nornalNode = (
+//         <Link
+//           href={decodeURI(`/categories/${node.fullPath}`)}
+//           className="text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+//           aria-label={`View posts in category ${node.name}`}
+//         >
+//           {`${node.showName} (${node.count})`}
+//         </Link>
+//       )
+//     }
+//   }
+//
+//   return (
+//     <>
+//       {blogNode ? blogNode : <li>{nornalNode}</li>}
+//       <ul className="list-inside list-disc pl-8 pt-4 ">
+//         {Object.values(node.children).map((child) => {
+//           return <TreeNodeComponent key={child.name} node={child} />
+//         })}
+//       </ul>
+//     </>
+//   )
+// }
+
 export default function ListLayoutWithCategories({
   posts,
   title,
   initialDisplayPosts = [],
   pagination,
 }: ListLayoutProps) {
+  const pathname = usePathname()
+  const tagCounts = tagData as Record<string, number>
+  const tagKeys = Object.keys(tagCounts)
+  const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
+
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
@@ -129,7 +166,34 @@ export default function ListLayoutWithCategories({
         <div className="flex sm:space-x-24">
           <div className="sm: hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
             <div className="px-6 py-4">
-              <ul className="ml-0.5 list-inside list-disc pt-3">
+              <span className="px-3 pt-3 text-base font-bold uppercase text-gray-900 dark:text-gray-300">
+                Tags
+              </span>
+              <ul>
+                {sortedTags.map((t) => {
+                  return (
+                    <li key={t} className="my-3">
+                      {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
+                        <h3 className=" inline py-2 pl-5 pr-3 text-sm font-bold uppercase text-primary-500">
+                          {`${t} (${tagCounts[t]})`}
+                        </h3>
+                      ) : (
+                        <Link
+                          href={`/tags/${slug(t)}`}
+                          className="py-2 pl-7 pr-3 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
+                          aria-label={`View posts tagged ${t}`}
+                        >
+                          {`${t} (${tagCounts[t]})`}
+                        </Link>
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
+              <span className="px-3 pt-3 text-base font-bold uppercase text-gray-900 dark:text-gray-300">
+                Categories
+              </span>
+              <ul className="mx-auto min-w-full list-inside pl-7 pt-3">
                 <TreeNodeComponent node={categoryData} />
               </ul>
             </div>

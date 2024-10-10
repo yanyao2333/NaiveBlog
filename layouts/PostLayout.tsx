@@ -10,7 +10,6 @@ import type { Authors, Blog } from 'contentlayer/generated'
 import { Comments as CommentsComponent } from 'pliny/comments'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { ReactNode } from 'react'
-import { formatDate } from '../utils/time'
 
 const editUrl = (path) =>
   `${siteMetadata.siteContentRepo}/blob/main/blog-posts/${path.replace('blog/', '')}`
@@ -136,62 +135,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </dd>
             </dl>
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">
-                {children}
-                <div className="license-container onload-animation relative mb-6 overflow-hidden rounded-xl bg-primary-100 px-6 py-5 transition">
-                  <div className="font-bold text-black/75 transition dark:text-white/75">
-                    {content.title}
-                  </div>
-                  <a href={'/' + content.path} className="link">
-                    {'https://blog.uselesslab.top/' + content.path}
-                  </a>
-                  <div className="mt-2 flex gap-6">
-                    <div>
-                      <div className="text-sm text-black/30 transition dark:text-white/30">
-                        作者
-                      </div>
-                      <div className="whitespace-nowrap text-black/75 transition dark:text-white/75">
-                        Roitium.
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-sm text-black/30 transition dark:text-white/30">
-                        发布于
-                      </div>
-                      <div className="whitespace-nowrap text-black/75 transition dark:text-white/75">
-                        {formatDate(content.date)}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-sm text-black/30 transition dark:text-white/30">
-                        许可协议
-                      </div>
-                      <a
-                        href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-                        target="_blank"
-                        className="link whitespace-nowrap"
-                      >
-                        CC BY-NC-SA 4.0
-                      </a>
-                    </div>
-                  </div>
-                  <svg
-                    width="240"
-                    height="240"
-                    viewBox="0 0 496 512"
-                    className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 text-black/5 transition dark:text-white/5"
-                    data-icon="fa6-brands:creative-commons"
-                  >
-                    <symbol id="ai:fa6-brands:creative-commons">
-                      <path
-                        fill="currentColor"
-                        d="m245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93c-22.13 0-33.22 14.61-33.22 43.84c0 23.57 9.21 43.84 33.22 43.84c14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98c-22.6 0-73.96-10.32-73.96-77.05c0-58.69 43-77.06 72.63-77.06c30.72-.01 52.7 11.95 65.99 35.86m143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93c-22.14 0-33.22 14.61-33.22 43.84c0 23.55 9.23 43.84 33.22 43.84c14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98c-22.69 0-73.96-9.87-73.96-77.05c0-58.67 42.97-77.06 72.63-77.06c30.71-.01 52.58 11.95 65.56 35.86M247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248c129.93 0 248.44-100.87 248.44-248c0-137.87-106.62-248-248.44-248m.87 450.81c-112.54 0-203.7-93.04-203.7-202.81c0-105.42 85.43-203.27 203.72-203.27c112.53 0 202.82 89.46 202.82 203.26c-.01 121.69-99.68 202.82-202.84 202.82"
-                      ></path>
-                    </symbol>
-                    <use xlinkHref="#ai:fa6-brands:creative-commons"></use>
-                  </svg>
-                </div>
-              </div>
+              <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">{children}</div>
               <div className="pb-6 pt-6 text-center text-sm text-gray-700 dark:text-gray-300">
                 {/*<Link href={discussUrl(path)} rel="nofollow">*/}
                 {/*  Discuss on Twitter*/}
