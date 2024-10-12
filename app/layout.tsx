@@ -114,20 +114,22 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <title>{siteMetadata.title}</title>
       </head>
       <body className="min-h-dvh bg-primary-50/40 pl-[calc(100vw-100%)] text-black antialiased accent-primary-400 dark:bg-gray-900 dark:text-gray-100">
-        <Toaster />
-        <ThemeProviders>
-          {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
-          {/* 定义了一个container，规范内容页面宽高 */}
-          <FloatNavBar />
-          <SectionContainer>
-            <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-              {/*<Header />*/}
-              <main className="m-auto min-w-full">{children}</main>
-            </SearchProvider>
-            <SettingsPanel />
-          </SectionContainer>
-          <Footer />
-        </ThemeProviders>
+        <div>
+          <Toaster />
+          <ThemeProviders>
+            {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
+            {/* 定义了一个container，规范内容页面宽高 */}
+            <FloatNavBar />
+            <SectionContainer>
+              <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+                {/*<Header />*/}
+                <main className="m-auto min-w-full">{children}</main>
+              </SearchProvider>
+              <SettingsPanel />
+            </SectionContainer>
+            <Footer />
+          </ThemeProviders>
+        </div>
       </body>
     </html>
   )
