@@ -9589,6 +9589,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pangu@npm:^4.0.7":
+  version: 4.0.7
+  resolution: "pangu@npm:4.0.7"
+  bin:
+    pangu: ./dist/node/cli.js
+  checksum: 10/aecff0671b1eab9651b3b4cbda09a67fcca3eae5a54d1e31c64ba22341b8894690a5d2763724d8eb42f39ddd6cdca39028271fcef8caffd04be1c0708c03c6b3
+  languageName: node
+  linkType: hard
+
 "parent-module@npm:^1.0.0":
   version: 1.0.1
   resolution: "parent-module@npm:1.0.1"
@@ -10803,6 +10812,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remark-pangu@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "remark-pangu@npm:2.2.0"
+  dependencies:
+    pangu: "npm:^4.0.7"
+    unist-util-is: "npm:^4.0.2"
+    unist-util-visit: "npm:^2.0.2"
+  checksum: 10/5f4b2fa5860eb9921b633ab93ffbb85b6a419b5e9185392976657d9718f65d0a95ead810c42cd4834e554e88a2ac3bc7cacb2c99e307bee39ad7b1a08d68b6ae
+  languageName: node
+  linkType: hard
+
 "remark-parse@npm:^11.0.0":
   version: 11.0.0
   resolution: "remark-parse@npm:11.0.0"
@@ -11753,6 +11773,7 @@ __metadata:
     remark-gfm: "npm:^4.0.0"
     remark-github-blockquote-alert: "npm:^1.2.1"
     remark-math: "npm:^6.0.0"
+    remark-pangu: "npm:^2.2.0"
     sharp: "npm:^0.33.5"
     swr: "npm:^2.2.5"
     tailwind-merge: "npm:^2.5.3"
@@ -12182,6 +12203,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"unist-util-is@npm:^4.0.0, unist-util-is@npm:^4.0.2":
+  version: 4.1.0
+  resolution: "unist-util-is@npm:4.1.0"
+  checksum: 10/c046cc87c0a4f797b2afce76d917218e6a9af946a56cb5a88cb7f82be34f16c11050a10ddc4c66a3297dbb2782ca7d72a358cd77900b439ea9c683ba003ffe90
+  languageName: node
+  linkType: hard
+
 "unist-util-is@npm:^6.0.0":
   version: 6.0.0
   resolution: "unist-util-is@npm:6.0.0"
@@ -12228,6 +12256,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"unist-util-visit-parents@npm:^3.0.0":
+  version: 3.1.1
+  resolution: "unist-util-visit-parents@npm:3.1.1"
+  dependencies:
+    "@types/unist": "npm:^2.0.0"
+    unist-util-is: "npm:^4.0.0"
+  checksum: 10/1b18343d88a0ad9cafaf8164ff8a1d3e3903328b3936b1565d61731f0b5778b9b9f400c455d3ad5284eeebcfdd7558ce24eb15c303a9cc0bd9218d01b2116923
+  languageName: node
+  linkType: hard
+
 "unist-util-visit-parents@npm:^6.0.0":
   version: 6.0.1
   resolution: "unist-util-visit-parents@npm:6.0.1"
@@ -12235,6 +12273,17 @@ __metadata:
     "@types/unist": "npm:^3.0.0"
     unist-util-is: "npm:^6.0.0"
   checksum: 10/645b3cbc5e923bc692b1eb1a9ca17bffc5aabc25e6090ff3f1489bff8effd1890b28f7a09dc853cb6a7fa0da8581bfebc9b670a68b53c4c086cb9610dfd37701
+  languageName: node
+  linkType: hard
+
+"unist-util-visit@npm:^2.0.2":
+  version: 2.0.3
+  resolution: "unist-util-visit@npm:2.0.3"
+  dependencies:
+    "@types/unist": "npm:^2.0.0"
+    unist-util-is: "npm:^4.0.0"
+    unist-util-visit-parents: "npm:^3.0.0"
+  checksum: 10/1fe19d500e212128f96d8c3cfa3312846e586b797748a1fd195fe6479f06bc90a6f6904deb08eefc00dd58e83a1c8a32fb8677252d2273ad7a5e624525b69b8f
   languageName: node
   linkType: hard
 

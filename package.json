@@ -48,6 +48,7 @@
     "remark-gfm": "^4.0.0",
     "remark-github-blockquote-alert": "^1.2.1",
     "remark-math": "^6.0.0",
+    "remark-pangu": "^2.2.0",
     "sharp": "^0.33.5",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.3",

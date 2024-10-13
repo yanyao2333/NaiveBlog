@@ -18,6 +18,7 @@ import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkMath from 'remark-math'
+import remarkPangu from 'remark-pangu'
 import categoryMapping from './data/category-mapping'
 import siteMetadata from './data/siteMetadata'
 import { remarkImgToJsx } from './utils/mdx_plugins/remark-img-to-jsx'
@@ -211,6 +212,7 @@ export default makeSource({
       remarkMath,
       remarkImgToJsx,
       remarkAlert,
+      remarkPangu,
     ],
     rehypePlugins: [
       rehypeSlug,
