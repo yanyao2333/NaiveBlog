@@ -124,13 +124,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <ThemeProviders>
             {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
             {/* 定义了一个container，规范内容页面宽高 */}
-            <FloatNavBar />
-            <SectionContainer>
-              <KBarSearchProvider>
+            <KBarSearchProvider>
+              <FloatNavBar />
+              <SectionContainer>
                 <main className="m-auto min-w-full">{children}</main>
-              </KBarSearchProvider>
-              <SettingsPanel />
-            </SectionContainer>
+                <SettingsPanel />
+              </SectionContainer>
+            </KBarSearchProvider>
             <Footer />
           </ThemeProviders>
         </div>
