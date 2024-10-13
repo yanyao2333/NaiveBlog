@@ -1,5 +1,5 @@
 import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/source-files'
-import { writeFileSync } from 'fs'
+import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 import * as console from 'node:console'
@@ -103,7 +103,7 @@ function createCategoryTree(allBlogs) {
     root.count += node.count
   })
   console.log('✅ Category tree generated successfully!')
-  writeFileSync('./app/category-data.json', JSON.stringify(root, null, 2))
+  writeFileSync('./temp/category-data.json', JSON.stringify(root, null, 2))
 }
 
 /**
@@ -124,7 +124,7 @@ function createTagCount(allBlogs) {
     }
   })
   console.log('✅ Tag counts generated successfully!')
-  writeFileSync('./app/tag-data.json', JSON.stringify(tagCount))
+  writeFileSync('./temp/tag-data.json', JSON.stringify(tagCount))
 }
 
 function createSearchIndex(allBlogs) {
@@ -232,6 +232,9 @@ export default makeSource({
   },
   onSuccess: async (importData) => {
     const { allBlogs } = await importData()
+    if (!existsSync('temp')) {
+      mkdirSync('temp')
+    }
     createTagCount(allBlogs)
     createSearchIndex(allBlogs)
     createCategoryTree(allBlogs)

@@ -6,9 +6,9 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
-import { TreeNode } from '../../../contentlayer.config'
-import { genPageMetadata } from '../../seo'
-import categoryData from 'app/category-data.json'
+import { TreeNode } from '../../../../contentlayer.config'
+import categoryData from '../../../../temp/category-data.json'
+import { genPageMetadata } from '../../../seo'
 
 export async function generateMetadata({
   params,

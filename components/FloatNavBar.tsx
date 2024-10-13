@@ -6,7 +6,7 @@ import {
   PostsIcon,
   ProjectsIcon,
 } from '@/components/svgs/navBarIcons'
-import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/react'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
 import Link from './Link'
@@ -16,7 +16,7 @@ interface HeaderNavLink {
   href: string
   title: string
   logo?: ReactNode
-  children?: HeaderNavLink[] // Recursive type to handle nested links
+  children?: HeaderNavLink[]
 }
 
 interface HeaderNavLinkWithChildren extends Omit<HeaderNavLink, 'children'> {
@@ -30,8 +30,8 @@ const headerNavLinks: HeaderNavLink[] = [
     title: 'Posts',
     logo: <PostsIcon />,
     children: [
-      { href: '/categories', title: 'Categories' },
-      { href: '/tags', title: 'Tags' },
+      { href: '/blog/categories', title: 'Categories' },
+      { href: '/blog/tags', title: 'Tags' },
     ],
   },
   { href: '/memory', title: 'Memories', logo: <MemoriesIcon /> },
@@ -40,7 +40,7 @@ const headerNavLinks: HeaderNavLink[] = [
 ]
 
 // 判断当前路径是否与链接匹配
-function isOnThisPage(link, nowPath) {
+function isOnThisPage(link: HeaderNavLink, nowPath: string) {
   return (nowPath.startsWith(link.href) && link.href != '/') || (nowPath == '/' && link.href == '/')
 }
 
@@ -56,9 +56,9 @@ const buttonStyles = (selected: boolean) => ({
 
 // 通用Popover生成器
 const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconMode: boolean) => (
-  <Popover className="my-auto">
+  <Popover key={`${link.title}_popover`} className="my-auto">
     <PopoverButton
-      key={link.title}
+      key={`${link.title}_popover_btn`}
       className={buttonStyles(isOnThisPage(link, nowPath))[iconMode ? 'icon' : 'text']}
       as={'div'}
     >
@@ -67,7 +67,7 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
     <PopoverPanel
       transition
       anchor="bottom"
-      className="mt-5 divide-y divide-white/5  rounded-xl bg-neutral-100/90 text-sm/6 shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 dark:bg-gray-700/90"
+      className="mt-3 divide-y divide-white/5  rounded-xl bg-neutral-100/90 text-sm/6 shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 dark:bg-gray-700/90"
     >
       {link.children.map((child) => (
         <Link
@@ -75,7 +75,7 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
           className="block rounded-lg px-3 py-2 text-center transition hover:bg-white/5"
           href={child.href}
         >
-          <p className="font-semibold text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400">
+          <p className="font-medium text-gray-500 hover:text-primary-500 dark:text-gray-400 dark:hover:text-primary-400">
             {child.title}
           </p>
         </Link>
@@ -105,14 +105,14 @@ const FloatNavBar = () => {
 
   return (
     <div className="fixed inset-x-0 top-10 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-neutral-50/90 px-5 leading-5 shadow-md backdrop-blur-sm dark:bg-gray-700/90 md:space-x-4">
-      <PopoverGroup className="no-scrollbar hidden items-center space-x-4 overflow-x-auto md:flex md:space-x-6">
+      <div className="no-scrollbar hidden items-center space-x-4 overflow-x-auto md:flex md:space-x-6">
         {headerNavLinks.map((link) => singleNavButtonComponent(link, false, nowPath))}
         <SearchButton />
-      </PopoverGroup>
-      <PopoverGroup className="no-scrollbar flex justify-between gap-[18px] overflow-x-auto sm:gap-6 md:hidden">
+      </div>
+      <div className="no-scrollbar flex justify-between gap-[18px] overflow-x-auto sm:gap-6 md:hidden">
         {headerNavLinks.map((link) => singleNavButtonComponent(link, true, nowPath))}
         <SearchButton />
-      </PopoverGroup>
+      </div>
     </div>
   )
 }

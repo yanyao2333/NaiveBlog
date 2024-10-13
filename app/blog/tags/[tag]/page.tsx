@@ -1,12 +1,12 @@
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayoutWithTags'
-import { genPageMetadata } from 'app/seo'
-import tagData from 'app/tag-data.json'
 import { allBlogs } from 'contentlayer/generated'
 import { slug } from 'github-slugger'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
+import tagData from '../../../../temp/tag-data.json'
+import { genPageMetadata } from '../../../seo'
 
 export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
   const tag = decodeURI(params.tag)

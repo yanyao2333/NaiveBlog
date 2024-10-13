@@ -5,15 +5,15 @@ import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import categoryData from 'app/category-data.json'
 import type { Blog } from 'contentlayer/generated'
 import { slug } from 'github-slugger'
 import { usePathname } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { formatDate } from 'pliny/utils/formatDate'
 import React from 'react'
-import tagData from '../app/tag-data.json'
 import { TreeNode } from '../contentlayer.config'
+import categoryData from '../temp/category-data.json'
+import tagData from '../temp/tag-data.json'
 
 interface PaginationProps {
   totalPages: number

@@ -1,9 +1,9 @@
 import PageTitle from '@/components/PageTitle'
-import categoryData from 'app/category-data.json'
 import Link from 'next/link'
 import React from 'react'
-import { TreeNode } from '../../contentlayer.config'
-import { genPageMetadata } from '../seo'
+import { TreeNode } from '../../../contentlayer.config'
+import categoryData from '../../../temp/category-data.json'
+import { genPageMetadata } from '../../seo'
 
 export const metadata = genPageMetadata({
   title: 'Categories',

@@ -4,9 +4,9 @@ import path from "path";
 import { allCoreContent, sortPosts } from "pliny/utils/contentlayer.js";
 import { escape } from "pliny/utils/htmlEscaper.js";
 import { allBlogs } from "../.contentlayer/generated/index.mjs";
-import tagData from "../app/tag-data.json" assert { type: "json" };
 import siteMetadata from "../data/siteMetadata.js";
-import categoryData from "../app/category-data.json" assert { type: "json" };
+import categoryData from "../temp/category-data.json" assert { type: "json" };
+import tagData from "../temp/tag-data.json" assert { type: "json" };
 
 const generateRssItem = (config, post) => `
   <item>

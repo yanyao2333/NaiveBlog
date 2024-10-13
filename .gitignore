@@ -46,10 +46,6 @@ yarn-error.log*
 # Contentlayer
 .contentlayer
 
-# tag-data
-app/tag-data.json
-app/category-data.json
-
 # IDEA
 .idea/
 
@@ -59,3 +55,6 @@ app/category-data.json
 
 # posts
 /data/blog
+
+# temp folder
+/temp
