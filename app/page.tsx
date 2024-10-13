@@ -2,6 +2,7 @@ import RecentlyMemos from '@/components/homeComponents/RecentlyMemos'
 import RecentlyPosts from '@/components/homeComponents/RecentlyPosts'
 import PageTitle from '@/components/PageTitle'
 import SocialIcon from '@/components/svgs/social-icons'
+import Tooltip from '@/components/Tooltip'
 import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
 
@@ -17,9 +18,15 @@ export default function Home() {
               className={''}
             />
             <div className="mb-3 flex justify-center space-x-4">
-              <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
-              <SocialIcon kind="github" href={siteMetadata.github} size={6} />
-              <SocialIcon kind="rss" href={siteMetadata.siteUrl + '/feed.xml'} size={6} />
+              <Tooltip text="Mail">
+                <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
+              </Tooltip>
+              <Tooltip text="Github">
+                <SocialIcon kind="github" href={siteMetadata.github} size={6} />
+              </Tooltip>
+              <Tooltip text="RSS">
+                <SocialIcon kind="rss" href={siteMetadata.siteUrl + '/feed.xml'} size={6} />
+              </Tooltip>
             </div>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}

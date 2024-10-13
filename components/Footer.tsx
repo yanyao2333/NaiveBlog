@@ -1,3 +1,4 @@
+import Tooltip from '@/components/Tooltip'
 import siteMetadata from '@/data/siteMetadata'
 import * as child_process from 'node:child_process'
 import Link from './Link'
@@ -24,7 +25,9 @@ export default function Footer() {
         {/*  </Link>*/}
         {/*</div>*/}
         <div className="text-sm text-gray-500 dark:text-gray-400">
-          {commitHash} - {new Date().toUTCString()}
+          <Tooltip text={`Last commit hash: ${commitHash}`} className={'-left-0 '}>
+            {commitHash} - {new Date().toUTCString()}
+          </Tooltip>
         </div>
       </div>
     </footer>

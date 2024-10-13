@@ -1,3 +1,4 @@
+// 本页面用于显示Memos列表
 'use client'
 import 'lightgallery/css/lightgallery.css'
 import 'lightgallery/css/lg-zoom.css'
@@ -18,8 +19,14 @@ import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 import { Memo, MemoListResponse } from '../../types/memos'
 
+// 下一页的 token
 let nextPageToken = ''
 
+/**
+ * 格式化时间字符串
+ * @param timeString 时间字符串
+ * @returns 格式化后的时间字符串
+ */
 function formatTime(timeString) {
   const targetTime = moment(timeString)
   const diffDays = moment().diff(targetTime, 'days')
@@ -33,12 +40,17 @@ function formatTime(timeString) {
   }
 }
 
+/**
+ * 获取Memos列表
+ * @returns Memos列表
+ */
 async function fetchMemos() {
+  // 如果没有设置Memos端点，则返回空列表
   if (!process.env.NEXT_PUBLIC_MEMOS_ENDPOINT) {
     return []
   }
   const apiEndpoint = process.env.NEXT_PUBLIC_MEMOS_ENDPOINT?.replace(/\/$/, '')
-  // 逆天参数，给我整不会了
+  // 查询参数
   const filter = `filter=creator=='users/1'%26%26order_by_pinned==true`
   const pageSize = 'pageSize=5'
   const pageToken = nextPageToken ? `&pageToken=${nextPageToken}` : ''
@@ -46,6 +58,7 @@ async function fetchMemos() {
   const response = await fetch(`${apiEndpoint}/${apiPath}?${filter}&${pageSize}${pageToken}`)
   const jsonResp: MemoListResponse = await response.json()
   nextPageToken = jsonResp.nextPageToken
+  // 处理Memos内容
   return await Promise.all(
     jsonResp.memos.map(async (memo: Memo) => {
       memo.parsedContent = await unified()
@@ -61,6 +74,11 @@ async function fetchMemos() {
   )
 }
 
+/**
+ * 单Memo组件
+ * @param memo Memo
+ * @returns Memos行组件
+ */
 const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }) {
   return (
     <div className="flex flex-col gap-3 border-gray-200 py-6 dark:border-gray-700 lg:w-[720px]">
@@ -139,10 +157,15 @@ const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }
   )
 })
 
+/**
+ * Memos页面
+ * @returns Memos页面
+ */
 export default function MemosPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [memos, setMemos] = useState<Memo[]>([])
 
+  // 初始化Memos列表
   useEffect(() => {
     setIsLoading(true)
     moment.locale(navigator.language)
@@ -159,6 +182,7 @@ export default function MemosPage() {
     }
   }, [])
 
+  // 加载更多Memos
   function onClickFetchMore() {
     setIsLoading(true)
     fetchMemos().then((data) => {
