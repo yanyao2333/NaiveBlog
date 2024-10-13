@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import SectionContainer from '@/components/SectionContainer'
 import SettingsPanel from '@/components/SettingPanel'
 import siteMetadata from '@/data/siteMetadata'
+import { OpenPanelComponent } from '@openpanel/nextjs'
 import { Metadata } from 'next'
 import { SearchConfig, SearchProvider } from 'pliny/search'
 import { ReactNode } from 'react'
@@ -116,6 +117,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="min-h-dvh bg-primary-50/40 pl-[calc(100vw-100%)] text-black antialiased accent-primary-400 dark:bg-gray-900 dark:text-gray-100">
         <div>
           <Toaster />
+          <OpenPanelComponent
+            clientId="e67f1761-a8ed-46f2-b8ab-dab5884e4fe0"
+            trackScreenViews={true}
+          />
           <ThemeProviders>
             {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
             {/* 定义了一个container，规范内容页面宽高 */}

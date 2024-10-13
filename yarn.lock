@@ -2950,6 +2950,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@openpanel/nextjs@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "@openpanel/nextjs@npm:1.0.5"
+  dependencies:
+    "@openpanel/web": "npm:1.0.1"
+  peerDependencies:
+    next: ^12.0.0 || ^13.0.0 || ^14.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 10/2e87f9e28ada5a913a0a73de4464e19ff6997cd7cb0b4341af78a0f97ee33a1a121ddbab48389eed3e85fec3f380d0f12eb14849a751805f7c13c38d07a8fddf
+  languageName: node
+  linkType: hard
+
+"@openpanel/sdk@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@openpanel/sdk@npm:1.0.0"
+  checksum: 10/c045653db6f162ae547e3c62af26872efa3f40c08f7ed91172f226dc42b612c5192444c26264d235f1b0bfee38df14353a11eeae71b261b57960de3d1ae82110
+  languageName: node
+  linkType: hard
+
+"@openpanel/web@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@openpanel/web@npm:1.0.1"
+  dependencies:
+    "@openpanel/sdk": "npm:1.0.0"
+  checksum: 10/3d04db8af072f71cc366e5555ecf881dcc04584c1243ead07b892199d1ab7f240f2ba1fceea677ba7340249e2cdd1bc0c6c0e7f487d31136b9e189634185805e
+  languageName: node
+  linkType: hard
+
 "@opentelemetry/api-logs@npm:0.51.0":
   version: 0.51.0
   resolution: "@opentelemetry/api-logs@npm:0.51.0"
@@ -11725,6 +11754,7 @@ __metadata:
   dependencies:
     "@headlessui/react": "npm:2.1.9"
     "@next/bundle-analyzer": "npm:14.2.14"
+    "@openpanel/nextjs": "npm:^1.0.5"
     "@svgr/webpack": "npm:^8.1.0"
     "@tailwindcss/forms": "npm:^0.5.9"
     "@tailwindcss/typography": "npm:^0.5.15"
