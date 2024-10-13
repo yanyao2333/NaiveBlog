@@ -8,6 +8,21 @@ import {
 } from "fs";
 import { spawn } from "node:child_process";
 
+console.log(`
+ /$$   /$$           /$$                           /$$$$$$$  /$$                    
+| $$$ | $$          |__/                          | $$__  $$| $$                    
+| $$$$| $$  /$$$$$$  /$$ /$$    /$$ /$$$$$$       | $$  \\ $$| $$  /$$$$$$   /$$$$$$ 
+| $$ $$ $$ |____  $$| $$|  $$  /$$//$$__  $$      | $$$$$$$ | $$ /$$__  $$ /$$__  $$
+| $$  $$$$  /$$$$$$$| $$ \\  $$/$$/| $$$$$$$$      | $$__  $$| $$| $$  \\ $$| $$  \\ $$
+| $$\\  $$$ /$$__  $$| $$  \\  $$$/ | $$_____/      | $$  \\ $$| $$| $$  | $$| $$  | $$
+| $$ \\  $$|  $$$$$$$| $$   \\  $/  |  $$$$$$$      | $$$$$$$/| $$|  $$$$$$/|  $$$$$$$
+|__/  \\__/ \\_______/|__/    \\_/    \\_______/      |_______/ |__/ \\______/  \\____  $$
+                                                                           /$$  \\ $$
+                                                                          |  $$$$$$/
+                                                                           \\______/ 
+`)
+console.log('Welcome to Naive Blog!')
+
 const syncContentFromGit = async (contentDir) => {
     try {
       if (!process.env.GIT_URL) {
@@ -18,7 +33,7 @@ const syncContentFromGit = async (contentDir) => {
       await runBashCommand(
         `git clone --depth 1 --single-branch ${gitUrl} ${contentDir + '/blog-tmp'}`
       )
-      console.log('Synced content files from git successfully!')
+      console.log('✅ Synced content files from git successfully!')
       mkdirSync(contentDir + '/blog', { recursive: true })
       cpSync(contentDir + '/blog-tmp/blog-posts/', contentDir + '/blog', {
         recursive: true,
