@@ -1,6 +1,6 @@
 # Naive Blog
 
-我的博客，名字叫 `Naive Blog`，第一层含义不言自明，第二层含义就是希望我和这个博客一样，永远天真、永远幼稚。
+我的博客，名字叫 `Naive Blog`，含义不言自明，，，
 
 技术栈：Next.js + Tailwind CSS + MDX + ContentLayer2
 

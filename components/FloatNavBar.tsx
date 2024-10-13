@@ -61,13 +61,14 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
       key={`${link.title}_popover_btn`}
       className={buttonStyles(isOnThisPage(link, nowPath))[iconMode ? 'icon' : 'text']}
       as={'div'}
+      aria-label={`popover button for ${link.title}`}
     >
       {iconMode ? link.logo : link.title}
     </PopoverButton>
     <PopoverPanel
       transition
-      anchor="bottom"
-      className="mt-3 divide-y divide-white/5  rounded-xl bg-neutral-100/90 text-sm/6 shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 dark:bg-gray-700/90"
+      anchor={{ to: 'bottom', gap: 12 }}
+      className="divide-y divide-white/5  rounded-xl bg-neutral-100/90 text-sm/6 shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 dark:bg-gray-700/90"
     >
       {link.children.map((child) => (
         <Link
