@@ -19,7 +19,7 @@ export default function SettingsPanel() {
   function genButtonClassName(_theme: string) {
     switch (_theme == theme) {
       case true:
-        return 'text-sm font-light bg-primary-200/50 dark:bg-primary-900 select-none'
+        return 'text-sm font-light bg-primary-500/50 dark:bg-primary-500/50 select-none'
       case false:
         return 'text-sm font-light select-none'
     }
@@ -37,15 +37,15 @@ export default function SettingsPanel() {
     <div>
       {/* 设置面板 */}
       <div
-        className={`h-50 fixed right-0 top-[calc(66.666667%-20px)] flex w-64 transform flex-col bg-gray-100 transition-transform duration-300 dark:bg-gray-800 ${
+        className={`h-50 fixed right-0 top-[calc(66.666667%-20px)] flex w-64 transform flex-col bg-neutral-100 transition-transform duration-300 dark:bg-neutral-700 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="h-10 min-w-full select-none content-center bg-gray-200 pl-3 text-lg font-bold ease-in-out dark:bg-gray-700">
+        <div className="h-10 min-w-full select-none content-center pl-3 text-lg font-bold ease-in-out">
           设置
         </div>
-        <div className="bg-gray-50 dark:bg-gray-700">
-          <div className="mx-7 my-5 grid min-h-7 max-w-full grid-cols-3 overflow-hidden rounded-full border border-gray-400 text-center shadow">
+        <div className="border-t border-neutral-500 bg-neutral-50 dark:bg-neutral-700">
+          <div className="mx-7 my-5 grid min-h-7 max-w-full grid-cols-3 overflow-hidden rounded-full border border-neutral-400 text-center shadow">
             <button
               onClick={() => onClickThemeBtn('light')}
               disabled={theme === 'light'}
@@ -74,7 +74,7 @@ export default function SettingsPanel() {
       {/* 打开面板按钮 */}
       <button
         onClick={togglePanel}
-        className={`fixed top-2/3 -translate-y-1/2 transform rounded-l-full bg-gray-100 p-2 transition-all duration-300 ease-in-out hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-500 ${
+        className={`fixed top-2/3 -translate-y-1/2 transform rounded-l-full bg-neutral-100 p-2 transition-all duration-300 ease-in-out dark:bg-neutral-700 ${
           isOpen ? 'right-64' : 'right-0'
         }`}
         aria-label="open settings panel"

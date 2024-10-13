@@ -15,13 +15,15 @@ const PageTitle = ({
       <h1
         className={twMerge(
           className,
-          'text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14'
+          'text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-neutral-100 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14'
         )}
       >
         {title}
       </h1>
       {subtitle ? (
-        <p className={twMerge(className, 'leading-7 text-gray-500 dark:text-gray-400 sm:text-lg')}>
+        <p
+          className={twMerge(className, 'leading-7 text-gray-500 dark:text-neutral-300 sm:text-lg')}
+        >
           {subtitle}
         </p>
       ) : null}

@@ -9,10 +9,10 @@ export default function Footer() {
   return (
     <footer>
       <div className="mb-8 mt-16 flex select-none flex-col items-center">
-        <span className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+        <span className="mb-2 text-sm text-gray-500 dark:text-neutral-400">
           {'Ciallo ～(∠・ω< )⌒★!'}
         </span>
-        <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
+        <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-neutral-400">
           <div>{siteMetadata.author}</div>
           <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
@@ -24,8 +24,8 @@ export default function Footer() {
         {/*    Based on ♥️ Tailwind Next.js Theme*/}
         {/*  </Link>*/}
         {/*</div>*/}
-        <div className="text-sm text-gray-500 dark:text-gray-400">
-          <Tooltip text={`Last commit hash: ${commitHash}`} className={'-left-0 '}>
+        <div className="text-sm text-gray-500 dark:text-neutral-400">
+          <Tooltip text={`Last commit hash: ${commitHash}`} className={'-left-0'}>
             {commitHash} - {new Date().toUTCString()}
           </Tooltip>
         </div>

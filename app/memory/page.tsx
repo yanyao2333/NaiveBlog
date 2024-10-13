@@ -88,7 +88,7 @@ const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }
         <img src="/static/images/logo.png" alt="avater" className="mt-1 size-[40px] rounded-full" />
         <div className="flex flex-col">
           <span className="font-medium">Roitium.</span>
-          <span className="text-xs text-gray-500 dark:text-gray-400">
+          <span className="text-xs text-neutral-500 dark:text-neutral-500">
             {formatTime(memo.createTime)}
           </span>
         </div>
@@ -126,7 +126,7 @@ const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }
         )}
       </div>
       {/* 内容框 */}
-      <div className="prose ml-[52px] rounded-e-md rounded-bl-md bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm dark:prose-invert prose-p:my-2 dark:bg-gray-700 dark:text-gray-100">
+      <div className="prose ml-[52px] rounded-e-md rounded-bl-md bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm dark:prose-invert prose-p:my-2 dark:bg-neutral-600 dark:text-neutral-100">
         {memo.parsedContent ? <div dangerouslySetInnerHTML={{ __html: memo.parsedContent }} /> : ''}
         {memo.resources.length > 0 ? (
           <LightGallery
