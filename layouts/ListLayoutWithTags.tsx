@@ -73,7 +73,7 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
       {node.name && (
         <li className="text-center">
           <Link
-            href={`/categories/${node.fullPath}`}
+            href={`/blog/categories/${node.fullPath}`}
             aria-label={`View posts in category ${node.showName}`}
             className="inline-block"
           >
@@ -134,13 +134,13 @@ export default function ListLayoutWithTags({
                 {sortedTags.map((t) => {
                   return (
                     <li key={t} className="my-3">
-                      {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
+                      {decodeURI(pathname.split('/blog/tags/')[1]) === slug(t) ? (
                         <h3 className=" inline py-2 pl-5 pr-3 text-sm font-bold uppercase text-primary-500">
                           {`${t} (${tagCounts[t]})`}
                         </h3>
                       ) : (
                         <Link
-                          href={`/tags/${slug(t)}`}
+                          href={`/blog/tags/${slug(t)}`}
                           className="py-2 pl-7 pr-3 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                           aria-label={`View posts tagged ${t}`}
                         >

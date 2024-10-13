@@ -1,3 +1,4 @@
+/* deprecated */
 'use client'
 
 import { Menu, RadioGroup, Transition } from '@headlessui/react'

@@ -16,7 +16,7 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
       {node.name && (
         <li className="text-center">
           <Link
-            href={`/categories/${node.fullPath}`}
+            href={`/blog/categories/${node.fullPath}`}
             aria-label={`View posts in category ${node.showName}`}
             className="inline-block"
           >

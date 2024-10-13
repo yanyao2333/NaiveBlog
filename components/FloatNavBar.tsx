@@ -30,6 +30,7 @@ const headerNavLinks: HeaderNavLink[] = [
     title: 'Posts',
     logo: <PostsIcon />,
     children: [
+      { href: '/blog', title: 'All' },
       { href: '/blog/categories', title: 'Categories' },
       { href: '/blog/tags', title: 'Tags' },
     ],
@@ -68,12 +69,12 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
     <PopoverPanel
       transition
       anchor={{ to: 'bottom', gap: 12 }}
-      className="divide-y divide-white/5  rounded-xl bg-neutral-100/90 text-sm/6 shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 dark:bg-gray-700/90"
+      className="divide-y divide-gray-700/20  rounded-xl bg-neutral-100/90 text-sm/6 shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 dark:bg-gray-700/90"
     >
       {link.children.map((child) => (
         <Link
           key={child.title}
-          className="block rounded-lg px-3 py-2 text-center transition hover:bg-white/5"
+          className="block px-3 py-2 text-center transition hover:bg-white/5"
           href={child.href}
         >
           <p className="font-medium text-gray-500 hover:text-primary-500 dark:text-gray-400 dark:hover:text-primary-400">

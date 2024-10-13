@@ -73,7 +73,7 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
       {node.name && (
         <li className="text-center">
           <Link
-            href={`/categories/${node.fullPath}`}
+            href={`/blog/categories/${node.fullPath}`}
             aria-label={`View posts in category ${node.showName}`}
             className="inline-block"
           >
@@ -96,55 +96,6 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
     </>
   )
 }
-
-// function TreeNodeComponent({ node }: { node: TreeNode }) {
-//   const pathName = usePathname()
-//   let blogNode: React.JSX.Element | null = null
-//   let nornalNode: React.JSX.Element | null = null
-//   if (node.name === 'blog') {
-//     if (pathName == '/categories/blog') {
-//       blogNode = <h3 className="font-bold uppercase text-primary-500">All Posts</h3>
-//     } else {
-//       blogNode = (
-//         <Link
-//           href={`/categories/blog`}
-//           className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
-//         >
-//           All Posts
-//         </Link>
-//       )
-//     }
-//   } else {
-//     if (pathName == `/categories/${node.fullPath}`) {
-//       nornalNode = (
-//         <h3 className="inline text-sm font-bold uppercase text-primary-500">
-//           {`${node.showName} (${node.count})`}
-//         </h3>
-//       )
-//     } else {
-//       nornalNode = (
-//         <Link
-//           href={decodeURI(`/categories/${node.fullPath}`)}
-//           className="text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
-//           aria-label={`View posts in category ${node.name}`}
-//         >
-//           {`${node.showName} (${node.count})`}
-//         </Link>
-//       )
-//     }
-//   }
-//
-//   return (
-//     <>
-//       {blogNode ? blogNode : <li>{nornalNode}</li>}
-//       <ul className="list-inside list-disc pl-8 pt-4 ">
-//         {Object.values(node.children).map((child) => {
-//           return <TreeNodeComponent key={child.name} node={child} />
-//         })}
-//       </ul>
-//     </>
-//   )
-// }
 
 export default function ListLayoutWithCategories({
   posts,
@@ -173,13 +124,13 @@ export default function ListLayoutWithCategories({
                 {sortedTags.map((t) => {
                   return (
                     <li key={t} className="my-3">
-                      {decodeURI(pathname.split('/tags/')[1]) === slug(t) ? (
+                      {decodeURI(pathname.split('/blog/tags/')[1]) === slug(t) ? (
                         <h3 className=" inline py-2 pl-5 pr-3 text-sm font-bold uppercase text-primary-500">
                           {`${t} (${tagCounts[t]})`}
                         </h3>
                       ) : (
                         <Link
-                          href={`/tags/${slug(t)}`}
+                          href={`/blog/tags/${slug(t)}`}
                           className="py-2 pl-7 pr-3 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                           aria-label={`View posts tagged ${t}`}
                         >
