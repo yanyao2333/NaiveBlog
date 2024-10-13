@@ -2,17 +2,15 @@ import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/so
 import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
-import * as console from 'node:console'
 import path from 'path'
 import { remarkCodeTitles, remarkExtractFrontmatter } from 'pliny/mdx-plugins/index.js'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import readingTime from 'reading-time'
+// Rehype packages
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeCitation from 'rehype-citation'
 import rehypeKatex from 'rehype-katex'
 import rehypePresetMinify from 'rehype-preset-minify'
 import rehypePrismPlus from 'rehype-prism-plus'
-// Rehype packages
 import rehypeSlug from 'rehype-slug'
 // Remark packages
 import remarkGfm from 'remark-gfm'
@@ -23,6 +21,7 @@ import categoryMapping from './data/category-mapping'
 import siteMetadata from './data/siteMetadata'
 import { remarkImgToJsx } from './utils/mdx_plugins/remark-img-to-jsx'
 import { extractTocHeadings } from './utils/mdx_plugins/toc'
+import { filterVisiablePosts, sortPosts } from './utils/postsUtils'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
@@ -129,20 +128,10 @@ function createTagCount(allBlogs) {
 }
 
 function createSearchIndex(allBlogs) {
-  if (
-    siteMetadata?.search?.provider === 'kbar' &&
-    siteMetadata.search.kbarConfig.searchDocumentsPath
-  ) {
-    writeFileSync(
-      `public/${path.basename(siteMetadata.search.kbarConfig.searchDocumentsPath)}`,
-      JSON.stringify(
-        allCoreContent(
-          sortPosts(allBlogs).filter((post) => !(post.private && post.private == true))
-        )
-      )
-    )
-    console.log('✅ Search index generated successfully!')
-  }
+  const blogs = sortPosts(filterVisiablePosts(allBlogs))
+  blogs.map((blog) => (blog.body.code = ''))
+  writeFileSync(`public/search.json`, JSON.stringify(blogs))
+  console.log('✅ Search index generated successfully')
 }
 
 export const Blog = defineDocumentType(() => ({

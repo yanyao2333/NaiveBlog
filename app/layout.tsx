@@ -3,12 +3,12 @@ import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 import FloatNavBar from '@/components/FloatNavBar'
 import Footer from '@/components/Footer'
+import { KBarSearchProvider } from '@/components/kbar/KbarSearch'
 import SectionContainer from '@/components/SectionContainer'
 import SettingsPanel from '@/components/SettingPanel'
 import siteMetadata from '@/data/siteMetadata'
 import { OpenPanelComponent } from '@openpanel/nextjs'
 import { Metadata } from 'next'
-import { SearchConfig, SearchProvider } from 'pliny/search'
 import { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { ThemeProviders } from './theme-providers'
@@ -126,10 +126,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             {/* 定义了一个container，规范内容页面宽高 */}
             <FloatNavBar />
             <SectionContainer>
-              <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                {/*<Header />*/}
+              <KBarSearchProvider>
                 <main className="m-auto min-w-full">{children}</main>
-              </SearchProvider>
+              </KBarSearchProvider>
               <SettingsPanel />
             </SectionContainer>
             <Footer />
