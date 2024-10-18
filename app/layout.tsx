@@ -126,12 +126,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <KBarSearchProvider>
               <FloatNavBar />
               <SectionContainer>
-                <main className="mx-auto min-h-full min-w-full">{children}</main>
+                <main className="mx-auto min-h-dvh min-w-full pt-20">{children}</main>
                 <SettingsPanel />
               </SectionContainer>
             </KBarSearchProvider>
-            <Footer />
           </ThemeProviders>
+          <Footer />
         </div>
       </body>
     </html>

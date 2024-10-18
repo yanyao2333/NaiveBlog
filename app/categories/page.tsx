@@ -42,7 +42,7 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
 
 export default async function CategoriesPage() {
   return (
-    <div className="flex min-h-full flex-col items-center justify-center md:space-x-6">
+    <div className="flex min-h-[calc(100dvh-5rem)] flex-col items-center justify-center md:space-x-6">
       <PageTitle title="Categories" subtitle="分类整理方便查找？我没感受到。" />
       <ul className="mx-auto min-w-full list-inside list-disc pt-3">
         <TreeNodeComponent node={categoryData} />
