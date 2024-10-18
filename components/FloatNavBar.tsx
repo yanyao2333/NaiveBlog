@@ -65,11 +65,11 @@ function isOnThisPage(link: HeaderNavLink, nowPath: string) {
 // 按钮样式生成器
 const buttonStyles = (selected: boolean) => ({
   text: selected
-    ? 'block font-medium text-primary-400 py-3 border-b border-b-primary-400 cursor-pointer'
-    : 'transition-colors block font-medium hover:text-primary-500 dark:hover:text-primary-400 text-neutral-800 dark:text-neutral-100 py-3 cursor-pointer',
+    ? 'block font-medium text-primary-600 border-b-primary-600 dark:text-primary-400 py-3 border-b dark:border-b-primary-400 cursor-pointer'
+    : 'transition-colors block font-medium hover:text-primary-600 dark:hover:text-primary-400 text-gray-800 dark:text-neutral-100 py-3 cursor-pointer',
   icon: selected
-    ? 'text-primary-400 py-2 border-b border-b-primary-400 cursor-pointer'
-    : 'transition-colors text-neutral-800 dark:hover:text-primary-400 hover:text-primary-400 dark:text-neutral-100 py-2 cursor-pointer',
+    ? 'text-primary-600 border-b-primary-600 dark:text-primary-400 py-2 border-b dark:border-b-primary-400 cursor-pointer'
+    : 'transition-colors text-gray-800 dark:hover:text-primary-400 hover:text-primary-600 dark:text-neutral-100 py-2 cursor-pointer',
 })
 
 // 通用Popover生成器
@@ -86,12 +86,12 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
     <PopoverPanel
       transition
       anchor={{ to: 'bottom', gap: 12 }}
-      className=" rounded-xl bg-neutral-50/90 text-sm/6 shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 dark:bg-neutral-700/90"
+      className=" rounded-xl bg-neutral-100/90 text-sm/6 shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)] data-[closed]:-translate-y-1 data-[closed]:opacity-0 dark:bg-neutral-700/90"
     >
       {link.children.map((child) => (
         <Link
           key={child.title}
-          className="block px-8 py-2 text-center font-medium text-neutral-800 transition hover:text-primary-500 dark:text-neutral-100 dark:hover:bg-primary-100/20 dark:hover:text-primary-500"
+          className="block px-8 py-2 text-center font-medium text-gray-800 transition hover:bg-primary-50/80 hover:text-primary-600 dark:text-neutral-100 dark:hover:bg-primary-50/20 dark:hover:text-primary-500"
           href={child.href}
         >
           {child.title}
@@ -121,7 +121,7 @@ const FloatNavBar = () => {
   const nowPath = usePathname()
 
   return (
-    <div className="fixed inset-x-0 top-10 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-neutral-50/90 px-5 leading-5 shadow-md ring-1 ring-neutral-200/90 backdrop-blur-sm dark:bg-neutral-700/90 dark:shadow-neutral-700/90 dark:ring-neutral-500/90 md:space-x-4">
+    <div className="fixed inset-x-0 top-10 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-gray-100/90 px-5 leading-5 shadow-md shadow-gray-100/90 ring-1 ring-gray-200/90 backdrop-blur-sm dark:bg-neutral-700/90 dark:shadow-neutral-700/90 dark:ring-neutral-500/90 md:space-x-4">
       <div className="no-scrollbar hidden items-center space-x-4 overflow-x-auto md:flex md:space-x-8">
         {headerNavLinksNewVersion.map((link) => singleNavButtonComponent(link, false, nowPath))}
         <SearchButton />

@@ -27,11 +27,11 @@ export default function RecentlyMemos() {
 
   return (
     <Link
-      className="flex min-h-60 cursor-pointer flex-col rounded-lg bg-zinc-200/90 dark:bg-neutral-600 sm:col-span-2"
+      className="flex min-h-60 cursor-pointer flex-col rounded-lg bg-gray-200 dark:bg-neutral-600 sm:col-span-2"
       href={'/memory'}
     >
       <span className="ml-3 mt-2">💡 最近想法</span>
-      <div className="m-3 flex min-w-fit flex-col divide-y divide-dashed divide-neutral-500 rounded-md bg-white px-3 font-medium shadow-lg transition-shadow hover:shadow-xl prose-p:my-0 dark:bg-neutral-200 dark:text-neutral-800">
+      <div className="m-3 flex min-w-fit flex-col divide-y divide-dashed divide-neutral-500 rounded-md bg-gray-50 px-3 font-medium shadow transition-shadow hover:shadow-xl dark:bg-neutral-200 dark:text-neutral-800 dark:shadow-neutral-500/90">
         {memos
           ? memos.map((memo) => {
               return (
@@ -43,7 +43,7 @@ export default function RecentlyMemos() {
                     : memo.content.length > 30
                       ? memo.content.substring(0, 50) + '...'
                       : memo.content}
-                  <div className=" mt-1 text-sm text-neutral-500 dark:text-neutral-600/90">
+                  <div className=" mt-1 text-sm text-gray-500 dark:text-neutral-600/90">
                     {moment(memo.createTime).fromNow()}
                   </div>
                 </div>
