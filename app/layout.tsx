@@ -126,7 +126,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <KBarSearchProvider>
               <FloatNavBar />
               <SectionContainer>
-                <main className="m-auto min-w-full">{children}</main>
+                <main className="mx-auto min-h-full min-w-full">{children}</main>
                 <SettingsPanel />
               </SectionContainer>
             </KBarSearchProvider>

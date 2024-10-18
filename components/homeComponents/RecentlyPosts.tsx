@@ -13,12 +13,12 @@ export default function RecentlyPosts() {
         {posts.map((post) => {
           return (
             <Link
-              className="rounded-lg bg-neutral-400 py-3 pl-3 font-bold no-underline shadow transition-shadow hover:shadow-xl dark:bg-neutral-200 dark:text-neutral-700"
+              className="rounded-lg bg-neutral-400 py-3 pl-3 no-underline shadow transition-shadow hover:shadow-xl dark:bg-neutral-200 dark:text-neutral-800"
               key={post.slug}
               href={'/' + post.path}
             >
               {post.title}
-              <p className="text-sm font-normal text-neutral-500 dark:text-neutral-500">
+              <p className="text-sm font-normal text-neutral-500 dark:text-neutral-600/90">
                 {formatDate(post.date)}
               </p>
             </Link>

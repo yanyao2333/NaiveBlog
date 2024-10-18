@@ -31,7 +31,7 @@ export default function RecentlyMemos() {
       href={'/memory'}
     >
       <span className="ml-3 mt-2">💡 最近想法</span>
-      <div className="m-3 flex min-w-fit flex-col divide-y divide-dashed rounded-md bg-white px-3 font-medium shadow-lg transition-shadow hover:shadow-xl prose-p:my-0 dark:bg-neutral-200 dark:text-neutral-700">
+      <div className="m-3 flex min-w-fit flex-col divide-y divide-dashed divide-neutral-500 rounded-md bg-white px-3 font-medium shadow-lg transition-shadow hover:shadow-xl prose-p:my-0 dark:bg-neutral-200 dark:text-neutral-800">
         {memos
           ? memos.map((memo) => {
               return (
@@ -43,9 +43,9 @@ export default function RecentlyMemos() {
                     : memo.content.length > 30
                       ? memo.content.substring(0, 50) + '...'
                       : memo.content}
-                  <p className="text-sm text-neutral-500 dark:text-neutral-500">
+                  <div className=" mt-1 text-sm text-neutral-500 dark:text-neutral-600/90">
                     {moment(memo.createTime).fromNow()}
-                  </p>
+                  </div>
                 </div>
               )
             })

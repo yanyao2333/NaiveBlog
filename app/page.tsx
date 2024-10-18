@@ -5,11 +5,13 @@ import SocialIcon from '@/components/svgs/social-icons'
 import Tooltip from '@/components/Tooltip'
 import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
+import Image from 'next/image'
+import Logo from '../public/static/images/logo.png'
 
 export default function Home() {
   return (
     <>
-      <div className="flex min-h-[calc(100vh-5rem)] flex-col">
+      <div className="flex min-h-[calc(100vh-4.8rem)] flex-col">
         <div className="my-auto flex flex-col items-center justify-between gap-12 md:flex-row md:gap-0">
           <div className="flex animate-[fade-in_0.8s_ease-out_forwards] flex-col">
             <PageTitle
@@ -29,10 +31,11 @@ export default function Home() {
               </Tooltip>
             </div>
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://secure.gravatar.com/avatar/67fdf38eaecc051ad06a276b8583b051?s=640"
+          <Image
+            src={Logo}
             alt="Website logo"
+            placeholder={'blur'}
+            priority
             className=" size-52 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72"
           />
         </div>

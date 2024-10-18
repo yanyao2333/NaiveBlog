@@ -31,8 +31,8 @@ const headerNavLinks: HeaderNavLink[] = [
     logo: <PostsIcon />,
     children: [
       { href: '/blog', title: '📄 所有' },
-      { href: '/blog/categories', title: '📦 分类' },
-      { href: '/blog/tags', title: '🏷 标签' },
+      { href: '/categories', title: '📦 分类' },
+      { href: '/tags', title: '🏷 标签' },
     ],
   },
   { href: '/memory', title: '☁️ 回忆', logo: <MemoriesIcon /> },
@@ -48,8 +48,8 @@ const headerNavLinksNewVersion: HeaderNavLink[] = [
     logo: '✍️',
     children: [
       { href: '/blog', title: '📄 所有' },
-      { href: '/blog/categories', title: '📦 分类' },
-      { href: '/blog/tags', title: '🏷 标签' },
+      { href: '/categories', title: '📦 分类' },
+      { href: '/tags', title: '🏷 标签' },
     ],
   },
   { href: '/memory', title: '☁️ 回忆', logo: '☁️' },
@@ -65,11 +65,11 @@ function isOnThisPage(link: HeaderNavLink, nowPath: string) {
 // 按钮样式生成器
 const buttonStyles = (selected: boolean) => ({
   text: selected
-    ? 'block font-medium text-primary-500 py-3 border-b border-b-primary-500 cursor-pointer'
-    : 'transition-colors block font-medium hover:text-primary-500 dark:hover:text-primary-500 text-neutral-800 dark:text-neutral-100 py-3 cursor-pointer',
+    ? 'block font-medium text-primary-400 py-3 border-b border-b-primary-400 cursor-pointer'
+    : 'transition-colors block font-medium hover:text-primary-500 dark:hover:text-primary-400 text-neutral-800 dark:text-neutral-100 py-3 cursor-pointer',
   icon: selected
-    ? 'text-primary-500 py-2 border-b border-b-primary-500 cursor-pointer'
-    : 'transition-colors text-neutral-800 dark:hover:text-primary-500 hover:text-primary-500 dark:text-neutral-100 py-2 cursor-pointer',
+    ? 'text-primary-400 py-2 border-b border-b-primary-400 cursor-pointer'
+    : 'transition-colors text-neutral-800 dark:hover:text-primary-400 hover:text-primary-400 dark:text-neutral-100 py-2 cursor-pointer',
 })
 
 // 通用Popover生成器
@@ -77,9 +77,9 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
   <Popover key={`${link.title}_popover`} className="my-auto">
     <PopoverButton
       key={`${link.title}_popover_btn`}
+      role={'button'}
       className={buttonStyles(isOnThisPage(link, nowPath))[iconMode ? 'icon' : 'text']}
       as={'div'}
-      aria-label={`popover button for ${link.title}`}
     >
       {iconMode ? link.logo : link.title}
     </PopoverButton>
@@ -121,7 +121,7 @@ const FloatNavBar = () => {
   const nowPath = usePathname()
 
   return (
-    <div className="fixed inset-x-0 top-10 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-neutral-50/90 px-5 leading-5 shadow-md ring-1 ring-neutral-200/90 backdrop-blur-sm dark:bg-neutral-700/90 dark:ring-neutral-500/90 md:space-x-4">
+    <div className="fixed inset-x-0 top-10 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-neutral-50/90 px-5 leading-5 shadow-md ring-1 ring-neutral-200/90 backdrop-blur-sm dark:bg-neutral-700/90 dark:shadow-neutral-700/90 dark:ring-neutral-500/90 md:space-x-4">
       <div className="no-scrollbar hidden items-center space-x-4 overflow-x-auto md:flex md:space-x-8">
         {headerNavLinksNewVersion.map((link) => singleNavButtonComponent(link, false, nowPath))}
         <SearchButton />

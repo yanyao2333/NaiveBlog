@@ -1,14 +1,14 @@
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
-import ListLayout from '@/layouts/ListLayoutWithCategories'
+import PostsListLayout from '@/layouts/PostsListLayout'
 import { allBlogs, Blog } from 'contentlayer/generated'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
-import { TreeNode } from '../../../../contentlayer.config'
-import categoryData from '../../../../temp/category-data.json'
-import { genPageMetadata } from '../../../seo'
+import { TreeNode } from '../../../contentlayer.config'
+import categoryData from '../../../temp/category-data.json'
+import { genPageMetadata } from '../../seo'
 
 export async function generateMetadata({
   params,
@@ -107,7 +107,7 @@ export default async function CategoryPage({ params }: { params: { category: str
     return notFound()
   }
   return (
-    <ListLayout
+    <PostsListLayout
       posts={filteredPosts}
       title={
         categoryFullName == 'blog'
@@ -118,6 +118,7 @@ export default async function CategoryPage({ params }: { params: { category: str
               .map((item) => (categoryMapping[item] ? categoryMapping[item] : item))
               .join('/')
       }
+      subtitle={`${categoryFullName} 分类下的所有文章`}
     />
   )
 }

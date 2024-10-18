@@ -1,9 +1,9 @@
 import PageTitle from '@/components/PageTitle'
 import Link from 'next/link'
 import React from 'react'
-import { TreeNode } from '../../../contentlayer.config'
-import categoryData from '../../../temp/category-data.json'
-import { genPageMetadata } from '../../seo'
+import { TreeNode } from '../../contentlayer.config'
+import categoryData from '../../temp/category-data.json'
+import { genPageMetadata } from '../seo'
 
 export const metadata = genPageMetadata({
   title: 'Categories',
@@ -16,7 +16,7 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
       {node.name && (
         <li className="text-center">
           <Link
-            href={`/blog/categories/${node.fullPath}`}
+            href={node.fullPath == 'blog' ? '/blog' : `/categories/${node.fullPath}`}
             aria-label={`View posts in category ${node.showName}`}
             className="inline-block"
           >
@@ -42,13 +42,11 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
 
 export default async function CategoriesPage() {
   return (
-    <>
-      <div className="flex flex-col items-center justify-center md:space-x-6">
-        <PageTitle title="Categories" subtitle="分类整理方便查找？我没感受到。" />
-        <ul className="mx-auto min-w-full list-inside list-disc pt-3">
-          <TreeNodeComponent node={categoryData} />
-        </ul>
-      </div>
-    </>
+    <div className="flex min-h-full flex-col items-center justify-center md:space-x-6">
+      <PageTitle title="Categories" subtitle="分类整理方便查找？我没感受到。" />
+      <ul className="mx-auto min-w-full list-inside list-disc pt-3">
+        <TreeNodeComponent node={categoryData} />
+      </ul>
+    </div>
   )
 }

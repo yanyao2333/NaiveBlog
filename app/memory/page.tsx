@@ -8,6 +8,7 @@ import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import LightGallery from 'lightgallery/react'
 import moment from 'moment/min/moment-with-locales'
+import Image from 'next/image'
 import Link from 'next/link'
 import { memo, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -17,6 +18,7 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
+import Logo from '../../public/static/images/logo.png'
 import { Memo, MemoListResponse } from '../../types/memos'
 
 // 下一页的 token
@@ -85,10 +87,10 @@ const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }
       {/* 头像、日期、名称 */}
       <div className="flex justify-between gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/static/images/logo.png" alt="avater" className="mt-1 size-[40px] rounded-full" />
+        <Image src={Logo} alt="avater" className="mt-1 size-[40px] rounded-full" />
         <div className="flex flex-col">
           <span className="font-medium">Roitium.</span>
-          <span className="text-xs text-neutral-500 dark:text-neutral-500">
+          <span className="text-xs text-neutral-500 dark:text-neutral-400">
             {formatTime(memo.createTime)}
           </span>
         </div>
