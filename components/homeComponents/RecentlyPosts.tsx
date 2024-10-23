@@ -7,7 +7,7 @@ export default function RecentlyPosts() {
   const posts = allCoreContent(sortPosts(allBlogs)).slice(0, 3)
 
   return (
-    <div className="flex min-h-60 cursor-pointer flex-col rounded-lg bg-gray-200 dark:bg-neutral-600 dark:text-neutral-100">
+    <div className="flex min-h-60 cursor-pointer flex-col justify-between rounded-lg bg-gray-200 dark:bg-neutral-600 dark:text-neutral-100">
       <span className="ml-3 mt-2">📄 最近博文</span>
       <div className="prose m-3 flex min-w-fit flex-col justify-between gap-3 rounded-md px-3 prose-p:my-0">
         {posts.map((post) => {
@@ -25,7 +25,7 @@ export default function RecentlyPosts() {
           )
         })}
       </div>
-      <Link className="mb-2 ml-auto mr-4 mt-auto" href={'/blog'}>
+      <Link className="mb-2 ml-auto mr-4" href={'/blog'}>
         查看更多 &rarr;
       </Link>
     </div>

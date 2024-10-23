@@ -25,8 +25,8 @@ export default function Footer() {
         {/*  </Link>*/}
         {/*</div>*/}
         <div className="text-sm text-gray-500 dark:text-neutral-400">
-          <Tooltip text={`Last commit hash: ${commitHash}`} className={'-left-0'}>
-            {commitHash} - {new Date().toUTCString()}
+          <Tooltip text={`最近一次提交 hash: ${commitHash}`} className={'left-0'}>
+            构建时间：{new Date().toUTCString()}
           </Tooltip>
         </div>
       </div>

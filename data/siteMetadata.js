@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: 'Roitiumの自留地',
   description: 'Be young & simple, even sometimes naive. ',
   language: 'zh-cn',
-  theme: 'dark', // system, dark or light
+  theme: 'light', // system, dark or light
   siteUrl: 'https://blog-build.yanyaolab.xyz',
   siteRepo: 'https://github.com/yanyao2333/blog-main',
   siteContentRepo: 'https://github.com/yanyao2333/blog-content',

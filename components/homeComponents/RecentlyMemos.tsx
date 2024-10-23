@@ -36,13 +36,14 @@ export default function RecentlyMemos() {
           ? memos.map((memo) => {
               return (
                 <div className="py-3" key={memo.uid}>
-                  {memo.snippet
-                    ? memo.snippet.length > 30
-                      ? memo.snippet.substring(0, 50) + '...'
-                      : memo.snippet
-                    : memo.content.length > 30
-                      ? memo.content.substring(0, 50) + '...'
-                      : memo.content}
+                  {/*{memo.snippet*/}
+                  {/*  ? memo.snippet.length > 30*/}
+                  {/*    ? memo.snippet.substring(0, 50) + '...'*/}
+                  {/*    : memo.snippet*/}
+                  {/*  : memo.content.length > 30*/}
+                  {/*    ? memo.content.substring(0, 50) + '...'*/}
+                  {/*    : memo.content}*/}
+                  {memo.content}
                   <div className=" mt-1 text-sm text-gray-500 dark:text-neutral-600/90">
                     {moment(memo.createTime).fromNow()}
                   </div>

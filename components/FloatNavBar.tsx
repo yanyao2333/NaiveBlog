@@ -121,7 +121,7 @@ const FloatNavBar = () => {
   const nowPath = usePathname()
 
   return (
-    <div className="fixed inset-x-0 top-10 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-gray-100/90 px-5 leading-5 shadow-md shadow-gray-100/90 ring-1 ring-gray-200/90 backdrop-blur-sm dark:bg-neutral-700/90 dark:shadow-neutral-700/90 dark:ring-neutral-500/90 md:space-x-4">
+    <div className="fixed inset-x-0 top-5 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-gray-100/90 px-5 leading-5 shadow-md shadow-gray-100/90 ring-1 ring-gray-200/90 backdrop-blur-sm dark:bg-neutral-700/90 dark:shadow-neutral-700/90 dark:ring-neutral-500/90 md:space-x-4">
       <div className="no-scrollbar hidden items-center space-x-4 overflow-x-auto md:flex md:space-x-8">
         {headerNavLinksNewVersion.map((link) => singleNavButtonComponent(link, false, nowPath))}
         <SearchButton />

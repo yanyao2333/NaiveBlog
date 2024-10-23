@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <div className="flex min-h-[calc(100vh-4.8rem)] flex-col">
         <div className="my-auto flex flex-col items-center justify-between gap-12 md:flex-row md:gap-0">
-          <div className="flex animate-[fade-in_0.8s_ease-out_forwards] flex-col">
+          <div className="title-animate-fade-in flex flex-col">
             <PageTitle
               title="Roitiumの自留地"
               subtitle={siteMetadata.description ? siteMetadata.description : <YiYan />}
@@ -35,8 +35,11 @@ export default function Home() {
             src={Logo}
             alt="Website logo"
             placeholder={'blur'}
+            height={640}
+            width={640}
+            quality={100}
             priority
-            className=" size-52 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72"
+            className="size-52 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72"
           />
         </div>
         <div className="mb-2 mt-auto animate-bounce text-center text-lg">&darr;</div>

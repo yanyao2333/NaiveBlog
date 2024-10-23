@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* add fade-in animation */
-@keyframes fade-in {
+/* add fade-in animation to tooltips */
+@keyframes tooltip-fade-in {
   0% {
     opacity: 0;
     transform: translateY(10px);
@@ -14,8 +14,24 @@
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.3s ease-out forwards;
+.tooltip-animate-fade-in {
+  animation: tooltip-fade-in 0.2s ease-out forwards;
+}
+
+/* add fade-in animation to main page title */
+@keyframes title-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title-animate-fade-in {
+  animation: title-fade-in 1s ease-out forwards;
 }
 
 /*!* width *!*/
