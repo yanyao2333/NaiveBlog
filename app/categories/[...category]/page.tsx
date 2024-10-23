@@ -10,11 +10,10 @@ import { TreeNode } from '../../../contentlayer.config'
 import categoryData from '../../../temp/category-data.json'
 import { genPageMetadata } from '../../seo'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { category: string[] }
+export async function generateMetadata(props: {
+  params: Promise<{ category: string[] }>
 }): Promise<Metadata> {
+  const params = await props.params
   const category = decodeURI(params.category.join('/'))
   return genPageMetadata({
     title: category,
@@ -100,7 +99,8 @@ export const generateStaticParams = async () => {
   return result.map((item) => ({ category: item }))
 }
 
-export default async function CategoryPage({ params }: { params: { category: string[] } }) {
+export default async function CategoryPage(props: { params: Promise<{ category: string[] }> }) {
+  const params = await props.params
   const categoryFullName = params.category.join('/')
   const filteredPosts = sortPosts(filterPosts(categoryFullName, allCoreContent(allBlogs)) as Blog[])
   if (filteredPosts.length === 0) {

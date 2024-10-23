@@ -8,7 +8,10 @@ import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import tagData from '../../../temp/tag-data.json'
 import { genPageMetadata } from '../../seo'
 
-export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ tag: string }>
+}): Promise<Metadata> {
+  const params = await props.params
   const tag = decodeURI(params.tag)
   return genPageMetadata({
     title: tag,
@@ -30,7 +33,8 @@ export const generateStaticParams = async () => {
   }))
 }
 
-export default function TagPage({ params }: { params: { tag: string } }) {
+export default async function TagPage(props: { params: Promise<{ tag: string }> }) {
+  const params = await props.params
   const tag = decodeURI(params.tag)
 
   // Capitalize first letter and convert space to dash
