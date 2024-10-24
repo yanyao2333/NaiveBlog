@@ -82,6 +82,10 @@ module.exports = () => {
           protocol: 'https',
           hostname: 'secure.gravatar.com',
         },
+        {
+          protocol: 'https',
+          hostname: 'cdn.jsdelivr.net',
+        },
       ],
       unoptimized,
     },

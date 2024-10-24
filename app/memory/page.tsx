@@ -10,7 +10,7 @@ import LightGallery from 'lightgallery/react'
 import moment from 'moment/min/moment-with-locales'
 import Image from 'next/image'
 import Link from 'next/link'
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
@@ -166,6 +166,7 @@ const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }
 export default function MemosPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [memos, setMemos] = useState<Memo[]>([])
+  const loadMoreRef = useRef<HTMLDivElement>(null)
 
   // 初始化Memos列表
   useEffect(() => {
@@ -184,6 +185,32 @@ export default function MemosPage() {
     }
   }, [])
 
+  // 使用 IntersectionObserver 自动加载更多
+  useEffect(() => {
+    const current = loadMoreRef.current
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !isLoading) {
+        setTimeout(() => {
+          setIsLoading(true)
+          fetchMemos().then((data) => {
+            setMemos(memos.concat(data))
+            setIsLoading(false)
+          })
+        }, 500)
+      }
+    })
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current)
+    }
+
+    return () => {
+      if (current) {
+        observer.unobserve(current)
+      }
+    }
+  }, [isLoading])
+
   // 加载更多Memos
   function onClickFetchMore() {
     setIsLoading(true)
@@ -199,6 +226,7 @@ export default function MemosPage() {
       <div className="mx-auto flex flex-col">
         {memos ? memos.map((memo) => <MemoRowComponent memo={memo} key={memo.uid} />) : null}
       </div>
+      <div ref={loadMoreRef} className={'h-[1px]'}></div>
       <button
         onClick={onClickFetchMore}
         disabled={isLoading}

@@ -24,6 +24,7 @@ export default function Page() {
               alt="avatar"
               width={192}
               height={192}
+              priority
               className="h-48 w-48 rounded-full"
             />
           )}
