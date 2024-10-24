@@ -6,7 +6,7 @@ import Tooltip from '@/components/Tooltip'
 import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
 import Image from 'next/image'
-import Logo from '../public/static/images/logo.png'
+import avatar from '../public/static/images/logo.png'
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
               subtitle={siteMetadata.description ? siteMetadata.description : <YiYan />}
               className={''}
             />
-            <div className="mb-3 flex justify-center space-x-4 ">
+            <div className="mb-3 flex justify-center space-x-4">
               <Tooltip text="Mail">
                 <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
               </Tooltip>
@@ -32,23 +32,19 @@ export default function Home() {
             </div>
           </div>
           <Image
-            src={Logo}
+            src={avatar}
             alt="Website logo"
             placeholder={'blur'}
-            height={640}
-            width={640}
-            quality={100}
             priority
-            className="size-52 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72"
+            className="size-60 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72"
           />
         </div>
         <div className="mb-2 mt-auto animate-bounce text-center text-lg">&darr;</div>
       </div>
-      <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+
+      <div className="mx-auto mt-10 max-w-3xl space-y-24 px-4 sm:px-6">
         <RecentlyMemos />
         <RecentlyPosts />
-        {/*<RecentlyMusic />*/}
-        {/*<RecentlyBangumi />*/}
       </div>
     </>
   )

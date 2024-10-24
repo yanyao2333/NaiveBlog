@@ -1,15 +1,15 @@
 'use client'
-import moment from 'moment/min/moment-with-locales'
+import moment from 'moment'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Memo, MemoListResponse } from '../../types/memos'
+import { TimelineSection } from '../TimelineSection'
 
 async function fetchMemos() {
   if (!process.env.NEXT_PUBLIC_MEMOS_ENDPOINT) {
     return []
   }
   const apiEndpoint = process.env.NEXT_PUBLIC_MEMOS_ENDPOINT?.replace(/\/$/, '')
-  // 逆天参数，给我整不会了
   const filter = `filter=creator=='users/1'`
   const pageSize = 'pageSize=3'
   const apiPath = 'api/v1/memos'
@@ -20,39 +20,31 @@ async function fetchMemos() {
 
 export default function RecentlyMemos() {
   const [memos, setMemos] = useState<Memo[]>([])
+
   useEffect(() => {
     moment.locale(navigator.language)
     fetchMemos().then((data) => setMemos(data))
   }, [])
 
   return (
-    <Link
-      className="flex min-h-60 cursor-pointer flex-col rounded-lg bg-gray-200 dark:bg-neutral-600 sm:col-span-2"
-      href={'/memory'}
-    >
-      <span className="ml-3 mt-2">💡 最近想法</span>
-      <div className="m-3 flex min-w-fit flex-col divide-y divide-dashed divide-neutral-500 rounded-md bg-gray-50 px-3 font-medium shadow transition-shadow hover:shadow-xl dark:bg-neutral-200 dark:text-neutral-800 dark:shadow-neutral-500/90">
-        {memos
-          ? memos.map((memo) => {
-              return (
-                <div className="py-3" key={memo.uid}>
-                  {/*{memo.snippet*/}
-                  {/*  ? memo.snippet.length > 30*/}
-                  {/*    ? memo.snippet.substring(0, 50) + '...'*/}
-                  {/*    : memo.snippet*/}
-                  {/*  : memo.content.length > 30*/}
-                  {/*    ? memo.content.substring(0, 50) + '...'*/}
-                  {/*    : memo.content}*/}
-                  {memo.content}
-                  <div className=" mt-1 text-sm text-gray-500 dark:text-neutral-600/90">
-                    {moment(memo.createTime).fromNow()}
-                  </div>
-                </div>
-              )
-            })
-          : null}
-      </div>
-      <button className="mb-2 ml-auto mr-4 mt-auto">查看更多 &rarr;</button>
-    </Link>
+    <TimelineSection title="💡 最近想法">
+      {memos.map((memo) => (
+        <div key={memo.uid} className="relative pl-8">
+          <div className="absolute left-0 top-2 h-4 w-4 rounded-full border-2 border-primary-300/80 bg-white dark:border-primary-400/60 dark:bg-neutral-800"></div>
+          <div className="rounded-lg bg-gray-50 p-4 shadow-sm transition-all hover:shadow-md dark:bg-neutral-700/50">
+            <div className="text-neutral-900 dark:text-neutral-100">{memo.content}</div>
+            <div className="mt-2 text-sm text-gray-500 dark:text-neutral-400">
+              {moment(memo.createTime).fromNow()}
+            </div>
+          </div>
+        </div>
+      ))}
+      <Link
+        href="/memory"
+        className="ml-8 mt-4 inline-block text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+      >
+        查看更多 →
+      </Link>
+    </TimelineSection>
   )
 }
