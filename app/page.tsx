@@ -6,6 +6,7 @@ import Tooltip from '@/components/Tooltip'
 import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
 import clsx from 'clsx'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -30,9 +31,14 @@ export default function Home() {
               </Tooltip>
             </div>
           </div>
-          <img
-            src={'/static/images/logo.png'}
+          <Image
+            src={
+              'https://cdn.jsdelivr.net/gh/yanyao2333/NaiveBlog@main/public/static/images/logo.png'
+            }
             alt="Website logo"
+            height={640}
+            width={640}
+            priority
             className="size-60 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72"
           />
         </div>
