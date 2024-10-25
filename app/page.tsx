@@ -32,16 +32,14 @@ export default function Home() {
               </Tooltip>
             </div>
           </div>
-          <div className={'relative size-60 md:size-72'}>
-            <Image
-              src={avatar}
-              alt="Website logo"
-              placeholder={'blur'}
-              fill={true}
-              priority
-              className="rounded-full transition-transform duration-700 ease-in-out hover:rotate-180"
-            />
-          </div>
+          <Image
+            src={avatar}
+            alt="Website logo"
+            placeholder={'blur'}
+            priority
+            unoptimized
+            className="size-60 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72"
+          />
         </div>
         <div className="mb-2 mt-auto animate-bounce text-center text-lg">&darr;</div>
       </div>
