@@ -6,8 +6,6 @@ import Tooltip from '@/components/Tooltip'
 import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
 import clsx from 'clsx'
-import Image from 'next/image'
-import avatar from '../public/static/images/logo.png'
 
 export default function Home() {
   return (
@@ -32,12 +30,9 @@ export default function Home() {
               </Tooltip>
             </div>
           </div>
-          <Image
-            src={avatar}
+          <img
+            src={'/static/images/logo.png'}
             alt="Website logo"
-            placeholder={'blur'}
-            priority
-            unoptimized
             className="size-60 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72"
           />
         </div>
