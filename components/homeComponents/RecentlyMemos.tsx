@@ -31,7 +31,7 @@ export default function RecentlyMemos() {
       {memos.map((memo) => (
         <div key={memo.uid} className="relative pl-8">
           <div className="absolute left-0 top-2 h-4 w-4 rounded-full border-2 border-primary-300/80 bg-white dark:border-primary-400/60 dark:bg-neutral-800"></div>
-          <div className="rounded-lg bg-gray-50 p-4 shadow-sm transition-all hover:shadow-md dark:bg-neutral-700/50">
+          <div className="rounded-lg bg-gray-100 p-4 shadow-sm transition-all hover:shadow-md dark:bg-neutral-700/50">
             <div className="text-neutral-900 dark:text-neutral-100">{memo.content}</div>
             <div className="mt-2 text-sm text-gray-500 dark:text-neutral-400">
               {moment(memo.createTime).fromNow()}
@@ -43,7 +43,7 @@ export default function RecentlyMemos() {
         href="/memory"
         className="ml-8 mt-4 inline-block text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
       >
-        查看更多 →
+        查看更多 &rarr;
       </Link>
     </TimelineSection>
   )

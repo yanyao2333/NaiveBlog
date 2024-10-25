@@ -5,6 +5,7 @@ import SocialIcon from '@/components/svgs/social-icons'
 import Tooltip from '@/components/Tooltip'
 import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
+import clsx from 'clsx'
 import Image from 'next/image'
 import avatar from '../public/static/images/logo.png'
 
@@ -31,18 +32,26 @@ export default function Home() {
               </Tooltip>
             </div>
           </div>
-          <Image
-            src={avatar}
-            alt="Website logo"
-            placeholder={'blur'}
-            priority
-            className="size-60 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72"
-          />
+          <div className={'size-60 md:size-72'}>
+            <Image
+              src={avatar}
+              alt="Website logo"
+              placeholder={'blur'}
+              priority
+              className="rounded-full transition-transform duration-700 ease-in-out hover:rotate-180"
+            />
+          </div>
         </div>
         <div className="mb-2 mt-auto animate-bounce text-center text-lg">&darr;</div>
       </div>
 
-      <div className="mx-auto mt-10 max-w-3xl space-y-24 px-4 sm:px-6">
+      <div
+        className={clsx(
+          'mx-auto mt-10 space-y-24 px-4',
+          'sm:px-6',
+          'lg:grid lg:grid-cols-2 lg:gap-x-24 lg:space-y-0'
+        )}
+      >
         <RecentlyMemos />
         <RecentlyPosts />
       </div>

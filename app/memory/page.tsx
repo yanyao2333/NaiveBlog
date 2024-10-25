@@ -209,7 +209,7 @@ export default function MemosPage() {
         observer.unobserve(current)
       }
     }
-  }, [isLoading])
+  }, [isLoading, memos])
 
   // 加载更多Memos
   function onClickFetchMore() {
