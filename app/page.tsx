@@ -37,6 +37,8 @@ export default function Home() {
               src={avatar}
               alt="Website logo"
               placeholder={'blur'}
+              width={640}
+              height={640}
               priority
               className="rounded-full transition-transform duration-700 ease-in-out hover:rotate-180"
             />
