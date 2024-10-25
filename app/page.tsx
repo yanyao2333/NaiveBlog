@@ -32,13 +32,12 @@ export default function Home() {
               </Tooltip>
             </div>
           </div>
-          <div className={'size-60 md:size-72'}>
+          <div className={'relative size-60 md:size-72'}>
             <Image
               src={avatar}
               alt="Website logo"
               placeholder={'blur'}
-              width={640}
-              height={640}
+              fill={true}
               priority
               className="rounded-full transition-transform duration-700 ease-in-out hover:rotate-180"
             />
