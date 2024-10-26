@@ -21,6 +21,7 @@ async function fetchMemos() {
 export default function RecentlyMemos() {
   const [memos, setMemos] = useState<Memo[]>([])
   const [isBottom, setIsBottom] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const scrollRef = useRef(null)
 
   // 监听滚动事件，判断是否到达底部
@@ -48,7 +49,11 @@ export default function RecentlyMemos() {
 
   useEffect(() => {
     moment.locale(navigator.language)
-    fetchMemos().then((data) => setMemos(data))
+    setIsLoading(true)
+    fetchMemos().then((data) => {
+      setMemos(data)
+      setIsLoading(false)
+    })
   }, [])
 
   return (
@@ -58,37 +63,51 @@ export default function RecentlyMemos() {
         className="no-scrollbar relative max-h-[17.5rem] list-none overflow-scroll"
         ref={scrollRef}
       >
-        <ol className="relative ml-4 border-s-[2px] border-primary-300 dark:border-primary-500">
-          <li className="h-2"></li>
-          {memos.map((memo) => (
-            <li key={memo.uid} className="mb-10 ms-6">
-              {/* 偏移 7px（半径加 border-s） */}
-              <div className="absolute -start-[7px] mt-2 flex h-3 w-3 items-center justify-center rounded-full border-2 border-primary-300 bg-white dark:border-primary-500 dark:bg-neutral-300"></div>
-              <div className="mr-2 flex flex-col items-center justify-between rounded-lg bg-gray-100 p-4 text-gray-800 shadow-sm ring-1 ring-gray-200 dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500">
-                <time className="mb-2 self-start text-xs font-normal text-gray-500 dark:text-neutral-400">
-                  {moment(memo.createTime).fromNow()}
-                </time>
-                <div className="whitespace-pre-wrap text-sm font-normal text-neutral-900 dark:text-neutral-100">
-                  {memo.content}
+        {!isLoading ? (
+          <ol className="relative ml-4 border-s-[2px] border-primary-300 dark:border-primary-500">
+            <li className="h-2"></li>
+            {memos.map((memo) => (
+              <li key={memo.uid} className="mb-10 ms-6">
+                {/* 偏移 7px（半径加 border-s） */}
+                <div className="absolute -start-[7px] mt-2 flex h-3 w-3 items-center justify-center rounded-full border-2 border-primary-300 bg-white dark:border-primary-500 dark:bg-neutral-300"></div>
+                <div className="mr-2 flex flex-col items-center justify-between rounded-lg bg-gray-100 p-4 text-gray-800 shadow-sm ring-1 ring-gray-200 dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500">
+                  <time className="mb-2 self-start text-xs font-normal text-gray-500 dark:text-neutral-400">
+                    {moment(memo.createTime).fromNow()}
+                  </time>
+                  <div className="whitespace-pre-wrap text-sm font-normal text-neutral-900 dark:text-neutral-100">
+                    {memo.content}
+                  </div>
                 </div>
-              </div>
+              </li>
+            ))}
+            <li className="ms-6 flex min-w-max justify-between">
+              <div></div>
+              <Link
+                href="/memory"
+                className="min-w-max text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+              >
+                查看更多 &rarr;
+              </Link>
             </li>
-          ))}
-          <li className="ms-6 flex min-w-max justify-between">
-            <div></div>
-            <Link
-              href="/memory"
-              className="min-w-max text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
-            >
-              查看更多 &rarr;
-            </Link>
-          </li>
-        </ol>
+          </ol>
+        ) : (
+          <div className="flex min-h-[17.5rem] flex-col justify-center">
+            <div className="relative mx-auto flex size-6 justify-center self-center">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"></span>
+              <span className="relative inline-flex size-6 rounded-full bg-primary-500"></span>
+            </div>
+            <span className="pt-6 text-center text-neutral-600 dark:text-neutral-400">
+              加载中...
+            </span>
+          </div>
+        )}
       </div>
       {/* 向下箭头，接近底部时隐藏 */}
-      {!isBottom && (
+      {!isBottom && !isLoading && (
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 transform">
-          <div className="animate-bounce text-sm text-neutral-600">&darr;</div>
+          <div className="animate-bounce text-sm text-neutral-600 dark:text-neutral-200">
+            &darr;
+          </div>
         </div>
       )}
     </div>
