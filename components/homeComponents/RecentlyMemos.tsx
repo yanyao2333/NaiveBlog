@@ -68,7 +68,7 @@ export default function RecentlyMemos() {
                 <time className="mb-2 self-start text-xs font-normal text-gray-500 dark:text-neutral-400">
                   {moment(memo.createTime).fromNow()}
                 </time>
-                <div className="text-sm font-normal text-neutral-900 dark:text-neutral-100">
+                <div className="whitespace-pre-wrap text-sm font-normal text-neutral-900 dark:text-neutral-100">
                   {memo.content}
                 </div>
               </div>
