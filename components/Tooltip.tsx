@@ -20,7 +20,7 @@ const Tooltip = ({ text, children, className }: TooltipProps) => {
       {isVisible && (
         <div
           className={twMerge(
-            'tooltip-animate-fade-in absolute -left-1/2 bottom-full z-10 mb-2 whitespace-nowrap rounded-lg bg-gray-100 px-3 py-1 text-sm text-gray-800 opacity-0 shadow-lg ring-1 ring-gray-200/90 transition-opacity duration-300 ease-in-out dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-400/90',
+            'tooltip-animate-fade-in absolute -left-1/2 bottom-full z-10 mb-2 whitespace-nowrap rounded-lg bg-gray-100 px-3 py-1 text-sm text-gray-800 opacity-0 shadow-lg ring-1 ring-gray-200 transition-opacity duration-300 ease-in-out dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500',
             className
           )}
         >

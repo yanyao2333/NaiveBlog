@@ -128,7 +128,7 @@ const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }
         )}
       </div>
       {/* 内容框 */}
-      <div className="prose ml-[52px] rounded-e-md rounded-bl-md bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm dark:prose-invert prose-p:my-2 dark:bg-neutral-600 dark:text-neutral-100">
+      <div className="prose ml-[52px] rounded-e-md rounded-bl-md bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm ring-1 ring-gray-200 dark:prose-invert prose-p:my-2 dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500">
         {memo.parsedContent ? <div dangerouslySetInnerHTML={{ __html: memo.parsedContent }} /> : ''}
         {memo.resources.length > 0 ? (
           <LightGallery

@@ -66,17 +66,17 @@ function isOnThisPage(link: HeaderNavLink, nowPath: string) {
 // 按钮样式生成器
 const buttonStyles = (selected: boolean) => ({
   text: clsx(
-    'block font-medium py-3 border-b cursor-pointer',
+    'block font-medium py-3 cursor-pointer',
     'md:hover:text-primary-600 dark:hover:text-primary-400',
     selected
-      ? 'text-primary-600 dark:text-primary-400 border-b-primary-600 dark:border-b-primary-400'
+      ? 'text-primary-600 dark:text-primary-400 border-b border-b-primary-600 dark:border-b-primary-400'
       : 'text-gray-800 dark:text-neutral-100'
   ),
   icon: clsx(
     'py-2 cursor-pointer',
     'md:hover:text-primary-600 dark:hover:text-primary-400',
     selected
-      ? 'text-primary-600 dark:text-primary-400 border-b-primary-600 dark:border-b-primary-400'
+      ? 'text-primary-600 dark:text-primary-400 border-b border-b-primary-600 dark:border-b-primary-400'
       : 'text-gray-800 dark:text-neutral-100'
   ),
 })
@@ -142,7 +142,7 @@ const FloatNavBar = () => {
       className={clsx(
         `fixed inset-x-0 top-5 z-[100] mx-auto flex max-w-fit items-center justify-center
         rounded-full bg-gray-100/90 px-5 leading-5 shadow-md shadow-gray-100/90 ring-1 ring-gray-200/90 backdrop-blur-sm`,
-        'dark:bg-neutral-700/90 dark:shadow-neutral-700/90 dark:ring-neutral-500/90',
+        'dark:bg-neutral-600/90 dark:shadow-neutral-600/90 dark:ring-neutral-500/90',
         'md:space-x-4'
       )}
     >
