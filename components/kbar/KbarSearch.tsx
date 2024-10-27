@@ -1,11 +1,11 @@
 'use client'
 import { KBarModal } from '@/components/kbar/KBarModal'
+import { formatDate } from '@/utils/time'
 import type { Action } from 'kbar'
 import { KBarProvider } from 'kbar'
 import { useRouter } from 'next/navigation'
 import { MDXDocument } from 'pliny/src/utils/contentlayer'
 import { useEffect, useState } from 'react'
-import { formatDate } from '../../utils/time'
 
 export const KBarSearchProvider = ({ children }) => {
   const router = useRouter()

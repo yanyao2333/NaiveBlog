@@ -1,8 +1,8 @@
 'use client'
+import { PlayList } from '@/types/neteasePlayList'
+import { isTimeDifferenceGreaterThan } from '@/utils/time'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { PlayList } from '../../types/neteasePlayList'
-import { isTimeDifferenceGreaterThan } from '../../utils/time'
 
 const defaultTTL = 3 * 60 * 60 * 1000
 

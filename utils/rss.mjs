@@ -1,12 +1,12 @@
-import { mkdirSync, writeFileSync } from "fs";
-import { slug } from "github-slugger";
-import path from "path";
-import { allCoreContent, sortPosts } from "pliny/utils/contentlayer.js";
-import { escape } from "pliny/utils/htmlEscaper.js";
-import { allBlogs } from "../.contentlayer/generated/index.mjs";
-import siteMetadata from "../data/siteMetadata.js";
-import categoryData from "../temp/category-data.json" assert { type: "json" };
-import tagData from "../temp/tag-data.json" assert { type: "json" };
+import { mkdirSync, writeFileSync } from 'fs'
+import { slug } from 'github-slugger'
+import path from 'path'
+import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
+import { escape } from 'pliny/utils/htmlEscaper.js'
+import { allBlogs } from '../.contentlayer/generated/index.mjs'
+import siteMetadata from '../data/siteMetadata.js'
+import categoryData from '../temp/category-data.json' assert { type: 'json' }
+import tagData from '../temp/tag-data.json' assert { type: 'json' }
 
 const generateRssItem = (config, post) => `
   <item>
@@ -38,10 +38,7 @@ const generateRss = (config, posts, page = 'feed.xml') => `
 `
 
 // 过滤文章：根据分类全路径查找节点，递归查找所有子节点下的文章
-export function filterPosts(
-  categoryFullName,
-  allPosts
-){
+export function filterPosts(categoryFullName, allPosts) {
   // 递归查找节点
   function findNodeByFullPath(root, fullPath) {
     if (root.fullPath === fullPath) {
@@ -94,8 +91,6 @@ export function filterPosts(
   }
   return deeplyFilterPosts(nowNode, allPosts)
 }
-
-
 
 async function generateRSS(config, allBlogs, page = 'feed.xml') {
   const publishPosts = allBlogs.filter((post) => post.draft !== true)

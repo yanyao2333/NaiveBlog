@@ -1,5 +1,5 @@
+import { genPageMetadata } from '@/app/seo'
 import PostsListLayout from '@/layouts/PostsListLayout'
-import { genPageMetadata } from 'app/seo'
 import { allBlogs } from 'contentlayer/generated'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 

@@ -1,8 +1,8 @@
 'use client'
+import { Memo, MemoListResponse } from '@/types/memos'
 import moment from 'moment'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { Memo, MemoListResponse } from '../../types/memos'
 
 async function fetchMemos() {
   if (!process.env.NEXT_PUBLIC_MEMOS_ENDPOINT) {

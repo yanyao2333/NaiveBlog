@@ -1,17 +1,19 @@
 import ClientReady from '@/components/ClientReady'
 import FloatNavBar from '@/components/FloatNavBar'
 import Footer from '@/components/Footer'
-import { KBarSearchProvider } from '@/components/kbar/KbarSearch'
 import SectionContainer from '@/components/SectionContainer'
 import SettingsPanel from '@/components/SettingPanel'
+import { KBarSearchProvider } from '@/components/kbar/KbarSearch'
+import '@/css/LXGWWenKai-Regular/result.css'
+import '@/css/tailwind.css'
 import siteMetadata from '@/data/siteMetadata'
 import { OpenPanelComponent } from '@openpanel/nextjs'
-import 'css/tailwind.css'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Metadata } from 'next'
 import { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import 'remark-github-blockquote-alert/alert.css'
-import '../css/LXGWWenKai-Regular/result.css'
 import { ThemeProviders } from './theme-providers'
 
 // const misansFont = localFont({
@@ -123,6 +125,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             clientId="e67f1761-a8ed-46f2-b8ab-dab5884e4fe0"
             trackScreenViews={true}
           />
+          <SpeedInsights />
+          <Analytics />
           <ThemeProviders>
             {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
             {/* 定义了一个container，规范内容页面宽高 */}

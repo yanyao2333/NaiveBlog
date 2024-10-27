@@ -1,7 +1,6 @@
 import Tooltip from '@/components/Tooltip'
 import siteMetadata from '@/data/siteMetadata'
 import * as child_process from 'node:child_process'
-import Link from './Link'
 
 export default function Footer() {
   const commitHash = child_process.execSync('git rev-parse HEAD').toString().trim().slice(0, 6)

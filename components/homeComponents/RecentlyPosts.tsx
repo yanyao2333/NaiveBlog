@@ -1,8 +1,7 @@
+import { formatDate } from '@/utils/time'
 import { allBlogs } from 'contentlayer/generated'
 import Link from 'next/link'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
-import { formatDate } from '../../utils/time'
-import { TimelineSection } from '../TimelineSection'
 
 export default function RecentlyPosts() {
   const posts = allCoreContent(sortPosts(allBlogs)).slice(0, 5)

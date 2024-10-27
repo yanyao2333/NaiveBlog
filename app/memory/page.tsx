@@ -1,9 +1,11 @@
 // 本页面用于显示Memos列表
 'use client'
-import 'lightgallery/css/lightgallery.css'
-import 'lightgallery/css/lg-zoom.css'
-import 'lightgallery/css/lg-thumbnail.css'
 import PageTitle from '@/components/PageTitle'
+import Logo from '@/public/static/images/logo.png'
+import { Memo, MemoListResponse } from '@/types/memos'
+import 'lightgallery/css/lg-thumbnail.css'
+import 'lightgallery/css/lg-zoom.css'
+import 'lightgallery/css/lightgallery.css'
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import LightGallery from 'lightgallery/react'
@@ -18,8 +20,6 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-import Logo from '../../public/static/images/logo.png'
-import { Memo, MemoListResponse } from '../../types/memos'
 
 // 下一页的 token
 let nextPageToken = ''

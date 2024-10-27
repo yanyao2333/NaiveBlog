@@ -1,7 +1,7 @@
+import { genPageMetadata } from '@/app/seo'
 import Image from '@/components/Image'
 import PageTitle from '@/components/PageTitle'
 import SocialIcon from '@/components/svgs/social-icons'
-import { genPageMetadata } from 'app/seo'
 import { allAuthors, Authors } from 'contentlayer/generated'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { coreContent } from 'pliny/utils/contentlayer'
@@ -38,9 +38,9 @@ export default function Page() {
             <SocialIcon kind="x" href={twitter} />
           </div>
         </div>
-        <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
+        <article className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
           <MDXLayoutRenderer code={author.body.code} />
-        </div>
+        </article>
       </div>
     </div>
   )

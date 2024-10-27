@@ -4,15 +4,14 @@
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import Tag from '@/components/Tag'
+import { TreeNode } from '@/contentlayer.config'
 import siteMetadata from '@/data/siteMetadata'
+import categoryData from '@/temp/category-data.json'
+import tagData from '@/temp/tag-data.json'
+import { formatDate } from '@/utils/time'
 import type { Blog } from 'contentlayer/generated'
 import { usePathname } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
-import React from 'react'
-import { TreeNode } from '../contentlayer.config'
-import categoryData from '../temp/category-data.json'
-import tagData from '../temp/tag-data.json'
-import { formatDate } from '../utils/time'
 
 interface PaginationProps {
   totalPages: number
