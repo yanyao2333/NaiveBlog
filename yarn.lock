@@ -2422,18 +2422,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@headlessui/react@npm:2.1.9":
-  version: 2.1.9
-  resolution: "@headlessui/react@npm:2.1.9"
+"@headlessui/react@npm:2.2.0":
+  version: 2.2.0
+  resolution: "@headlessui/react@npm:2.2.0"
   dependencies:
     "@floating-ui/react": "npm:^0.26.16"
     "@react-aria/focus": "npm:^3.17.1"
     "@react-aria/interactions": "npm:^3.21.3"
     "@tanstack/react-virtual": "npm:^3.8.1"
   peerDependencies:
-    react: ^18
-    react-dom: ^18
-  checksum: 10/efaa4d55f23b27814f05cdfb92f76531dbe7099356b3283c2c9ef43d4be8ce67f1fa63935c62d1eddaf3a1bf44a6325a70e494a6dd55de552f48a0416c00d130
+    react: ^18 || ^19 || ^19.0.0-rc
+    react-dom: ^18 || ^19 || ^19.0.0-rc
+  checksum: 10/baaa65f2cadf87d6ef5a15de5c8e532b79f491258166af6f3fe7b05a9196de4db9f3414b62192b4588c610786acb6623e3d775fc23d9001f6b31d13c4a5854c1
   languageName: node
   linkType: hard
 
@@ -11798,7 +11798,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tailwind-nextjs-starter-blog@workspace:."
   dependencies:
-    "@headlessui/react": "npm:2.1.9"
+    "@headlessui/react": "npm:2.2.0"
     "@next/bundle-analyzer": "npm:15.0.1"
     "@openpanel/nextjs": "npm:^1.0.5"
     "@svgr/webpack": "npm:^8.1.0"
