@@ -69,7 +69,7 @@ const buttonStyles = (selected: boolean) => ({
     'block font-medium py-3 cursor-pointer',
     'md:hover:text-primary-600 dark:hover:text-primary-400',
     selected
-      ? 'text-primary-600 dark:text-primary-400 border-b border-b-primary-600 dark:border-b-primary-400'
+      ? 'text-primary-700 dark:text-primary-400 border-b border-b-primary-600 dark:border-b-primary-400'
       : 'text-gray-800 dark:text-neutral-100'
   ),
   icon: clsx(

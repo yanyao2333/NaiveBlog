@@ -12,10 +12,14 @@ export function isTimeDifferenceGreaterThan(targetTimestamp, diffMilliseconds) {
 }
 
 export const formatDate = (date: string, locale = 'zh-CN') => {
+  const dateObj = new Date(date)
+  if (dateObj.getFullYear() === 2040) {
+    return '置顶文章'
+  }
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   }
-  return new Date(date).toLocaleDateString(locale, options)
+  return dateObj.toLocaleDateString(locale, options)
 }

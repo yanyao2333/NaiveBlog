@@ -107,6 +107,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   })
 
   const Layout = layouts[post.layout || defaultLayout]
+  console.log(post.toc)
 
   if (post.private) {
     return (
@@ -130,7 +131,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       />
       <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
         <TOCInline toc={post.toc as unknown as Toc} />
-        <hr />
+        {post.toc.length > 0 && <hr />}
         <LightGalleryWrapper>
           <MdxComponentRenderer doc={post} mdxComponents={components} />
         </LightGalleryWrapper>

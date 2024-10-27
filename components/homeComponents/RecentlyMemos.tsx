@@ -1,6 +1,6 @@
 'use client'
 import { Memo, MemoListResponse } from '@/types/memos'
-import moment from 'moment'
+import moment from 'moment/min/moment-with-locales'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
