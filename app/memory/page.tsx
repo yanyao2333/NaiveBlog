@@ -3,6 +3,7 @@
 import PageTitle from '@/components/PageTitle'
 import Logo from '@/public/static/images/logo.png'
 import { Memo, MemoListResponse } from '@/types/memos'
+import clsx from 'clsx'
 import 'lightgallery/css/lg-thumbnail.css'
 import 'lightgallery/css/lg-zoom.css'
 import 'lightgallery/css/lightgallery.css'
@@ -129,7 +130,11 @@ const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }
       </div>
       {/* 内容框 */}
       <div className="prose ml-[52px] rounded-e-md rounded-bl-md bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm ring-1 ring-gray-200 dark:prose-invert prose-p:my-2 dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500">
-        {memo.parsedContent ? <div dangerouslySetInnerHTML={{ __html: memo.parsedContent }} /> : ''}
+        {memo.parsedContent ? (
+          <article dangerouslySetInnerHTML={{ __html: memo.parsedContent }} />
+        ) : (
+          ''
+        )}
         {memo.resources.length > 0 ? (
           <LightGallery
             speed={500}
@@ -165,6 +170,8 @@ const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo: Memo }
  */
 export default function MemosPage() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  // 是否是初次加载
+  const [hasLoaded, setHasLoaded] = useState(false)
   const [memos, setMemos] = useState<Memo[]>([])
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
@@ -179,6 +186,7 @@ export default function MemosPage() {
     fetchMemos().then((data) => {
       setMemos(data)
       setIsLoading(false)
+      setHasLoaded(true)
     })
     return () => {
       nextPageToken = ''
@@ -223,7 +231,7 @@ export default function MemosPage() {
   return (
     <div className="flex flex-col">
       <PageTitle title="Memories" subtitle="人生三大乐事：梗图、发癫与暴论" />
-      <div className="mx-auto flex flex-col">
+      <div className={clsx('mx-auto flex flex-col', hasLoaded && ' appear-animate')}>
         {memos ? memos.map((memo) => <MemoRowComponent memo={memo} key={memo.uid} />) : null}
       </div>
       <div ref={loadMoreRef} className={'h-[1px]'}></div>

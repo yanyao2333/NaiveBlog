@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* add fade-in animation to tooltips */
+/* add fade-in-out animation to tooltips */
 @keyframes tooltip-fade-in {
   0% {
     opacity: 0;
@@ -17,6 +17,22 @@
 
 .tooltip-animate-fade-in {
   animation: tooltip-fade-in 0.2s ease-out forwards;
+}
+
+@keyframes tooltip-fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.tooltip-animate-fade-out {
+  animation: tooltip-fade-out 0.2s ease-in forwards;
 }
 
 /* add fade-in animation to main page title */
@@ -36,6 +52,19 @@
   animation: title-fade-in 1s ease-out forwards;
 }
 
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.appear-animate {
+  animation: appear 0.7s ease-out;
+}
 /*!* width *!*/
 /*::-webkit-scrollbar {*/
 /*  width: 10px;*/

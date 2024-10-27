@@ -4,7 +4,11 @@ import Link from 'next/link'
 import { AnchorHTMLAttributes } from 'react'
 import Tooltip from './Tooltip'
 
-const CustomLink = ({ href, ...rest }: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>) => {
+// 给博文内的链接封装的 a 标签，增加 tooltip 显示目标网页
+const LinkWithTooltip = ({
+  href,
+  ...rest
+}: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>) => {
   const isInternalLink = href && href.startsWith('/')
   const isAnchorLink = href && href.startsWith('#')
 
@@ -28,4 +32,4 @@ const CustomLink = ({ href, ...rest }: LinkProps & AnchorHTMLAttributes<HTMLAnch
   )
 }
 
-export default CustomLink
+export default LinkWithTooltip
