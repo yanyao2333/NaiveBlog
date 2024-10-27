@@ -8,12 +8,14 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is openpanel.dev vercel.live va.vercel-scripts.com;
-  style-src 'self' 'unsafe-inline';
-  img-src * blob: data:;
+  style-src 'self' https://vercel.live 'unsafe-inline';
+  img-src * blob: data: https://vercel.live https://vercel.com;
   media-src *.s3.amazonaws.com;
   connect-src *;
-  font-src 'self';
+  font-src 'self' https://vercel.live https://assets.vercel.com;
   frame-src giscus.app vercel.live;
+  connect-src https://vercel.live wss://ws-us3.pusher.com;
+
 `
 
 const securityHeaders = [
