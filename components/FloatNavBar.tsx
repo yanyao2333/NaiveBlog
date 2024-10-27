@@ -6,7 +6,7 @@ import {
   PostsIcon,
   ProjectsIcon,
 } from '@/components/svgs/navBarIcons'
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
+import { CloseButton, Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -102,7 +102,8 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
       )}
     >
       {link.children.map((child) => (
-        <Link
+        <CloseButton
+          as={Link}
           key={child.title}
           className={clsx(
             'block px-8 py-2 text-center font-medium text-gray-800 transition',
@@ -112,7 +113,7 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
           href={child.href}
         >
           {child.title}
-        </Link>
+        </CloseButton>
       ))}
     </PopoverPanel>
   </Popover>
