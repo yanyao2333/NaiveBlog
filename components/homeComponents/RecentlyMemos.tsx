@@ -36,7 +36,7 @@ export default function RecentlyMemos() {
     const ref = scrollRef.current
     if (ref) {
       // @ts-ignore
-      ref.addEventListener('scroll', handleScroll)
+      ref.addEventListener('scroll', handleScroll, { passive: true })
     }
     return () => {
       if (ref) {
