@@ -107,7 +107,6 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   })
 
   const Layout = layouts[post.layout || defaultLayout]
-  console.log(post.toc)
 
   if (post.private) {
     return (

@@ -17,7 +17,7 @@ const LinkWithTooltip = ({
   }
 
   return (
-    <Tooltip text={href}>
+    <Tooltip text={href} as="span">
       <Link
         className="underline-offset-2 break-words"
         target={isInternalLink ? '_self' : '_blank'}
