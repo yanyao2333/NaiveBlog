@@ -14,7 +14,6 @@ const ContentSecurityPolicy = `
   connect-src *;
   font-src 'self' https://vercel.live https://assets.vercel.com;
   frame-src giscus.app vercel.live;
-  connect-src https://vercel.live wss://ws-us3.pusher.com;
 
 `
 

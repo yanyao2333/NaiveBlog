@@ -100,18 +100,19 @@ input:-webkit-autofill:focus {
   overflow: auto hidden;
 }
 
-.content-header-link {
+.content-header-link-icon {
+  @apply pr-1 lg:-ml-6;
+  @apply -ml-4;
   opacity: 0;
-  margin-left: -24px;
-  padding-right: 4px;
 }
 
-.content-header:hover .content-header-link,
-.content-header-link:hover {
+.content-header:hover .content-header-link-icon,
+.content-header-link-icon:hover {
   opacity: 1;
 }
 
 .linkicon {
+  @apply size-3 lg:size-5;
   display: inline-block;
   vertical-align: middle;
 }

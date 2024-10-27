@@ -7,6 +7,7 @@ import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
 import type { Authors, Blog } from 'contentlayer/generated'
 import { slug as _slug } from 'github-slugger'
+import NextLink from 'next/link'
 import { Comments as CommentsComponent } from 'pliny/comments'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { ReactNode } from 'react'
@@ -176,12 +177,12 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                               className="flex content-center gap-2"
                             >
                               &gt;
-                              <Link
+                              <NextLink
                                 href={url}
                                 className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100"
                               >
                                 {displayName}
-                              </Link>
+                              </NextLink>
                             </div>
                           )
                         })
@@ -195,13 +196,13 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       </h2>
                       <div className="flex flex-wrap">
                         {tags.map((tag) => (
-                          <Link
+                          <NextLink
                             href={`/tags/${_slug(tag)}`}
                             key={tag}
-                            className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100"
+                            className="mr-4 mt-2 text-sm font-medium uppercase text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100"
                           >
                             {tag.split(' ').join('-')}
-                          </Link>
+                          </NextLink>
                         ))}
                       </div>
                     </div>
@@ -215,7 +216,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                           上一篇
                         </h2>
                         <div className="text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100">
-                          <Link href={`/${prev.path}`}>{prev.title}</Link>
+                          <NextLink href={`/${prev.path}`}>{prev.title}</NextLink>
                         </div>
                       </div>
                     )}
@@ -225,7 +226,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                           下一篇
                         </h2>
                         <div className="text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100">
-                          <Link href={`/${next.path}`}>{next.title}</Link>
+                          <NextLink href={`/${next.path}`}>{next.title}</NextLink>
                         </div>
                       </div>
                     )}
@@ -233,13 +234,13 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 )}
               </div>
               <div className="pt-4 lg:pt-8">
-                <Link
+                <NextLink
                   href={`/${basePath}`}
                   className="text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100"
-                  aria-label="Back to the blog"
+                  aria-label="回到列表页"
                 >
                   &larr; 回到列表页
-                </Link>
+                </NextLink>
               </div>
             </footer>
           </div>

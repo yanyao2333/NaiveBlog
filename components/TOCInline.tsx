@@ -87,7 +87,9 @@ const TOCInline = ({
       <ul className={''}>
         {items.map((item, index) => (
           <li key={index}>
-            <a href={item.url}>{item.value}</a>
+            <a className=" underline-offset-2" href={item.url}>
+              {item.value}
+            </a>
             {createList(item.children)}
           </li>
         ))}
