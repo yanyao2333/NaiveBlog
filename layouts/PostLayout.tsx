@@ -1,4 +1,3 @@
-import 'css/markdown.css'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
@@ -7,11 +6,12 @@ import Tag from '@/components/Tag'
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
 import type { Authors, Blog } from 'contentlayer/generated'
+import 'css/markdown.css'
 import { Comments as CommentsComponent } from 'pliny/comments'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { ReactNode } from 'react'
 
-const editUrl = (path) =>
+const editUrl = (path: string) =>
   `${siteMetadata.siteContentRepo}/blob/main/blog-posts/${path.replace('blog/', '')}`
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {

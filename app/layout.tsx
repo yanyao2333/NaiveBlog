@@ -1,5 +1,4 @@
-import 'css/tailwind.css'
-import 'remark-github-blockquote-alert/alert.css'
+import ClientReady from '@/components/ClientReady'
 import FloatNavBar from '@/components/FloatNavBar'
 import Footer from '@/components/Footer'
 import { KBarSearchProvider } from '@/components/kbar/KbarSearch'
@@ -7,9 +6,12 @@ import SectionContainer from '@/components/SectionContainer'
 import SettingsPanel from '@/components/SettingPanel'
 import siteMetadata from '@/data/siteMetadata'
 import { OpenPanelComponent } from '@openpanel/nextjs'
+import 'css/tailwind.css'
 import { Metadata } from 'next'
 import { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
+import 'remark-github-blockquote-alert/alert.css'
+import '../css/LXGWWenKai-Regular/result.css'
 import { ThemeProviders } from './theme-providers'
 
 // const misansFont = localFont({
@@ -114,6 +116,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <title>{siteMetadata.title}</title>
       </head>
       <body className="min-h-dvh bg-[#FAFAFA]/80 pl-[calc(100vw-100%)] text-black antialiased accent-primary-400 dark:bg-neutral-800 dark:text-neutral-100">
+        <ClientReady />
         <div>
           <Toaster />
           <OpenPanelComponent

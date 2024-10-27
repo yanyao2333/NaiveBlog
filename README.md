@@ -26,8 +26,8 @@
 
 自从开始着手写这个博客，就特别关注别人的 ui，学到了不少好设计，就姑且列一下我（可能）参考了的博客：
 
-1. https://www.haydenbleasel.com/
-2. https://innei.in/
+1. <https://www.haydenbleasel.com/>
+2. <https://innei.in/>
 3. Typecho Handsome 主题
 4. Sakura 主题
 5. ...

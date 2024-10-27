@@ -1,9 +1,8 @@
 'use client'
 import moment from 'moment'
 import Link from 'next/link'
-import { Ref, RefAttributes, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Memo, MemoListResponse } from '../../types/memos'
-import { TimelineSection } from '../TimelineSection'
 
 async function fetchMemos() {
   if (!process.env.NEXT_PUBLIC_MEMOS_ENDPOINT) {
@@ -70,13 +69,13 @@ export default function RecentlyMemos() {
               <li key={memo.uid} className="mb-10 ms-6">
                 {/* 偏移 7px（半径加 border-s） */}
                 <div className="absolute -start-[7px] mt-2 flex h-3 w-3 items-center justify-center rounded-full border-2 border-primary-300 bg-white dark:border-primary-500 dark:bg-neutral-300"></div>
-                <div className="mr-2 flex flex-col items-center justify-between rounded-lg bg-gray-100 p-4 text-gray-800 shadow-sm ring-1 ring-gray-200 dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500">
+                <div className="mr-2 flex flex-col justify-between rounded-lg bg-gray-100 p-4 text-gray-800 shadow-sm ring-1 ring-gray-200 dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500">
                   <time className="mb-2 self-start text-xs font-normal text-gray-500 dark:text-neutral-400">
                     {moment(memo.createTime).fromNow()}
                   </time>
-                  <div className="whitespace-pre-wrap text-sm font-normal text-neutral-900 dark:text-neutral-100">
+                  <article className="whitespace-pre-wrap text-sm font-normal text-neutral-900 dark:text-neutral-100">
                     {memo.content}
-                  </div>
+                  </article>
                 </div>
               </li>
             ))}

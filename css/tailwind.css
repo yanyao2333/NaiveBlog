@@ -115,3 +115,8 @@ input:-webkit-autofill:focus {
   display: inline-block;
   vertical-align: middle;
 }
+
+article {
+  font-family: 'LXGW WenKai';
+  font-weight: 'normal';
+}
