@@ -1,5 +1,4 @@
 import Image from '@/components/Image'
-import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import '@/css/markdown.css'
@@ -57,7 +56,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
     <>
       <ScrollTopAndComment />
       <article>
-        <div className="lg:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
+        <div className="lg:divide-y mx-auto xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 lg:pb-6">
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
@@ -144,7 +143,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 {/*  Discuss on Twitter*/}
                 {/*</Link>*/}
                 {/*{` • `}*/}
-                <Link href={editUrl(filePath)}>View on GitHub (If you have access)</Link>
+                <NextLink href={editUrl(filePath)}>View on GitHub (If you have access)</NextLink>
               </div>
               {siteMetadata.comments && (
                 <div

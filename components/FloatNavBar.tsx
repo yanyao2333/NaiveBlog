@@ -8,9 +8,9 @@ import {
 } from '@/components/svgs/navBarIcons'
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import clsx from 'clsx'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
-import Link from './Link'
 import SearchButton from './SearchButton'
 
 interface HeaderNavLink {

@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 'use client'
 
-import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import Tag from '@/components/Tag'
 import { TreeNode } from '@/contentlayer.config'
@@ -10,6 +9,7 @@ import categoryData from '@/temp/category-data.json'
 import tagData from '@/temp/tag-data.json'
 import { formatDate } from '@/utils/time'
 import type { Blog } from 'contentlayer/generated'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
 
@@ -132,49 +132,15 @@ export default function PostsListLayout({
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
-    <div className="min-h-full">
+    <div className="min-h-full w-full">
       <PageTitle
         title={title ? title : 'Posts'}
         subtitle={subtitle ? subtitle : '思考、发癫与记录'}
       />
       <div className="flex sm:space-x-24">
         {/* 大屏端侧边栏 */}
-        <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-neutral-700 dark:shadow-neutral-700/40 sm:flex">
+        <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-neutral-700 dark:shadow-neutral-700/40 lg:flex">
           <div className="flex flex-col px-6 py-4">
-            {/*{pathname.startsWith('/blog') ? (*/}
-            {/*  <h3 className="font-bold uppercase text-primary-500">所有博文</h3>*/}
-            {/*) : (*/}
-            {/*  <Link*/}
-            {/*    href={`/blog`}*/}
-            {/*    className="font-bold uppercase text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"*/}
-            {/*  >*/}
-            {/*    所有博文*/}
-            {/*  </Link>*/}
-            {/*)}*/}
-            {/*<span className="px-3 pt-3 text-base font-bold uppercase text-gray-900 dark:text-gray-300">*/}
-            {/*  Tags*/}
-            {/*</span>*/}
-            {/*<ul>*/}
-            {/*  {sortedTags.map((t) => {*/}
-            {/*    return (*/}
-            {/*      <li key={t} className="my-3">*/}
-            {/*        {decodeURI(pathname.split('/blog/tags/')[1]) === slug(t) ? (*/}
-            {/*          <h3 className=" inline py-2 pl-5 pr-3 text-sm font-bold uppercase text-primary-500">*/}
-            {/*            {`${t} (${tagCounts[t]})`}*/}
-            {/*          </h3>*/}
-            {/*        ) : (*/}
-            {/*          <Link*/}
-            {/*            href={`/blog/tags/${slug(t)}`}*/}
-            {/*            className="py-2 pl-7 pr-3 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"*/}
-            {/*            aria-label={`View posts tagged ${t}`}*/}
-            {/*          >*/}
-            {/*            {`${t} (${tagCounts[t]})`}*/}
-            {/*          </Link>*/}
-            {/*        )}*/}
-            {/*      </li>*/}
-            {/*    )*/}
-            {/*  })}*/}
-            {/*</ul>*/}
             <span className="px-3 text-xl font-bold uppercase text-gray-900 dark:text-neutral-100">
               分类
             </span>
@@ -183,7 +149,7 @@ export default function PostsListLayout({
             </ul>
           </div>
         </div>
-        <div>
+        <div className="">
           <ul>
             {displayPosts.map((post) => {
               const { path, date, title, summary, tags } = post
@@ -200,8 +166,11 @@ export default function PostsListLayout({
                     </dl>
                     <div className="space-y-3">
                       <div>
-                        <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                          <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                        <h2 className="break-words text-2xl font-bold leading-8 tracking-tight">
+                          <Link
+                            href={`/${path}`}
+                            className="break-words overflow-hidden text-gray-900 dark:text-gray-100"
+                          >
                             {title}
                           </Link>
                         </h2>

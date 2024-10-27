@@ -15,7 +15,7 @@ const CustomLink = ({ href, ...rest }: LinkProps & AnchorHTMLAttributes<HTMLAnch
   return (
     <Tooltip text={href}>
       <Link
-        className="underline-offset-2 break-words  "
+        className="underline-offset-2 break-words"
         target={isInternalLink ? '_self' : '_blank'}
         rel="noopener noreferrer"
         href={href}
