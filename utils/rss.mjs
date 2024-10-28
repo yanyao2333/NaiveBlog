@@ -16,7 +16,7 @@ import tagData from '../temp/tag-data.json' assert { type: 'json' }
 
 const generateRssItemDescription = async (config, post) => {
   const body = post.body.raw
-  const tip = `> rss 内容与网站采用的渲染流程不同，可能导致排版错乱或效果欠佳，建议到博客：<a href="${config.siteUrl}/blog/${post.slug}">${config.siteUrl}/blog/${post.slug}</a> 查看\n`
+  const tip = `> rss 内容与网站采用的渲染流程不同，可能导致排版错乱或效果欠佳，建议到博客：<a href="${config.siteUrl}/blog/${post.slug}">${config.siteUrl}/blog/${post.slug}</a> 查看\n\n`
   const file = await unified()
     .use(remarkParse)
     .use(remarkGfm)
