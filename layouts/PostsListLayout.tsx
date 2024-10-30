@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 'use client'
 
+import TreeView from '@/components/categoryTreeView'
 import PageTitle from '@/components/PageTitle'
 import Tag from '@/components/Tag'
-import { TreeNode } from '@/contentlayer.config'
 import siteMetadata from '@/data/siteMetadata'
 import categoryData from '@/temp/category-data.json'
 import tagData from '@/temp/tag-data.json'
@@ -66,43 +66,6 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
   )
 }
 
-function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: string }) {
-  return (
-    <>
-      {node.name && (
-        <li className="text-center">
-          <Link
-            href={node.fullPath == 'blog' ? '/blog' : `/categories/${node.fullPath}`}
-            aria-label={`View posts in category ${node.showName}`}
-            className="inline-block"
-          >
-            <div className="flex">
-              <div
-                className={
-                  'mr-3 text-sm font-medium text-gray-500 hover:text-primary-500 dark:hover:text-primary-500' +
-                  (isOnThisPage(pathname, node.name)
-                    ? ' cursor-default text-primary-500'
-                    : ' text-neutral-800  dark:text-neutral-100')
-                }
-              >
-                <span className="font-bold text-black dark:text-neutral-900">&bull;&nbsp;</span>
-                {node.showName}
-                &nbsp;
-                {`(${node.count})`}
-              </div>
-            </div>
-          </Link>
-        </li>
-      )}
-      <ul className="pl-4 pt-4">
-        {Object.values(node.children).map((child) => {
-          return <TreeNodeComponent pathname={pathname} key={child.name} node={child} />
-        })}
-      </ul>
-    </>
-  )
-}
-
 // 判断是否在某个 分类/标签 页面上
 function isOnThisPage(url: string, category?: string, tag?: string) {
   if (url == '/blog' && category == 'blog') return true
@@ -140,13 +103,15 @@ export default function PostsListLayout({
       <div className="flex sm:space-x-24">
         {/* 大屏端侧边栏 */}
         <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-neutral-700 dark:shadow-neutral-700/40 lg:flex">
-          <div className="flex flex-col px-6 py-4">
+          <div className="flex flex-col px-6 py-4 w-full">
             <span className="px-3 text-xl font-bold uppercase text-gray-900 dark:text-neutral-100">
               分类
             </span>
-            <ul className="mx-auto min-w-full pl-7 pt-3">
+            {/* 分类列表 */}
+            <TreeView root={categoryData} pathname={pathname} />
+            {/* <ul className="mx-auto min-w-full pl-7 pt-3">
               <TreeNodeComponent pathname={pathname} node={categoryData} />
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div className="">
