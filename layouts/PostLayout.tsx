@@ -6,7 +6,7 @@ import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
 import type { Authors, Blog } from 'contentlayer/generated'
 import { slug as _slug } from 'github-slugger'
-import NextLink from 'next/link'
+import { default as Link, default as NextLink } from 'next/link'
 import { Comments as CommentsComponent } from 'pliny/comments'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { ReactNode } from 'react'
@@ -30,7 +30,6 @@ interface LayoutProps {
 }
 
 function generateCategoryTree(categories: string[]) {
-  // 直接以列表形式储存，因为不存在其他分支（后续或许可以考虑展示整个分类文件夹结构，并高亮当前文章所属分类？）
   const tree: { name: string; displayName: string; url: string }[] = []
   let nowPath = ''
   for (const category of categories) {
@@ -43,6 +42,61 @@ function generateCategoryTree(categories: string[]) {
   }
   return tree
 }
+
+// function TreeNodeComponent({
+//   node,
+//   pathname,
+// }: {
+//   node: { name: string; displayName: string; url: string }[]
+//   pathname: string
+// }) {
+//   return (
+//     <li className="pt-2 ">
+//       <div
+//         className={clsx(
+//           'pl-3 border-gray-300 flex items-center justify-between cursor-pointer text-gray-600 dark:text-neutral-100 hover:text-primary-500',
+//           !(node.name === 'blog') && 'border-l-2'
+//         )}
+//         aria-label={`in category: ${node.displayName}`}
+//         role="button"
+//         tabIndex={0}
+//         onKeyDown={(e) => {
+//           if (e.key === 'Enter') toggleExpand()
+//         }}
+//       >
+//         <div className={'inline-block text-sm font-medium text-gray-800 dark:text-gray-200'}>
+//           {node.showName}
+//         </div>
+//         <span className="ml-2">
+//           {Object.keys(node.children).length > 0 && (
+//             <div
+//               className="transform transition-transform duration-200"
+//               style={{ transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}
+//             >
+//               <ChevronRight className="h-5 w-5" />
+//             </div>
+//           )}
+//         </span>
+//       </div>
+
+//       {isExpanded && (
+//         <ul className="pl-6">
+//           {node..map((child) => (
+//             <TreeNodeComponent key={child.name} node={child} pathname={pathname} />
+//           ))}
+//         </ul>
+//       )}
+//     </li>
+//   )
+// }
+
+// function CategoryTreeView({ root, pathname }: { root: TreeNode; pathname: string }) {
+//   return (
+//     <ul className="w-full pt-2">
+//       <TreeNodeComponent node={root} pathname={pathname} />
+//     </ul>
+//   )
+// }
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
@@ -161,7 +215,16 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     <h2 className="text-sm pb-2 uppercase tracking-wide text-gray-500 dark:text-gray-400">
                       当前分类
                     </h2>
-                    <div className="flex-col ml-1 pb-8">
+                    {categories.map((category) => (
+                      <Link
+                        key={category.name}
+                        href={category.url}
+                        className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100"
+                      >
+                        {category.displayName}
+                      </Link>
+                    ))}
+                    {/* <div className="flex-col ml-1 pb-8">
                       {(() => {
                         let nowIndex = 0
                         return categories.map((category) => {
@@ -178,7 +241,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                               &gt;
                               <NextLink
                                 href={url}
-                                className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100"
+                                className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100"
                               >
                                 {displayName}
                               </NextLink>
@@ -186,7 +249,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                           )
                         })
                       })()}
-                    </div>
+                    </div> */}
                   </div>
                   {tags && (
                     <div className="lg:pt-8">
@@ -198,7 +261,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                           <NextLink
                             href={`/tags/${_slug(tag)}`}
                             key={tag}
-                            className="mr-4 mt-2 text-sm font-medium uppercase text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100"
+                            className="mr-4 mt-2 text-sm font-medium uppercase text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100"
                           >
                             {tag.split(' ').join('-')}
                           </NextLink>
@@ -214,7 +277,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         <h2 className="text-sm pb-2 uppercase tracking-wide text-gray-500 dark:text-gray-400">
                           上一篇
                         </h2>
-                        <div className="text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100">
+                        <div className="text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100">
                           <NextLink href={`/${prev.path}`}>{prev.title}</NextLink>
                         </div>
                       </div>
@@ -224,7 +287,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         <h2 className="text-sm pb-2 uppercase tracking-wide text-gray-500 dark:text-gray-400">
                           下一篇
                         </h2>
-                        <div className="text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100">
+                        <div className="text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100">
                           <NextLink href={`/${next.path}`}>{next.title}</NextLink>
                         </div>
                       </div>
@@ -235,7 +298,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div className="pt-4 lg:pt-8">
                 <NextLink
                   href={`/${basePath}`}
-                  className="text-gray-800 hover:text-primary-700 dark:hover:text-primary-400 dark:text-neutral-100"
+                  className="text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100"
                   aria-label="回到列表页"
                 >
                   &larr; 回到列表页

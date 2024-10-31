@@ -29,7 +29,7 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
     <li className="pt-2 ">
       <div
         className={clsx(
-          'pl-3 border-gray-300 flex items-center justify-between cursor-pointer text-gray-600 dark:text-neutral-100 hover:text-primary-500',
+          'pl-3 border-gray-300 flex items-center justify-between cursor-pointer text-gray-600 dark:text-neutral-100 hover:text-light-hover-text',
           !(node.name === 'blog') && 'border-l-2'
         )}
         onClick={toggleExpand}
@@ -45,8 +45,8 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
           className={
             'inline-block text-sm font-medium ' +
             (isOnThisPage(pathname, node.name)
-              ? 'text-primary-500'
-              : 'text-gray-800 dark:text-gray-200')
+              ? 'text-light-hover-text'
+              : 'text-gray-800 dark:text-gray-200 hover:text-light-hover-text')
           }
         >
           {node.showName}
@@ -54,7 +54,7 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
         <span className="ml-2">
           {Object.keys(node.children).length > 0 && (
             <div
-              className="transform transition-transform duration-200"
+              className="transform transition-transform duration-200 hover:text-light-hover-text"
               style={{ transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}
             >
               <ChevronRight className="h-5 w-5" />
@@ -74,7 +74,7 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
   )
 }
 
-function TreeView({ root, pathname }: { root: TreeNode; pathname: string }) {
+function CategoryTreeView({ root, pathname }: { root: TreeNode; pathname: string }) {
   return (
     <ul className="w-full pt-2">
       <TreeNodeComponent node={root} pathname={pathname} />
@@ -82,4 +82,4 @@ function TreeView({ root, pathname }: { root: TreeNode; pathname: string }) {
   )
 }
 
-export default TreeView
+export default CategoryTreeView

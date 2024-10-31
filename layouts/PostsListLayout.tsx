@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 'use client'
 
-import TreeView from '@/components/categoryTreeView'
+import CategoryTreeView from '@/components/categoryTreeView'
 import PageTitle from '@/components/PageTitle'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
@@ -108,7 +108,7 @@ export default function PostsListLayout({
               分类
             </span>
             {/* 分类列表 */}
-            <TreeView root={categoryData} pathname={pathname} />
+            <CategoryTreeView root={categoryData} pathname={pathname} />
             {/* <ul className="mx-auto min-w-full pl-7 pt-3">
               <TreeNodeComponent pathname={pathname} node={categoryData} />
             </ul> */}

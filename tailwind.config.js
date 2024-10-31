@@ -24,6 +24,9 @@ module.exports = {
       colors: {
         primary: colors.sky,
         gray: colors.gray,
+        light: {
+          'hover-text': colors.sky[700],
+        },
       },
       zIndex: {
         60: '60',
