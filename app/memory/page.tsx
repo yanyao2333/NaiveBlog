@@ -238,7 +238,7 @@ export default function MemosPage() {
       <button
         onClick={onClickFetchMore}
         disabled={isLoading}
-        className="mt-3 justify-center text-primary-500 hover:text-light-hover-text dark:hover:text-primary-400"
+        className="mt-3 justify-center text-primary-500 hover:text-light-highlight-text dark:hover:text-primary-400"
       >
         {isLoading ? (
           <div className="mx-auto mt-3 w-6">

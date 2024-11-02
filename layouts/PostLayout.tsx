@@ -219,7 +219,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       <Link
                         key={category.name}
                         href={category.url}
-                        className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100"
+                        className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100"
                       >
                         {category.displayName}
                       </Link>
@@ -241,7 +241,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                               &gt;
                               <NextLink
                                 href={url}
-                                className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100"
+                                className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100"
                               >
                                 {displayName}
                               </NextLink>
@@ -261,7 +261,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                           <NextLink
                             href={`/tags/${_slug(tag)}`}
                             key={tag}
-                            className="mr-4 mt-2 text-sm font-medium uppercase text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100"
+                            className="mr-4 mt-2 text-sm font-medium uppercase text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100"
                           >
                             {tag.split(' ').join('-')}
                           </NextLink>
@@ -277,7 +277,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         <h2 className="text-sm pb-2 uppercase tracking-wide text-gray-500 dark:text-gray-400">
                           上一篇
                         </h2>
-                        <div className="text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100">
+                        <div className="text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100">
                           <NextLink href={`/${prev.path}`}>{prev.title}</NextLink>
                         </div>
                       </div>
@@ -287,7 +287,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         <h2 className="text-sm pb-2 uppercase tracking-wide text-gray-500 dark:text-gray-400">
                           下一篇
                         </h2>
-                        <div className="text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100">
+                        <div className="text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100">
                           <NextLink href={`/${next.path}`}>{next.title}</NextLink>
                         </div>
                       </div>
@@ -298,7 +298,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div className="pt-4 lg:pt-8">
                 <NextLink
                   href={`/${basePath}`}
-                  className="text-gray-800 hover:text-light-hover-text dark:hover:text-primary-400 dark:text-neutral-100"
+                  className="text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100"
                   aria-label="回到列表页"
                 >
                   &larr; 回到列表页

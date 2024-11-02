@@ -29,7 +29,7 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
     <li className="pt-2 ">
       <div
         className={clsx(
-          'pl-3 border-gray-300 flex items-center justify-between cursor-pointer text-gray-600 dark:text-neutral-100 hover:text-light-hover-text',
+          'pl-3 border-gray-300 flex items-center justify-between cursor-pointer text-gray-600 dark:text-neutral-100 hover:text-light-highlight-text',
           !(node.name === 'blog') && 'border-l-2'
         )}
         onClick={toggleExpand}
@@ -45,8 +45,8 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
           className={
             'inline-block text-sm font-medium ' +
             (isOnThisPage(pathname, node.name)
-              ? 'text-light-hover-text'
-              : 'text-gray-800 dark:text-gray-200 hover:text-light-hover-text')
+              ? 'text-light-highlight-text'
+              : 'text-gray-800 dark:text-gray-200 hover:text-light-highlight-text')
           }
         >
           {node.showName}
@@ -54,7 +54,7 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
         <span className="ml-2">
           {Object.keys(node.children).length > 0 && (
             <div
-              className="transform transition-transform duration-200 hover:text-light-hover-text"
+              className="transform transition-transform duration-200 hover:text-light-highlight-text"
               style={{ transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}
             >
               <ChevronRight className="h-5 w-5" />

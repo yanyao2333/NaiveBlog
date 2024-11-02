@@ -60,7 +60,7 @@ const Tooltip = ({ text, children, className, as }: TooltipProps) => {
           onMouseLeave={() => setIsVisible(false)}
           role="tooltip"
           className={clsx(
-            'absolute z-10 -left-0 max-w-3xl lg:max-w-5xl mb-2 px-3 py-1 text-sm shadow-lg transition-opacity duration-200 ease-in-out',
+            'absolute z-10 block -left-0 max-w-3xl lg:max-w-5xl mb-2 px-3 py-1 text-sm shadow-lg transition-opacity duration-200 ease-in-out',
             'tooltip-animate-fade-in bottom-full transform break-words rounded-lg ring-1',
             'dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500 bg-gray-100 text-gray-800 ring-gray-200',
             !isVisible && 'tooltip-animate-fade-out',

@@ -67,16 +67,16 @@ function isOnThisPage(link: HeaderNavLink, nowPath: string) {
 const buttonStyles = (selected: boolean) => ({
   text: clsx(
     'block font-medium py-3 cursor-pointer',
-    'hover:text-light-hover-text dark:hover:text-primary-400',
+    'hover:text-light-highlight-text dark:hover:text-primary-400',
     selected
-      ? 'text-light-hover-text dark:text-primary-400 border-b border-b-light-hover-text dark:border-b-primary-400'
+      ? 'text-light-highlight-text dark:text-primary-400 border-b border-b-light-highlight-text dark:border-b-primary-400'
       : 'text-gray-800 dark:text-neutral-100'
   ),
   icon: clsx(
     'py-2 cursor-pointer',
-    'hover:text-light-hover-text dark:hover:text-primary-400',
+    'hover:text-light-highlight-text dark:hover:text-primary-400',
     selected
-      ? 'text-light-hover-text dark:text-primary-400 border-b border-b-light-hover-text dark:border-b-primary-400'
+      ? 'text-light-highlight-text dark:text-primary-400 border-b border-b-light-highlight-text dark:border-b-primary-400'
       : 'text-gray-800 dark:text-neutral-100'
   ),
 })
@@ -107,7 +107,7 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
           key={child.title}
           className={clsx(
             'block px-8 py-2 text-center font-medium text-gray-800 transition',
-            'md:hover:bg-primary-50/80 md:hover:text-light-hover-text',
+            'md:hover:bg-primary-50/80 md:hover:text-light-highlight-text',
             'dark:text-neutral-100 dark:hover:bg-primary-50/20 dark:hover:text-primary-500'
           )}
           href={child.href}
