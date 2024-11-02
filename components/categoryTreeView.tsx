@@ -18,8 +18,17 @@ function isOnThisPage(url: string, category?: string, tag?: string) {
   return false
 }
 
-function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: string }) {
-  const [isExpanded, setIsExpanded] = useState(node.name === 'blog' ? true : false)
+function TreeNodeComponent({
+  node,
+  pathname,
+  expanded,
+}: {
+  node: TreeNode
+  pathname: string
+  expanded?: boolean
+}) {
+  console.log(expanded)
+  const [isExpanded, setIsExpanded] = useState(expanded || node.name === 'blog' ? true : false)
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded)
@@ -29,16 +38,10 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
     <li className="pt-2 ">
       <div
         className={clsx(
-          'pl-3 border-gray-300 flex items-center justify-between cursor-pointer text-gray-600 dark:text-neutral-100 hover:text-light-highlight-text',
+          'pl-3 border-gray-300 flex items-center justify-between cursor-pointer text-gray-600 dark:text-neutral-100',
           !(node.name === 'blog') && 'border-l-2'
         )}
-        onClick={toggleExpand}
         aria-label={`View posts in category ${node.showName}`}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') toggleExpand()
-        }}
       >
         <Link
           href={node.fullPath === 'blog' ? '/blog' : `/categories/${node.fullPath}`}
@@ -51,7 +54,7 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
         >
           {node.showName}
         </Link>
-        <span className="ml-2">
+        <button onClick={toggleExpand} className="ml-2">
           {Object.keys(node.children).length > 0 && (
             <div
               className="transform transition-transform duration-200 hover:text-light-highlight-text"
@@ -60,13 +63,18 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
               <ChevronRight className="h-5 w-5" />
             </div>
           )}
-        </span>
+        </button>
       </div>
 
       {isExpanded && (
         <ul className="pl-6">
           {Object.values(node.children).map((child) => (
-            <TreeNodeComponent key={child.name} node={child} pathname={pathname} />
+            <TreeNodeComponent
+              key={child.name}
+              node={child}
+              pathname={pathname}
+              expanded={expanded}
+            />
           ))}
         </ul>
       )}
@@ -74,10 +82,18 @@ function TreeNodeComponent({ node, pathname }: { node: TreeNode; pathname: strin
   )
 }
 
-function CategoryTreeView({ root, pathname }: { root: TreeNode; pathname: string }) {
+function CategoryTreeView({
+  root,
+  pathname,
+  expanded,
+}: {
+  root: TreeNode
+  pathname: string
+  expanded?: boolean
+}) {
   return (
     <ul className="w-full pt-2">
-      <TreeNodeComponent node={root} pathname={pathname} />
+      <TreeNodeComponent node={root} pathname={pathname} expanded={expanded} />
     </ul>
   )
 }

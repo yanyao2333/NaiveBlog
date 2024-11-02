@@ -102,7 +102,7 @@ export default function PostsListLayout({
       />
       <div className="flex sm:space-x-24">
         {/* 大屏端侧边栏 */}
-        <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-neutral-700 dark:shadow-neutral-700/40 lg:flex">
+        <div className="lg:flex hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-neutral-700 dark:shadow-neutral-700/40">
           <div className="flex flex-col px-6 py-4 w-full">
             <span className="px-3 text-xl font-bold uppercase text-gray-900 dark:text-neutral-100">
               分类
@@ -114,7 +114,7 @@ export default function PostsListLayout({
             </ul> */}
           </div>
         </div>
-        <div className="">
+        <div>
           <ul>
             {displayPosts.map((post) => {
               const { path, date, title, summary, tags } = post

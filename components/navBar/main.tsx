@@ -10,12 +10,14 @@ import { CloseButton, Popover, PopoverButton, PopoverPanel } from '@headlessui/r
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ReactNode } from 'react'
-import SearchButton from './SearchButton'
+import { ReactElement, ReactNode } from 'react'
+import SearchButton from '../SearchButton'
+import DialogDemo from './dialog'
 
 interface HeaderNavLink {
   href: string
   title: string
+  hrefComponent?: ReactElement // 用于自定义链接
   logo?: ReactNode
   children?: HeaderNavLink[]
 }
@@ -49,7 +51,7 @@ const headerNavLinksNewVersion: HeaderNavLink[] = [
     logo: '✍️',
     children: [
       { href: '/blog', title: '📄 所有' },
-      { href: '/categories', title: '📦 分类' },
+      { href: '/categories', title: '📦 分类', hrefComponent: <DialogDemo /> },
       { href: '/tags', title: '🏷 标签' },
     ],
   },
@@ -81,6 +83,26 @@ const buttonStyles = (selected: boolean) => ({
   ),
 })
 
+const generatePopoverButton = (child: HeaderNavLink) => {
+  if (child.hrefComponent) {
+    return child.hrefComponent
+  }
+  return (
+    <CloseButton
+      as={Link}
+      key={child.title}
+      className={clsx(
+        'block px-8 py-2 text-center font-medium text-gray-800 transition',
+        'md:hover:bg-primary-50/80 md:hover:text-light-highlight-text',
+        'dark:text-neutral-100 dark:hover:bg-primary-50/20 dark:hover:text-primary-500'
+      )}
+      href={child.href}
+    >
+      {child.title}
+    </CloseButton>
+  )
+}
+
 // 通用Popover生成器
 const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconMode: boolean) => (
   <Popover key={`${link.title}_popover`} className={clsx('my-auto')}>
@@ -101,20 +123,7 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
         'data-[closed]:-translate-y-1 data-[closed]:opacity-0'
       )}
     >
-      {link.children.map((child) => (
-        <CloseButton
-          as={Link}
-          key={child.title}
-          className={clsx(
-            'block px-8 py-2 text-center font-medium text-gray-800 transition',
-            'md:hover:bg-primary-50/80 md:hover:text-light-highlight-text',
-            'dark:text-neutral-100 dark:hover:bg-primary-50/20 dark:hover:text-primary-500'
-          )}
-          href={child.href}
-        >
-          {child.title}
-        </CloseButton>
-      ))}
+      {link.children.map((child) => generatePopoverButton(child))}
     </PopoverPanel>
   </Popover>
 )

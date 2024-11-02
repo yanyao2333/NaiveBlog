@@ -1,4 +1,5 @@
 import { genPageMetadata } from '@/app/seo'
+import CategoryTreeView from '@/components/categoryTreeView'
 import PageTitle from '@/components/PageTitle'
 import { TreeNode } from '@/contentlayer.config'
 import categoryData from '@/temp/category-data.json'
@@ -43,9 +44,9 @@ export default async function CategoriesPage() {
   return (
     <div className="flex min-h-[calc(100dvh-5rem)] flex-col items-center justify-center md:space-x-6">
       <PageTitle title="Categories" subtitle="分类整理方便查找？我没感受到。" />
-      <ul className="mx-auto min-w-full list-inside list-disc pt-3">
-        <TreeNodeComponent node={categoryData} />
-      </ul>
+      <div className="min-w-60">
+        <CategoryTreeView root={categoryData} pathname="" />
+      </div>
     </div>
   )
 }
