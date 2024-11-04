@@ -9336,12 +9336,12 @@ __metadata:
   linkType: hard
 
 "next-themes@npm:^0.4.0":
-  version: 0.4.1
-  resolution: "next-themes@npm:0.4.1"
+  version: 0.4.3
+  resolution: "next-themes@npm:0.4.3"
   peerDependencies:
     react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
     react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
-  checksum: 10/712c263d1b8f5f681a9c5371f381579600d9ba9b905bcb6e828fcd1b87618c645b1f4df064bf927712cdd84b25a3212b74337d4199c75bb0236d113af89b1f3a
+  checksum: 10/577932d057ef9590f37eda4aae282360b0aea412212cb0cc75b2b5b7a03becb2833eeaa66bee3c301fc03715bc0c5a2ae49121eb788184f8d51bf446d8289e10
   languageName: node
   linkType: hard
 
