@@ -1,5 +1,6 @@
 import PostsListLayout from '@/layouts/PostsListLayout'
 import { allBlogs } from 'contentlayer/generated'
+import { notFound } from 'next/navigation'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 
 const POSTS_PER_PAGE = 5
@@ -22,12 +23,16 @@ export default async function Page(props: { params: Promise<{ page: string }> })
     totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
   }
 
+  if (pageNumber > pagination.totalPages) {
+    return notFound()
+  }
+
   return (
     <PostsListLayout
       posts={posts}
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="All Posts"
+      title="博文"
     />
   )
 }

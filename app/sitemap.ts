@@ -1,10 +1,14 @@
+import { TreeNode } from '@/contentlayer.config'
 import siteMetadata from '@/data/siteMetadata'
+import categoryData from '@/temp/category-data.json'
+import tagData from '@/temp/tag-data.json'
 import { allBlogs } from 'contentlayer/generated'
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = siteMetadata.siteUrl
 
+  // 生成每篇博文的路由
   const blogRoutes = allBlogs
     .filter((post) => !post.draft)
     .map((post) => ({
@@ -12,18 +16,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: post.lastmod || post.date,
     }))
 
-  const routes = [
-    '',
-    'blog',
-    'blog/projects',
-    'blog/tags',
-    'blog/categories',
-    'memory',
-    'about',
-  ].map((route) => ({
-    url: `${siteUrl}/${route}`,
-    lastModified: new Date().toISOString().split('T')[0],
+  // 生成每个标签的路由
+  const tagCounts = tagData as Record<string, number>
+  const tagRoutes = Object.keys(tagCounts).map((tag) => ({
+    url: `${siteUrl}/tags/${tag}`,
   }))
 
-  return [...routes, ...blogRoutes]
+  // 生成每个分类的路由
+  function getAllCategoriesFullPath(node: TreeNode, fullPath: string): string[][] {
+    const result: string[][] = []
+    result.push(node.fullPath.split('/'))
+
+    for (const key in node.children) {
+      const child = node.children[key]
+      const getChildren = getAllCategoriesFullPath(child, fullPath + node.fullPath + '/')
+      result.push(...getChildren)
+    }
+    return result
+  }
+
+  const categoryRoutes = (
+    getAllCategoriesFullPath(categoryData, categoryData.fullPath) as string[][]
+  ).map((item) => ({
+    url: `${siteUrl}/categories/${item.join('/')}`,
+  }))
+
+  // 静态路由
+  const routes = ['', 'blog', 'projects', 'tags', 'categories', 'memory', 'about'].map((route) => ({
+    url: `${siteUrl}/${route}`,
+  }))
+
+  return [...routes, ...blogRoutes, ...tagRoutes, ...categoryRoutes]
 }

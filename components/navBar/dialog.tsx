@@ -11,6 +11,7 @@ function CategoryDialog({ isOpen, setIsOpen }) {
     <Dialog
       open={isOpen}
       as="div"
+      key={'categoryDialog'}
       className="relative z-10 focus:outline-none"
       onClose={() => setIsOpen(false)}
     >

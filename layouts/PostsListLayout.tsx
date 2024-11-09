@@ -97,7 +97,7 @@ export default function PostsListLayout({
   return (
     <div className="min-h-full w-full">
       <PageTitle
-        title={title ? title : 'Posts'}
+        title={title ? title : '博文'}
         subtitle={subtitle ? subtitle : '思考、发癫与记录'}
       />
       <div className="flex sm:space-x-24">
