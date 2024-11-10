@@ -22,10 +22,12 @@ function TreeNodeComponent({
   node,
   pathname,
   expanded,
+  closeFunction,
 }: {
   node: TreeNode
   pathname: string
   expanded?: boolean
+  closeFunction?: () => void
 }) {
   const [isExpanded, setIsExpanded] = useState(expanded || node.name === 'blog' ? true : false)
 
@@ -50,6 +52,7 @@ function TreeNodeComponent({
               ? 'text-light-highlight-text'
               : 'text-gray-800 dark:text-gray-200 hover:text-light-highlight-text')
           }
+          onClick={closeFunction}
         >
           {node.showName}
         </Link>
@@ -73,6 +76,7 @@ function TreeNodeComponent({
               node={child}
               pathname={pathname}
               expanded={expanded}
+              closeFunction={closeFunction}
             />
           ))}
         </ul>
@@ -85,14 +89,21 @@ function CategoryTreeView({
   root,
   pathname,
   expanded,
+  closeFunction, // 用于点击按钮跳转后关闭一些东西
 }: {
   root: TreeNode
   pathname: string
   expanded?: boolean
+  closeFunction?: () => void
 }) {
   return (
     <ul className="w-full pt-2">
-      <TreeNodeComponent node={root} pathname={pathname} expanded={expanded} />
+      <TreeNodeComponent
+        node={root}
+        pathname={pathname}
+        expanded={expanded}
+        closeFunction={closeFunction}
+      />
     </ul>
   )
 }

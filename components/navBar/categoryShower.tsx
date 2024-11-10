@@ -39,7 +39,12 @@ function CategoryDialogModal({ isOpen, setIsOpen }) {
               想去哪？
             </DialogTitle>
             <div className="mt-4">
-              <CategoryTreeView root={categoryData} pathname={usePathname()} expanded />
+              <CategoryTreeView
+                root={categoryData}
+                pathname={usePathname()}
+                closeFunction={() => setIsOpen(false)}
+                expanded
+              />
             </div>
           </DialogPanel>
         </div>
@@ -68,8 +73,9 @@ function CategoryDialog() {
 }
 
 function CategoryDrawer() {
+  const [isOpen, setIsOpen] = useState(false)
   return (
-    <Drawer>
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger
         className={cn(
           'block px-8 py-2 text-center font-medium text-gray-800 transition',
@@ -85,7 +91,12 @@ function CategoryDrawer() {
           {/* <DrawerDescription></DrawerDescription> */}
         </DrawerHeader>
         <div className="p-4">
-          <CategoryTreeView root={categoryData} expanded pathname={usePathname()} />
+          <CategoryTreeView
+            root={categoryData}
+            pathname={usePathname()}
+            closeFunction={() => setIsOpen(false)}
+            expanded
+          />
         </div>
         <DrawerFooter>
           <DrawerClose></DrawerClose>

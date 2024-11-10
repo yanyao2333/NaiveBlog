@@ -16,7 +16,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import Tag from '../Tag'
 
-function TagsContent() {
+function TagsContent({ close }) {
   const tagCounts = tagData as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
@@ -25,7 +25,16 @@ function TagsContent() {
       {tagKeys.length === 0 && '你还没有标签'}
       {sortedTags.map((t) => {
         return (
-          <div key={t} className="mb-2 mr-5 mt-2">
+          <div
+            key={t}
+            onClick={close}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') close()
+            }}
+            className="mb-2 mr-5 mt-2"
+          >
             <Tag text={t} />
             <Link
               href={`/tags/${t}`}
@@ -64,7 +73,7 @@ function TagDialogModal({ isOpen, setIsOpen }) {
               想去哪？
             </DialogTitle>
             <div className="mt-4">
-              <TagsContent />
+              <TagsContent close={() => setIsOpen(false)} />
             </div>
           </DialogPanel>
         </div>
@@ -93,8 +102,9 @@ function TagDialog() {
 }
 
 function TagDrawer() {
+  const [isOpen, setIsOpen] = useState(false)
   return (
-    <Drawer>
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger
         className={cn(
           'block px-8 py-2 text-center font-medium text-gray-800 transition',
@@ -110,7 +120,7 @@ function TagDrawer() {
           {/* <DrawerDescription></DrawerDescription> */}
         </DrawerHeader>
         <div className="p-4">
-          <TagsContent />
+          <TagsContent close={() => setIsOpen(false)} />
         </div>
         <DrawerFooter>
           <DrawerClose></DrawerClose>
