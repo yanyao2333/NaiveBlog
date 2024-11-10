@@ -1,12 +1,22 @@
-'use client'
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer'
 import categoryData from '@/temp/category-data.json'
+import useMediaQuery from '@/utils/hooks/useMediaQuery'
+import { cn } from '@/utils/tailwind'
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import CategoryTreeView from '../categoryTreeView'
 
-function CategoryDialog({ isOpen, setIsOpen }) {
+function CategoryDialogModal({ isOpen, setIsOpen }) {
   return (
     <Dialog
       open={isOpen}
@@ -38,7 +48,7 @@ function CategoryDialog({ isOpen, setIsOpen }) {
   )
 }
 
-export default function DialogDemo() {
+function CategoryDialog() {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
@@ -52,7 +62,40 @@ export default function DialogDemo() {
       >
         📦 分类
       </button>
-      <CategoryDialog isOpen={isOpen} setIsOpen={setIsOpen} />
+      <CategoryDialogModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   )
+}
+
+function CategoryDrawer() {
+  return (
+    <Drawer>
+      <DrawerTrigger
+        className={cn(
+          'block px-8 py-2 text-center font-medium text-gray-800 transition',
+          'md:hover:bg-primary-50/80 md:hover:text-light-highlight-text',
+          'dark:text-neutral-100 dark:hover:bg-primary-50/20 dark:hover:text-primary-500'
+        )}
+      >
+        📦 分类
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>想去哪？</DrawerTitle>
+          {/* <DrawerDescription></DrawerDescription> */}
+        </DrawerHeader>
+        <div className="p-4">
+          <CategoryTreeView root={categoryData} expanded pathname={usePathname()} />
+        </div>
+        <DrawerFooter>
+          <DrawerClose></DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  )
+}
+
+export default function CategoryShower() {
+  const isMobile = useMediaQuery('(max-width: 768px)')
+  return isMobile ? <CategoryDrawer /> : <CategoryDialog />
 }

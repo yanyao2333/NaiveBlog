@@ -12,7 +12,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReactElement, ReactNode } from 'react'
 import SearchButton from '../SearchButton'
-import DialogDemo from './dialog'
+import CategoryShower from './categoryShower'
+import TagShower from './tagShower'
 
 interface HeaderNavLink {
   href: string
@@ -51,8 +52,8 @@ const headerNavLinksNewVersion: HeaderNavLink[] = [
     logo: '✍️',
     children: [
       { href: '/blog', title: '📄 所有' },
-      { href: '/categories', title: '📦 分类', hrefComponent: <DialogDemo /> },
-      { href: '/tags', title: '🏷 标签' },
+      // { href: '/categories', title: '📦 分类', hrefComponent: <CategoryShower /> },
+      // { href: '/tags', title: '🏷 标签' },
     ],
   },
   { href: '/memory', title: '☁️ 回忆', logo: '☁️' },
@@ -84,9 +85,9 @@ const buttonStyles = (selected: boolean) => ({
 })
 
 const generatePopoverButton = (child: HeaderNavLink) => {
-  if (child.hrefComponent) {
-    return child.hrefComponent
-  }
+  // if (child.hrefComponent) {
+  //   return child.hrefComponent
+  // }
   return (
     <CloseButton
       as={Link}
@@ -125,6 +126,8 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
       )}
     >
       {link.children.map((child) => generatePopoverButton(child))}
+      <CategoryShower />
+      <TagShower />
     </PopoverPanel>
   </Popover>
 )

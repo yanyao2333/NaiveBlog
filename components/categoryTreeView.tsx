@@ -27,7 +27,6 @@ function TreeNodeComponent({
   pathname: string
   expanded?: boolean
 }) {
-  console.log(expanded)
   const [isExpanded, setIsExpanded] = useState(expanded || node.name === 'blog' ? true : false)
 
   const toggleExpand = () => {
