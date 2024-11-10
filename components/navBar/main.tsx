@@ -115,6 +115,7 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
       {iconMode ? link.logo : link.title}
     </PopoverButton>
     <PopoverPanel
+      key={`${link.title}_popover_panel`}
       transition
       anchor={{ to: 'bottom', gap: 12 }}
       className={clsx(

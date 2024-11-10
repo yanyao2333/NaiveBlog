@@ -1,3 +1,5 @@
+import moment from 'moment/min/moment-with-locales'
+
 /**
  * 比较目标时间戳与当前时间是否相差指定的毫秒数
  *
@@ -19,4 +21,22 @@ export const formatDate = (date: string, locale = 'zh-CN') => {
     day: 'numeric',
   }
   return dateObj.toLocaleDateString(locale, options)
+}
+
+/**
+ * 使用 moment.js 将时间字符串格式化为语义化的时间字符串
+ * @param timeString 时间字符串
+ * @returns 格式化后的时间字符串
+ */
+export function formatToSemanticTime(timeString, locale) {
+  const targetTime = moment(timeString).locale(locale)
+  const diffDays = moment().diff(targetTime, 'days')
+  switch (true) {
+    case diffDays < 1:
+      return targetTime.fromNow()
+    case diffDays >= 1 && diffDays < 7:
+      return targetTime.calendar()
+    case diffDays >= 7:
+      return targetTime.format('llll')
+  }
 }
