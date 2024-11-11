@@ -10827,8 +10827,8 @@ __metadata:
   linkType: hard
 
 "rehype-citation@npm:^2.1.2":
-  version: 2.2.1
-  resolution: "rehype-citation@npm:2.2.1"
+  version: 2.2.2
+  resolution: "rehype-citation@npm:2.2.2"
   dependencies:
     "@citation-js/core": "npm:^0.7.14"
     "@citation-js/date": "npm:^0.5.1"
@@ -10844,7 +10844,7 @@ __metadata:
     parse5: "npm:^7.1.2"
     unified: "npm:^11.0.0"
     unist-util-visit: "npm:^5.0.0"
-  checksum: 10/8ee56372731c3b53dad5721a0274b05b86013287a8b93c514661346aabdde63389dc91ba8aa39e84725f2bd1a0bda2da215783bc66a8422fd1bb0bf867811a1c
+  checksum: 10/a18a194aba6414b6a37159521f5408e21360c53084e050e31ba3233111e3fce4f5cb30cb9a6249b6506298b1f2c33ef49d0b4f29e0e3941a2537fb43b292a89c
   languageName: node
   linkType: hard
 
