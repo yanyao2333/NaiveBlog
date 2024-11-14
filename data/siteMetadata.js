@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'Be young & simple, even sometimes naive. ',
   language: 'zh-cn',
   theme: 'light', // system, dark or light
-  siteUrl: 'https://blog-build.yanyaolab.xyz',
+  siteUrl: 'https://www.yanyaolab.xyz',
   siteRepo: 'https://github.com/yanyao2333/blog-main',
   siteContentRepo: 'https://github.com/yanyao2333/blog-content',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
