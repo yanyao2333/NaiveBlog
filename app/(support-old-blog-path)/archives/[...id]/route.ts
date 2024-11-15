@@ -1,6 +1,6 @@
-import postMappingData from '@/data/old-blog-posts-mapping.json'
 import { permanentRedirect, RedirectType } from 'next/navigation'
 import { NextRequest } from 'next/server'
+import postMappingData from './old-blog-posts-mapping.json'
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const currentId = (await params).id

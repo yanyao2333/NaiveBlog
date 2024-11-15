@@ -189,9 +189,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </dd>
             </dl>
             <div className="divide-y divide-gray-200 dark:divide-gray-700 lg:col-span-3 lg:row-span-2 lg:pb-0">
-              <div className="prose mx-auto w-[calc(100dvw-24px)] pb-8 pt-10 dark:prose-invert">
-                {children}
-              </div>
+              <div className="prose mx-auto pb-8 pt-10 dark:prose-invert">{children}</div>
               <div className="pb-6 pt-6 text-center text-sm text-gray-700 dark:text-gray-300">
                 {/*<Link href={discussUrl(path)} rel="nofollow">*/}
                 {/*  Discuss on Twitter*/}

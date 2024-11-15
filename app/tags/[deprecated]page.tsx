@@ -12,7 +12,7 @@ export default async function Page() {
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
   return (
     <div
-      className={`flex min-h-[calc(100dvh-5rem)] flex-col items-center justify-center md:space-x-6`}
+      className={`flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center md:space-x-6`}
     >
       <PageTitle title="Tags" subtitle="只是些无用的标签罢了" />
       <div className="mx-auto flex flex-wrap justify-center pt-3 md:max-w-[calc(100%-10rem)] lg:max-w-[calc(100%-20rem)]">

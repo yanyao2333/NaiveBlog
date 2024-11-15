@@ -118,9 +118,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
         <title>{siteMetadata.title}</title>
       </head>
-      <body className="min-h-dvh bg-[#FAFAFA]/80 pl-[calc(100vw-100%)] text-black antialiased accent-primary-400 dark:bg-neutral-800 dark:text-neutral-100">
+      <body className="min-h-screen bg-[#FAFAFA]/80 pl-[calc(100vw-100%)] text-black antialiased accent-primary-400 dark:bg-neutral-800 dark:text-neutral-100">
         <ClientReady />
-        <NextTopLoader />
+        <NextTopLoader showSpinner={false} />
         <div>
           <Toaster />
           <OpenPanelComponent
@@ -135,7 +135,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <KBarSearchProvider>
               <FloatNavBar />
               <SectionContainer>
-                <main className="mx-auto min-h-dvh w-full pt-20">{children}</main>
+                <main className="mx-auto min-h-screen w-full pt-20">{children}</main>
                 <SettingsPanel />
               </SectionContainer>
             </KBarSearchProvider>

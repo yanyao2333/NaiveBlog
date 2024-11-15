@@ -10,7 +10,7 @@ export default function Projects() {
     <>
       <div className="min-w-full">
         <PageTitle title="Projects" subtitle="Just for fun." />
-        <div className="container pt-3">
+        <div className="container pt-2">
           <div className="-m-4 flex flex-wrap">
             {projectsData.map((d) => (
               <Card
