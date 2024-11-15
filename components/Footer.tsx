@@ -2,7 +2,7 @@ import Tooltip from '@/components/Tooltip'
 import siteMetadata from '@/data/siteMetadata'
 
 export default function Footer() {
-  const commitHash = process.env.COMMIT_HASH?.slice(0, 6)
+  const commitHash = process.env.NEXT_PUBLIC_COMMIT_HASH?.slice(0, 6)
 
   return (
     <footer>
