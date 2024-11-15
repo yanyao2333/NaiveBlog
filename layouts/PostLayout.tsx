@@ -36,7 +36,7 @@ function generateCategoryTree(categories: string[]) {
     nowPath += `/${category}`
     tree.push({
       name: category,
-      displayName: categoryMapping[category] || category,
+      displayName: categoryMapping[category].show || category,
       url: `/categories${nowPath}`,
     })
   }

@@ -35,7 +35,10 @@ function CategoryDialogModal({ isOpen, setIsOpen }) {
               'data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0'
             )}
           >
-            <DialogTitle as="h3" className="text-base/7 font-medium text-gray-800">
+            <DialogTitle
+              as="h3"
+              className="text-base/7 font-medium text-gray-800 dark:text-gray-200"
+            >
               想去哪？
             </DialogTitle>
             <div className="mt-4">

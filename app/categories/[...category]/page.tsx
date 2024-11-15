@@ -16,7 +16,7 @@ export async function generateMetadata(props: {
   const params = await props.params
   const category = decodeURI(params.category.join('/'))
   return genPageMetadata({
-    title: category,
+    title: `Posts in ${category}`,
     description: `${siteMetadata.title} - ${category} category`,
     alternates: {
       canonical: './',
@@ -111,14 +111,18 @@ export default async function CategoryPage(props: { params: Promise<{ category: 
       posts={filteredPosts}
       title={
         categoryFullName == 'blog'
-          ? 'All posts'
+          ? '所有博文'
           : categoryFullName
               .split('/')
               .slice(1)
-              .map((item) => (categoryMapping[item] ? categoryMapping[item] : item))
+              .map((item) => (categoryMapping[item] ? categoryMapping[item].show : item))
               .join('/')
       }
-      subtitle={`${categoryFullName} 分类下的所有文章`}
+      subtitle={
+        categoryMapping[params.category[params.category.length - 1]]
+          ? categoryMapping[params.category[params.category.length - 1]].desc
+          : ''
+      }
     />
   )
 }

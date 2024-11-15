@@ -14,7 +14,7 @@ export async function generateMetadata(props: {
   const params = await props.params
   const tag = decodeURI(params.tag)
   return genPageMetadata({
-    title: tag,
+    title: `Posts tagged with ${tag}`,
     description: `${siteMetadata.title} ${tag} tagged content`,
     alternates: {
       canonical: './',

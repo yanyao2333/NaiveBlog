@@ -16,7 +16,7 @@ export default function Home() {
         <div className="my-auto flex flex-col items-center justify-between gap-12 lg:flex-row lg:gap-0">
           <div className="title-animate-fade-in flex flex-col">
             <PageTitle
-              title="Roitiumの自留地"
+              title={siteMetadata.title}
               subtitle={siteMetadata.description ? siteMetadata.description : <YiYan />}
               className={''}
             />

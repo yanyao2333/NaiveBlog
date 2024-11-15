@@ -61,6 +61,7 @@ export type TreeNode = {
   count: number
   children: Record<string, TreeNode>
   showName: string
+  desc?: string
   fullPath: string
 }
 
@@ -69,7 +70,8 @@ function createCategoryTree(allBlogs) {
     name: 'blog',
     count: 0,
     children: {},
-    showName: categoryMapping['blog'] ? categoryMapping['blog'] : 'Blog',
+    desc: '博客所有文章',
+    showName: categoryMapping['blog'] ? categoryMapping['blog'].show : 'Blog',
     fullPath: 'blog',
   }
 
@@ -89,7 +91,8 @@ function createCategoryTree(allBlogs) {
             name: part,
             count: 0,
             children: {},
-            showName: categoryMapping[part] ? categoryMapping[part] : part,
+            desc: categoryMapping[part] ? categoryMapping[part].desc : '',
+            showName: categoryMapping[part] ? categoryMapping[part].show : part,
             fullPath: [currentNode.fullPath, part].join('/'),
           }
         }
