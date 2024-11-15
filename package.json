@@ -32,7 +32,7 @@
     "hast-util-from-html-isomorphic": "^2.0.0",
     "image-size": "1.1.1",
     "lightgallery": "^2.7.2",
-    "lucide-react": "^0.456.0",
+    "lucide-react": "^0.457.0",
     "moment": "^2.30.1",
     "next": "15.0.3",
     "next-contentlayer2": "0.4.6",
