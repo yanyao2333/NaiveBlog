@@ -11,6 +11,7 @@ import { OpenPanelComponent } from '@openpanel/nextjs'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Metadata } from 'next'
+import NextTopLoader from 'nextjs-toploader'
 import { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import 'remark-github-blockquote-alert/alert.css'
@@ -119,6 +120,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className="min-h-dvh bg-[#FAFAFA]/80 pl-[calc(100vw-100%)] text-black antialiased accent-primary-400 dark:bg-neutral-800 dark:text-neutral-100">
         <ClientReady />
+        <NextTopLoader />
         <div>
           <Toaster />
           <OpenPanelComponent

@@ -3,7 +3,7 @@ import { KBarModal } from '@/components/kbar/KBarModal'
 import { formatDate } from '@/utils/time'
 import type { Action } from 'kbar'
 import { KBarProvider } from 'kbar'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'nextjs-toploader/app'
 import { MDXDocument } from 'pliny/src/utils/contentlayer'
 import { useEffect, useState } from 'react'
 
