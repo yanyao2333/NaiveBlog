@@ -3298,6 +3298,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/colors@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@radix-ui/colors@npm:3.0.0"
+  checksum: 10/bc9ffb01b3964f16482dc278cf6d86d85b73eae7cb94a77018fbd53b103b3d5ec1ecf77882cfbf8892f28c2c6057db8e19bf4d66234ed330a430373b092c5cfe
+  languageName: node
+  linkType: hard
+
 "@radix-ui/primitive@npm:1.1.0":
   version: 1.1.0
   resolution: "@radix-ui/primitive@npm:1.1.0"
@@ -12490,6 +12497,7 @@ __metadata:
     tailwind-merge: "npm:^2.5.4"
     tailwindcss: "npm:^3.4.13"
     tailwindcss-animate: "npm:^1.0.7"
+    tailwindcss-radix-colors: "npm:^1.4.1"
     typescript: "npm:^5.5.4"
     unist-util-visit: "npm:^5.0.0"
     vaul: "npm:^1.1.1"
@@ -12502,6 +12510,17 @@ __metadata:
   peerDependencies:
     tailwindcss: "*"
   checksum: 10/ef176fbb0bf9dca84178b35b6a9615cd756358ea80be9c575456d12ecd7f3c431e9e571915c7df72959dc798a730959e9a4739d59eab55d8cc6db390870ff0d2
+  languageName: node
+  linkType: hard
+
+"tailwindcss-radix-colors@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "tailwindcss-radix-colors@npm:1.4.1"
+  dependencies:
+    "@radix-ui/colors": "npm:^3.0.0"
+  peerDependencies:
+    tailwindcss: ">=3.0.0"
+  checksum: 10/836454c670810d80e431374c167d6342689f052edf9f26ad48ad54f0c6e9a07a6b8d6a9aa5ecd0e1eb66720c9836ac129b540a25042a74a92b0c5481cc0d4025
   languageName: node
   linkType: hard
 
