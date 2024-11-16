@@ -38,7 +38,7 @@ export default function Page() {
             <SocialIcon kind="x" href={twitter} />
           </div>
         </div>
-        <article className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
+        <article className="prose prose-slate max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
           <MDXLayoutRenderer code={author.body.code} />
         </article>
       </div>

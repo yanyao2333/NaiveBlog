@@ -102,9 +102,9 @@ export default function PostsListLayout({
       />
       <div className="flex sm:space-x-24">
         {/* 大屏端侧边栏 */}
-        <div className="lg:flex hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-neutral-700 dark:shadow-neutral-700/40">
+        <div className="lg:flex hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-slate-3 pt-5 shadow-md dark:bg-slatedark-3">
           <div className="flex flex-col px-6 py-4 w-full">
-            <span className="px-3 text-xl font-bold uppercase text-gray-900 dark:text-neutral-100">
+            <span className="px-3 text-xl font-bold uppercase text-slate-11 dark:text-slatedark-11">
               分类
             </span>
             {/* 分类列表 */}
@@ -123,7 +123,7 @@ export default function PostsListLayout({
                   <article className="flex flex-col space-y-2 xl:space-y-0">
                     <dl>
                       <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      <dd className="text-base font-medium leading-6 text-slate-11 dark:text-slatedark-11">
                         <time dateTime={date} suppressHydrationWarning>
                           {formatDate(date, siteMetadata.locale)}
                         </time>
@@ -134,7 +134,7 @@ export default function PostsListLayout({
                         <h2 className="break-words text-2xl font-bold leading-8 tracking-tight">
                           <Link
                             href={`/${path}`}
-                            className="break-words overflow-hidden text-gray-900 dark:text-gray-100"
+                            className="break-words overflow-hidden text-slate-12 dark:text-slatedark-12"
                           >
                             {title}
                           </Link>
@@ -143,7 +143,7 @@ export default function PostsListLayout({
                           {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                         </div>
                       </div>
-                      <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                      <div className=" prose-slate max-w-none text-slate-11 dark:text-slatedark-11">
                         {summary}
                         <br />
                         <div className="mt-3 flex items-center text-[12px]">

@@ -41,7 +41,7 @@ export default function PasswordInput() {
       <div className="mt-3 flex w-full justify-center">
         <input
           type="password"
-          className="rounded-l max-w-[200px] sm:max-w-[300px] border border-gray-500 border-r-0 bg-gray-200 px-4 py-2 text-gray-700 dark:bg-neutral-700 dark:text-neutral-300"
+          className="rounded-l max-w-[200px] sm:max-w-[300px] border border-slate-6 border-r-0 bg-slate-3 px-4 py-2 text-slate-12 dark:bg-slatedark-3 dark:text-slatedark-12"
           onChange={(e) => setPassword(e.target.value)}
         />
         <div
@@ -52,7 +52,7 @@ export default function PasswordInput() {
               verifyPassword(password, path)
             }
           }}
-          className="w-12 text-center border border-l-0 flex-shrink-0 border-gray-500 content-center cursor-pointer rounded-r bg-primary-400 dark:bg-primary-600 dark:hover:bg-primary-700font-bold text-white hover:bg-primary-700"
+          className="w-12 text-center border border-l-0 flex-shrink-0 border-slate-6 content-center cursor-pointer rounded-r bg-blue-7 dark:bg-skydark-7 dark:hover:bg-skydark-8 font-bold text-slate-11 dark:text-slatedark-11 hover:bg-blue-8"
           onClick={() => verifyPassword(password, path)}
         >
           &rarr;

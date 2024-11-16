@@ -37,13 +37,13 @@ export const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo:
   }
 
   return (
-    <div className="flex flex-col gap-3 border-gray-200 py-6 dark:border-gray-700 lg:w-[720px]">
+    <div className="flex flex-col gap-3 border-slate-6 py-6 dark:border-slatedark-6 lg:w-[720px]">
       {/* 头像、日期、名称 */}
       <div className="flex justify-between gap-3">
         <Image src={Logo} alt="avatar" className="mt-1 size-[40px] rounded-full" />
         <div className="flex flex-col">
-          <span className="font-medium">Roitium.</span>
-          <span className="text-xs text-neutral-500 dark:text-neutral-400">
+          <span className="font-medium text-slate-12 dark:text-slatedark-12">Roitium.</span>
+          <span className="text-xs text-slate-11 dark:text-slatedark-11">
             {formatToSemanticTime(memo.createTime, navigator.language)}
           </span>
         </div>
@@ -80,7 +80,7 @@ export const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo:
         )}
       </div>
       {/* 内容框 */}
-      <div className="prose ml-[52px] rounded-e-md rounded-bl-md bg-gray-100 pl-2 pr-2 text-gray-800 shadow-sm ring-1 ring-gray-200 dark:prose-invert prose-p:my-2 dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500">
+      <div className="prose prose-slate ml-[52px] rounded-e-lg rounded-bl-lg bg-slate-3 pl-2 pr-2 text-slate-12 shadow-sm ring-1 ring-slate-7/50 dark:prose-invert prose-p:my-2 dark:bg-slatedark-3 dark:text-slatedark-12 dark:ring-slatedark-7/50">
         {memo.parsedContent ? (
           <article dangerouslySetInnerHTML={{ __html: memo.parsedContent }} />
         ) : (
@@ -115,8 +115,8 @@ export const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo:
       {isLoadingComments && (
         <div className="mx-auto mt-3 w-6">
           <span className="relative flex size-6">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"></span>
-            <span className="relative inline-flex size-6 rounded-full bg-primary-500"></span>
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75"></span>
+            <span className="relative inline-flex size-6 rounded-full bg-blue-8"></span>
           </span>
         </div>
       )}

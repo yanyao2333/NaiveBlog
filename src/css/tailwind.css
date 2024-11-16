@@ -4,14 +4,14 @@
 
 /* add fade-in-out animation to tooltips */
 .TooltipContent {
-  animation-duration: 0.6s;
+  animation-duration: 0.7s;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 .TooltipContent[data-side='top'] {
   animation-name: slideUp;
 }
 .TooltipContent[data-side='bottom'] {
-  animation-name: slideDown;
+  animation-name: slideUp;
 }
 
 @keyframes slideDown {
@@ -152,7 +152,7 @@ article {
   font-weight: 'normal';
 }
 
-@layer base {
+/* @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
@@ -206,13 +206,13 @@ article {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
+} */
 
-@layer base {
+/* @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
-}
+} */

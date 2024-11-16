@@ -37,15 +37,15 @@ export default function SettingsPanel() {
     <div>
       {/* 设置面板 */}
       <div
-        className={`h-50 fixed right-0 top-[calc(66.666667%-20px)] flex w-64 transform flex-col bg-neutral-100 transition-transform duration-300 dark:bg-neutral-700 ${
+        className={`h-50 fixed right-0 top-[calc(66.666667%-20px)] flex w-64 transform flex-col bg-slate-3 transition-transform duration-300 dark:bg-slatedark-3 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="h-10 min-w-full select-none content-center pl-3 text-lg font-bold ease-in-out">
           设置
         </div>
-        <div className="border-t-2 border-neutral-400 dark:border-neutral-500 bg-neutral-100 dark:bg-neutral-700">
-          <div className="mx-7 my-5 grid min-h-7 max-w-full grid-cols-3 overflow-hidden rounded-full border-1 border-neutral-200 text-center shadow">
+        <div className="border-t-2 border-slate-7 dark:border-slatedark-7 bg-slate-3 dark:bg-slatedark-3">
+          <div className="mx-7 my-5 grid min-h-7 max-w-full grid-cols-3 overflow-hidden rounded-full border-1 border-slate-7 text-center shadow">
             <button
               onClick={() => onClickThemeBtn('light')}
               disabled={theme === 'light'}
@@ -74,7 +74,7 @@ export default function SettingsPanel() {
       {/* 打开面板按钮 */}
       <button
         onClick={togglePanel}
-        className={`fixed top-2/3 -translate-y-1/2 transform rounded-l-full bg-neutral-100 p-2 transition-all duration-300 ease-in-out dark:bg-neutral-700 ${
+        className={`fixed top-2/3 -translate-y-1/2 transform rounded-l-full bg-slate-3 p-2 transition-all duration-300 ease-in-out dark:bg-slatedark-3 ${
           isOpen ? 'right-64' : 'right-0'
         }`}
         aria-label="open settings panel"

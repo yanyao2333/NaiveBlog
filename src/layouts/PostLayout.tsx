@@ -4,6 +4,7 @@ import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import '@/css/markdown.css'
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
+import { cn } from '@/utils/classname'
 import type { Authors, Blog } from 'contentlayer/generated'
 import { slug as _slug } from 'github-slugger'
 import { default as Link, default as NextLink } from 'next/link'
@@ -110,13 +111,13 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
     <>
       <ScrollTopAndComment />
       <article>
-        <div className="lg:divide-y mx-auto xl:divide-gray-200 xl:dark:divide-gray-700">
+        <div className="lg:divide-y mx-auto lg:divide-slate-5 lg:dark:divide-slatedark-5">
           <header className="pt-6 lg:pb-6">
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <dd className="text-base font-medium leading-6 text-slate-11 dark:text-slatedark-11">
                     <time dateTime={date}>
                       {/*用这种奇怪的方式hack一下，2040年我的博客还会存在吗？*/}
                       {new Date(date).getFullYear() === 2040
@@ -150,8 +151,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </div>
             </div>
           </header>
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 lg:grid lg:grid-cols-4 lg:gap-x-6 lg:divide-y-0">
-            <dl className="pb-10 pt-6 lg:border-b lg:border-gray-200 lg:pt-11 lg:dark:border-gray-700">
+          <div className="grid-rows-[auto_1fr] divide-y divide-slate-5 pb-8 dark:divide-slatedark-5 lg:grid lg:grid-cols-4 lg:gap-x-6 lg:divide-y-0">
+            <dl className="pb-10 pt-6 lg:border-b lg:border-slate-5 lg:pt-11 lg:dark:border-slatedark-5">
               <dt className="sr-only">Authors</dt>
               <dd>
                 <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 lg:block lg:space-x-0 lg:space-y-8">
@@ -168,7 +169,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       )}
                       <dl className="whitespace-nowrap text-sm font-medium leading-5">
                         <dt className="sr-only">Name</dt>
-                        <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
+                        <dd className="text-slate-12 dark:text-slatedark-12">{author.name}</dd>
                         {/*<dt className="sr-only">Twitter</dt>*/}
                         {/*<dd>*/}
                         {/*  {author.twitter && (*/}
@@ -188,9 +189,11 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </ul>
               </dd>
             </dl>
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 lg:col-span-3 lg:row-span-2 lg:pb-0">
-              <div className="prose mx-auto pb-8 pt-10 dark:prose-invert">{children}</div>
-              <div className="pb-6 pt-6 text-center text-sm text-gray-700 dark:text-gray-300">
+            <div className="divide-y divide-slate-5 dark:divide-slatedark-5 lg:col-span-3 lg:row-span-2 lg:pb-0">
+              <div className="prose prose-slate mx-auto pb-8 pt-10 dark:prose-invert">
+                {children}
+              </div>
+              <div className="pb-6 pt-6 text-center text-sm text-slate-11 dark:text-slatedark-11">
                 {/*<Link href={discussUrl(path)} rel="nofollow">*/}
                 {/*  Discuss on Twitter*/}
                 {/*</Link>*/}
@@ -199,7 +202,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </div>
               {siteMetadata.comments && (
                 <div
-                  className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
+                  className="pb-6 pt-6 text-center text-slate-11 dark:text-slatedark-11"
                   id="comment"
                 >
                   <CommentsComponent commentsConfig={siteMetadata.comments} slug={slug} />
@@ -207,20 +210,23 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               )}
             </div>
             <footer>
-              <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 lg:col-start-1 lg:row-start-2 lg:divide-y">
-                <div className="py-4 lg:py-8 lg:divide-y">
-                  <div>
-                    <h2 className="text-sm pb-2 uppercase tracking-wide text-gray-500 dark:text-gray-400">
+              <div className="divide-slate-5 text-sm font-medium leading-5 dark:divide-slatedark-5 lg:col-start-1 lg:row-start-2 lg:divide-y">
+                <div className="py-4 lg:py-8 lg:divide-y divide-slate-5 dark:divide-slatedark-5">
+                  <div className="mb-8">
+                    <h2 className="text-sm pb-2 uppercase tracking-wide text-slate-11 dark:text-slatedark-11">
                       当前分类
                     </h2>
-                    {categories.map((category) => (
-                      <Link
-                        key={category.name}
-                        href={category.url}
-                        className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100"
-                      >
-                        {category.displayName}
-                      </Link>
+                    {categories.map((category, index) => (
+                      <>
+                        <span className={cn(index !== 0 && 'mr-3')}>{index !== 0 && '>'}</span>
+                        <Link
+                          key={category.name}
+                          href={category.url}
+                          className="mr-3 text-sm font-medium uppercase text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12"
+                        >
+                          {category.displayName}
+                        </Link>
+                      </>
                     ))}
                     {/* <div className="flex-col ml-1 pb-8">
                       {(() => {
@@ -239,7 +245,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                               &gt;
                               <NextLink
                                 href={url}
-                                className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100"
+                                className="mr-3 text-sm font-medium uppercase text-gray-800 hover:text-blue-11 dark:hover:text-primary-400 dark:text-neutral-100"
                               >
                                 {displayName}
                               </NextLink>
@@ -251,7 +257,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   </div>
                   {tags && (
                     <div className="lg:pt-8">
-                      <h2 className="text-sm pb-2 uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                      <h2 className="text-sm pb-2 uppercase tracking-wide text-slate-11 dark:text-slatedark-11">
                         标签
                       </h2>
                       <div className="flex flex-wrap">
@@ -259,7 +265,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                           <NextLink
                             href={`/tags/${_slug(tag)}`}
                             key={tag}
-                            className="mr-4 mt-2 text-sm font-medium uppercase text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100"
+                            className="mr-4 mt-2 text-sm font-medium uppercase text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12"
                           >
                             {tag.split(' ').join('-')}
                           </NextLink>
@@ -272,20 +278,20 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   <div className="flex justify-between py-4 lg:block lg:space-y-8 lg:py-8">
                     {prev && prev.path && (
                       <div>
-                        <h2 className="text-sm pb-2 uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        <h2 className="text-sm pb-2 uppercase tracking-wide text-slate-11 dark:text-slatedark-11">
                           上一篇
                         </h2>
-                        <div className="text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100">
+                        <div className="text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12">
                           <NextLink href={`/${prev.path}`}>{prev.title}</NextLink>
                         </div>
                       </div>
                     )}
                     {next && next.path && (
                       <div>
-                        <h2 className="text-sm pb-2 uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        <h2 className="text-sm pb-2 uppercase tracking-wide text-slate-11 dark:text-slatedark-11">
                           下一篇
                         </h2>
-                        <div className="text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100">
+                        <div className="text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12">
                           <NextLink href={`/${next.path}`}>{next.title}</NextLink>
                         </div>
                       </div>
@@ -296,7 +302,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div className="pt-4 lg:pt-8">
                 <NextLink
                   href={`/${basePath}`}
-                  className="text-gray-800 hover:text-light-highlight-text dark:hover:text-primary-400 dark:text-neutral-100"
+                  className="text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12"
                   aria-label="回到列表页"
                 >
                   &larr; 回到列表页

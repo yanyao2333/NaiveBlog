@@ -15,7 +15,7 @@ const PageTitle = ({
       <h1
         className={twMerge(
           className,
-          'break-words text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-neutral-100 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14'
+          'break-words text-3xl font-extrabold leading-9 tracking-tight text-slate-12 dark:text-slatedark-12 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14'
         )}
       >
         {title}
@@ -24,7 +24,7 @@ const PageTitle = ({
         <p
           className={twMerge(
             className,
-            'break-words leading-7 text-gray-500 dark:text-neutral-300 sm:text-lg'
+            'break-words leading-7 text-slate-11 dark:text-slatedark-11 sm:text-lg'
           )}
         >
           {subtitle}

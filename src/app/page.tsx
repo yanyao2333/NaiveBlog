@@ -12,7 +12,10 @@ function SocialButtonTooltip({ text, children }: { text: string; children: React
   return (
     <Tooltip>
       <TooltipTrigger>{children}</TooltipTrigger>
-      <TooltipContent className="TooltipContent dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500 bg-gray-100 text-gray-800 ring-gray-200">
+      <TooltipContent
+        side="bottom"
+        className="TooltipContent mt-2 dark:bg-slatedark-3 ring-1 dark:text-slatedark-12 dark:ring-slatedark-7 bg-slate-3 text-slate-12 ring-slate-7"
+      >
         {text}
       </TooltipContent>
     </Tooltip>

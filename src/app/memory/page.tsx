@@ -15,7 +15,7 @@ import { MemoRowComponent } from './singleMemoRow'
  * @returns Memos页面
  */
 export default function MemosPage() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   // 是否是初次加载
   const [hasLoaded, setHasLoaded] = useState(false)
   const [memos, setMemos] = useState<Memo[]>([])
@@ -50,11 +50,9 @@ export default function MemosPage() {
         }, 500)
       }
     })
-
     if (loadMoreRef.current) {
       observer.observe(loadMoreRef.current)
     }
-
     return () => {
       if (current) {
         observer.unobserve(current)
@@ -81,14 +79,14 @@ export default function MemosPage() {
       <button
         onClick={onClickFetchMore}
         disabled={isLoading}
-        className="mt-3 justify-center text-primary-500 hover:text-light-highlight-text dark:hover:text-primary-400"
+        className="mt-3 justify-center text-blue-11 dark:text-skydark-11"
       >
         {isLoading ? (
           <div className="mx-auto mt-3 w-6">
             {/*<LoadSpinner />*/}
             <span className="relative flex size-6">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"></span>
-              <span className="relative inline-flex size-6 rounded-full bg-primary-500"></span>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75"></span>
+              <span className="relative inline-flex size-6 rounded-full bg-blue-8"></span>
             </span>
           </div>
         ) : (

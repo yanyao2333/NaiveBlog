@@ -70,17 +70,17 @@ function isOnThisPage(link: HeaderNavLink, nowPath: string) {
 const buttonStyles = (selected: boolean) => ({
   text: clsx(
     'block font-medium py-3 cursor-pointer',
-    'hover:text-light-highlight-text dark:hover:text-primary-400',
+    'hover:text-blue-11 dark:hover:text-skydark-11',
     selected
-      ? 'text-light-highlight-text dark:text-primary-400 border-b border-b-light-highlight-text dark:border-b-primary-400'
-      : 'text-gray-800 dark:text-neutral-100'
+      ? 'text-blue-11 dark:text-skydark-11 border-b border-b-blue-11 dark:border-b-skydark-11'
+      : 'text-slate-12 dark:text-slatedark-12'
   ),
   icon: clsx(
     'py-2 cursor-pointer',
-    'hover:text-light-highlight-text dark:hover:text-primary-400',
+    'hover:text-blue-11 dark:hover:text-skydark-11',
     selected
-      ? 'text-light-highlight-text dark:text-primary-400 border-b border-b-light-highlight-text dark:border-b-primary-400'
-      : 'text-gray-800 dark:text-neutral-100'
+      ? 'text-blue-11 dark:text-skydark-11 border-b border-b-blue-11 dark:border-b-skydark-11'
+      : 'text-slate-12 dark:text-slatedark-12'
   ),
 })
 
@@ -93,9 +93,9 @@ const generatePopoverButton = (child: HeaderNavLink) => {
       as={Link}
       key={child.title}
       className={clsx(
-        'block px-8 py-2 text-center font-medium text-gray-800 transition',
-        'md:hover:bg-primary-50/80 md:hover:text-light-highlight-text',
-        'dark:text-neutral-100 dark:hover:bg-primary-50/20 dark:hover:text-primary-500'
+        'block px-8 py-2 text-center font-medium text-slate-12 transition',
+        'md:hover:bg-slate-4/90 md:hover:text-blue-11',
+        'dark:text-slatedark-12 dark:hover:bg-slatedark-4/90 dark:hover:text-skydark-11'
       )}
       href={child.href}
     >
@@ -120,8 +120,8 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
       transition
       anchor={{ to: 'bottom', gap: 12 }}
       className={clsx(
-        'rounded-xl bg-neutral-100/90 text-sm shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)]',
-        'dark:bg-neutral-700/90',
+        'rounded-xl bg-slate-2/90 text-sm shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)]',
+        'dark:bg-slatedark-2/90',
         'data-[closed]:-translate-y-1 data-[closed]:opacity-0'
       )}
     >
@@ -155,8 +155,8 @@ const FloatNavBar = () => {
     <div
       className={clsx(
         `fixed inset-x-0 top-5 z-[100] mx-auto flex max-w-fit items-center justify-center
-        rounded-full bg-gray-100/90 px-5 leading-5 shadow-md shadow-gray-100/90 ring-1 ring-gray-200/90 backdrop-blur-sm`,
-        'dark:bg-neutral-600/90 dark:shadow-neutral-600/90 dark:ring-neutral-500/90',
+        rounded-full bg-slate-2/90 px-5 leading-5 shadow-md shadow-slate-9/50 ring-1 ring-slate-7/50 backdrop-blur-sm`,
+        'dark:bg-slatedark-3/90 dark:shadow-slatedark-9/50 dark:ring-slatedark-7/50',
         'md:space-x-4'
       )}
     >

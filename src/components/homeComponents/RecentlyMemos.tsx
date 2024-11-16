@@ -63,17 +63,17 @@ export default function RecentlyMemos() {
         ref={scrollRef}
       >
         {!isLoading ? (
-          <ol className="relative ml-4 border-s-[2px] border-primary-300 dark:border-primary-500">
+          <ol className="relative ml-4 border-s-[2px] border-blue-7 dark:border-skydark-7">
             <li className="h-2"></li>
             {memos.map((memo) => (
               <li key={memo.uid} className="mb-10 ms-6">
                 {/* 偏移 7px（半径加 border-s） */}
-                <div className="absolute -start-[7px] mt-2 flex h-3 w-3 items-center justify-center rounded-full border-2 border-primary-300 bg-white dark:border-primary-500 dark:bg-neutral-300"></div>
-                <div className="mr-2 flex flex-col justify-between rounded-lg bg-gray-100 p-4 text-gray-800 shadow-sm ring-1 ring-gray-200 dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500">
-                  <time className="mb-2 self-start text-xs font-normal text-gray-600 dark:text-neutral-400">
+                <div className="absolute -start-[7px] mt-2 flex h-3 w-3 items-center justify-center rounded-full border-2 border-blue-7 bg-slate-2 dark:border-skydark-7 dark:bg-slatedark-2"></div>
+                <div className="mr-2 flex flex-col justify-between rounded-lg bg-slate-3 p-4 shadow-sm ring-1 ring-slate-7/50 dark:bg-slatedark-3 dark:ring-slatedark-7/50">
+                  <time className="mb-2 self-start text-xs font-normal text-slate-11 dark:text-slatedark-11">
                     {moment(memo.createTime).fromNow()}
                   </time>
-                  <article className="whitespace-pre-wrap text-sm font-normal text-neutral-900 dark:text-neutral-100">
+                  <article className="whitespace-pre-wrap text-sm font-normal prose prose-slate dark:prose-invert">
                     {memo.content}
                   </article>
                 </div>
@@ -83,7 +83,7 @@ export default function RecentlyMemos() {
               <div></div>
               <Link
                 href="/memory"
-                className="min-w-max text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                className="min-w-max text-sm text-slate-12 hover:text-blue-11 dark:text-slatedark-12 dark:hover:text-skydark-11"
               >
                 查看更多 &rarr;
               </Link>
@@ -92,8 +92,8 @@ export default function RecentlyMemos() {
         ) : (
           <div className="flex min-h-[17.5rem] flex-col justify-center">
             <div className="relative mx-auto flex size-6 justify-center self-center">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"></span>
-              <span className="relative inline-flex size-6 rounded-full bg-primary-500"></span>
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75"></span>
+              <span className="relative inline-flex size-6 rounded-full bg-blue-8"></span>
             </div>
             <span className="pt-6 text-center text-neutral-600 dark:text-neutral-400">
               加载中...
@@ -104,9 +104,7 @@ export default function RecentlyMemos() {
       {/* 向下箭头，接近底部时隐藏 */}
       {!isBottom && !isLoading && (
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 transform">
-          <div className="animate-bounce text-sm text-neutral-600 dark:text-neutral-200">
-            &darr;
-          </div>
+          <div className="animate-bounce text-sm text-slate-11 dark:text-slatedark-11">&darr;</div>
         </div>
       )}
     </div>

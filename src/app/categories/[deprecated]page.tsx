@@ -21,7 +21,7 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
             className="inline-block"
           >
             <div className="flex">
-              <div className="mr-3 flex text-sm font-medium uppercase text-primary-500 hover:text-light-highlight-text dark:hover:text-primary-400">
+              <div className="mr-3 flex text-sm font-medium uppercase text-primary-500 hover:text-blue-11 dark:hover:text-primary-400">
                 {node.showName}
               </div>
               <div className="text-sm font-semibold uppercase text-gray-600 dark:text-gray-300">

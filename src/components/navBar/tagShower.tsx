@@ -91,9 +91,9 @@ function TagDialog() {
     <>
       <button
         className={clsx(
-          'block px-8 py-2 text-center font-medium text-gray-800 transition',
-          'md:hover:bg-primary-50/80 md:hover:text-light-highlight-text',
-          'dark:text-neutral-100 dark:hover:bg-primary-50/20 dark:hover:text-primary-500'
+          'block px-8 py-2 text-center font-medium text-slate-12 transition',
+          'md:hover:bg-slate-4/90 md:hover:text-blue-11',
+          'dark:text-slatedark-12 dark:hover:bg-slatedark-4/90 dark:hover:text-skydark-11'
         )}
         onClick={() => setIsOpen(true)}
       >
@@ -110,9 +110,9 @@ function TagDrawer() {
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger
         className={cn(
-          'block px-8 py-2 text-center font-medium text-gray-800 transition',
-          'md:hover:bg-primary-50/80 md:hover:text-light-highlight-text',
-          'dark:text-neutral-100 dark:hover:bg-primary-50/20 dark:hover:text-primary-500'
+          'block px-8 py-2 text-center font-medium text-slate-12 transition',
+          'md:hover:bg-slate-4/90 md:hover:text-blue-11',
+          'dark:text-slatedark-12 dark:hover:bg-slatedark-4/90 dark:hover:text-skydark-11'
         )}
       >
         🏷 标签

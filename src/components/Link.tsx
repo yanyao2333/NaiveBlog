@@ -30,7 +30,7 @@ const LinkWithTooltip = ({
           <span className=" text-xs align-middle">&#8599;</span>
         </Link>
       </TooltipTrigger>
-      <TooltipContent className="TooltipContent dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500 bg-gray-100 text-gray-800 ring-gray-200">
+      <TooltipContent className="TooltipContent mt-2 dark:bg-slatedark-3 ring-1 dark:text-slatedark-12 dark:ring-slatedark-7 bg-slate-3 text-slate-12 ring-slate-7">
         {href}
       </TooltipContent>
     </Tooltip>
