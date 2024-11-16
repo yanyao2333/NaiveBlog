@@ -1,7 +1,7 @@
-import { TreeNode } from '@/contentlayer.config'
 import siteMetadata from '@/data/siteMetadata'
 import categoryData from '@/temp/category-data.json'
 import tagData from '@/temp/tag-data.json'
+import { TreeNode } from 'contentlayer.config'
 import { allBlogs } from 'contentlayer/generated'
 import { MetadataRoute } from 'next'
 
