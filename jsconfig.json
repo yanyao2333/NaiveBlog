@@ -11,6 +11,7 @@
       "@/data/*": ["data/*"],
       "@/temp/*": ["temp/*"],
       "@/public/*": ["public/*"],
+      "@/mdx-plugins/*": ["src/mdx-plugins/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   }

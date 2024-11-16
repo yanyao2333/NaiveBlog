@@ -9,10 +9,10 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-import { allBlogs } from '../.contentlayer/generated/index.mjs'
-import siteMetadata from '../data/siteMetadata.js'
-import categoryData from '../temp/category-data.json' assert { type: 'json' }
-import tagData from '../temp/tag-data.json' assert { type: 'json' }
+import { allBlogs } from '../../.contentlayer/generated/index.mjs'
+import siteMetadata from '../../data/siteMetadata.js'
+import categoryData from '../../temp/category-data.json' assert { type: 'json' }
+import tagData from '../../temp/tag-data.json' assert { type: 'json' }
 
 const generateRssItemDescription = async (config, post) => {
   const body = post.body.raw

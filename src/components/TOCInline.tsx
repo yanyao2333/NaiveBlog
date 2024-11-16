@@ -1,5 +1,5 @@
 /** From https://github.com/timlrx/pliny */
-import { Toc, TocItem } from 'utils/mdx_plugins/toc'
+import { Toc, TocItem } from '@/mdx-plugins/toc'
 
 export interface TOCInlineProps {
   toc: Toc
