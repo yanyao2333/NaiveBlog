@@ -17,7 +17,16 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
+      "@/app/*": ["src/app/*"],
+      "@/components/*": ["src/components/*"],
+      "@/layouts/*": ["src/layouts/*"],
+      "@/css/*": ["src/css/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/types/*": ["src/types/*"],
+      "@/data/*": ["data/*"],
+      "@/temp/*": ["temp/*"],
+      "@/public/*": ["public/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
       // "@/data/*": [
       //   "data/*"
       // ],
@@ -33,7 +42,6 @@
       //             "@/utils/*": [
       //               "css/*"
       //             ],
-      "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "plugins": [
       {

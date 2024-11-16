@@ -19,9 +19,9 @@ import remarkMath from 'remark-math'
 import remarkPangu from 'remark-pangu'
 import categoryMapping from './data/category-mapping'
 import siteMetadata from './data/siteMetadata'
-import { remarkImgToJsx } from './utils/mdx_plugins/remark-img-to-jsx'
-import { extractTocHeadings } from './utils/mdx_plugins/toc'
-import { filterVisiablePosts, sortPosts } from './utils/postsUtils'
+import { remarkImgToJsx } from './src/utils/mdx_plugins/remark-img-to-jsx'
+import { extractTocHeadings } from './src/utils/mdx_plugins/toc'
+import { filterVisiablePosts, sortPosts } from './src/utils/postsUtils'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'

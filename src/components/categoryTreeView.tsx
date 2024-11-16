@@ -1,6 +1,6 @@
 'use client'
-import { TreeNode } from '@/contentlayer.config'
 import clsx from 'clsx'
+import { TreeNode } from 'contentlayer.config'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'

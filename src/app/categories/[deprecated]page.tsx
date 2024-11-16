@@ -1,8 +1,8 @@
 import { genPageMetadata } from '@/app/seo'
 import CategoryTreeView from '@/components/categoryTreeView'
 import PageTitle from '@/components/PageTitle'
-import { TreeNode } from '@/contentlayer.config'
 import categoryData from '@/temp/category-data.json'
+import { TreeNode } from 'contentlayer.config'
 import Link from 'next/link'
 
 export const metadata = genPageMetadata({
