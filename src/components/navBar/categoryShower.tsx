@@ -9,11 +9,11 @@ import {
 } from '@/components/ui/drawer'
 import categoryData from '@/temp/category-data.json'
 import { cn } from '@/utils/classname'
-import useMediaQuery from '@/utils/hooks/useMediaQuery'
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import useMediaQuery from 'src/hooks/useMediaQuery'
 import CategoryTreeView from '../categoryTreeView'
 
 function CategoryDialogModal({ isOpen, setIsOpen }) {

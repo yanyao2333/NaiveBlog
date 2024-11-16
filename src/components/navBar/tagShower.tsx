@@ -9,11 +9,11 @@ import {
 } from '@/components/ui/drawer'
 import tagData from '@/temp/tag-data.json'
 import { cn } from '@/utils/classname'
-import useMediaQuery from '@/utils/hooks/useMediaQuery'
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useState } from 'react'
+import useMediaQuery from 'src/hooks/useMediaQuery'
 import Tag from '../Tag'
 
 function TagsContent({ close }) {
