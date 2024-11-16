@@ -1,4 +1,4 @@
-import Tooltip from '@/components/Tooltip'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import siteMetadata from '@/data/siteMetadata'
 
 export default function Footer() {
@@ -23,8 +23,11 @@ export default function Footer() {
         {/*  </Link>*/}
         {/*</div>*/}
         <div className="text-sm text-gray-500 dark:text-neutral-400">
-          <Tooltip text={`最近一次提交 hash: ${commitHash}`} className={'left-0'}>
-            构建时间：{new Date().toUTCString()}
+          <Tooltip>
+            <TooltipTrigger>构建时间：{new Date().toUTCString()}</TooltipTrigger>
+            <TooltipContent className="TooltipContent dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500 bg-gray-100 text-gray-800 ring-gray-200">
+              {`最近一次提交 hash: ${commitHash}`}
+            </TooltipContent>
           </Tooltip>
         </div>
       </div>

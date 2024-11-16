@@ -10,7 +10,7 @@ interface TooltipProps {
   as?: 'div' | 'span'
 }
 
-const Tooltip = ({ text, children, className, as }: TooltipProps) => {
+const DeprecatedTooltip = ({ text, children, className, as }: TooltipProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const [showTooltip, setShowTooltip] = useState(false)
 
@@ -74,4 +74,4 @@ const Tooltip = ({ text, children, className, as }: TooltipProps) => {
   )
 }
 
-export default Tooltip
+export default DeprecatedTooltip

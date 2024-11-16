@@ -4,6 +4,7 @@ import SectionContainer from '@/components/SectionContainer'
 import SettingsPanel from '@/components/SettingPanel'
 import { KBarSearchProvider } from '@/components/kbar/KbarSearch'
 import FloatNavBar from '@/components/navBar/main'
+import { TooltipProvider } from '@/components/ui/tooltip'
 import '@/css/LXGWWenKai-Regular/result.css'
 import '@/css/tailwind.css'
 import siteMetadata from '@/data/siteMetadata'
@@ -121,27 +122,28 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="min-h-screen bg-[#FAFAFA]/80 pl-[calc(100vw-100%)] text-black antialiased accent-primary-400 dark:bg-neutral-800 dark:text-neutral-100">
         <ClientReady />
         <NextTopLoader showSpinner={false} />
-        <div>
-          <Toaster />
-          <OpenPanelComponent
-            clientId="e67f1761-a8ed-46f2-b8ab-dab5884e4fe0"
-            trackScreenViews={true}
-          />
-          <SpeedInsights />
-          <Analytics />
+        <Toaster />
+        <OpenPanelComponent
+          clientId="e67f1761-a8ed-46f2-b8ab-dab5884e4fe0"
+          trackScreenViews={true}
+        />
+        <SpeedInsights />
+        <Analytics />
+        <TooltipProvider delayDuration={0}>
           <ThemeProviders>
-            {/*<Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />*/}
-            {/* 定义了一个container，规范内容页面宽高 */}
             <KBarSearchProvider>
-              <FloatNavBar />
-              <SectionContainer>
-                <main className="mx-auto min-h-screen w-full pt-20">{children}</main>
-                <SettingsPanel />
-              </SectionContainer>
+              <div>
+                {/* 定义了一个container，规范内容页面宽高 */}
+                <FloatNavBar />
+                <SectionContainer>
+                  <main className="mx-auto min-h-screen w-full pt-20">{children}</main>
+                  <SettingsPanel />
+                </SectionContainer>
+                <Footer />
+              </div>
             </KBarSearchProvider>
           </ThemeProviders>
-          <Footer />
-        </div>
+        </TooltipProvider>
       </body>
     </html>
   )

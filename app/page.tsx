@@ -2,11 +2,22 @@ import RecentlyMemos from '@/components/homeComponents/RecentlyMemos'
 import RecentlyPosts from '@/components/homeComponents/RecentlyPosts'
 import PageTitle from '@/components/PageTitle'
 import SocialIcon from '@/components/svgs/social-icons'
-import Tooltip from '@/components/Tooltip'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
 import clsx from 'clsx'
 import Image from 'next/image'
+
+function SocialButtonTooltip({ text, children }: { text: string; children: React.ReactNode }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger>{children}</TooltipTrigger>
+      <TooltipContent className="TooltipContent dark:bg-neutral-600 dark:text-neutral-100 dark:ring-neutral-500 bg-gray-100 text-gray-800 ring-gray-200">
+        {text}
+      </TooltipContent>
+    </Tooltip>
+  )
+}
 
 export default function Home() {
   return (
@@ -21,15 +32,15 @@ export default function Home() {
               className={''}
             />
             <div className="mb-3 flex justify-center space-x-4">
-              <Tooltip text="Mail">
+              <SocialButtonTooltip text="Email">
                 <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
-              </Tooltip>
-              <Tooltip text="Github">
+              </SocialButtonTooltip>
+              <SocialButtonTooltip text="Github">
                 <SocialIcon kind="github" href={siteMetadata.github} size={6} />
-              </Tooltip>
-              <Tooltip text="RSS">
+              </SocialButtonTooltip>
+              <SocialButtonTooltip text="RSS">
                 <SocialIcon kind="rss" href={siteMetadata.siteUrl + '/feed.xml'} size={6} />
-              </Tooltip>
+              </SocialButtonTooltip>
             </div>
           </div>
           <Image

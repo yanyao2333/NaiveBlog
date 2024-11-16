@@ -3,36 +3,37 @@
 @tailwind utilities;
 
 /* add fade-in-out animation to tooltips */
-@keyframes tooltip-fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+.TooltipContent {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.TooltipContent[data-side='top'] {
+  animation-name: slideUp;
+}
+.TooltipContent[data-side='bottom'] {
+  animation-name: slideDown;
+}
 
-  100% {
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.tooltip-animate-fade-in {
-  animation: tooltip-fade-in 0.2s ease-out forwards;
-}
-
-@keyframes tooltip-fade-out {
-  0% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-
-  100% {
+@keyframes slideUp {
+  from {
     opacity: 0;
     transform: translateY(10px);
   }
-}
-
-.tooltip-animate-fade-out {
-  animation: tooltip-fade-out 0.2s ease-in forwards;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* add fade-in animation to main page title */
