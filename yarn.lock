@@ -2944,15 +2944,15 @@ __metadata:
   linkType: hard
 
 "@openpanel/nextjs@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "@openpanel/nextjs@npm:1.0.5"
+  version: 1.0.6
+  resolution: "@openpanel/nextjs@npm:1.0.6"
   dependencies:
     "@openpanel/web": "npm:1.0.1"
   peerDependencies:
-    next: ^12.0.0 || ^13.0.0 || ^14.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/2e87f9e28ada5a913a0a73de4464e19ff6997cd7cb0b4341af78a0f97ee33a1a121ddbab48389eed3e85fec3f380d0f12eb14849a751805f7c13c38d07a8fddf
+    next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/6098953e03e2172e6a7685f504fcf9a03839a4718e158f352cf426f22ff1cdfc111c9b809f4ea989e8a25138446a4acde30cacb214320f2a2b3c1797fa3a4328
   languageName: node
   linkType: hard
 
