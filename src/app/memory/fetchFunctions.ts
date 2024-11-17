@@ -8,6 +8,10 @@ import { unified } from 'unified'
 
 let nextPageToken = ''
 
+export function clearNextPageToken() {
+  nextPageToken = ''
+}
+
 export async function fetchComments(memoName: string) {
   const response = await fetch(`/api/3party/memos/comments?name=${memoName}`)
   const comments: Memo[] = (await response.json()).details.memos

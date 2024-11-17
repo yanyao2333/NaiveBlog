@@ -7,7 +7,7 @@ import 'lightgallery/css/lg-zoom.css'
 import 'lightgallery/css/lightgallery.css'
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
-import { fetchMemos } from './fetchFunctions'
+import { clearNextPageToken, fetchMemos } from './fetchFunctions'
 import { MemoRowComponent } from './singleMemoRow'
 
 /**
@@ -68,6 +68,13 @@ export default function MemosPage() {
       setIsLoading(false)
     })
   }
+
+  // 清除nextPageToken
+  useEffect(() => {
+    return () => {
+      clearNextPageToken()
+    }
+  }, [])
 
   return (
     <div className="flex flex-col">
