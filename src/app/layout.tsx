@@ -60,8 +60,15 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     url: './',
     siteName: siteMetadata.title,
-    images: [siteMetadata.socialBanner],
-    locale: 'en_US',
+    images: [
+      {
+        url: siteMetadata.socialBanner,
+        width: 1200,
+        height: 630,
+        alt: siteMetadata.title,
+      },
+    ],
+    locale: 'zh_CN',
     type: 'website',
   },
   alternates: {
@@ -83,9 +90,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: siteMetadata.title,
-    // 还没想好图片放啥，先注释掉
-    card: 'summary',
-    // images: [siteMetadata.socialBanner],
+    card: 'summary_large_image',
+    description: siteMetadata.description,
+    images: {
+      url: siteMetadata.socialBanner,
+      alt: siteMetadata.title,
+    },
   },
 }
 
