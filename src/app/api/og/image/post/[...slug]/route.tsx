@@ -24,8 +24,6 @@ const size = {
   height: 630,
 }
 
-export const contentType = 'image/png'
-
 export async function GET(request: Request, { params }: { params: Promise<{ slug: string[] }> }) {
   // Font
   // const interSemiBold = fetch(new URL('./Inter-SemiBold.ttf', import.meta.url)).then((res) =>

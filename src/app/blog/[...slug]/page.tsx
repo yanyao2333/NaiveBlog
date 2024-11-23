@@ -55,14 +55,14 @@ export async function generateMetadata(props: {
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
       url: './',
-      images: { url: ogImg, alt: `Opengraph image for ${post.title}` },
+      images: { url: ogImg, alt: `Opengraph image for ${post.title}`, type: 'image/png' },
       authors: authors.length > 0 ? authors : [siteMetadata.author],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.summary,
-      images: { url: ogImg, alt: `Opengraph image for ${post.title}` },
+      images: { url: ogImg, alt: `Opengraph image for ${post.title}`, type: 'image/png' },
     },
   }
 }

@@ -60,14 +60,14 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     url: './',
     siteName: siteMetadata.title,
-    images: [
-      {
-        url: siteMetadata.socialBanner,
-        width: 1200,
-        height: 630,
-        alt: siteMetadata.title,
-      },
-    ],
+    // images: [
+    //   {
+    //     url: siteMetadata.socialBanner,
+    //     width: 1200,
+    //     height: 630,
+    //     alt: siteMetadata.title,
+    //   },
+    // ],
     locale: 'zh_CN',
     type: 'website',
   },
@@ -92,10 +92,10 @@ export const metadata: Metadata = {
     title: siteMetadata.title,
     card: 'summary_large_image',
     description: siteMetadata.description,
-    images: {
-      url: siteMetadata.socialBanner,
-      alt: siteMetadata.title,
-    },
+    // images: {
+    //   url: siteMetadata.socialBanner,
+    //   alt: siteMetadata.title,
+    // },
   },
 }
 
