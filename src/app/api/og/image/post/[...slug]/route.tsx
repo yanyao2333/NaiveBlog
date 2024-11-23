@@ -19,8 +19,7 @@ async function loadGoogleFont(font: string, text: string) {
 
 export const runtime = 'edge'
 
-export const alt = '博客文章'
-export const size = {
+const size = {
   width: 1200,
   height: 630,
 }
@@ -142,8 +141,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
       </div>
     ),
     {
-      width: size.width,
-      height: size.height,
+      ...size,
       // fonts: [
       //   {
       //     name: 'Noto Sans SC',
