@@ -6,7 +6,7 @@ import { KBarProvider } from 'kbar'
 // @ts-ignore
 import { useRouter } from 'nextjs-toploader/app'
 import { MDXDocument } from 'pliny/src/utils/contentlayer'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 export const KBarSearchProvider = ({ children }) => {
   const router = useRouter()
@@ -14,10 +14,10 @@ export const KBarSearchProvider = ({ children }) => {
   const [searchActions, setSearchActions] = useState<Action[]>([])
   const [dataLoaded, setDataLoaded] = useState(false)
 
-  const defaultActions = []
+  const defaultActions = useMemo(() => [], [])
 
-  useEffect(() => {
-    const mapPosts = (posts: MDXDocument[]) => {
+  const mapPosts = useCallback(
+    (posts: MDXDocument[]) => {
       const actions: Action[] = []
       for (const post of posts) {
         actions.push({
@@ -30,7 +30,11 @@ export const KBarSearchProvider = ({ children }) => {
         })
       }
       return actions
-    }
+    },
+    [router]
+  )
+
+  useEffect(() => {
     async function fetchData() {
       if (searchDocumentsPath) {
         const res = await fetch(searchDocumentsPath)
@@ -42,15 +46,18 @@ export const KBarSearchProvider = ({ children }) => {
     }
     if (!dataLoaded && searchDocumentsPath) {
       fetchData()
-    } else {
-      setDataLoaded(true)
     }
-  }, [dataLoaded, router, searchDocumentsPath])
+  }, [router, searchDocumentsPath, mapPosts, dataLoaded])
 
-  return (
-    <KBarProvider actions={defaultActions}>
-      <KBarModal actions={searchActions} isLoading={!dataLoaded} />
-      {children}
-    </KBarProvider>
+  const memoizedProvider = useMemo(
+    () => (
+      <KBarProvider actions={defaultActions}>
+        <KBarModal actions={searchActions} isLoading={!dataLoaded} />
+        {children}
+      </KBarProvider>
+    ),
+    [defaultActions, searchActions, dataLoaded, children]
   )
+
+  return memoizedProvider
 }

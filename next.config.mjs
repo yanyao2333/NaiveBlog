@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-const { withContentlayer } = require('next-contentlayer2')
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+import MillionLint from '@million/lint'
 
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
@@ -60,50 +57,49 @@ const basePath = process.env.BASE_PATH || undefined
 const unoptimized = process.env.UNOPTIMIZED ? true : undefined
 
 /**
- * @type {import("next/dist/next-server/server/config").NextConfig}
+ * @type {import("next").NextConfig}
  **/
-module.exports = () => {
-  const plugins = [withContentlayer, withBundleAnalyzer]
-  return plugins.reduce((acc, next) => next(acc), {
-    output,
-    basePath,
-    reactStrictMode: true,
-    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-    eslint: {
-      dirs: ['app', 'components', 'layouts', 'scripts'],
-    },
-    images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'picsum.photos',
-        },
-        {
-          protocol: 'https',
-          hostname: 'secure.gravatar.com',
-        },
-        {
-          protocol: 'https',
-          hostname: 'cdn.jsdelivr.net',
-        },
-      ],
-      unoptimized,
-    },
-    async headers() {
-      return [
-        {
-          source: '/(.*)',
-          headers: securityHeaders,
-        },
-      ]
-    },
-    webpack: (config, options) => {
-      config.module.rules.push({
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
-      })
-      config.resolve.alias['./locale'] = 'moment/locale'
-      return config
-    },
-  })
+const nextConfig = {
+  output,
+  basePath,
+  reactStrictMode: true,
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  eslint: {
+    dirs: ['app', 'components', 'layouts', 'scripts'],
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: 'secure.gravatar.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+      },
+    ],
+    unoptimized,
+  },
+  headers: async () => {
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ]
+  },
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
+    config.resolve.alias['./locale'] = 'moment/locale'
+    return config
+  },
 }
+
+export default MillionLint.next({ rsc: true })(nextConfig)

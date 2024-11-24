@@ -12,7 +12,7 @@ import { cn } from '@/utils/classname'
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import useMediaQuery from 'src/hooks/useMediaQuery'
 import CategoryTreeView from '../categoryTreeView'
 
@@ -56,7 +56,7 @@ function CategoryDialogModal({ isOpen, setIsOpen }) {
   )
 }
 
-function CategoryDialog() {
+const CategoryDialog = memo(function CategoryDialog() {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
@@ -73,9 +73,9 @@ function CategoryDialog() {
       <CategoryDialogModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   )
-}
+})
 
-function CategoryDrawer() {
+const CategoryDrawer = memo(function CategoryDrawer() {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
@@ -107,7 +107,7 @@ function CategoryDrawer() {
       </DrawerContent>
     </Drawer>
   )
-}
+})
 
 export default function CategoryShower() {
   const isMobile = useMediaQuery('(max-width: 768px)')

@@ -58,3 +58,5 @@ yarn-error.log*
 
 # temp folder
 /temp
+# Million Lint
+.million

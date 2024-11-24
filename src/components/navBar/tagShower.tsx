@@ -12,7 +12,7 @@ import { cn } from '@/utils/classname'
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useState } from 'react'
+import { memo, useCallback, useState } from 'react'
 import useMediaQuery from 'src/hooks/useMediaQuery'
 import Tag from '../Tag'
 
@@ -51,13 +51,17 @@ function TagsContent({ close }) {
 }
 
 function TagDialogModal({ isOpen, setIsOpen }) {
+  const handleClose = useCallback(() => {
+    setIsOpen(false)
+  }, [setIsOpen])
+
   return (
     <Dialog
       open={isOpen}
       as="div"
       key={'tagDialog'}
       className="relative z-10 focus:outline-none"
-      onClose={() => setIsOpen(false)}
+      onClose={handleClose}
     >
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
@@ -76,7 +80,7 @@ function TagDialogModal({ isOpen, setIsOpen }) {
               想去哪？
             </DialogTitle>
             <div className="mt-4">
-              <TagsContent close={() => setIsOpen(false)} />
+              <TagsContent close={handleClose} />
             </div>
           </DialogPanel>
         </div>
@@ -85,7 +89,7 @@ function TagDialogModal({ isOpen, setIsOpen }) {
   )
 }
 
-function TagDialog() {
+const TagDialog = memo(function TagDialog() {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
@@ -102,9 +106,9 @@ function TagDialog() {
       <TagDialogModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   )
-}
+})
 
-function TagDrawer() {
+const TagDrawer = memo(function TagDrawer() {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
@@ -131,7 +135,7 @@ function TagDrawer() {
       </DrawerContent>
     </Drawer>
   )
-}
+})
 
 export default function TagShower() {
   const isMobile = useMediaQuery('(max-width: 768px)')

@@ -1,7 +1,8 @@
 'use client'
 import { useKBar } from 'kbar'
+import { memo } from 'react'
 
-const SearchButton = () => {
+const SearchButton = memo(() => {
   const { query } = useKBar()
   return (
     <button onClick={() => query.toggle()} aria-label="Search">
@@ -21,6 +22,8 @@ const SearchButton = () => {
       </svg>
     </button>
   )
-}
+})
+
+SearchButton.displayName = 'SearchButton'
 
 export default SearchButton
