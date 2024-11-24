@@ -13,6 +13,7 @@ import rehypePresetMinify from 'rehype-preset-minify'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeSlug from 'rehype-slug'
 // Remark packages
+import remarkMediaCard from '@zhouhua-dev/remark-media-card'
 import remarkGfm from 'remark-gfm'
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkMath from 'remark-math'
@@ -204,6 +205,7 @@ export default makeSource({
       remarkMath,
       remarkImgToJsx,
       remarkAlert,
+      remarkMediaCard,
       remarkPangu,
     ],
     rehypePlugins: [

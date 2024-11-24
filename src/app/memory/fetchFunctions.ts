@@ -1,5 +1,5 @@
 import { Memo, MemoListResponse } from '@/types/memos'
-import rehypeSanitize from 'rehype-sanitize'
+import remarkMediaCard from '@zhouhua-dev/remark-media-card'
 import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
@@ -21,10 +21,11 @@ export async function fetchComments(memoName: string) {
     comments.map(async (comment) => {
       comment.parsedContent = await unified()
         .use(remarkParse)
+        .use(remarkMediaCard)
         .use(remarkGfm)
-        .use(remarkRehype)
-        .use(rehypeSanitize)
-        .use(rehypeStringify)
+        .use(remarkRehype, { allowDangerousHtml: true })
+        // .use(rehypeSanitize)
+        .use(rehypeStringify, { allowDangerousHtml: true })
         .process(comment.content)
         .then((file) => file.toString())
       return comment
@@ -55,10 +56,11 @@ export async function fetchMemos() {
     jsonResp.memos.map(async (memo: Memo) => {
       memo.parsedContent = await unified()
         .use(remarkParse)
+        .use(remarkMediaCard)
         .use(remarkGfm)
-        .use(remarkRehype)
-        .use(rehypeSanitize)
-        .use(rehypeStringify)
+        .use(remarkRehype, { allowDangerousHtml: true })
+        // .use(rehypeSanitize)
+        .use(rehypeStringify, { allowDangerousHtml: true })
         .process(memo.content)
         .then((file) => file.toString())
       return memo

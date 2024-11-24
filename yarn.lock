@@ -4101,6 +4101,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@triskel/parser@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@triskel/parser@npm:1.1.0"
+  checksum: 10/1d812058b3d3d6ad764fa61ac2c3d2941991b2fffe42783d36d934987758519fde095980da401917de84d8b8d406bad0720006bfbff5df87a196a90eae1d20b3
+  languageName: node
+  linkType: hard
+
+"@triskel/stringify@npm:1.0.11":
+  version: 1.0.11
+  resolution: "@triskel/stringify@npm:1.0.11"
+  checksum: 10/b9e05c143661f9942be91b94c50b2983f7a97aef2ac57616ed5db774adf4f85d4838a5bdbd5c6918c2bde1232bf0c23fbd5694e4d617b2dbb7c08a981194cea5
+  languageName: node
+  linkType: hard
+
+"@triskel/tinyhtml@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@triskel/tinyhtml@npm:1.1.0"
+  dependencies:
+    "@triskel/parser": "npm:1.1.0"
+    "@triskel/stringify": "npm:1.0.11"
+  checksum: 10/fbbb57d2d4b5139c8939dc8a659071862a30df1daee070eb67522470469b95059023db68d900d80f3802832236066065d693c709c3697f465dc97f743702c0b5
+  languageName: node
+  linkType: hard
+
 "@trysound/sax@npm:0.2.0":
   version: 0.2.0
   resolution: "@trysound/sax@npm:0.2.0"
@@ -4432,6 +4456,21 @@ __metadata:
     vue-router:
       optional: true
   checksum: 10/0a071876d697025dc51d60188910c912f0d14946bd7b4393d14c19f8d8dc665b88fdc328394c9043e6d34703b8a6c279a4fffc2092e8f506643577567dcaa606
+  languageName: node
+  linkType: hard
+
+"@zhouhua-dev/remark-media-card@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@zhouhua-dev/remark-media-card@npm:1.1.6"
+  dependencies:
+    "@triskel/tinyhtml": "npm:^1.1.0"
+    rehype-stringify: "npm:^10.0.0"
+    remark-parse: "npm:^11.0.0"
+    remark-rehype: "npm:^11.1.0"
+    unified: "npm:^11.0.4"
+    unist-util-visit: "npm:^5.0.0"
+    yaml: "npm:^2.3.4"
+  checksum: 10/4feb577122ad282e36172149ca1f0a31a14a875824c6eaa1a9f488068823e5e1fda210bc83c09bf1acd218075a617e1eeb55040ed06a1e6e9bd3190f6359475d
   languageName: node
   linkType: hard
 
@@ -12457,6 +12496,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.8.0"
     "@vercel/analytics": "npm:^1.3.1"
     "@vercel/speed-insights": "npm:^1.0.14"
+    "@zhouhua-dev/remark-media-card": "npm:^1.1.6"
     autoprefixer: "npm:^10.4.20"
     body-scroll-lock: "npm:^4.0.0-beta.0"
     class-variance-authority: "npm:^0.7.0"
