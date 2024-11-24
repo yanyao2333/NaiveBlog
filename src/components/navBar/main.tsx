@@ -1,13 +1,7 @@
 'use client'
-import {
-  AboutMeIcon,
-  HomeIcon,
-  MemoriesIcon,
-  PostsIcon,
-  ProjectsIcon,
-} from '@/components/svgs/navBarIcons'
 import { CloseButton, Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import clsx from 'clsx'
+import { Cloud, FileText, HelpCircle, Home, Monitor, Package, PenTool, Tag } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReactElement, ReactNode } from 'react'
@@ -28,37 +22,37 @@ interface HeaderNavLinkWithChildren extends Omit<HeaderNavLink, 'children'> {
 }
 
 const headerNavLinks: HeaderNavLink[] = [
-  { href: '/', title: '🏠 主页', logo: <HomeIcon /> },
+  { href: '/', title: '主页', logo: <Home className="size-4" /> },
   {
     href: '/blog',
-    title: '✍️ 文章',
-    logo: <PostsIcon />,
+    title: '文章',
+    logo: <PenTool className="size-4" />,
     children: [
-      { href: '/blog', title: '📄 所有' },
-      { href: '/categories', title: '📦 分类' },
-      { href: '/tags', title: '🏷 标签' },
+      { href: '/blog', title: '所有', logo: <FileText className="size-4" /> },
+      { href: '/categories', title: '分类', logo: <Package className="size-4" /> },
+      { href: '/tags', title: '标签', logo: <Tag className="size-4" /> },
     ],
   },
-  { href: '/memory', title: '☁️ 回忆', logo: <MemoriesIcon /> },
-  { href: '/projects', title: '🖥 项目', logo: <ProjectsIcon /> },
-  { href: '/about', title: '❔ 关于', logo: <AboutMeIcon /> },
+  { href: '/memory', title: '回忆', logo: <Cloud className="size-4" /> },
+  { href: '/projects', title: '项目', logo: <Monitor className="size-4" /> },
+  { href: '/about', title: '关于', logo: <HelpCircle className="size-4" /> },
 ]
 
 const headerNavLinksNewVersion: HeaderNavLink[] = [
-  { href: '/', title: '🏠 主页', logo: '🏠' },
+  { href: '/', title: '主页', logo: <Home className="size-4" /> },
   {
     href: '/blog',
-    title: '✍️ 文章',
-    logo: '✍️',
+    title: '文章',
+    logo: <PenTool className="size-4" />,
     children: [
-      { href: '/blog', title: '📄 所有' },
-      // { href: '/categories', title: '📦 分类', hrefComponent: <CategoryShower /> },
-      // { href: '/tags', title: '🏷 标签' },
+      { href: '/blog', title: '所有', logo: <FileText className="size-4" /> },
+      // { href: '/categories', title: 'Categories', logo: <Package className="size-4" /> },
+      // { href: '/tags', title: 'Tags', logo: <Tag className="size-4" /> },
     ],
   },
-  { href: '/memory', title: '☁️ 回忆', logo: '☁️' },
-  { href: '/projects', title: '🖥 项目', logo: '🖥' },
-  { href: '/about', title: '❔ 关于', logo: '❔' },
+  { href: '/memory', title: '回忆', logo: <Cloud className="size-4" /> },
+  { href: '/projects', title: '项目', logo: <Monitor className="size-4" /> },
+  { href: '/about', title: '关于', logo: <HelpCircle className="size-4" /> },
 ]
 
 // 判断当前路径是否与链接匹配
@@ -84,7 +78,7 @@ const buttonStyles = (selected: boolean) => ({
   ),
 })
 
-const generatePopoverButton = (child: HeaderNavLink) => {
+const generatePopoverButton = (child: HeaderNavLink, iconMode: boolean) => {
   // if (child.hrefComponent) {
   //   return child.hrefComponent
   // }
@@ -99,7 +93,14 @@ const generatePopoverButton = (child: HeaderNavLink) => {
       )}
       href={child.href}
     >
-      {child.title}
+      {iconMode ? (
+        child.logo
+      ) : (
+        <div className="flex items-center gap-[6px]">
+          {child.logo}
+          <span>{child.title}</span>
+        </div>
+      )}
     </CloseButton>
   )
 }
@@ -113,7 +114,14 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
       className={buttonStyles(isOnThisPage(link, nowPath))[iconMode ? 'icon' : 'text']}
       as={'div'}
     >
-      {iconMode ? link.logo : link.title}
+      {iconMode ? (
+        link.logo
+      ) : (
+        <div className="flex items-center gap-[6px]">
+          {link.logo}
+          <span>{link.title}</span>
+        </div>
+      )}
     </PopoverButton>
     <PopoverPanel
       key={`${link.title}_popover_panel`}
@@ -125,7 +133,7 @@ const generatePopover = (link: HeaderNavLinkWithChildren, nowPath: string, iconM
         'data-[closed]:-translate-y-1 data-[closed]:opacity-0'
       )}
     >
-      {link.children.map((child) => generatePopoverButton(child))}
+      {link.children.map((child) => generatePopoverButton(child, iconMode))}
       <CategoryShower />
       <TagShower />
     </PopoverPanel>
@@ -143,7 +151,14 @@ function singleNavButtonComponent(link: HeaderNavLink, iconMode: boolean, nowPat
       href={link.href}
       className={buttonStyles(isOnThisPage(link, nowPath))[iconMode ? 'icon' : 'text']}
     >
-      {iconMode ? link.logo : link.title}
+      {iconMode ? (
+        link.logo
+      ) : (
+        <div className="flex items-center gap-[6px]">
+          {link.logo}
+          <span>{link.title}</span>
+        </div>
+      )}
     </Link>
   )
 }

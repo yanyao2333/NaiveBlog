@@ -11,6 +11,7 @@ import categoryData from '@/temp/category-data.json'
 import { cn } from '@/utils/classname'
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import clsx from 'clsx'
+import { FolderArchive, Package } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { memo, useState } from 'react'
 import useMediaQuery from 'src/hooks/useMediaQuery'
@@ -62,13 +63,13 @@ const CategoryDialog = memo(function CategoryDialog() {
     <>
       <button
         className={clsx(
-          'block px-8 py-2 text-center font-medium text-slate-12 transition',
+          'px-8 py-2 text-center font-medium text-slate-12 transition flex items-center gap-[6px]',
           'md:hover:bg-slate-4/90 md:hover:text-blue-11',
           'dark:text-slatedark-12 dark:hover:bg-slatedark-4/90 dark:hover:text-skydark-11'
         )}
         onClick={() => setIsOpen(true)}
       >
-        📦 分类
+        <Package className="size-4" /> 分类
       </button>
       <CategoryDialogModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
@@ -81,12 +82,12 @@ const CategoryDrawer = memo(function CategoryDrawer() {
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger
         className={cn(
-          'block px-8 py-2 text-center font-medium text-slate-12 transition',
+          'flex justify-center gap-[6px] px-8 py-2 text-center font-medium text-slate-12 transition',
           'md:hover:bg-slate-4/90 md:hover:text-blue-11',
           'dark:text-slatedark-12 dark:hover:bg-slatedark-4/90 dark:hover:text-skydark-11'
         )}
       >
-        📦 分类
+        <FolderArchive className="size-4" /> 分类
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>

@@ -11,6 +11,7 @@ import tagData from '@/temp/tag-data.json'
 import { cn } from '@/utils/classname'
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import clsx from 'clsx'
+import { TagIcon } from 'lucide-react'
 import Link from 'next/link'
 import { memo, useCallback, useState } from 'react'
 import useMediaQuery from 'src/hooks/useMediaQuery'
@@ -95,13 +96,13 @@ const TagDialog = memo(function TagDialog() {
     <>
       <button
         className={clsx(
-          'block px-8 py-2 text-center font-medium text-slate-12 transition',
+          'flex justify-center gap-[6px] px-8 py-2 text-center font-medium text-slate-12 transition',
           'md:hover:bg-slate-4/90 md:hover:text-blue-11',
           'dark:text-slatedark-12 dark:hover:bg-slatedark-4/90 dark:hover:text-skydark-11'
         )}
         onClick={() => setIsOpen(true)}
       >
-        🏷 标签
+        <TagIcon className="size-4" /> 标签
       </button>
       <TagDialogModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
@@ -114,12 +115,12 @@ const TagDrawer = memo(function TagDrawer() {
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger
         className={cn(
-          'block px-8 py-2 text-center font-medium text-slate-12 transition',
+          'flex justify-center gap-[6px] px-8 py-2 text-center font-medium text-slate-12 transition',
           'md:hover:bg-slate-4/90 md:hover:text-blue-11',
           'dark:text-slatedark-12 dark:hover:bg-slatedark-4/90 dark:hover:text-skydark-11'
         )}
       >
-        🏷 标签
+        <TagIcon className="size-4" /> 标签
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
