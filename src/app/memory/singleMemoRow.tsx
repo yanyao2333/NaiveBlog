@@ -5,7 +5,7 @@ import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import LightGallery from 'lightgallery/react'
 import Image from 'next/image'
-import { memo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { fetchComments } from './fetchFunctions'
 import { CommentsList } from './memoComments'
@@ -17,6 +17,11 @@ export const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo:
   const [showComments, setShowComments] = useState(false)
   const [comments, setComments] = useState<Memo[]>([])
   const [isLoadingComments, setIsLoadingComments] = useState(false)
+
+  const memoizedImage = useMemo(
+    () => <Image src={Logo} alt="avatar" className="mt-1 size-[40px] rounded-full" />,
+    []
+  )
 
   const handleCommentClick = async (memoOrCommentId: string) => {
     if (showComments) {
@@ -40,7 +45,7 @@ export const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo:
     <div className="flex flex-col gap-3 border-slate-6 py-6 dark:border-slatedark-6 lg:w-[720px]">
       {/* 头像、日期、名称 */}
       <div className="flex justify-between gap-3">
-        <Image src={Logo} alt="avatar" className="mt-1 size-[40px] rounded-full" />
+        {memoizedImage}
         <div className="flex flex-col">
           <span className="font-medium text-slate-12 dark:text-slatedark-12">Roitium.</span>
           <span className="text-xs text-slate-11 dark:text-slatedark-11">
