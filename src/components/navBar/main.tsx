@@ -93,14 +93,10 @@ const generatePopoverButton = (child: HeaderNavLink, iconMode: boolean) => {
       )}
       href={child.href}
     >
-      {iconMode ? (
-        child.logo
-      ) : (
-        <div className="flex items-center gap-[6px]">
-          {child.logo}
-          <span>{child.title}</span>
-        </div>
-      )}
+      <div className="flex items-center gap-[6px]">
+        {child.logo}
+        <span>{child.title}</span>
+      </div>
     </CloseButton>
   )
 }
