@@ -1,5 +1,6 @@
 'use client'
 import { CloseButton, Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
+import { cva } from 'class-variance-authority'
 import clsx from 'clsx'
 import { Cloud, FileText, HelpCircle, Home, Monitor, Package, PenTool, Tag } from 'lucide-react'
 import Link from 'next/link'
@@ -60,22 +61,33 @@ function isOnThisPage(link: HeaderNavLink, nowPath: string) {
   return (nowPath.startsWith(link.href) && link.href != '/') || (nowPath == '/' && link.href == '/')
 }
 
-// 按钮样式生成器
+const buttonVariants = cva(['cursor-pointer', 'hover:text-blue-11', 'dark:hover:text-skydark-11'], {
+  variants: {
+    variant: {
+      text: ['block', 'font-medium', 'py-3'],
+      icon: ['py-2'],
+    },
+    selected: {
+      true: [
+        'text-blue-11',
+        'dark:text-skydark-11',
+        'border-b',
+        'border-b-blue-11',
+        'dark:border-b-skydark-11',
+      ],
+      false: ['text-slate-12', 'dark:text-slatedark-12'],
+    },
+  },
+  defaultVariants: {
+    variant: 'text',
+    selected: false,
+  },
+})
+
+// 按钮样式生成
 const buttonStyles = (selected: boolean) => ({
-  text: clsx(
-    'block font-medium py-3 cursor-pointer',
-    'hover:text-blue-11 dark:hover:text-skydark-11',
-    selected
-      ? 'text-blue-11 dark:text-skydark-11 border-b border-b-blue-11 dark:border-b-skydark-11'
-      : 'text-slate-12 dark:text-slatedark-12'
-  ),
-  icon: clsx(
-    'py-2 cursor-pointer',
-    'hover:text-blue-11 dark:hover:text-skydark-11',
-    selected
-      ? 'text-blue-11 dark:text-skydark-11 border-b border-b-blue-11 dark:border-b-skydark-11'
-      : 'text-slate-12 dark:text-slatedark-12'
-  ),
+  text: buttonVariants({ variant: 'text', selected }),
+  icon: buttonVariants({ variant: 'icon', selected }),
 })
 
 const generatePopoverButton = (child: HeaderNavLink, iconMode: boolean) => {
