@@ -9595,9 +9595,9 @@ __metadata:
   linkType: hard
 
 "lightgallery@npm:^2.7.2":
-  version: 2.8.1
-  resolution: "lightgallery@npm:2.8.1"
-  checksum: 10/0e83a032521c800bf5f88b672b32421bd471ab57419b56836c607948d60dc4f61c04e2bab643736627b77a0d7951c12739beb9cb04244d6c526cb4a775d5064e
+  version: 2.8.2
+  resolution: "lightgallery@npm:2.8.2"
+  checksum: 10/9a02c50e655b7dbf9d9d11344295ef60dc33657d6131e8c9894dff1c4d363ad14506dd2695222be1864f50cace18e5fdf47610a78241bf15e1d71e293d5b6d81
   languageName: node
   linkType: hard
 
