@@ -6,7 +6,7 @@ interface Props {
 
 export default function SectionContainer({ children }: Props) {
   return (
-    <section className="container mx-auto mt-auto flex flex-col px-6 lg:max-w-screen-lg">
+    <section className="container mx-auto mt-auto w-full flex flex-col px-6 lg:max-w-screen-lg">
       {children}
     </section>
   )

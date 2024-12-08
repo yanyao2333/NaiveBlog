@@ -83,7 +83,10 @@ const CommentComponent = memo(function CommentComponent({
       </div>
       <div className="prose prose-slate ml-[47px] rounded-e-lg rounded-bl-lg bg-slate-3 pl-2 pr-2 text-slate-12 shadow-sm ring-1 ring-slate-7/50 dark:prose-invert prose-p:my-2 dark:bg-slatedark-3 dark:text-slatedark-12 dark:ring-slatedark-7/50">
         {comment.parsedContent ? (
-          <article dangerouslySetInnerHTML={{ __html: comment.parsedContent }} />
+          <article
+            className="break-words"
+            dangerouslySetInnerHTML={{ __html: comment.parsedContent }}
+          />
         ) : (
           ''
         )}

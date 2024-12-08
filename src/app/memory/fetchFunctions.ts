@@ -21,7 +21,6 @@ export async function fetchComments(memoName: string) {
     comments.map(async (comment) => {
       comment.parsedContent = await unified()
         .use(remarkParse)
-        .use(remarkMediaCard)
         .use(remarkGfm)
         .use(remarkRehype, { allowDangerousHtml: true })
         // .use(rehypeSanitize)

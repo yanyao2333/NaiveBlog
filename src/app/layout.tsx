@@ -103,7 +103,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const basePath = process.env.BASE_PATH || ''
 
   return (
-    <html lang={siteMetadata.language} className={`scroll-smooth`} suppressHydrationWarning>
+    <html
+      lang={siteMetadata.language}
+      className={`scroll-smooth w-full h-full`}
+      suppressHydrationWarning
+    >
       <head>
         <link
           rel="apple-touch-icon"
@@ -129,7 +133,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
         <title>{siteMetadata.title}</title>
       </head>
-      <body className="min-h-screen bg-slate-2 dark:bg-slatedark-2/60 pl-[calc(100vw-100%)] text-slate-12 dark:text-slatedark-12 antialiased accent-blue-5 dark:accent-bluedark-5">
+      <body className="min-h-screen bg-slate-2 dark:bg-slatedark-2/60 w-full h-full text-slate-12 dark:text-slatedark-12 antialiased accent-blue-5 dark:accent-bluedark-5">
         <ClientReady />
         <NextTopLoader showSpinner={false} />
         <Toaster />
@@ -142,7 +146,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <TooltipProvider delayDuration={0}>
           <ThemeProviders>
             <KBarSearchProvider>
-              <div>
+              <div className="w-full h-full">
                 {/* 定义了一个container，规范内容页面宽高 */}
                 <FloatNavBar />
                 <SectionContainer>
