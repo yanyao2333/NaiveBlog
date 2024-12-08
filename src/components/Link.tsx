@@ -20,14 +20,13 @@ const LinkWithTooltip = ({
     <Tooltip>
       <TooltipTrigger>
         <Link
-          className="underline-offset-2 break-words"
+          className="underline-offset-2 break-words after:content-['_↗']"
           target={isInternalLink ? '_self' : '_blank'}
           rel={'noopener noreferrer'}
           href={href}
           {...rest}
         >
           {rest.children}
-          <span className=" text-xs align-middle">&#8599;</span>
         </Link>
       </TooltipTrigger>
       <TooltipContent className="TooltipContent mt-2 dark:bg-slatedark-3 ring-1 dark:text-slatedark-12 dark:ring-slatedark-7 bg-slate-3 text-slate-12 ring-slate-7">

@@ -1,3 +1,4 @@
+import { remarkTagToJsx } from '@/mdx-plugins/remark-tag-to-jsx'
 import { Memo, MemoListResponse } from '@/types/memos'
 import remarkMediaCard from '@zhouhua-dev/remark-media-card'
 import rehypeStringify from 'rehype-stringify'
@@ -22,6 +23,7 @@ export async function fetchComments(memoName: string) {
       comment.parsedContent = await unified()
         .use(remarkParse)
         .use(remarkGfm)
+        .use(remarkTagToJsx)
         .use(remarkRehype, { allowDangerousHtml: true })
         // .use(rehypeSanitize)
         .use(rehypeStringify, { allowDangerousHtml: true })
@@ -57,6 +59,7 @@ export async function fetchMemos() {
         .use(remarkParse)
         .use(remarkMediaCard)
         .use(remarkGfm)
+        .use(remarkTagToJsx)
         .use(remarkRehype, { allowDangerousHtml: true })
         // .use(rehypeSanitize)
         .use(rehypeStringify, { allowDangerousHtml: true })
