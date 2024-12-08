@@ -1,15 +1,16 @@
+import { sortPosts } from '@/utils/postsUtils'
 import { formatDate } from '@/utils/time'
 import { allBlogs } from 'contentlayer/generated'
 import Link from 'next/link'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
+import { allCoreContent } from 'pliny/utils/contentlayer'
 
 export default function RecentlyPosts() {
-  const coreContents = allCoreContent(sortPosts(allBlogs))
+  const coreContents = allCoreContent(sortPosts(allBlogs, 'date', false))
   const posts = coreContents.slice(0, 5)
-  if (posts.length != 0 && new Date(posts[0].date).getFullYear() >= 2040) {
-    posts.shift()
-    if (coreContents[6]) posts.push(coreContents[6])
-  }
+  // if (posts.length != 0 && new Date(posts[0].date).getFullYear() >= 2040) {
+  //   posts.shift()
+  //   if (coreContents[6]) posts.push(coreContents[6])
+  // }
 
   return (
     // <div className={'flex max-h-60 flex-col space-y-4'}>

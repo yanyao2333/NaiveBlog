@@ -14,6 +14,16 @@ export function dateSortDesc(a: string, b: string) {
   return 0
 }
 
-export function sortPosts(allBlogs: Blog[], dateKey: string = 'date') {
-  return allBlogs.sort((a, b) => dateSortDesc(a[dateKey], b[dateKey]))
+export function sortPosts(allBlogs: Blog[], dateKey: string = 'date', putPinnedFirst = true) {
+  if (putPinnedFirst) {
+    const pinnedPosts = allBlogs.filter((blog) => blog.pinned)
+    const unpinnedPosts = allBlogs.filter((blog) => !blog.pinned)
+
+    pinnedPosts.sort((a, b) => dateSortDesc(a[dateKey], b[dateKey]))
+    unpinnedPosts.sort((a, b) => dateSortDesc(a[dateKey], b[dateKey]))
+
+    return [...pinnedPosts, ...unpinnedPosts]
+  } else {
+    return allBlogs.sort((a, b) => dateSortDesc(a[dateKey], b[dateKey]))
+  }
 }

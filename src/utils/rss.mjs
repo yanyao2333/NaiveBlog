@@ -35,7 +35,6 @@ const generateRssItem = async (config, post) => {
       <guid>${config.siteUrl}/blog/${post.slug}</guid>
       <title>${escape(post.title)}</title>
       <link>${config.siteUrl}/blog/${post.slug}</link>
-      ${post.priv}
       ${`<description><![CDATA[${description}]]></description>`}
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <author>${config.email} (${config.author})</author>
@@ -52,6 +51,10 @@ const generateRss = async (config, posts, page = 'feed.xml') => {
       <channel>
         <title>${escape(config.title)}</title>
         <link>${config.siteUrl}/blog</link>
+        <follow_challenge>
+          <feedId>88493428931156992</feedId>
+          <userId>62129560289424384</userId>
+        </follow_challenge>
         <description>${escape(config.description)}</description>
         <language>${config.language}</language>
         <managingEditor>${config.email} (${config.author})</managingEditor>
@@ -111,6 +114,7 @@ async function generateRSS(config, allBlogs, page = 'feed.xml') {
     console.log('No posts to generate RSS feed.')
     return
   }
+  console.log(publishPosts)
 
   // 生成全站 RSS
   const rss = await generateRss(config, sortPosts(publishPosts))

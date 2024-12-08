@@ -6,7 +6,6 @@ import PageTitle from '@/components/PageTitle'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import categoryData from '@/temp/category-data.json'
-import tagData from '@/temp/tag-data.json'
 import { formatDate } from '@/utils/time'
 import type { Blog } from 'contentlayer/generated'
 import Link from 'next/link'
@@ -88,10 +87,6 @@ export default function PostsListLayout({
   pagination,
 }: ListLayoutProps) {
   const pathname = usePathname()
-  const tagCounts = tagData as Record<string, number>
-  const tagKeys = Object.keys(tagCounts)
-  const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
-
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
@@ -117,7 +112,7 @@ export default function PostsListLayout({
         <div>
           <ul>
             {displayPosts.map((post) => {
-              const { path, date, title, summary, tags } = post
+              const { path, date, title, summary, tags, pinned } = post
               return (
                 <li key={path} className="mx-auto py-5">
                   <article className="flex flex-col space-y-2 xl:space-y-0">
@@ -125,7 +120,7 @@ export default function PostsListLayout({
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-slate-11 dark:text-slatedark-11">
                         <time dateTime={date} suppressHydrationWarning>
-                          {formatDate(date, siteMetadata.locale)}
+                          {formatDate(date, siteMetadata.locale)} {pinned ? '(置顶博文)' : ''}
                         </time>
                       </dd>
                     </dl>

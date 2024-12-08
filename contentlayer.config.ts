@@ -156,6 +156,7 @@ export const Blog = defineDocumentType(() => ({
     canonicalUrl: { type: 'string' },
     private: { type: 'boolean', default: false },
     password: { type: 'string' },
+    pinned: { type: 'boolean', default: false },
   },
   computedFields: {
     ...computedFields,

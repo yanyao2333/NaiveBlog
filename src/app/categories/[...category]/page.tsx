@@ -3,12 +3,12 @@ import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
 import PostsListLayout from '@/layouts/PostsListLayout'
 import categoryData from '@/temp/category-data.json'
+import { sortPosts } from '@/utils/postsUtils'
 import { TreeNode } from 'contentlayer.config'
 import { allBlogs, Blog } from 'contentlayer/generated'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { CoreContent } from 'pliny/utils/contentlayer'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
+import { allCoreContent, CoreContent } from 'pliny/utils/contentlayer'
 
 export async function generateMetadata(props: {
   params: Promise<{ category: string[] }>

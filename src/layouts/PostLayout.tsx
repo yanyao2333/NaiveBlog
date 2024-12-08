@@ -100,7 +100,7 @@ function generateCategoryTree(categories: string[]) {
 // }
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags } = content
+  const { filePath, path, slug, date, title, tags, pinned } = content
   const basePath = path.split('/')[0]
   const paths = path.split('/')
   // 去掉最后一个元素，因为它是文章名
@@ -119,10 +119,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base font-medium leading-6 text-slate-11 dark:text-slatedark-11">
                     <time dateTime={date}>
-                      {/*用这种奇怪的方式hack一下，2040年我的博客还会存在吗？*/}
-                      {new Date(date).getFullYear() === 2040
-                        ? '置顶博文'
-                        : new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                      {pinned ? '  (置顶博文)' : ''}
                     </time>
                   </dd>
                 </div>
