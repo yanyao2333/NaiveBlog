@@ -3,6 +3,7 @@
     "incremental": true,
     "target": "ES6",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,

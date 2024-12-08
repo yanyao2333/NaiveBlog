@@ -29,6 +29,12 @@ export default function PasswordInput() {
           toast.error('密码错误，请重新输入！')
         }
       })
+      .catch((e) => {
+        toast.error('获取密码时出错，请重试！')
+        console.error('获取密码时出错，报错信息：' + e)
+        setVerified(false)
+        setBlog(undefined)
+      })
   }
 
   if (verified && blog) {
@@ -39,8 +45,17 @@ export default function PasswordInput() {
     <div className="flex flex-col items-center w-full">
       本文需要密码才能查看，请输入密码~
       <div className="mt-3 flex w-full justify-center">
+        <label hidden htmlFor="password-field">
+          Password
+        </label>
         <input
           type="password"
+          id="password-field"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              verifyPassword(password, path)
+            }
+          }}
           className="rounded-l max-w-[200px] sm:max-w-[300px] border border-slate-6 border-r-0 bg-slate-3 px-4 py-2 text-slate-12 dark:bg-slatedark-3 dark:text-slatedark-12"
           onChange={(e) => setPassword(e.target.value)}
         />
