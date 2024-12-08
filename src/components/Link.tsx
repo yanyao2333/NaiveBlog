@@ -22,7 +22,7 @@ const LinkWithTooltip = ({
         <Link
           className="underline-offset-2 break-words"
           target={isInternalLink ? '_self' : '_blank'}
-          rel="noopener noreferrer"
+          rel={'noopener noreferrer'}
           href={href}
           {...rest}
         >
