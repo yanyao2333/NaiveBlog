@@ -42,7 +42,7 @@ export const MemoRowComponent = memo(function MemoRowComponent({ memo }: { memo:
   }
 
   return (
-    <div className="flex flex-col gap-3 border-slate-6 py-6 dark:border-slatedark-6 lg:w-[720px]">
+    <div className="flex flex-col gap-3 max-w-full border-slate-6 py-6 dark:border-slatedark-6 md:mx-auto md:w-[720px]">
       {/* 头像、日期、名称 */}
       <div className="flex justify-between gap-3">
         {memoizedImage}

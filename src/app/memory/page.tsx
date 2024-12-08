@@ -79,7 +79,7 @@ export default function MemosPage() {
   return (
     <div className="flex flex-col w-full">
       <PageTitle title="Memories" subtitle="人生三大乐事：梗图、发癫与暴论" />
-      <div className={clsx('mx-auto flex flex-col w-full', hasLoaded && ' appear-animate')}>
+      <div className={clsx('flex flex-col w-full', hasLoaded && ' appear-animate')}>
         {memos ? memos.map((memo) => <MemoRowComponent memo={memo} key={memo.uid} />) : null}
       </div>
       <div ref={loadMoreRef} className={'h-[1px]'}></div>
