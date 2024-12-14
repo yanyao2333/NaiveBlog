@@ -3330,8 +3330,8 @@ __metadata:
   linkType: hard
 
 "@million/lint@npm:^1.0.12":
-  version: 1.0.13
-  resolution: "@million/lint@npm:1.0.13"
+  version: 1.0.14
+  resolution: "@million/lint@npm:1.0.14"
   dependencies:
     "@axiomhq/js": "npm:1.0.0-rc.3"
     "@babel/core": "npm:7.26.0"
@@ -3363,7 +3363,7 @@ __metadata:
     update-notifier-cjs: "npm:^5.1.6"
   bin:
     lint: cli.js
-  checksum: 10/9a412b3b12d764c87c914695d5457642ae85d22f38e053f5fb839ff74aec9f821b93afc95c62d4d4dc76dd563d696b170c2443c74f0e7f3caf94842f092117e4
+  checksum: 10/1faaee4ad90907e287507b386655872e46636316e191834cc277f76e3c44481a1d802ffc16100ac2497b382f36aa3fa8919886e99231516185e0fc8e668254eb
   languageName: node
   linkType: hard
 
