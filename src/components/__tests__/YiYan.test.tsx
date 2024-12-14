@@ -1,7 +1,7 @@
-import { describe, it, vi, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import YiYan from '../YiYan'
 import toast from 'react-hot-toast'
+import { describe, expect, it, vi } from 'vitest'
+import YiYan from '../YiYan'
 
 vi.mock('react-hot-toast', () => ({
   error: vi.fn(),
@@ -27,7 +27,6 @@ describe('YiYan 组件', () => {
     global.fetch = vi.fn().mockRejectedValue(new Error('获取失败'))
 
     render(<YiYan />)
-
     expect(await screen.findByText('获取失败')).toBeInTheDocument()
     expect(toast.error).toHaveBeenCalledWith('获取一言失败！你运气太差了喵！')
   })
