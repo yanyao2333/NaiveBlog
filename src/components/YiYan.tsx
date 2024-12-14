@@ -21,8 +21,8 @@ export default function YiYan() {
   }, [])
 
   return (
-    <>
+    <div>
       {data.hitokoto} {data.from ? `——${data.from}` : ''}
-    </>
+    </div>
   )
 }

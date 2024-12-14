@@ -5,6 +5,7 @@ import YiYan from '../YiYan'
 
 vi.mock('react-hot-toast', () => ({
   error: vi.fn(),
+  default: { error: vi.fn() },
 }))
 
 describe('YiYan 组件', () => {
