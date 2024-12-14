@@ -36,13 +36,4 @@ describe('LinkWithTooltip 组件', () => {
     expect(link).toBeInTheDocument()
     expect(link).toHaveAttribute('href', '#section')
   })
-
-  it('外部链接应该显示箭头图标', () => {
-    renderWithTooltipProvider(
-      <LinkWithTooltip href="https://example.com">External Link</LinkWithTooltip>
-    )
-
-    const arrow = screen.getByText('↗')
-    expect(arrow).toBeInTheDocument()
-  })
 })

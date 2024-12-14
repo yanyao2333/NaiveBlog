@@ -60,3 +60,5 @@ yarn-error.log*
 /temp
 # Million Lint
 .million
+.aider*
+.env
