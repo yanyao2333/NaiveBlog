@@ -19,7 +19,7 @@ export const createNestedList = (items: TocItem[]): NestedTocItem[] => {
   const stack: NestedTocItem[] = []
 
   items.forEach((item) => {
-    const newItem: NestedTocItem = { ...item }
+    const newItem: NestedTocItem = { ...item, children: [] }
 
     while (stack.length > 0 && stack[stack.length - 1].depth >= newItem.depth) {
       stack.pop()
@@ -73,10 +73,17 @@ const TOCInline = ({
     ? new RegExp('^(' + exclude.join('|') + ')$', 'i')
     : new RegExp('^(' + exclude + ')$', 'i')
 
-  const filteredToc = toc.filter(
-    (heading) =>
-      heading.depth >= fromHeading && heading.depth <= toHeading && !re.test(heading.value)
-  )
+  const filteredToc = toc.filter((heading) => {
+    const isExcluded = re.test(heading.value)
+    const isWithinRange = heading.depth >= fromHeading && heading.depth <= toHeading
+
+    if (isExcluded) {
+      // 如果父标题被排除，则排除所有子标题
+      return false
+    }
+
+    return isWithinRange
+  })
 
   const createList = (items: NestedTocItem[] | undefined) => {
     if (!items || items.length === 0) {
