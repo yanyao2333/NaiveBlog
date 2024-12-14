@@ -87,8 +87,10 @@ describe('RecentlyMemos', () => {
 
     render(<RecentlyMemos />)
 
-    await waitFor(() => {
-      expect(screen.getByText('ciallo!!!!')).toBeInTheDocument()
+    await act(async () => {
+      await waitFor(() => {
+        expect(screen.getByText('ciallo!!!!')).toBeInTheDocument()
+      })
     })
   })
 
@@ -97,8 +99,10 @@ describe('RecentlyMemos', () => {
 
     render(<RecentlyMemos />)
 
-    await waitFor(() => {
-      expect(screen.queryByText('Test memo')).not.toBeInTheDocument()
+    await act(async () => {
+      await waitFor(() => {
+        expect(screen.queryByText('Test memo')).not.toBeInTheDocument()
+      })
     })
   })
 
