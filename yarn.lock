@@ -16090,14 +16090,14 @@ __metadata:
   linkType: hard
 
 "vaul@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "vaul@npm:1.1.1"
+  version: 1.1.2
+  resolution: "vaul@npm:1.1.2"
   dependencies:
     "@radix-ui/react-dialog": "npm:^1.1.1"
   peerDependencies:
-    react: ^16.8 || ^17.0 || ^18.0 || ^19.0
-    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0
-  checksum: 10/96c7cbf9ce3e3b26ec4989cd6a6fcc8c10584ee3479f05be31bd4d3dfb1e964e63436f1289414b0f5f551bf6933966ff630adb3cf62c4526502930176dafd0b0
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc
+  checksum: 10/9d34f7f9aae1994450233f7803fcd47dca7680bc621ee24717b8e78b72fda9c5156e1ff2c8af6c2705993224fd8d3725ed89d84ba5bd1d411124dd91cde2b2e5
   languageName: node
   linkType: hard
 
