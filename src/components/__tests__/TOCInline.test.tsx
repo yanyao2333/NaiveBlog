@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import TOCInline, { TOCInlineProps } from '../TOCInline'
+import TOCInline, { TOCInlineProps, createNestedList } from '../TOCInline'
 
 describe('TOCInline', () => {
   const mockToc: TOCInlineProps['toc'] = [
@@ -11,7 +11,7 @@ describe('TOCInline', () => {
   ]
 
   it('should create nested list correctly', () => {
-    const nestedList = TOCInline.createNestedList(mockToc)
+    const nestedList = createNestedList(mockToc)
 
     expect(nestedList).toEqual([
       {

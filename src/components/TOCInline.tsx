@@ -14,7 +14,7 @@ export interface NestedTocItem extends TocItem {
   children?: NestedTocItem[]
 }
 
-const createNestedList = (items: TocItem[]): NestedTocItem[] => {
+export const createNestedList = (items: TocItem[]): NestedTocItem[] => {
   const nestedList: NestedTocItem[] = []
   const stack: NestedTocItem[] = []
 
