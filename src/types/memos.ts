@@ -26,8 +26,9 @@ export interface Memo {
   displayTime: string
   // 备忘录的内容。
   content: string
-  // 备忘录的节点列表。
-  nodes: Node[]
+  // 备忘录的节点列表(不重要)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  nodes: any[]
   // 备忘录的可见性。
   visibility: 'VISIBILITY_UNSPECIFIED' | 'PRIVATE' | 'PROTECTED' | 'PUBLIC'
   // 备忘录的标签列表。
@@ -35,7 +36,7 @@ export interface Memo {
   // 是否固定。
   pinned: boolean
   // 父备忘录的 ID，只读。
-  parentId: number
+  parentId?: number
   // 备忘录的资源列表，只读。
   resources: Resource[]
   // 备忘录的关系列表，只读。
@@ -45,7 +46,7 @@ export interface Memo {
   // 备忘录的属性，只读。
   property: Property
   // 父备忘录的名称，格式为 memos/{id}，只读。
-  parent: string
+  parent?: string
   // 备忘录内容的片段，纯文本。
   snippet: string
   // 使用remark html解析后的内容。只存在于显示页面处理后，原始请求没有
