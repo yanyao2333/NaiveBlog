@@ -11,6 +11,7 @@ import type { Blog } from 'contentlayer/generated'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
+import { memo } from 'react'
 
 interface PaginationProps {
   totalPages: number
