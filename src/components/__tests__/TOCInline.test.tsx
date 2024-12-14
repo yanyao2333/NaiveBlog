@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import TOCInline, { TOCInlineProps, NestedTocItem } from '../TOCInline'
+import { describe, expect, it } from 'vitest'
+import TOCInline, { TOCInlineProps } from '../TOCInline'
 
 describe('TOCInline', () => {
   const mockToc: TOCInlineProps['toc'] = [
