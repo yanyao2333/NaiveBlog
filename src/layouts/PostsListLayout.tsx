@@ -25,7 +25,7 @@ interface ListLayoutProps {
   pagination?: PaginationProps
 }
 
-function Pagination({ totalPages, currentPage }: PaginationProps) {
+const MemoizedPagination = memo(function Pagination({ totalPages, currentPage }: PaginationProps) {
   const pathname = usePathname()
   const basePath = pathname.split('/')[1]
   const prevPage = currentPage - 1 > 0
@@ -63,7 +63,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
       </nav>
     </div>
   )
-}
+})
 
 // 判断是否在某个 分类/标签 页面上
 function isOnThisPage(url: string, category?: string, tag?: string) {
@@ -170,7 +170,10 @@ export default function PostsListLayout({
             })}
           </ul>
           {pagination && pagination.totalPages > 1 && (
-            <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+            <MemoizedPagination
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+            />
           )}
         </div>
       </div>
