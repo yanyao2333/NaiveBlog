@@ -1,5 +1,9 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest'
-import { formatDate, formatToSemanticTime, isTimeDifferenceGreaterThan } from '../time'
+import {
+  formatDate,
+  formatToSemanticTime,
+  isTimeDifferenceGreaterThan,
+} from '../time'
 
 describe('时间工具', () => {
   describe('isTimeDifferenceGreaterThan', () => {

@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from 'fs'
-import { slug } from 'github-slugger'
 import path from 'path'
+import { slug } from 'github-slugger'
 import { sortPosts } from 'pliny/utils/contentlayer.js'
 import { escape } from 'pliny/utils/htmlEscaper.js'
 import rehypeSanitize from 'rehype-sanitize'

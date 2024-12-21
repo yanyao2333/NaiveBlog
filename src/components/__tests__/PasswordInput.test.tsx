@@ -66,7 +66,7 @@ describe('PasswordInput 组件', () => {
     await waitFor(() => {
       expect(mockFetch).toHaveBeenCalledWith(
         expect.stringContaining('/api/blog/password?password=correct-password'),
-        expect.any(Object)
+        expect.any(Object),
       )
       expect(toast.success).toHaveBeenCalled()
     })

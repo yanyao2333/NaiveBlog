@@ -11,9 +11,9 @@ import siteMetadata from '@/data/siteMetadata'
 import { OpenPanelComponent } from '@openpanel/nextjs'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import NextTopLoader from 'nextjs-toploader'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import 'remark-github-blockquote-alert/alert.css'
 import { ThemeProviders } from './theme-providers'
@@ -105,40 +105,58 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang={siteMetadata.language}
-      className={`scroll-smooth w-full h-full`}
+      className={`h-full w-full scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
         <link
-          rel="apple-touch-icon"
-          sizes="76x76"
+          rel='apple-touch-icon'
+          sizes='76x76'
           href={`${basePath}/static/favicons/apple-touch-icon.png`}
         />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
           href={`${basePath}/static/favicons/favicon-32x32.png`}
         />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
           href={`${basePath}/static/favicons/favicon-16x16.png`}
         />
-        <link rel="manifest" href={`${basePath}/static/favicons/site.webmanifest`} />
-        <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-        <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+        <link
+          rel='manifest'
+          href={`${basePath}/static/favicons/site.webmanifest`}
+        />
+        <meta
+          name='msapplication-TileColor'
+          content='#000000'
+        />
+        <meta
+          name='theme-color'
+          media='(prefers-color-scheme: light)'
+          content='#fff'
+        />
+        <meta
+          name='theme-color'
+          media='(prefers-color-scheme: dark)'
+          content='#000'
+        />
+        <link
+          rel='alternate'
+          type='application/rss+xml'
+          href={`${basePath}/feed.xml`}
+        />
         <title>{siteMetadata.title}</title>
       </head>
-      <body className="min-h-screen bg-slate-2 dark:bg-slatedark-2/60 w-full h-full text-slate-12 dark:text-slatedark-12 antialiased accent-blue-5 dark:accent-bluedark-5">
+      <body className='h-full min-h-screen w-full bg-slate-2 text-slate-12 antialiased accent-blue-5 dark:bg-slatedark-2/60 dark:text-slatedark-12 dark:accent-bluedark-5'>
         <ClientReady />
         <NextTopLoader showSpinner={false} />
         <Toaster />
         <OpenPanelComponent
-          clientId="e67f1761-a8ed-46f2-b8ab-dab5884e4fe0"
+          clientId='e67f1761-a8ed-46f2-b8ab-dab5884e4fe0'
           trackScreenViews={true}
         />
         <SpeedInsights />
@@ -146,11 +164,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <TooltipProvider delayDuration={0}>
           <ThemeProviders>
             <KBarSearchProvider>
-              <div className="w-full h-full">
+              <div className='h-full w-full'>
                 {/* 定义了一个container，规范内容页面宽高 */}
                 <FloatNavBar />
                 <SectionContainer>
-                  <main className="mx-auto min-h-screen w-full pt-20">{children}</main>
+                  <main className='mx-auto min-h-screen w-full pt-20'>
+                    {children}
+                  </main>
                   <SettingsPanel />
                 </SectionContainer>
                 <Footer />

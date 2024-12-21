@@ -1,6 +1,6 @@
+import path from 'path'
 /// <reference types="vitest" />
 import react from '@vitejs/plugin-react'
-import path from 'path'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
@@ -25,7 +25,10 @@ export default defineConfig({
       '@/temp': path.resolve(__dirname, 'temp'),
       '@/public': path.resolve(__dirname, 'public'),
       '@/mdx-plugins': path.resolve(__dirname, 'src/mdx-plugins'),
-      'contentlayer/generated': path.resolve(__dirname, './.contentlayer/generated'),
+      'contentlayer/generated': path.resolve(
+        __dirname,
+        './.contentlayer/generated',
+      ),
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
   },

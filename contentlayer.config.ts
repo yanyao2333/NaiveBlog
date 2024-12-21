@@ -1,9 +1,18 @@
-import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/source-files'
 import { existsSync, mkdirSync, writeFileSync } from 'fs'
+import path from 'path'
+// Remark packages
+import remarkMediaCard from '@zhouhua-dev/remark-media-card'
+import {
+  type ComputedFields,
+  defineDocumentType,
+  makeSource,
+} from 'contentlayer2/source-files'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
-import path from 'path'
-import { remarkCodeTitles, remarkExtractFrontmatter } from 'pliny/mdx-plugins/index.js'
+import {
+  remarkCodeTitles,
+  remarkExtractFrontmatter,
+} from 'pliny/mdx-plugins/index.js'
 import readingTime from 'reading-time'
 // Rehype packages
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -12,8 +21,6 @@ import rehypeKatex from 'rehype-katex'
 import rehypePresetMinify from 'rehype-preset-minify'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeSlug from 'rehype-slug'
-// Remark packages
-import remarkMediaCard from '@zhouhua-dev/remark-media-card'
 import remarkGfm from 'remark-gfm'
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkMath from 'remark-math'
@@ -37,7 +44,7 @@ const icon = fromHtmlIsomorphic(
   </svg>
   </span>
 `,
-  { fragment: true }
+  { fragment: true },
 )
 
 const computedFields: ComputedFields = {
@@ -82,7 +89,10 @@ function createCategoryTree(allBlogs) {
         root.count += 1
         return
       }
-      const relativePath: string = file._raw.sourceFileDir.replace(/^blog\//, '')
+      const relativePath: string = file._raw.sourceFileDir.replace(
+        /^blog\//,
+        '',
+      )
       const pathParts = relativePath.split('/')
       let currentNode = root
 

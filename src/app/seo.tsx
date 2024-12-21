@@ -1,5 +1,5 @@
 import siteMetadata from '@/data/siteMetadata'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
 interface PageSEOProps {
   title: string
@@ -10,7 +10,12 @@ interface PageSEOProps {
   [key: string]: any
 }
 
-export function genPageMetadata({ title, description, image, ...rest }: PageSEOProps): Metadata {
+export function genPageMetadata({
+  title,
+  description,
+  image,
+  ...rest
+}: PageSEOProps): Metadata {
   return {
     title,
     description: description || siteMetadata.description,

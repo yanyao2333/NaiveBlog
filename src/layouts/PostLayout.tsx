@@ -9,8 +9,8 @@ import type { Authors, Blog } from 'contentlayer/generated'
 import { slug as _slug } from 'github-slugger'
 import { default as Link, default as NextLink } from 'next/link'
 import { Comments as CommentsComponent } from 'pliny/comments'
-import { CoreContent } from 'pliny/utils/contentlayer'
-import { ReactNode } from 'react'
+import type { CoreContent } from 'pliny/utils/contentlayer'
+import type { ReactNode } from 'react'
 
 const editUrl = (path: string) =>
   `${siteMetadata.siteContentRepo}/blob/main/blog-posts/${path.replace('blog/', '')}`
@@ -37,7 +37,9 @@ function generateCategoryTree(categories: string[]) {
     nowPath += `/${category}`
     tree.push({
       name: category,
-      displayName: categoryMapping[category] ? categoryMapping[category].show : category,
+      displayName: categoryMapping[category]
+        ? categoryMapping[category].show
+        : category,
       url: `/categories${nowPath}`,
     })
   }
@@ -99,7 +101,13 @@ function generateCategoryTree(categories: string[]) {
 //   )
 // }
 
-export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+export default function PostLayout({
+  content,
+  authorDetails,
+  next,
+  prev,
+  children,
+}: LayoutProps) {
   const { filePath, path, slug, date, title, tags, pinned } = content
   const basePath = path.split('/')[0]
   const paths = path.split('/')
@@ -111,15 +119,18 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
     <>
       <ScrollTopAndComment />
       <article>
-        <div className="lg:divide-y mx-auto lg:divide-slate-5 lg:dark:divide-slatedark-5">
-          <header className="pt-6 lg:pb-6">
-            <div className="space-y-1 text-center">
-              <dl className="space-y-10">
+        <div className='mx-auto lg:divide-y lg:divide-slate-5 lg:dark:divide-slatedark-5'>
+          <header className='pt-6 lg:pb-6'>
+            <div className='space-y-1 text-center'>
+              <dl className='space-y-10'>
                 <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-slate-11 dark:text-slatedark-11">
+                  <dt className='sr-only'>Published on</dt>
+                  <dd className='font-medium text-base text-slate-11 leading-6 dark:text-slatedark-11'>
                     <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                      {new Date(date).toLocaleDateString(
+                        siteMetadata.locale,
+                        postDateTemplate,
+                      )}
                       {pinned ? '  (置顶博文)' : ''}
                     </time>
                   </dd>
@@ -127,19 +138,19 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </dl>
               <div>
                 <PageTitle title={title} />
-                <div className="mt-3 flex justify-center text-[12px]">
+                <div className='mt-3 flex justify-center text-[12px]'>
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 24 24'
                     strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-[18px]"
+                    stroke='currentColor'
+                    className='size-[18px]'
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      d='M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
                     />
                   </svg>
                   预计阅读时长：
@@ -149,25 +160,30 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </div>
             </div>
           </header>
-          <div className="grid-rows-[auto_1fr] divide-y divide-slate-5 pb-8 dark:divide-slatedark-5 lg:grid lg:grid-cols-4 lg:gap-x-6 lg:divide-y-0">
-            <dl className="pb-10 pt-6 lg:border-b lg:border-slate-5 lg:pt-11 lg:dark:border-slatedark-5">
-              <dt className="sr-only">Authors</dt>
+          <div className='grid-rows-[auto_1fr] divide-y divide-slate-5 pb-8 lg:grid lg:grid-cols-4 lg:gap-x-6 lg:divide-y-0 dark:divide-slatedark-5'>
+            <dl className='pt-6 pb-10 lg:border-slate-5 lg:border-b lg:pt-11 lg:dark:border-slatedark-5'>
+              <dt className='sr-only'>Authors</dt>
               <dd>
-                <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 lg:block lg:space-x-0 lg:space-y-8">
+                <ul className='flex flex-wrap justify-center gap-4 sm:space-x-12 lg:block lg:space-x-0 lg:space-y-8'>
                   {authorDetails.map((author) => (
-                    <li className="flex items-center space-x-2" key={author.name}>
+                    <li
+                      className='flex items-center space-x-2'
+                      key={author.name}
+                    >
                       {author.avatar && (
                         <Image
                           src={author.avatar}
                           width={38}
                           height={38}
-                          alt="avatar"
-                          className="h-10 w-10 rounded-full"
+                          alt='avatar'
+                          className='h-10 w-10 rounded-full'
                         />
                       )}
-                      <dl className="whitespace-nowrap text-sm font-medium leading-5">
-                        <dt className="sr-only">Name</dt>
-                        <dd className="text-slate-12 dark:text-slatedark-12">{author.name}</dd>
+                      <dl className='whitespace-nowrap font-medium text-sm leading-5'>
+                        <dt className='sr-only'>Name</dt>
+                        <dd className='text-slate-12 dark:text-slatedark-12'>
+                          {author.name}
+                        </dd>
                         {/*<dt className="sr-only">Twitter</dt>*/}
                         {/*<dd>*/}
                         {/*  {author.twitter && (*/}
@@ -187,40 +203,47 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </ul>
               </dd>
             </dl>
-            <div className="divide-y divide-slate-5 dark:divide-slatedark-5 lg:col-span-3 lg:row-span-2 lg:pb-0">
-              <div className="prose prose-slate mx-auto pb-8 pt-10 dark:prose-invert">
+            <div className='divide-y divide-slate-5 lg:col-span-3 lg:row-span-2 lg:pb-0 dark:divide-slatedark-5'>
+              <div className='prose prose-slate dark:prose-invert mx-auto pt-10 pb-8'>
                 {children}
               </div>
-              <div className="pb-6 pt-6 text-center text-sm text-slate-11 dark:text-slatedark-11">
+              <div className='pt-6 pb-6 text-center text-slate-11 text-sm dark:text-slatedark-11'>
                 {/*<Link href={discussUrl(path)} rel="nofollow">*/}
                 {/*  Discuss on Twitter*/}
                 {/*</Link>*/}
                 {/*{` • `}*/}
-                <NextLink href={editUrl(filePath)}>View on GitHub (If you have access)</NextLink>
+                <NextLink href={editUrl(filePath)}>
+                  View on GitHub (If you have access)
+                </NextLink>
               </div>
               {siteMetadata.comments && (
                 <div
-                  className="pb-6 pt-6 text-center text-slate-11 dark:text-slatedark-11"
-                  id="comment"
+                  className='pt-6 pb-6 text-center text-slate-11 dark:text-slatedark-11'
+                  id='comment'
                 >
-                  <CommentsComponent commentsConfig={siteMetadata.comments} slug={slug} />
+                  <CommentsComponent
+                    commentsConfig={siteMetadata.comments}
+                    slug={slug}
+                  />
                 </div>
               )}
             </div>
             <footer>
-              <div className="divide-slate-5 text-sm font-medium leading-5 dark:divide-slatedark-5 lg:col-start-1 lg:row-start-2 lg:divide-y">
-                <div className="py-4 lg:py-8 lg:divide-y divide-slate-5 dark:divide-slatedark-5">
-                  <div className="mb-8">
-                    <h2 className="text-sm pb-2 uppercase tracking-wide text-slate-11 dark:text-slatedark-11">
+              <div className='divide-slate-5 font-medium text-sm leading-5 lg:col-start-1 lg:row-start-2 lg:divide-y dark:divide-slatedark-5'>
+                <div className='divide-slate-5 py-4 lg:divide-y lg:py-8 dark:divide-slatedark-5'>
+                  <div className='mb-8'>
+                    <h2 className='pb-2 text-slate-11 text-sm uppercase tracking-wide dark:text-slatedark-11'>
                       当前分类
                     </h2>
                     {categories.map((category, index) => (
                       <>
-                        <span className={cn(index !== 0 && 'mr-3')}>{index !== 0 && '>'}</span>
+                        <span className={cn(index !== 0 && 'mr-3')}>
+                          {index !== 0 && '>'}
+                        </span>
                         <Link
                           key={category.name}
                           href={category.url}
-                          className="mr-3 text-sm font-medium uppercase text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12"
+                          className='mr-3 font-medium text-slate-12 text-sm uppercase hover:text-blue-11 dark:text-slatedark-12 dark:hover:text-skydark-11'
                         >
                           {category.displayName}
                         </Link>
@@ -254,16 +277,16 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     </div> */}
                   </div>
                   {tags && (
-                    <div className="lg:pt-8">
-                      <h2 className="text-sm pb-2 uppercase tracking-wide text-slate-11 dark:text-slatedark-11">
+                    <div className='lg:pt-8'>
+                      <h2 className='pb-2 text-slate-11 text-sm uppercase tracking-wide dark:text-slatedark-11'>
                         标签
                       </h2>
-                      <div className="flex flex-wrap">
+                      <div className='flex flex-wrap'>
                         {tags.map((tag) => (
                           <NextLink
                             href={`/tags/${_slug(tag)}`}
                             key={tag}
-                            className="mr-4 mt-2 text-sm font-medium uppercase text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12"
+                            className='mt-2 mr-4 font-medium text-slate-12 text-sm uppercase hover:text-blue-11 dark:text-slatedark-12 dark:hover:text-skydark-11'
                           >
                             {tag.split(' ').join('-')}
                           </NextLink>
@@ -273,35 +296,39 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   )}
                 </div>
                 {(next || prev) && (
-                  <div className="flex justify-between py-4 lg:block lg:space-y-8 lg:py-8">
+                  <div className='flex justify-between py-4 lg:block lg:space-y-8 lg:py-8'>
                     {prev && prev.path && (
                       <div>
-                        <h2 className="text-sm pb-2 uppercase tracking-wide text-slate-11 dark:text-slatedark-11">
+                        <h2 className='pb-2 text-slate-11 text-sm uppercase tracking-wide dark:text-slatedark-11'>
                           上一篇
                         </h2>
-                        <div className="text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12">
-                          <NextLink href={`/${prev.path}`}>{prev.title}</NextLink>
+                        <div className='text-slate-12 hover:text-blue-11 dark:text-slatedark-12 dark:hover:text-skydark-11'>
+                          <NextLink href={`/${prev.path}`}>
+                            {prev.title}
+                          </NextLink>
                         </div>
                       </div>
                     )}
                     {next && next.path && (
                       <div>
-                        <h2 className="text-sm pb-2 uppercase tracking-wide text-slate-11 dark:text-slatedark-11">
+                        <h2 className='pb-2 text-slate-11 text-sm uppercase tracking-wide dark:text-slatedark-11'>
                           下一篇
                         </h2>
-                        <div className="text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12">
-                          <NextLink href={`/${next.path}`}>{next.title}</NextLink>
+                        <div className='text-slate-12 hover:text-blue-11 dark:text-slatedark-12 dark:hover:text-skydark-11'>
+                          <NextLink href={`/${next.path}`}>
+                            {next.title}
+                          </NextLink>
                         </div>
                       </div>
                     )}
                   </div>
                 )}
               </div>
-              <div className="pt-4 lg:pt-8">
+              <div className='pt-4 lg:pt-8'>
                 <NextLink
                   href={`/${basePath}`}
-                  className="text-slate-12 hover:text-blue-11 dark:hover:text-skydark-11 dark:text-slatedark-12"
-                  aria-label="回到列表页"
+                  className='text-slate-12 hover:text-blue-11 dark:text-slatedark-12 dark:hover:text-skydark-11'
+                  aria-label='回到列表页'
                 >
                   &larr; 回到列表页
                 </NextLink>

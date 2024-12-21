@@ -1,5 +1,5 @@
 import { remarkTagToJsx } from '@/mdx-plugins/remark-tag-to-jsx'
-import { Memo, MemoListResponse } from '@/types/memos'
+import type { Memo, MemoListResponse } from '@/types/memos'
 import remarkMediaCard from '@zhouhua-dev/remark-media-card'
 import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
@@ -30,7 +30,7 @@ export async function fetchComments(memoName: string) {
         .process(comment.content)
         .then((file) => file.toString())
       return comment
-    })
+    }),
   )
 }
 
@@ -49,7 +49,9 @@ export async function fetchMemos() {
   const pageSize = 'pageSize=5'
   const pageToken = nextPageToken ? `&pageToken=${nextPageToken}` : ''
   const apiPath = 'api/v1/memos'
-  const response = await fetch(`${apiEndpoint}/${apiPath}?${filter}&${pageSize}${pageToken}`)
+  const response = await fetch(
+    `${apiEndpoint}/${apiPath}?${filter}&${pageSize}${pageToken}`,
+  )
   const jsonResp: MemoListResponse = await response.json()
   nextPageToken = jsonResp.nextPageToken
   // 处理Memos内容
@@ -66,6 +68,6 @@ export async function fetchMemos() {
         .process(memo.content)
         .then((file) => file.toString())
       return memo
-    })
+    }),
   )
 }

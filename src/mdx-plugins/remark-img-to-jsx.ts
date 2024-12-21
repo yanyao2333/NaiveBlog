@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { sync as sizeOf } from 'probe-image-size'
-import { Literal, Node, Parent } from 'unist'
+import type { Literal, Node, Parent } from 'unist'
 import { visit } from 'unist-util-visit'
 
 export type ImageNode = Parent & {
@@ -20,14 +20,19 @@ export function remarkImgToJsx() {
       tree,
       // only visit p tags that contain an img element
       (node: Parent): node is Parent =>
-        node.type === 'paragraph' && node.children.some((n) => n.type === 'image'),
+        node.type === 'paragraph' &&
+        node.children.some((n) => n.type === 'image'),
       (node: Parent) => {
-        const imageNodeIndex = node.children.findIndex((n) => n.type === 'image')
+        const imageNodeIndex = node.children.findIndex(
+          (n) => n.type === 'image',
+        )
         const imageNode = node.children[imageNodeIndex] as ImageNode
 
         // only local files
         if (fs.existsSync(`${process.cwd()}/public${imageNode.url}`)) {
-          const dimensions = sizeOf(fs.readFileSync(`${process.cwd()}/public${imageNode.url}`))
+          const dimensions = sizeOf(
+            fs.readFileSync(`${process.cwd()}/public${imageNode.url}`),
+          )
 
           // Convert original node to next/image
           imageNode.type = 'mdxJsxFlowElement'
@@ -48,7 +53,7 @@ export function remarkImgToJsx() {
           node.children[imageNodeIndex] = imageNode
           // console.log(JSON.stringify(node, null, 2))
         }
-      }
+      },
     )
   }
 }

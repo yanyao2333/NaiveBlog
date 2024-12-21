@@ -73,7 +73,7 @@ const runBashCommand = (command) =>
     child.stderr.setEncoding('utf8')
     child.stderr.on('data', (data) => process.stderr.write(data))
 
-    child.on('close', function (code) {
+    child.on('close', (code) => {
       if (code === 0) {
         resolve(void 0)
       } else {

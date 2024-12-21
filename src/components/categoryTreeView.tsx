@@ -1,6 +1,6 @@
 'use client'
 import clsx from 'clsx'
-import { TreeNode } from 'contentlayer.config'
+import type { TreeNode } from 'contentlayer.config'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -29,28 +29,32 @@ function TreeNodeComponent({
   expanded?: boolean
   closeFunction?: () => void
 }) {
-  const [isExpanded, setIsExpanded] = useState(expanded || node.name === 'blog' ? true : false)
+  const [isExpanded, setIsExpanded] = useState(
+    expanded || node.name === 'blog' ? true : false,
+  )
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded)
   }
 
   return (
-    <li className="pt-2">
+    <li className='pt-2'>
       <div
         className={clsx(
-          'pl-3 border-gray-300 flex items-center justify-between cursor-pointer text-slate-12 dark:text-slatedark-12',
-          !(node.name === 'blog') && 'border-l-2'
+          'flex cursor-pointer items-center justify-between border-gray-300 pl-3 text-slate-12 dark:text-slatedark-12',
+          !(node.name === 'blog') && 'border-l-2',
         )}
         aria-label={`View posts in category ${node.showName}`}
       >
         <Link
-          href={node.fullPath === 'blog' ? '/blog' : `/categories/${node.fullPath}`}
+          href={
+            node.fullPath === 'blog' ? '/blog' : `/categories/${node.fullPath}`
+          }
           className={
-            'inline-block text-sm font-medium ' +
+            'inline-block font-medium text-sm ' +
             (isOnThisPage(pathname, node.name)
               ? 'text-blue-11'
-              : 'text-slate-12 dark:text-slatedark-12 hover:text-blue-11')
+              : 'text-slate-12 hover:text-blue-11 dark:text-slatedark-12')
           }
           onClick={closeFunction}
         >
@@ -58,24 +62,24 @@ function TreeNodeComponent({
         </Link>
         <button
           onClick={toggleExpand}
-          className="ml-2"
+          className='ml-2'
           aria-label={`Expand category ${node.showName}`}
         >
           {Object.keys(node.children).length > 0 && (
             <div
-              className="transform transition-transform duration-200 hover:text-blue-11"
+              className='transform transition-transform duration-200 hover:text-blue-11'
               style={{
                 transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
               }}
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className='h-5 w-5' />
             </div>
           )}
         </button>
       </div>
 
       {isExpanded && (
-        <ul className="pl-6">
+        <ul className='pl-6'>
           {Object.values(node.children).map((child) => (
             <TreeNodeComponent
               key={child.name}
@@ -103,7 +107,7 @@ function CategoryTreeView({
   closeFunction?: () => void
 }) {
   return (
-    <ul className="w-full pt-2">
+    <ul className='w-full pt-2'>
       <TreeNodeComponent
         node={root}
         pathname={pathname}

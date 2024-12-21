@@ -5,7 +5,7 @@ import tagData from '@/temp/tag-data.json'
 import { sortPosts } from '@/utils/postsUtils'
 import { allBlogs } from 'contentlayer/generated'
 import { slug } from 'github-slugger'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { allCoreContent } from 'pliny/utils/contentlayer'
 
@@ -34,19 +34,29 @@ export const generateStaticParams = async () => {
   }))
 }
 
-export default async function TagPage(props: { params: Promise<{ tag: string }> }) {
+export default async function TagPage(props: {
+  params: Promise<{ tag: string }>
+}) {
   const params = await props.params
   const tag = decodeURI(params.tag)
 
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   const filteredPosts = allCoreContent(
-    sortPosts(allBlogs.filter((post) => post.tags && post.tags.map((t) => slug(t)).includes(tag)))
+    sortPosts(
+      allBlogs.filter(
+        (post) => post.tags && post.tags.map((t) => slug(t)).includes(tag),
+      ),
+    ),
   )
   if (filteredPosts.length === 0) {
     return notFound()
   }
   return (
-    <PostsListLayout posts={filteredPosts} title={title} subtitle={`${title} 标签下的所有文章`} />
+    <PostsListLayout
+      posts={filteredPosts}
+      title={title}
+      subtitle={`${title} 标签下的所有文章`}
+    />
   )
 }

@@ -12,10 +12,10 @@ import { sortPosts } from '@/utils/postsUtils'
 import type { Authors, Blog } from 'contentlayer/generated'
 import { allAuthors, allBlogs } from 'contentlayer/generated'
 import 'katex/dist/katex.css'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { allCoreContent, coreContent } from 'pliny/utils/contentlayer'
-import { Toc } from 'src/mdx-plugins/toc'
+import type { Toc } from 'src/mdx-plugins/toc'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -82,7 +82,9 @@ export const generateStaticParams = async () => {
   }))
 }
 
-export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
+export default async function Page(props: {
+  params: Promise<{ slug: string[] }>
+}) {
   const params = await props.params
   const slug = decodeURI(params.slug.join('/'))
   // Filter out drafts in production
@@ -115,11 +117,20 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
     return (
       <>
         <script
-          type="application/ld+json"
+          type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
-          {post.password ? <PasswordInput /> : '该文章为私密且没有设置密码，不能给你看哦~'}
+        <Layout
+          content={mainContent}
+          authorDetails={authorDetails}
+          next={next}
+          prev={prev}
+        >
+          {post.password ? (
+            <PasswordInput />
+          ) : (
+            '该文章为私密且没有设置密码，不能给你看哦~'
+          )}
         </Layout>
       </>
     )
@@ -128,14 +139,22 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   return (
     <>
       <script
-        type="application/ld+json"
+        type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+      <Layout
+        content={mainContent}
+        authorDetails={authorDetails}
+        next={next}
+        prev={prev}
+      >
         <TOCInline toc={post.toc as unknown as Toc} />
         {post.toc.length > 0 && <hr />}
         <LightGalleryWrapper>
-          <MdxComponentRenderer doc={post} mdxComponents={components} />
+          <MdxComponentRenderer
+            doc={post}
+            mdxComponents={components}
+          />
         </LightGalleryWrapper>
       </Layout>
     </>

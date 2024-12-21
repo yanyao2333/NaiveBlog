@@ -24,13 +24,19 @@ const size = {
   height: 630,
 }
 
-export async function GET(request: Request, { params }: { params: Promise<{ slug: string[] }> }) {
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ slug: string[] }> },
+) {
   // Font
   // const interSemiBold = fetch(new URL('./Inter-SemiBold.ttf', import.meta.url)).then((res) =>
   //   res.arrayBuffer()
   // )
   const websiteLogo = await fetch(
-    new URL('../../../../../../../public/static/images/logo.png', import.meta.url)
+    new URL(
+      '../../../../../../../public/static/images/logo.png',
+      import.meta.url,
+    ),
   ).then((res) => res.arrayBuffer())
   const slug = (await params).slug
   console.log(slug)
@@ -54,90 +60,88 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
   }
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        backgroundImage: 'linear-gradient(to bottom, #dbf4ff, #fff1f1)',
+        padding: '60px',
+      }}
+      lang='zh-CN'
+    >
       <div
         style={{
-          width: '100%',
-          height: '100%',
+          margin: 'auto',
           display: 'flex',
-          backgroundImage: 'linear-gradient(to bottom, #dbf4ff, #fff1f1)',
-          padding: '60px',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '80px',
+          width: '100%',
+          paddingLeft: '20px',
+          paddingRight: '0px',
         }}
-        lang="zh-CN"
       >
+        {/* Right Column with Logo */}
+        <div style={{ display: 'flex', flex: '0 0 auto' }}>
+          <img
+            // just make typescript happy
+            src={websiteLogo as unknown as string}
+            alt='Logo'
+            style={{
+              width: '280px',
+              height: '280px',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              transform: 'rotate(0deg)',
+              transition: 'transform 0.7s ease-in-out',
+            }}
+          />
+        </div>
+        {/* Left Column with Text */}
         <div
           style={{
-            margin: 'auto',
             display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '80px',
-            width: '100%',
-            paddingLeft: '20px',
-            paddingRight: '0px',
+            flexDirection: 'column',
+            gap: '20px',
+            flex: '1',
           }}
         >
-          {/* Right Column with Logo */}
-          <div style={{ display: 'flex', flex: '0 0 auto' }}>
-            <img
-              // just make typescript happy
-              src={websiteLogo as unknown as string}
-              alt="Logo"
-              style={{
-                width: '280px',
-                height: '280px',
-                borderRadius: '50%',
-                objectFit: 'cover',
-                transform: 'rotate(0deg)',
-                transition: 'transform 0.7s ease-in-out',
-              }}
-            />
-          </div>
-          {/* Left Column with Text */}
           <div
             style={{
               display: 'flex',
-              flexDirection: 'column',
-              gap: '20px',
-              flex: '1',
+              fontSize: 52,
+              fontWeight: 700,
+              color: '#1e293b',
+              lineHeight: 1.2,
             }}
           >
-            <div
-              style={{
-                display: 'flex',
-                fontSize: 52,
-                fontWeight: 700,
-                color: '#1e293b',
-                lineHeight: 1.2,
-              }}
-            >
-              {title}
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                fontSize: 30,
-                color: '#475569',
-              }}
-            >
-              {description}
-            </div>
-            {date && (
-              <div
-                style={{
-                  display: 'flex',
-                  fontSize: 24,
-                  color: '#64748b',
-                }}
-              >
-                {date}
-              </div>
-            )}
+            {title}
           </div>
+          <div
+            style={{
+              display: 'flex',
+              fontSize: 30,
+              color: '#475569',
+            }}
+          >
+            {description}
+          </div>
+          {date && (
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 24,
+                color: '#64748b',
+              }}
+            >
+              {date}
+            </div>
+          )}
         </div>
       </div>
-    ),
+    </div>,
     {
       ...size,
       // fonts: [
@@ -147,6 +151,6 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
       //     style: 'normal',
       //   },
       // ],
-    }
+    },
   )
 }
