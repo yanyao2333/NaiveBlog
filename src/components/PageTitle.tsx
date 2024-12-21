@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const PageTitle = ({
@@ -11,11 +11,16 @@ const PageTitle = ({
   className?: string
 }) => {
   return (
-    <div className={twMerge(className, 'space-x-2 space-y-3 pb-5 pt-6 text-center')}>
+    <div
+      className={twMerge(
+        className,
+        'space-x-2 space-y-3 pt-6 pb-5 text-center',
+      )}
+    >
       <h1
         className={twMerge(
           className,
-          'break-words text-3xl font-extrabold leading-9 tracking-tight text-slate-12 dark:text-slatedark-12 sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14'
+          'break-words font-extrabold text-3xl text-slate-12 leading-9 tracking-tight sm:text-4xl sm:leading-10 md:px-6 md:text-6xl md:leading-14 dark:text-slatedark-12',
         )}
       >
         {title}
@@ -24,7 +29,7 @@ const PageTitle = ({
         <p
           className={twMerge(
             className,
-            'break-words leading-7 text-slate-11 dark:text-slatedark-11 sm:text-lg'
+            'break-words text-slate-11 leading-7 sm:text-lg dark:text-slatedark-11',
           )}
         >
           {subtitle}

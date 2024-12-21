@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import TOCInline, { TOCInlineProps, createNestedList } from '../TOCInline'
+import TOCInline, { type TOCInlineProps, createNestedList } from '../TOCInline'
 
 describe('内联目录', () => {
   const mockToc: TOCInlineProps['toc'] = [
@@ -53,7 +53,13 @@ describe('内联目录', () => {
   })
 
   it('应该正确渲染使用 summary 标签折叠的 TOC', () => {
-    render(<TOCInline toc={mockToc} asDisclosure collapse />)
+    render(
+      <TOCInline
+        toc={mockToc}
+        asDisclosure
+        collapse
+      />,
+    )
 
     expect(screen.getByText('目录')).toBeInTheDocument()
     expect(screen.getByText('Introduction')).toBeInTheDocument()
@@ -63,7 +69,12 @@ describe('内联目录', () => {
   })
 
   it('应该正确忽略指定的标题', () => {
-    render(<TOCInline toc={mockToc} exclude="Section 1" />)
+    render(
+      <TOCInline
+        toc={mockToc}
+        exclude='Section 1'
+      />,
+    )
 
     expect(screen.getByText('Introduction')).toBeInTheDocument()
     expect(screen.queryByText('Section 1')).not.toBeInTheDocument()

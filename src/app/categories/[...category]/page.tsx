@@ -4,11 +4,11 @@ import siteMetadata from '@/data/siteMetadata'
 import PostsListLayout from '@/layouts/PostsListLayout'
 import categoryData from '@/temp/category-data.json'
 import { sortPosts } from '@/utils/postsUtils'
-import { TreeNode } from 'contentlayer.config'
-import { allBlogs, Blog } from 'contentlayer/generated'
-import { Metadata } from 'next'
+import type { TreeNode } from 'contentlayer.config'
+import { type Blog, allBlogs } from 'contentlayer/generated'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { allCoreContent, CoreContent } from 'pliny/utils/contentlayer'
+import { type CoreContent, allCoreContent } from 'pliny/utils/contentlayer'
 
 export async function generateMetadata(props: {
   params: Promise<{ category: string[] }>
@@ -28,9 +28,15 @@ export async function generateMetadata(props: {
 }
 
 // 过滤文章：根据分类全路径查找节点，递归查找所有子节点下的文章
-function filterPosts(categoryFullName: string, allPosts: CoreContent<Blog>[]): CoreContent<Blog>[] {
+function filterPosts(
+  categoryFullName: string,
+  allPosts: CoreContent<Blog>[],
+): CoreContent<Blog>[] {
   // 递归查找节点
-  function findNodeByFullPath(root: TreeNode, fullPath: string): TreeNode | null {
+  function findNodeByFullPath(
+    root: TreeNode,
+    fullPath: string,
+  ): TreeNode | null {
     if (root.fullPath === fullPath) {
       return root
     }
@@ -47,7 +53,10 @@ function filterPosts(categoryFullName: string, allPosts: CoreContent<Blog>[]): C
   }
 
   // 搜索当前分类及其子分类下的所有文章
-  function deeplyFilterPosts(node: TreeNode, allPosts: CoreContent<Blog>[]): CoreContent<Blog>[] {
+  function deeplyFilterPosts(
+    node: TreeNode,
+    allPosts: CoreContent<Blog>[],
+  ): CoreContent<Blog>[] {
     let filteredPosts: CoreContent<Blog>[] = []
     if (node.fullPath === categoryFullName) {
       filteredPosts = filteredPosts.concat(
@@ -55,9 +64,9 @@ function filterPosts(categoryFullName: string, allPosts: CoreContent<Blog>[]): C
           sortPosts(
             allBlogs.filter((post) => {
               return post._raw.sourceFileDir === node.fullPath ? post : null
-            })
-          )
-        )
+            }),
+          ),
+        ),
       )
     }
     for (const key in node.children) {
@@ -65,12 +74,16 @@ function filterPosts(categoryFullName: string, allPosts: CoreContent<Blog>[]): C
         allCoreContent(
           sortPosts(
             allBlogs.filter((post) => {
-              return post._raw.sourceFileDir === node.children[key].fullPath ? post : null
-            })
-          )
-        )
+              return post._raw.sourceFileDir === node.children[key].fullPath
+                ? post
+                : null
+            }),
+          ),
+        ),
       )
-      filteredPosts = filteredPosts.concat(deeplyFilterPosts(node.children[key], allPosts))
+      filteredPosts = filteredPosts.concat(
+        deeplyFilterPosts(node.children[key], allPosts),
+      )
     }
     return filteredPosts
   }
@@ -83,26 +96,39 @@ function filterPosts(categoryFullName: string, allPosts: CoreContent<Blog>[]): C
 }
 
 export const generateStaticParams = async () => {
-  function getAllCategoriesFullPath(node: TreeNode, fullPath: string): string[][] {
+  function getAllCategoriesFullPath(
+    node: TreeNode,
+    fullPath: string,
+  ): string[][] {
     const result: string[][] = []
     result.push(node.fullPath.split('/'))
 
     for (const key in node.children) {
       const child = node.children[key]
-      const getChildren = getAllCategoriesFullPath(child, fullPath + node.fullPath + '/')
+      const getChildren = getAllCategoriesFullPath(
+        child,
+        `${fullPath + node.fullPath}/`,
+      )
       result.push(...getChildren)
     }
     return result
   }
 
-  const result: string[][] = getAllCategoriesFullPath(categoryData, categoryData.fullPath)
+  const result: string[][] = getAllCategoriesFullPath(
+    categoryData,
+    categoryData.fullPath,
+  )
   return result.map((item) => ({ category: item }))
 }
 
-export default async function CategoryPage(props: { params: Promise<{ category: string[] }> }) {
+export default async function CategoryPage(props: {
+  params: Promise<{ category: string[] }>
+}) {
   const params = await props.params
   const categoryFullName = params.category.join('/')
-  const filteredPosts = sortPosts(filterPosts(categoryFullName, allCoreContent(allBlogs)) as Blog[])
+  const filteredPosts = sortPosts(
+    filterPosts(categoryFullName, allCoreContent(allBlogs)) as Blog[],
+  )
   if (filteredPosts.length === 0) {
     return notFound()
   }
@@ -110,12 +136,14 @@ export default async function CategoryPage(props: { params: Promise<{ category: 
     <PostsListLayout
       posts={filteredPosts}
       title={
-        categoryFullName == 'blog'
+        categoryFullName === 'blog'
           ? '所有博文'
           : categoryFullName
               .split('/')
               .slice(1)
-              .map((item) => (categoryMapping[item] ? categoryMapping[item].show : item))
+              .map((item) =>
+                categoryMapping[item] ? categoryMapping[item].show : item,
+              )
               .join('/')
       }
       subtitle={

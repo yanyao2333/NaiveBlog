@@ -27,7 +27,7 @@ export interface Memo {
   // 备忘录的内容。
   content: string
   // 备忘录的节点列表(不重要)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: 我太懒了！有空替换成 unknown！
   nodes: any[]
   // 备忘录的可见性。
   visibility: 'VISIBILITY_UNSPECIFIED' | 'PRIVATE' | 'PROTECTED' | 'PUBLIC'

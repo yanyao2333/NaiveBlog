@@ -1,5 +1,5 @@
 import { remarkTagToJsx } from '@/mdx-plugins/remark-tag-to-jsx'
-import { Memo, MemoListResponse } from '@/types/memos'
+import type { Memo, MemoListResponse } from '@/types/memos'
 import remarkMediaCard from '@zhouhua-dev/remark-media-card'
 import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
@@ -14,7 +14,9 @@ export function clearNextPageToken() {
 }
 
 export async function fetchComments(memoName: string) {
-  const response = await fetch(`/api/3party/memos/comments?name=${memoName}`)
+  const response = await fetch(
+    `/api/3party/memos/comments?name=${memoName}&view=MEMO_VIEW_FULL`,
+  )
   const comments: Memo[] = (await response.json()).details.memos
 
   // 处理评论内容
@@ -30,7 +32,7 @@ export async function fetchComments(memoName: string) {
         .process(comment.content)
         .then((file) => file.toString())
       return comment
-    })
+    }),
   )
 }
 
@@ -47,9 +49,12 @@ export async function fetchMemos() {
   // 查询参数
   const filter = `filter=creator=='users/1'%26%26order_by_pinned==true`
   const pageSize = 'pageSize=5'
-  const pageToken = nextPageToken ? `&pageToken=${nextPageToken}` : ''
+  const pageToken = nextPageToken ? `pageToken=${nextPageToken}` : ''
+  const view = 'view=MEMO_VIEW_FULL'
   const apiPath = 'api/v1/memos'
-  const response = await fetch(`${apiEndpoint}/${apiPath}?${filter}&${pageSize}${pageToken}`)
+  const response = await fetch(
+    `${apiEndpoint}/${apiPath}?${filter}&${pageSize}&${pageToken}&${view}`,
+  )
   const jsonResp: MemoListResponse = await response.json()
   nextPageToken = jsonResp.nextPageToken
   // 处理Memos内容
@@ -66,6 +71,6 @@ export async function fetchMemos() {
         .process(memo.content)
         .then((file) => file.toString())
       return memo
-    })
+    }),
   )
 }
