@@ -1,5 +1,5 @@
-import { mkdirSync, writeFileSync } from 'fs'
-import path from 'path'
+import { mkdirSync, writeFileSync } from 'node:fs'
+import path from 'node:path'
 import { slug } from 'github-slugger'
 import { sortPosts } from 'pliny/utils/contentlayer.js'
 import { escape } from 'pliny/utils/htmlEscaper.js'
@@ -38,7 +38,7 @@ const generateRssItem = async (config, post) => {
       ${`<description><![CDATA[${description}]]></description>`}
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <author>${config.email} (${config.author})</author>
-      ${post.tags && post.tags.map((t) => `<category>${t}</category>`).join('')}
+      ${post.tags?.map((t) => `<category>${t}</category>`).join('')}
     </item>
   `
 }
@@ -158,7 +158,7 @@ async function generateRSS(config, allBlogs, page = 'feed.xml') {
       const child = node.children[key]
       const getChildren = getAllCategoriesFullPath(
         child,
-        fullPath + node.fullPath + '/',
+        `${fullPath + node.fullPath}/`,
       )
       result.push(...getChildren)
     }

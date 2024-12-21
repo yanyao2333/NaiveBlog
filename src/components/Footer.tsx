@@ -16,9 +16,9 @@ export default function Footer() {
         </span>
         <div className='mb-2 flex space-x-2 text-gray-500 text-sm dark:text-neutral-400'>
           <div>{siteMetadata.author}</div>
-          <div>{` • `}</div>
+          <div>{' • '}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
-          <div>{` • `}</div>
+          <div>{' • '}</div>
           <div>{siteMetadata.title}</div>
         </div>
         {/*<div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">*/}

@@ -97,7 +97,7 @@ export default function MemosPage() {
       <div
         ref={loadMoreRef}
         className={'h-[1px]'}
-      ></div>
+      />
       <button
         onClick={onClickFetchMore}
         disabled={isLoading}
@@ -107,8 +107,8 @@ export default function MemosPage() {
           <div className='mx-auto mt-3 w-6'>
             {/*<LoadSpinner />*/}
             <span className='relative flex size-6'>
-              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75'></span>
-              <span className='relative inline-flex size-6 rounded-full bg-blue-8'></span>
+              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75' />
+              <span className='relative inline-flex size-6 rounded-full bg-blue-8' />
             </span>
           </div>
         ) : (

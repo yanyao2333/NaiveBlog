@@ -21,8 +21,7 @@ export default function RecentlyMusic() {
       }
     }
     fetch(
-      '/api/3party/netease/playlist?id=' +
-        process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID,
+      `/api/3party/netease/playlist?id=${process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID}`,
     ).then((response) => {
       response.json().then((data) => {
         if (!response.ok) {
@@ -43,10 +42,7 @@ export default function RecentlyMusic() {
   return (
     <Link
       className='flex min-h-60 cursor-pointer flex-col rounded-lg bg-zinc-200 shadow-lg transition-shadow hover:shadow-xl dark:bg-zinc-500'
-      href={
-        'https://music.163.com/playlist?id=' +
-        process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID
-      }
+      href={`https://music.163.com/playlist?id=${process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID}`}
     >
       <span className='mt-2 ml-3'>🎵 最近在听</span>
       {music ? (

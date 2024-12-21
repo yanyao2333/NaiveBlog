@@ -26,7 +26,7 @@ export const KBarSearchProvider = ({ children }) => {
           keywords: post.body.raw,
           section: 'Blog',
           subtitle: formatDate(post.date),
-          perform: () => router.push('/' + post.path),
+          perform: () => router.push(`/${post.path}`),
         })
       }
       return actions

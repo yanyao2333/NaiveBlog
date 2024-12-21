@@ -31,7 +31,7 @@ export default function PasswordInput() {
       })
       .catch((e) => {
         toast.error('获取密码时出错，请重试！')
-        console.error('获取密码时出错，报错信息：' + e)
+        console.error(`获取密码时出错，报错信息：${e}`)
         setVerified(false)
         setBlog(undefined)
       })

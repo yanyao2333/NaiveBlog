@@ -137,7 +137,7 @@ const TagDrawer = memo(function TagDrawer() {
           <TagsContent close={() => setIsOpen(false)} />
         </div>
         <DrawerFooter>
-          <DrawerClose></DrawerClose>
+          <DrawerClose />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

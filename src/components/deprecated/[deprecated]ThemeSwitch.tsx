@@ -47,19 +47,19 @@ const Monitor = () => (
       height='10'
       rx='2'
       ry='2'
-    ></rect>
+    />
     <line
       x1='7'
       y1='17'
       x2='13'
       y2='17'
-    ></line>
+    />
     <line
       x1='10'
       y1='13'
       x2='10'
       y2='17'
-    ></line>
+    />
   </svg>
 )
 const Blank = () => <svg className='h-6 w-6' />

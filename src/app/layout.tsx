@@ -105,7 +105,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang={siteMetadata.language}
-      className={`h-full w-full scroll-smooth`}
+      className={'h-full w-full scroll-smooth'}
       suppressHydrationWarning
     >
       <head>

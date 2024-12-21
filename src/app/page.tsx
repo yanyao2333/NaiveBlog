@@ -61,7 +61,7 @@ export default function Home() {
               <SocialButtonTooltip text='RSS'>
                 <SocialIcon
                   kind='rss'
-                  href={siteMetadata.siteUrl + '/feed.xml'}
+                  href={`${siteMetadata.siteUrl}/feed.xml`}
                   size={6}
                 />
               </SocialButtonTooltip>

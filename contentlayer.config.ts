@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, writeFileSync } from 'fs'
-import path from 'path'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import path from 'node:path'
 // Remark packages
 import remarkMediaCard from '@zhouhua-dev/remark-media-card'
 import {
@@ -79,13 +79,13 @@ function createCategoryTree(allBlogs) {
     count: 0,
     children: {},
     desc: '博客所有文章',
-    showName: categoryMapping['blog'] ? categoryMapping['blog'].show : 'Blog',
+    showName: categoryMapping.blog ? categoryMapping.blog.show : 'Blog',
     fullPath: 'blog',
   }
 
   allBlogs.forEach((file) => {
     if (file._raw.sourceFileDir && (!isProduction || file.draft !== true)) {
-      if (file._raw.sourceFileDir == 'blog') {
+      if (file._raw.sourceFileDir === 'blog') {
         root.count += 1
         return
       }
@@ -144,7 +144,7 @@ function createTagCount(allBlogs) {
 function createSearchIndex(allBlogs) {
   const blogs = sortPosts(filterVisiablePosts(allBlogs))
   blogs.map((blog) => (blog.body.code = ''))
-  writeFileSync(`public/search.json`, JSON.stringify(blogs))
+  writeFileSync('public/search.json', JSON.stringify(blogs))
   console.log('✅ Search index generated successfully')
 }
 

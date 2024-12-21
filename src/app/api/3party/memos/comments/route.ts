@@ -20,7 +20,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const apiEndpoint = process.env.NEXT_PUBLIC_MEMOS_ENDPOINT?.replace(/\/$/, '')
   const response = await fetch(`${apiEndpoint}/api/v1/${name}/comments`, {
     headers: {
-      Cookie: 'memos.access-token=' + process.env.MEMOS_ACCESS_TOKEN,
+      Cookie: `memos.access-token=${process.env.MEMOS_ACCESS_TOKEN}`,
     },
   })
   if (!response.ok) {

@@ -70,8 +70,8 @@ const TOCInline = ({
   collapse = false,
 }: TOCInlineProps) => {
   const re = Array.isArray(exclude)
-    ? new RegExp('^(' + exclude.join('|') + ')$', 'i')
-    : new RegExp('^(' + exclude + ')$', 'i')
+    ? new RegExp(`^(${exclude.join('|')})$`, 'i')
+    : new RegExp(`^(${exclude})$`, 'i')
 
   const filteredToc = toc.filter((heading) => {
     const isExcluded = re.test(heading.value)

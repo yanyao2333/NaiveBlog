@@ -28,12 +28,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     )
   }
   const response = await fetch(
-    'https://music.163.com/api/playlist/detail?id=' +
-      process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID,
+    `https://music.163.com/api/playlist/detail?id=${process.env.NEXT_PUBLIC_NETEASE_PLAYLIST_ID}`,
     { credentials: 'omit' },
   )
   const jsonData: PlayList = await response.json()
-  if (jsonData.code != 200) {
+  if (jsonData.code !== 200) {
     return NextResponse.json(
       { message: jsonData.message, data: jsonData },
       { status: 400 },

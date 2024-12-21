@@ -120,11 +120,10 @@ const RenderResults = () => {
         )}
       />
     )
-  } else {
-    return (
-      <div className='block border-gray-100 border-t px-4 py-8 text-center text-gray-400 dark:border-gray-800 dark:text-gray-600'>
-        No results for your search...
-      </div>
-    )
   }
+  return (
+    <div className='block border-gray-100 border-t px-4 py-8 text-center text-gray-400 dark:border-gray-800 dark:text-gray-600'>
+      No results for your search...
+    </div>
+  )
 }

@@ -15,7 +15,9 @@ export default async function Page() {
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
   return (
     <div
-      className={`flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center md:space-x-6`}
+      className={
+        'flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center md:space-x-6'
+      }
     >
       <PageTitle
         title='Tags'

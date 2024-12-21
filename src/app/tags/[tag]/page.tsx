@@ -44,9 +44,7 @@ export default async function TagPage(props: {
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   const filteredPosts = allCoreContent(
     sortPosts(
-      allBlogs.filter(
-        (post) => post.tags && post.tags.map((t) => slug(t)).includes(tag),
-      ),
+      allBlogs.filter((post) => post.tags?.map((t) => slug(t)).includes(tag)),
     ),
   )
   if (filteredPosts.length === 0) {

@@ -7,10 +7,10 @@ import { useState } from 'react'
 
 // 判断是否在某个 分类/标签 页面上
 function isOnThisPage(url: string, category?: string, tag?: string) {
-  if (url == '/blog' && category == 'blog') return true
+  if (url === '/blog' && category === 'blog') return true
   if (url.startsWith('/categories') && category) {
     const lastNode = url.slice(1, url.length).split('/').pop()
-    return lastNode == category
+    return lastNode === category
   }
   if (url.startsWith('/tags') && tag) {
     return url.includes(tag)
@@ -30,7 +30,7 @@ function TreeNodeComponent({
   closeFunction?: () => void
 }) {
   const [isExpanded, setIsExpanded] = useState(
-    expanded || node.name === 'blog' ? true : false,
+    !!(expanded || node.name === 'blog'),
   )
 
   const toggleExpand = () => {
@@ -50,12 +50,11 @@ function TreeNodeComponent({
           href={
             node.fullPath === 'blog' ? '/blog' : `/categories/${node.fullPath}`
           }
-          className={
-            'inline-block font-medium text-sm ' +
-            (isOnThisPage(pathname, node.name)
+          className={`inline-block font-medium text-sm ${
+            isOnThisPage(pathname, node.name)
               ? 'text-blue-11'
-              : 'text-slate-12 hover:text-blue-11 dark:text-slatedark-12')
-          }
+              : 'text-slate-12 hover:text-blue-11 dark:text-slatedark-12'
+          }`}
           onClick={closeFunction}
         >
           {node.showName}

@@ -9,8 +9,8 @@ const LinkWithTooltip = ({
   href,
   ...rest
 }: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>) => {
-  const isInternalLink = href && href.startsWith('/')
-  const isAnchorLink = href && href.startsWith('#')
+  const isInternalLink = href?.startsWith('/')
+  const isAnchorLink = href?.startsWith('#')
 
   if (isAnchorLink) {
     return <a className="break-words underline-offset-2" href={href} {...rest} />

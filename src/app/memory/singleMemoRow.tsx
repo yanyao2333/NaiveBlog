@@ -121,7 +121,7 @@ export const MemoRowComponent = memo(function MemoRowComponent({
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     alt={resource.filename}
-                    src={imgUrl + '?thumbnail=true'}
+                    src={`${imgUrl}?thumbnail=true`}
                     height={128}
                     width={128}
                     className='h-36 w-36 rounded-xl border object-cover shadow-sm hover:shadow-xl'
@@ -136,8 +136,8 @@ export const MemoRowComponent = memo(function MemoRowComponent({
       {isLoadingComments && (
         <div className='mx-auto mt-3 w-6'>
           <span className='relative flex size-6'>
-            <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75'></span>
-            <span className='relative inline-flex size-6 rounded-full bg-blue-8'></span>
+            <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75' />
+            <span className='relative inline-flex size-6 rounded-full bg-blue-8' />
           </span>
         </div>
       )}

@@ -66,14 +66,14 @@ export default function RecentlyMemos() {
       >
         {!isLoading ? (
           <ol className='relative ml-4 border-blue-7 border-s-[2px] dark:border-skydark-7'>
-            <li className='h-2'></li>
+            <li className='h-2' />
             {memos.map((memo) => (
               <li
                 key={memo.uid}
                 className='ms-6 mb-10'
               >
                 {/* 偏移 7px（半径加 border-s） */}
-                <div className='-start-[7px] absolute mt-2 flex h-3 w-3 items-center justify-center rounded-full border-2 border-blue-7 bg-slate-2 dark:border-skydark-7 dark:bg-slatedark-2'></div>
+                <div className='-start-[7px] absolute mt-2 flex h-3 w-3 items-center justify-center rounded-full border-2 border-blue-7 bg-slate-2 dark:border-skydark-7 dark:bg-slatedark-2' />
                 <div className='mr-2 flex flex-col justify-between rounded-lg bg-slate-3 p-4 shadow-sm ring-1 ring-slate-7/50 dark:bg-slatedark-3 dark:ring-slatedark-7/50'>
                   <time className='mb-2 self-start font-normal text-slate-11 text-xs dark:text-slatedark-11'>
                     {moment(memo.createTime).fromNow()}
@@ -85,7 +85,7 @@ export default function RecentlyMemos() {
               </li>
             ))}
             <li className='ms-6 flex min-w-max justify-between'>
-              <div></div>
+              <div />
               <Link
                 href='/memory'
                 className='min-w-max text-slate-12 text-sm hover:text-blue-11 dark:text-slatedark-12 dark:hover:text-skydark-11'
@@ -97,8 +97,8 @@ export default function RecentlyMemos() {
         ) : (
           <div className='flex min-h-[17.5rem] flex-col justify-center'>
             <div className='relative mx-auto flex size-6 justify-center self-center'>
-              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75'></span>
-              <span className='relative inline-flex size-6 rounded-full bg-blue-8'></span>
+              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75' />
+              <span className='relative inline-flex size-6 rounded-full bg-blue-8' />
             </div>
             <span className='pt-6 text-center text-neutral-600 dark:text-neutral-400'>
               加载中...

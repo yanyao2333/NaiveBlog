@@ -17,7 +17,9 @@ function TreeNodeComponent({ node }: { node: TreeNode }) {
         <li className='text-center'>
           <Link
             href={
-              node.fullPath == 'blog' ? '/blog' : `/categories/${node.fullPath}`
+              node.fullPath === 'blog'
+                ? '/blog'
+                : `/categories/${node.fullPath}`
             }
             aria-label={`View posts in category ${node.showName}`}
             className='inline-block'

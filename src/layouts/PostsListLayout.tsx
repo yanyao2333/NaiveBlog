@@ -84,11 +84,11 @@ const MemoizedPagination = memo(function Pagination({
 
 // 判断是否在某个 分类/标签 页面上
 function isOnThisPage(url: string, category?: string, tag?: string) {
-  if (url == '/blog' && category == 'blog') return true
+  if (url === '/blog' && category === 'blog') return true
   if (url.startsWith('/categories') && category) {
     url = '/blog/categories/blog/test'
     const lastNode = url.slice(1, url.length).split('/').pop()
-    return lastNode == category
+    return lastNode === category
   }
   if (url.startsWith('/tags') && tag) {
     return url.includes(tag)

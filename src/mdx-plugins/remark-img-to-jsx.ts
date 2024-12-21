@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { sync as sizeOf } from 'probe-image-size'
 import type { Literal, Node, Parent } from 'unist'
 import { visit } from 'unist-util-visit'

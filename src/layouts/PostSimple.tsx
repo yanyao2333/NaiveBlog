@@ -85,7 +85,7 @@ export default function PostLayout({
             )}
             <footer>
               <div className='flex flex-col font-medium text-sm sm:flex-row sm:justify-between sm:text-base'>
-                {prev && prev.path && (
+                {prev?.path && (
                   <div className='pt-4 xl:pt-8'>
                     <Link
                       href={`/${prev.path}`}
@@ -96,7 +96,7 @@ export default function PostLayout({
                     </Link>
                   </div>
                 )}
-                {next && next.path && (
+                {next?.path && (
                   <div className='pt-4 xl:pt-8'>
                     <Link
                       href={`/${next.path}`}

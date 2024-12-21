@@ -17,7 +17,7 @@ export default function SettingsPanel() {
   }, [])
 
   function genButtonClassName(_theme: string) {
-    switch (_theme == theme) {
+    switch (_theme === theme) {
       case true:
         return 'text-sm font-light bg-primary-500/50 dark:bg-primary-500/50 select-none'
       case false:

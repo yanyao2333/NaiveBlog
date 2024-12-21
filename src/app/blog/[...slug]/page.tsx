@@ -104,7 +104,7 @@ export default async function Page(props: {
   })
   const mainContent = coreContent(post)
   const jsonLd = post.structuredData
-  jsonLd['author'] = authorDetails.map((author) => {
+  jsonLd.author = authorDetails.map((author) => {
     return {
       '@type': 'Person',
       name: author.name,

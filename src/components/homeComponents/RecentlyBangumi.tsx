@@ -10,7 +10,7 @@ function AnimeComponent({ item }: { item: Item }) {
   return (
     <Link
       className='relative flex max-w-24 flex-col xl:max-w-36'
-      href={'https://bangumi.tv/subject/' + item.subject.id}
+      href={`https://bangumi.tv/subject/${item.subject.id}`}
       target={'_blank'}
       // onMouseEnter={() => setShowTooltip(true)}
       // onMouseLeave={() => setShowTooltip(false)}
@@ -43,7 +43,7 @@ export default function RecentlyBangumi() {
       `https://api.bgm.tv/v0/users/${process.env.NEXT_PUBLIC_BANGUMI_ID}/collections?subject_type=2&type=3&limit=30&offset=0`,
     ).then((response) => {
       if (!response.ok) {
-        toast.error('请求 Bangumi 时失败：' + response.status)
+        toast.error(`请求 Bangumi 时失败：${response.status}`)
         return
       }
       response.json().then((data) => {

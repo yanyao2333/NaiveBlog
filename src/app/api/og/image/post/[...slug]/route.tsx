@@ -9,7 +9,7 @@ async function loadGoogleFont(font: string, text: string) {
 
   if (resource) {
     const response = await fetch(resource[1])
-    if (response.status == 200) {
+    if (response.status === 200) {
       return await response.arrayBuffer()
     }
   }
@@ -43,7 +43,9 @@ export async function GET(
 
   const post = allBlogs.find((p) => p.slug === slug.join('/'))
 
-  let title: string, description: string, date: string
+  let title: string
+  let description: string
+  let date: string
 
   if (!post) {
     title = 'Roitiumの自留地'

@@ -109,7 +109,7 @@ const CategoryDrawer = memo(function CategoryDrawer() {
           />
         </div>
         <DrawerFooter>
-          <DrawerClose></DrawerClose>
+          <DrawerClose />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

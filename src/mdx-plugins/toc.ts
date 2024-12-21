@@ -27,7 +27,7 @@ export function remarkTocHeadings() {
       const slugUrl = slugger.slug(textContent)
       toc.push({
         value: textContent,
-        url: '#' + slugUrl,
+        url: `#${slugUrl}`,
         depth: node.depth,
       })
     })

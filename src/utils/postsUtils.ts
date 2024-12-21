@@ -28,7 +28,6 @@ export function sortPosts(
     unpinnedPosts.sort((a, b) => dateSortDesc(a[dateKey], b[dateKey]))
 
     return [...pinnedPosts, ...unpinnedPosts]
-  } else {
-    return allBlogs.sort((a, b) => dateSortDesc(a[dateKey], b[dateKey]))
   }
+  return allBlogs.sort((a, b) => dateSortDesc(a[dateKey], b[dateKey]))
 }

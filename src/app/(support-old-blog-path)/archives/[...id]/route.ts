@@ -14,7 +14,7 @@ export async function GET(
   }
   for (const [path, id] of Object.entries(postMappingData)) {
     if (Number.parseInt(currentId) === id) {
-      return permanentRedirect('/blog/' + path, RedirectType.push)
+      return permanentRedirect(`/blog/${path}`, RedirectType.push)
     }
   }
   return permanentRedirect('/not-found', RedirectType.push)

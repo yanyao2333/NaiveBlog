@@ -297,7 +297,7 @@ export default function PostLayout({
                 </div>
                 {(next || prev) && (
                   <div className='flex justify-between py-4 lg:block lg:space-y-8 lg:py-8'>
-                    {prev && prev.path && (
+                    {prev?.path && (
                       <div>
                         <h2 className='pb-2 text-slate-11 text-sm uppercase tracking-wide dark:text-slatedark-11'>
                           上一篇
@@ -309,7 +309,7 @@ export default function PostLayout({
                         </div>
                       </div>
                     )}
-                    {next && next.path && (
+                    {next?.path && (
                       <div>
                         <h2 className='pb-2 text-slate-11 text-sm uppercase tracking-wide dark:text-slatedark-11'>
                           下一篇

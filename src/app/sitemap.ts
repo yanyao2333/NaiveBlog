@@ -34,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const child = node.children[key]
       const getChildren = getAllCategoriesFullPath(
         child,
-        fullPath + node.fullPath + '/',
+        `${fullPath + node.fullPath}/`,
       )
       result.push(...getChildren)
     }

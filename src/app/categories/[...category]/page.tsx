@@ -107,7 +107,7 @@ export const generateStaticParams = async () => {
       const child = node.children[key]
       const getChildren = getAllCategoriesFullPath(
         child,
-        fullPath + node.fullPath + '/',
+        `${fullPath + node.fullPath}/`,
       )
       result.push(...getChildren)
     }
@@ -136,7 +136,7 @@ export default async function CategoryPage(props: {
     <PostsListLayout
       posts={filteredPosts}
       title={
-        categoryFullName == 'blog'
+        categoryFullName === 'blog'
           ? '所有博文'
           : categoryFullName
               .split('/')
