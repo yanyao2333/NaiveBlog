@@ -10,11 +10,13 @@ export const remarkTagToJsx: Plugin = () => (tree) => {
 
     const value = node.value
     const tagRegex = /#([a-zA-Z0-9]+(?:\/[a-zA-Z0-9]+)*)/g
+    // biome-ignore lint/suspicious/noImplicitAnyLet: 这个插件代码我还没完全看懂，先用
     let match
     let lastIndex = 0
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: 我太懒了！有空替换成 unknown！
     const parts: any[] = []
 
+    // biome-ignore lint/suspicious/noAssignInExpressions: 这个插件代码我还没完全看懂，先用
     while ((match = tagRegex.exec(value)) !== null) {
       // Add text before tag
       if (match.index > lastIndex) {

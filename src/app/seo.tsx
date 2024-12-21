@@ -6,7 +6,7 @@ interface PageSEOProps {
   description?: string
   image?: string
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: 我太懒了！有空替换成 unknown！
   [key: string]: any
 }
 

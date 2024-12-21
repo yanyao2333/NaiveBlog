@@ -6,7 +6,7 @@ import Tag from '../Tag'
 vi.mock('next/link', () => {
   return {
     __esModule: true,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: 我太懒了！有空替换成 unknown！
     default: ({ children, href, className }: any) => (
       <a
         href={href}

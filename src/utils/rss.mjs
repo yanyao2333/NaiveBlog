@@ -2,7 +2,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { slug } from 'github-slugger'
 import { sortPosts } from 'pliny/utils/contentlayer.js'
-import { escape } from 'pliny/utils/htmlEscaper.js'
+import { escape as escaper } from 'pliny/utils/htmlescaperr.js'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
@@ -33,7 +33,7 @@ const generateRssItem = async (config, post) => {
   return `
     <item>
       <guid>${config.siteUrl}/blog/${post.slug}</guid>
-      <title>${escape(post.title)}</title>
+      <title>${escaper(post.title)}</title>
       <link>${config.siteUrl}/blog/${post.slug}</link>
       ${`<description><![CDATA[${description}]]></description>`}
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
@@ -51,13 +51,13 @@ const generateRss = async (config, posts, page = 'feed.xml') => {
   return `
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
       <channel>
-        <title>${escape(config.title)}</title>
+        <title>${escaper(config.title)}</title>
         <link>${config.siteUrl}/blog</link>
         <follow_challenge>
           <feedId>88493428931156992</feedId>
           <userId>62129560289424384</userId>
         </follow_challenge>
-        <description>${escape(config.description)}</description>
+        <description>${escaper(config.description)}</description>
         <language>${config.language}</language>
         <managingEditor>${config.email} (${config.author})</managingEditor>
         <webMaster>${config.email} (${config.author})</webMaster>

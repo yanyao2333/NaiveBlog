@@ -140,6 +140,8 @@ export default function PostLayout({
                 <PageTitle title={title} />
                 <div className='mt-3 flex justify-center text-[12px]'>
                   <svg
+                    role='img'
+                    aria-label='clock'
                     xmlns='http://www.w3.org/2000/svg'
                     fill='none'
                     viewBox='0 0 24 24'
@@ -237,7 +239,10 @@ export default function PostLayout({
                     </h2>
                     {categories.map((category, index) => (
                       <>
-                        <span className={cn(index !== 0 && 'mr-3')}>
+                        <span
+                          key={category.name}
+                          className={cn(index !== 0 && 'mr-3')}
+                        >
                           {index !== 0 && '>'}
                         </span>
                         <Link

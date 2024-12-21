@@ -7,8 +7,12 @@
       "node_modules",
       ".next",
       ".contentlayer",
-      ".coverage",
-      "src/css/LXGWWenKai-Regular/*"
+      "coverage",
+      "public",
+      "src/css/LXGWWenKai-Regular/*",
+      ".million",
+      ".aider*",
+      "temp"
     ]
   },
   "vcs": {
@@ -26,7 +30,9 @@
       "style": {},
       "a11y": {
         "useSemanticElements": "off",
-        "useKeyWithClickEvents": "off"
+        "useKeyWithClickEvents": "off",
+        "useButtonType": "off",
+        "noSvgWithoutTitle": "off"
       },
       "correctness": {
         "noUnusedImports": "error"
@@ -40,6 +46,9 @@
             "functions": ["clsx", "cva", "cn"]
           }
         }
+      },
+      "complexity": {
+        "noForEach": "warn"
       }
     }
   },

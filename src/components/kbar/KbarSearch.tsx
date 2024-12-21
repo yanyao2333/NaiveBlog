@@ -47,7 +47,7 @@ export const KBarSearchProvider = ({ children }) => {
     if (!dataLoaded && searchDocumentsPath) {
       fetchData()
     }
-  }, [router, searchDocumentsPath, mapPosts, dataLoaded])
+  }, [mapPosts, dataLoaded])
 
   const memoizedProvider = useMemo(
     () => (

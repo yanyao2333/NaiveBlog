@@ -34,6 +34,7 @@ export default function RecentlyMemos() {
     }
   }
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: 用于添加滚动事件监听，不需要依赖
   useEffect(() => {
     const ref = scrollRef.current
     if (ref) {

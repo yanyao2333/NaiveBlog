@@ -18,7 +18,7 @@ export const createNestedList = (items: TocItem[]): NestedTocItem[] => {
   const nestedList: NestedTocItem[] = []
   const stack: NestedTocItem[] = []
 
-  items.forEach((item) => {
+  for (const item of items) {
     const newItem: NestedTocItem = { ...item, children: [] }
 
     while (stack.length > 0 && stack[stack.length - 1].depth >= newItem.depth) {
@@ -35,7 +35,7 @@ export const createNestedList = (items: TocItem[]): NestedTocItem[] => {
     }
 
     stack.push(newItem)
-  })
+  }
 
   return nestedList
 }
@@ -94,7 +94,7 @@ const TOCInline = ({
     return (
       <ul className={''}>
         {items.map((item, index) => (
-          <li key={index}>
+          <li key={`${item.value}_${index}`}>
             <a
               className=' underline-offset-2'
               href={item.url}

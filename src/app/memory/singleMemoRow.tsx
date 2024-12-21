@@ -99,6 +99,7 @@ export const MemoRowComponent = memo(function MemoRowComponent({
         {memo.parsedContent ? (
           <article
             className='break-words'
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
             dangerouslySetInnerHTML={{ __html: memo.parsedContent }}
           />
         ) : (

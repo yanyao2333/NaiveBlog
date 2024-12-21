@@ -3,6 +3,7 @@
 export default function ClientReady() {
   return (
     <script
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
       dangerouslySetInnerHTML={{
         __html: `(${() => {
           console.log(

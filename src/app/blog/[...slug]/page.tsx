@@ -118,6 +118,7 @@ export default async function Page(props: {
       <>
         <script
           type='application/ld+json'
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Layout
@@ -140,6 +141,7 @@ export default async function Page(props: {
     <>
       <script
         type='application/ld+json'
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Layout

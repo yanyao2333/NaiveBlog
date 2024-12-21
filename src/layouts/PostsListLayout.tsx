@@ -40,6 +40,7 @@ const MemoizedPagination = memo(function Pagination({
       <nav className='flex justify-between'>
         {!prevPage && (
           <button
+            type='button'
             className='cursor-auto disabled:opacity-50'
             disabled={!prevPage}
           >
@@ -63,6 +64,7 @@ const MemoizedPagination = memo(function Pagination({
         </span>
         {!nextPage && (
           <button
+            type='button'
             className='cursor-auto disabled:opacity-50'
             disabled={!nextPage}
           >
@@ -86,7 +88,6 @@ const MemoizedPagination = memo(function Pagination({
 function isOnThisPage(url: string, category?: string, tag?: string) {
   if (url === '/blog' && category === 'blog') return true
   if (url.startsWith('/categories') && category) {
-    url = '/blog/categories/blog/test'
     const lastNode = url.slice(1, url.length).split('/').pop()
     return lastNode === category
   }
@@ -176,6 +177,8 @@ export default function PostsListLayout({
                         <br />
                         <div className='mt-3 flex items-center text-[12px]'>
                           <svg
+                            role='img'
+                            aria-label='clock'
                             xmlns='http://www.w3.org/2000/svg'
                             fill='none'
                             viewBox='0 0 24 24'

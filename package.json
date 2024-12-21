@@ -101,10 +101,6 @@
     "typescript": "^5.5.4",
     "vitest": "^2.1.8"
   },
-  "lint-staged": {
-    "*.+(js|jsx|ts|tsx)": [""],
-    "*.+(js|jsx|ts|tsx|json|css|md|mdx)": [""]
-  },
   "packageManager": "yarn@4.5.3",
   "resolutions": {
     "@types/react": "npm:types-react@19.0.0-rc.1"

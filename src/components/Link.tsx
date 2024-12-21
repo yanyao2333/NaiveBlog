@@ -13,14 +13,20 @@ const LinkWithTooltip = ({
   const isAnchorLink = href?.startsWith('#')
 
   if (isAnchorLink) {
-    return <a className="break-words underline-offset-2" href={href} {...rest} />
+    return (
+      <a
+        className='break-words underline-offset-2'
+        href={href}
+        {...rest}
+      />
+    )
   }
 
   return (
     <Tooltip>
       <TooltipTrigger>
         <Link
-          className='break-words underline-offset-2 after:content-['_↗']'
+          className="break-words underline-offset-2 after:content-['_↗']"
           target={isInternalLink ? '_self' : '_blank'}
           rel={'noopener noreferrer'}
           href={href}

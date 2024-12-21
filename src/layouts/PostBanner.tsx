@@ -52,6 +52,8 @@ export default function PostMinimal({
               <PageTitle title={title} />
               <div className='mt-3 flex justify-center text-[12px]'>
                 <svg
+                  role='img'
+                  aria-label='clock'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 24 24'

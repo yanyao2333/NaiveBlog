@@ -15,6 +15,7 @@ const DeprecatedTooltip = ({ text, children, className, as }: TooltipProps) => {
   const [showTooltip, setShowTooltip] = useState(false)
 
   useEffect(() => {
+    // biome-ignore lint/suspicious/noImplicitAnyLet: 该文件是一个过时的组件，不需要修改
     let timer
     if (isVisible) {
       setShowTooltip(true)

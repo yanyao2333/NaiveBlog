@@ -143,7 +143,9 @@ function createTagCount(allBlogs) {
 
 function createSearchIndex(allBlogs) {
   const blogs = sortPosts(filterVisiablePosts(allBlogs))
-  blogs.map((blog) => (blog.body.code = ''))
+  for (const blog of blogs) {
+    blog.body.code = ''
+  }
   writeFileSync('public/search.json', JSON.stringify(blogs))
   console.log('✅ Search index generated successfully')
 }
