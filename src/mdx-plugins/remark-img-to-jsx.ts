@@ -36,7 +36,11 @@ export function remarkImgToJsx() {
             { type: 'mdxJsxAttribute', name: 'alt', value: imageNode.alt },
             { type: 'mdxJsxAttribute', name: 'src', value: imageNode.url },
             { type: 'mdxJsxAttribute', name: 'width', value: dimensions.width },
-            { type: 'mdxJsxAttribute', name: 'height', value: dimensions.height },
+            {
+              type: 'mdxJsxAttribute',
+              name: 'height',
+              value: dimensions.height,
+            },
             { type: 'mdxJsxAttribute', name: 'date-src', value: imageNode.url },
           ]
 

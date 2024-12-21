@@ -56,20 +56,30 @@ export async function generateMetadata(props: {
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
       url: './',
-      images: { url: ogImg, alt: `Opengraph image for ${post.title}`, type: 'image/png' },
+      images: {
+        url: ogImg,
+        alt: `Opengraph image for ${post.title}`,
+        type: 'image/png',
+      },
       authors: authors.length > 0 ? authors : [siteMetadata.author],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.summary,
-      images: { url: ogImg, alt: `Opengraph image for ${post.title}`, type: 'image/png' },
+      images: {
+        url: ogImg,
+        alt: `Opengraph image for ${post.title}`,
+        type: 'image/png',
+      },
     },
   }
 }
 
 export const generateStaticParams = async () => {
-  return allBlogs.map((p) => ({ slug: p.slug.split('/').map((name) => decodeURI(name)) }))
+  return allBlogs.map((p) => ({
+    slug: p.slug.split('/').map((name) => decodeURI(name)),
+  }))
 }
 
 export default async function Page(props: { params: Promise<{ slug: string[] }> }) {

@@ -8,7 +8,9 @@ const POSTS_PER_PAGE = 5
 
 export const generateStaticParams = async () => {
   const totalPages = Math.ceil(allBlogs.length / POSTS_PER_PAGE)
-  return Array.from({ length: totalPages }, (_, i) => ({ page: (i + 1).toString() }))
+  return Array.from({ length: totalPages }, (_, i) => ({
+    page: (i + 1).toString(),
+  }))
 }
 
 export default async function Page(props: { params: Promise<{ page: string }> }) {

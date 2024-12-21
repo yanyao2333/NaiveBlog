@@ -1,4 +1,11 @@
-import { cpSync, existsSync, mkdirSync, readdirSync, renameSync, rmSync } from 'fs'
+import {
+  cpSync,
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  renameSync,
+  rmSync,
+} from 'fs'
 import { spawn } from 'node:child_process'
 
 console.log(`
@@ -19,26 +26,32 @@ console.log('Welcome to Naive Blog!')
 const syncContentFromGit = async (contentDir) => {
   try {
     if (!process.env.GIT_URL) {
-      console.log('No GIT_URL found in environment variables, skipping content sync')
+      console.log(
+        'No GIT_URL found in environment variables, skipping content sync',
+      )
       return
     }
     const gitUrl = process.env.GIT_URL
     await runBashCommand(
-      `git clone --depth 1 --single-branch ${gitUrl} ${contentDir + '/blog-tmp'}`
+      `git clone --depth 1 --single-branch ${gitUrl} ${contentDir + '/blog-tmp'}`,
     )
     console.log('✅ Synced content files from git successfully!')
     mkdirSync(contentDir + '/blog', { recursive: true })
     cpSync(contentDir + '/blog-tmp/blog-posts/', contentDir + '/blog', {
       recursive: true,
     })
-    cpSync(contentDir + '/blog-tmp/static/images/', process.cwd() + '/public/static/images', {
-      recursive: true,
-    })
+    cpSync(
+      contentDir + '/blog-tmp/static/images/',
+      process.cwd() + '/public/static/images',
+      {
+        recursive: true,
+      },
+    )
     readdirSync(contentDir + '/blog', { recursive: true }).forEach((file) => {
       if (file.endsWith('.md')) {
         renameSync(
           contentDir + `/blog/${file}`,
-          contentDir + `/blog/${file.replace('.md', '.mdx')}`
+          contentDir + `/blog/${file.replace('.md', '.mdx')}`,
         )
       }
     })

@@ -30,7 +30,11 @@ const headerNavLinks: HeaderNavLink[] = [
     logo: <PenTool className="size-4" />,
     children: [
       { href: '/blog', title: '所有', logo: <FileText className="size-4" /> },
-      { href: '/categories', title: '分类', logo: <Package className="size-4" /> },
+      {
+        href: '/categories',
+        title: '分类',
+        logo: <Package className="size-4" />,
+      },
       { href: '/tags', title: '标签', logo: <Tag className="size-4" /> },
     ],
   },

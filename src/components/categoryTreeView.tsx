@@ -64,7 +64,9 @@ function TreeNodeComponent({
           {Object.keys(node.children).length > 0 && (
             <div
               className="transform transition-transform duration-200 hover:text-blue-11"
-              style={{ transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}
+              style={{
+                transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
+              }}
             >
               <ChevronRight className="h-5 w-5" />
             </div>

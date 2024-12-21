@@ -25,7 +25,12 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   })
   if (!response.ok) {
     return NextResponse.json(
-      { message: 'Failed to get comments', details: [], code: 400, raw: await response.json() },
+      {
+        message: 'Failed to get comments',
+        details: [],
+        code: 400,
+        raw: await response.json(),
+      },
       { status: 400 }
     )
   }
