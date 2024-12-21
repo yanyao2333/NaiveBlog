@@ -7,7 +7,7 @@ export interface BangumiUserCollection {
 
 export interface Item {
   updated_at: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: 我太懒了！有空替换成 unknown！
   comment: any
   tags: string[]
   subject: Subject

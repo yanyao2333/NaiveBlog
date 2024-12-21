@@ -2,12 +2,23 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["src/components/ui/*.tsx", "node_modules", ".next", ".contentlayer", ".coverage"]
+    "ignore": [
+      "src/components/ui/*.tsx",
+      "node_modules",
+      ".next",
+      ".contentlayer",
+      "coverage",
+      "public",
+      "src/css/LXGWWenKai-Regular/*",
+      ".million",
+      ".aider*",
+      "temp"
+    ]
   },
   "vcs": {
     "enabled": false,
     "clientKind": "git",
-    "useIgnoreFile": false
+    "useIgnoreFile": true
   },
   "linter": {
     "enabled": true,
@@ -19,7 +30,9 @@
       "style": {},
       "a11y": {
         "useSemanticElements": "off",
-        "useKeyWithClickEvents": "off"
+        "useKeyWithClickEvents": "off",
+        "useButtonType": "off",
+        "noSvgWithoutTitle": "off"
       },
       "correctness": {
         "noUnusedImports": "error"
@@ -33,6 +46,9 @@
             "functions": ["clsx", "cva", "cn"]
           }
         }
+      },
+      "complexity": {
+        "noForEach": "warn"
       }
     }
   },

@@ -12,10 +12,10 @@ import { sortPosts } from '@/utils/postsUtils'
 import type { Authors, Blog } from 'contentlayer/generated'
 import { allAuthors, allBlogs } from 'contentlayer/generated'
 import 'katex/dist/katex.css'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { allCoreContent, coreContent } from 'pliny/utils/contentlayer'
-import { Toc } from 'src/mdx-plugins/toc'
+import type { Toc } from 'src/mdx-plugins/toc'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -56,23 +56,35 @@ export async function generateMetadata(props: {
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
       url: './',
-      images: { url: ogImg, alt: `Opengraph image for ${post.title}`, type: 'image/png' },
+      images: {
+        url: ogImg,
+        alt: `Opengraph image for ${post.title}`,
+        type: 'image/png',
+      },
       authors: authors.length > 0 ? authors : [siteMetadata.author],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.summary,
-      images: { url: ogImg, alt: `Opengraph image for ${post.title}`, type: 'image/png' },
+      images: {
+        url: ogImg,
+        alt: `Opengraph image for ${post.title}`,
+        type: 'image/png',
+      },
     },
   }
 }
 
 export const generateStaticParams = async () => {
-  return allBlogs.map((p) => ({ slug: p.slug.split('/').map((name) => decodeURI(name)) }))
+  return allBlogs.map((p) => ({
+    slug: p.slug.split('/').map((name) => decodeURI(name)),
+  }))
 }
 
-export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
+export default async function Page(props: {
+  params: Promise<{ slug: string[] }>
+}) {
   const params = await props.params
   const slug = decodeURI(params.slug.join('/'))
   // Filter out drafts in production
@@ -92,7 +104,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   })
   const mainContent = coreContent(post)
   const jsonLd = post.structuredData
-  jsonLd['author'] = authorDetails.map((author) => {
+  jsonLd.author = authorDetails.map((author) => {
     return {
       '@type': 'Person',
       name: author.name,
@@ -105,11 +117,21 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
     return (
       <>
         <script
-          type="application/ld+json"
+          type='application/ld+json'
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
-          {post.password ? <PasswordInput /> : '该文章为私密且没有设置密码，不能给你看哦~'}
+        <Layout
+          content={mainContent}
+          authorDetails={authorDetails}
+          next={next}
+          prev={prev}
+        >
+          {post.password ? (
+            <PasswordInput />
+          ) : (
+            '该文章为私密且没有设置密码，不能给你看哦~'
+          )}
         </Layout>
       </>
     )
@@ -118,14 +140,23 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   return (
     <>
       <script
-        type="application/ld+json"
+        type='application/ld+json'
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+      <Layout
+        content={mainContent}
+        authorDetails={authorDetails}
+        next={next}
+        prev={prev}
+      >
         <TOCInline toc={post.toc as unknown as Toc} />
         {post.toc.length > 0 && <hr />}
         <LightGalleryWrapper>
-          <MdxComponentRenderer doc={post} mdxComponents={components} />
+          <MdxComponentRenderer
+            doc={post}
+            mdxComponents={components}
+          />
         </LightGalleryWrapper>
       </Layout>
     </>

@@ -1,6 +1,6 @@
 'use client'
 import PageTitle from '@/components/PageTitle'
-import { Memo } from '@/types/memos'
+import type { Memo } from '@/types/memos'
 import clsx from 'clsx'
 import 'lightgallery/css/lg-thumbnail.css'
 import 'lightgallery/css/lg-zoom.css'
@@ -77,23 +77,38 @@ export default function MemosPage() {
   }, [])
 
   return (
-    <div className="flex flex-col w-full">
-      <PageTitle title="Memories" subtitle="人生三大乐事：梗图、发癫与暴论" />
-      <div className={clsx('flex flex-col w-full', hasLoaded && ' appear-animate')}>
-        {memos ? memos.map((memo) => <MemoRowComponent memo={memo} key={memo.uid} />) : null}
+    <div className='flex w-full flex-col'>
+      <PageTitle
+        title='Memories'
+        subtitle='人生三大乐事：梗图、发癫与暴论'
+      />
+      <div
+        className={clsx('flex w-full flex-col', hasLoaded && ' appear-animate')}
+      >
+        {memos
+          ? memos.map((memo) => (
+              <MemoRowComponent
+                memo={memo}
+                key={memo.uid}
+              />
+            ))
+          : null}
       </div>
-      <div ref={loadMoreRef} className={'h-[1px]'}></div>
+      <div
+        ref={loadMoreRef}
+        className={'h-[1px]'}
+      />
       <button
         onClick={onClickFetchMore}
         disabled={isLoading}
-        className="mt-3 justify-center text-blue-11 dark:text-skydark-11"
+        className='mt-3 justify-center text-blue-11 dark:text-skydark-11'
       >
         {isLoading ? (
-          <div className="mx-auto mt-3 w-6">
+          <div className='mx-auto mt-3 w-6'>
             {/*<LoadSpinner />*/}
-            <span className="relative flex size-6">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75"></span>
-              <span className="relative inline-flex size-6 rounded-full bg-blue-8"></span>
+            <span className='relative flex size-6'>
+              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-9 opacity-75' />
+              <span className='relative inline-flex size-6 rounded-full bg-blue-8' />
             </span>
           </div>
         ) : (

@@ -8,16 +8,20 @@ const POSTS_PER_PAGE = 5
 
 export const generateStaticParams = async () => {
   const totalPages = Math.ceil(allBlogs.length / POSTS_PER_PAGE)
-  return Array.from({ length: totalPages }, (_, i) => ({ page: (i + 1).toString() }))
+  return Array.from({ length: totalPages }, (_, i) => ({
+    page: (i + 1).toString(),
+  }))
 }
 
-export default async function Page(props: { params: Promise<{ page: string }> }) {
+export default async function Page(props: {
+  params: Promise<{ page: string }>
+}) {
   const params = await props.params
   const posts = allCoreContent(sortPosts(allBlogs))
-  const pageNumber = parseInt(params.page as string)
+  const pageNumber = Number.parseInt(params.page as string)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
-    POSTS_PER_PAGE * pageNumber
+    POSTS_PER_PAGE * pageNumber,
   )
   const pagination = {
     currentPage: pageNumber,
@@ -33,7 +37,7 @@ export default async function Page(props: { params: Promise<{ page: string }> })
       posts={posts}
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="博文"
+      title='博文'
     />
   )
 }

@@ -6,10 +6,12 @@ import 'lightgallery/css/lightgallery.css'
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import LightGallery from 'lightgallery/react'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 // 提供给博文界面的 light gallery 包装
-export default function LightGalleryWrapper({ children }: { children: ReactNode }) {
+export default function LightGalleryWrapper({
+  children,
+}: { children: ReactNode }) {
   return (
     <LightGallery
       speed={500}

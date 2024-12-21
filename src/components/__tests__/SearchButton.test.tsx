@@ -14,7 +14,7 @@ vi.mock('kbar', () => ({
 
 // Mock SearchIcon
 vi.mock('lucide-react', () => ({
-  SearchIcon: () => <div data-testid="search-icon">Search Icon</div>,
+  SearchIcon: () => <div data-testid='search-icon'>Search Icon</div>,
 }))
 
 describe('SearchButton 组件', () => {

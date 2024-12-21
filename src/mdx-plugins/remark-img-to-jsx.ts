@@ -1,6 +1,6 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { sync as sizeOf } from 'probe-image-size'
-import { Literal, Node, Parent } from 'unist'
+import type { Literal, Node, Parent } from 'unist'
 import { visit } from 'unist-util-visit'
 
 export type ImageNode = Parent & {
@@ -20,14 +20,19 @@ export function remarkImgToJsx() {
       tree,
       // only visit p tags that contain an img element
       (node: Parent): node is Parent =>
-        node.type === 'paragraph' && node.children.some((n) => n.type === 'image'),
+        node.type === 'paragraph' &&
+        node.children.some((n) => n.type === 'image'),
       (node: Parent) => {
-        const imageNodeIndex = node.children.findIndex((n) => n.type === 'image')
+        const imageNodeIndex = node.children.findIndex(
+          (n) => n.type === 'image',
+        )
         const imageNode = node.children[imageNodeIndex] as ImageNode
 
         // only local files
         if (fs.existsSync(`${process.cwd()}/public${imageNode.url}`)) {
-          const dimensions = sizeOf(fs.readFileSync(`${process.cwd()}/public${imageNode.url}`))
+          const dimensions = sizeOf(
+            fs.readFileSync(`${process.cwd()}/public${imageNode.url}`),
+          )
 
           // Convert original node to next/image
           imageNode.type = 'mdxJsxFlowElement'
@@ -36,7 +41,11 @@ export function remarkImgToJsx() {
             { type: 'mdxJsxAttribute', name: 'alt', value: imageNode.alt },
             { type: 'mdxJsxAttribute', name: 'src', value: imageNode.url },
             { type: 'mdxJsxAttribute', name: 'width', value: dimensions.width },
-            { type: 'mdxJsxAttribute', name: 'height', value: dimensions.height },
+            {
+              type: 'mdxJsxAttribute',
+              name: 'height',
+              value: dimensions.height,
+            },
             { type: 'mdxJsxAttribute', name: 'date-src', value: imageNode.url },
           ]
 
@@ -44,7 +53,7 @@ export function remarkImgToJsx() {
           node.children[imageNodeIndex] = imageNode
           // console.log(JSON.stringify(node, null, 2))
         }
-      }
+      },
     )
   }
 }

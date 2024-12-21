@@ -9,7 +9,9 @@ const renderWithTooltipProvider = (ui: React.ReactElement) => {
 
 describe('LinkWithTooltip 组件', () => {
   it('应该正确渲染内部链接', () => {
-    renderWithTooltipProvider(<LinkWithTooltip href="/blog/test">Internal Link</LinkWithTooltip>)
+    renderWithTooltipProvider(
+      <LinkWithTooltip href='/blog/test'>Internal Link</LinkWithTooltip>,
+    )
 
     const link = screen.getByRole('link', { name: /Internal Link/ })
     expect(link).toBeInTheDocument()
@@ -19,7 +21,9 @@ describe('LinkWithTooltip 组件', () => {
 
   it('应该正确渲染外部链接', () => {
     renderWithTooltipProvider(
-      <LinkWithTooltip href="https://example.com">External Link</LinkWithTooltip>
+      <LinkWithTooltip href='https://example.com'>
+        External Link
+      </LinkWithTooltip>,
     )
 
     const link = screen.getByRole('link', { name: /External Link/ })
@@ -30,7 +34,9 @@ describe('LinkWithTooltip 组件', () => {
   })
 
   it('应该正确渲染锚点链接', () => {
-    renderWithTooltipProvider(<LinkWithTooltip href="#section">Anchor Link</LinkWithTooltip>)
+    renderWithTooltipProvider(
+      <LinkWithTooltip href='#section'>Anchor Link</LinkWithTooltip>,
+    )
 
     const link = screen.getByRole('link', { name: /Anchor Link/ })
     expect(link).toBeInTheDocument()

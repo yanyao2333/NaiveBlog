@@ -1,8 +1,8 @@
-import { mkdirSync, writeFileSync } from 'fs'
+import { mkdirSync, writeFileSync } from 'node:fs'
+import path from 'node:path'
 import { slug } from 'github-slugger'
-import path from 'path'
 import { sortPosts } from 'pliny/utils/contentlayer.js'
-import { escape } from 'pliny/utils/htmlEscaper.js'
+import { escape as escaper } from 'pliny/utils/htmlEscaper.js'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
@@ -33,29 +33,31 @@ const generateRssItem = async (config, post) => {
   return `
     <item>
       <guid>${config.siteUrl}/blog/${post.slug}</guid>
-      <title>${escape(post.title)}</title>
+      <title>${escaper(post.title)}</title>
       <link>${config.siteUrl}/blog/${post.slug}</link>
       ${`<description><![CDATA[${description}]]></description>`}
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <author>${config.email} (${config.author})</author>
-      ${post.tags && post.tags.map((t) => `<category>${t}</category>`).join('')}
+      ${post.tags?.map((t) => `<category>${t}</category>`).join('')}
     </item>
   `
 }
 
 // RSS template
 const generateRss = async (config, posts, page = 'feed.xml') => {
-  const items = await Promise.all(posts.map((post) => generateRssItem(config, post)))
+  const items = await Promise.all(
+    posts.map((post) => generateRssItem(config, post)),
+  )
   return `
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
       <channel>
-        <title>${escape(config.title)}</title>
+        <title>${escaper(config.title)}</title>
         <link>${config.siteUrl}/blog</link>
         <follow_challenge>
           <feedId>88493428931156992</feedId>
           <userId>62129560289424384</userId>
         </follow_challenge>
-        <description>${escape(config.description)}</description>
+        <description>${escaper(config.description)}</description>
         <language>${config.language}</language>
         <managingEditor>${config.email} (${config.author})</managingEditor>
         <webMaster>${config.email} (${config.author})</webMaster>
@@ -87,16 +89,22 @@ export function filterPosts(categoryFullName, allPosts) {
     let filteredPosts = []
     if (node.fullPath === categoryFullName) {
       filteredPosts = filteredPosts.concat(
-        sortPosts(allBlogs.filter((post) => post._raw.sourceFileDir === node.fullPath))
+        sortPosts(
+          allBlogs.filter((post) => post._raw.sourceFileDir === node.fullPath),
+        ),
       )
     }
     for (const key in node.children) {
       filteredPosts = filteredPosts.concat(
         sortPosts(
-          allBlogs.filter((post) => post._raw.sourceFileDir === node.children[key].fullPath)
-        )
+          allBlogs.filter(
+            (post) => post._raw.sourceFileDir === node.children[key].fullPath,
+          ),
+        ),
       )
-      filteredPosts = filteredPosts.concat(deeplyFilterPosts(node.children[key], allPosts))
+      filteredPosts = filteredPosts.concat(
+        deeplyFilterPosts(node.children[key], allPosts),
+      )
     }
     return filteredPosts
   }
@@ -109,7 +117,9 @@ export function filterPosts(categoryFullName, allPosts) {
 }
 
 async function generateRSS(config, allBlogs, page = 'feed.xml') {
-  const publishPosts = allBlogs.filter((post) => post.draft !== true && post.private !== true)
+  const publishPosts = allBlogs.filter(
+    (post) => post.draft !== true && post.private !== true,
+  )
   if (!(publishPosts.length > 0)) {
     console.log('No posts to generate RSS feed.')
     return
@@ -125,7 +135,9 @@ async function generateRSS(config, allBlogs, page = 'feed.xml') {
   for (const tag of Object.keys(tagData)) {
     const filteredPosts = allBlogs.filter(
       (post) =>
-        post.tags.map((t) => slug(t)).includes(tag) && post.draft !== true && post.private !== true
+        post.tags.map((t) => slug(t)).includes(tag) &&
+        post.draft !== true &&
+        post.private !== true,
     )
     if (!(filteredPosts.length > 0)) {
       console.log('No posts to generate RSS feed on this tag, continue.')
@@ -144,16 +156,26 @@ async function generateRSS(config, allBlogs, page = 'feed.xml') {
     result.push(node.fullPath)
     for (const key in node.children) {
       const child = node.children[key]
-      const getChildren = getAllCategoriesFullPath(child, fullPath + node.fullPath + '/')
+      const getChildren = getAllCategoriesFullPath(
+        child,
+        `${fullPath + node.fullPath}/`,
+      )
       result.push(...getChildren)
     }
     return result
   }
 
-  const categories = getAllCategoriesFullPath(categoryData, categoryData.fullPath)
+  const categories = getAllCategoriesFullPath(
+    categoryData,
+    categoryData.fullPath,
+  )
   for (const category of categories) {
     const filteredPosts = filterPosts(category, publishPosts)
-    const rss = await generateRss(config, filteredPosts, `categories/${category}/${page}`)
+    const rss = await generateRss(
+      config,
+      filteredPosts,
+      `categories/${category}/${page}`,
+    )
     const rssPath = path.join('public', 'categories', category)
     mkdirSync(rssPath, { recursive: true })
     writeFileSync(path.join(rssPath, page), rss)

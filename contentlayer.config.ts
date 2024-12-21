@@ -1,9 +1,18 @@
-import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/source-files'
-import { existsSync, mkdirSync, writeFileSync } from 'fs'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import path from 'node:path'
+// Remark packages
+import remarkMediaCard from '@zhouhua-dev/remark-media-card'
+import {
+  type ComputedFields,
+  defineDocumentType,
+  makeSource,
+} from 'contentlayer2/source-files'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
-import path from 'path'
-import { remarkCodeTitles, remarkExtractFrontmatter } from 'pliny/mdx-plugins/index.js'
+import {
+  remarkCodeTitles,
+  remarkExtractFrontmatter,
+} from 'pliny/mdx-plugins/index.js'
 import readingTime from 'reading-time'
 // Rehype packages
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -12,8 +21,6 @@ import rehypeKatex from 'rehype-katex'
 import rehypePresetMinify from 'rehype-preset-minify'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeSlug from 'rehype-slug'
-// Remark packages
-import remarkMediaCard from '@zhouhua-dev/remark-media-card'
 import remarkGfm from 'remark-gfm'
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkMath from 'remark-math'
@@ -37,7 +44,7 @@ const icon = fromHtmlIsomorphic(
   </svg>
   </span>
 `,
-  { fragment: true }
+  { fragment: true },
 )
 
 const computedFields: ComputedFields = {
@@ -72,17 +79,20 @@ function createCategoryTree(allBlogs) {
     count: 0,
     children: {},
     desc: '博客所有文章',
-    showName: categoryMapping['blog'] ? categoryMapping['blog'].show : 'Blog',
+    showName: categoryMapping.blog ? categoryMapping.blog.show : 'Blog',
     fullPath: 'blog',
   }
 
   allBlogs.forEach((file) => {
     if (file._raw.sourceFileDir && (!isProduction || file.draft !== true)) {
-      if (file._raw.sourceFileDir == 'blog') {
+      if (file._raw.sourceFileDir === 'blog') {
         root.count += 1
         return
       }
-      const relativePath: string = file._raw.sourceFileDir.replace(/^blog\//, '')
+      const relativePath: string = file._raw.sourceFileDir.replace(
+        /^blog\//,
+        '',
+      )
       const pathParts = relativePath.split('/')
       let currentNode = root
 
@@ -133,8 +143,10 @@ function createTagCount(allBlogs) {
 
 function createSearchIndex(allBlogs) {
   const blogs = sortPosts(filterVisiablePosts(allBlogs))
-  blogs.map((blog) => (blog.body.code = ''))
-  writeFileSync(`public/search.json`, JSON.stringify(blogs))
+  for (const blog of blogs) {
+    blog.body.code = ''
+  }
+  writeFileSync('public/search.json', JSON.stringify(blogs))
   console.log('✅ Search index generated successfully')
 }
 

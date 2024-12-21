@@ -118,6 +118,9 @@ describe('ScrollTopAndComment 组件', () => {
 
     unmount()
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function))
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      'scroll',
+      expect.any(Function),
+    )
   })
 })

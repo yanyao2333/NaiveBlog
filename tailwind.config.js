@@ -98,7 +98,7 @@ module.exports = {
             a: {
               // color: theme('colors.primary.500'),
               '&:hover': {
-                color: `hsl(208, 88%, 43%)`,
+                color: 'hsl(208, 88%, 43%)',
               },
               // code: { color: theme('colors.blue.11') },
             },
@@ -110,7 +110,7 @@ module.exports = {
               fontWeight: '600',
             },
             code: {
-              color: `hsl(208, 88%, 43%)`,
+              color: 'hsl(208, 88%, 43%)',
             },
           },
         },
@@ -119,12 +119,12 @@ module.exports = {
             a: {
               // color: theme('colors.primary.500'),
               '&:hover': {
-                color: `hsl(210, 100%, 72%)`,
+                color: 'hsl(210, 100%, 72%)',
               },
               // code: { color: theme('colors.primary.400') },
             },
             code: {
-              color: `hsl(210, 100%, 72%)`,
+              color: 'hsl(210, 100%, 72%)',
             },
             // 'h1,h2,h3,h4,h5,h6': {
             //   color: theme('colors.gray.100'),

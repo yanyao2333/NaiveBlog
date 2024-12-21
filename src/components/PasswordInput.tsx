@@ -1,7 +1,7 @@
 'use client'
 
 import { components } from '@/components/MDXComponents'
-import { Blog } from 'contentlayer/generated'
+import type { Blog } from 'contentlayer/generated'
 import { usePathname } from 'next/navigation'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { useState } from 'react'
@@ -31,43 +31,52 @@ export default function PasswordInput() {
       })
       .catch((e) => {
         toast.error('获取密码时出错，请重试！')
-        console.error('获取密码时出错，报错信息：' + e)
+        console.error(`获取密码时出错，报错信息：${e}`)
         setVerified(false)
         setBlog(undefined)
       })
   }
 
   if (verified && blog) {
-    return <MDXLayoutRenderer code={blog.body.code} components={components} toc={blog.toc} />
+    return (
+      <MDXLayoutRenderer
+        code={blog.body.code}
+        components={components}
+        toc={blog.toc}
+      />
+    )
   }
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className='flex w-full flex-col items-center'>
       本文需要密码才能查看，请输入密码~
-      <div className="mt-3 flex w-full justify-center">
-        <label hidden htmlFor="password-field">
+      <div className='mt-3 flex w-full justify-center'>
+        <label
+          hidden
+          htmlFor='password-field'
+        >
           Password
         </label>
         <input
-          type="password"
-          id="password-field"
+          type='password'
+          id='password-field'
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               verifyPassword(password, path)
             }
           }}
-          className="rounded-l max-w-[200px] sm:max-w-[300px] border border-slate-6 border-r-0 bg-slate-3 px-4 py-2 text-slate-12 dark:bg-slatedark-3 dark:text-slatedark-12"
+          className='max-w-[200px] rounded-l border border-slate-6 border-r-0 bg-slate-3 px-4 py-2 text-slate-12 sm:max-w-[300px] dark:bg-slatedark-3 dark:text-slatedark-12'
           onChange={(e) => setPassword(e.target.value)}
         />
         <div
-          role="button"
+          role='button'
           tabIndex={0}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               verifyPassword(password, path)
             }
           }}
-          className="w-12 text-center border border-l-0 flex-shrink-0 border-slate-6 content-center cursor-pointer rounded-r bg-blue-7 dark:bg-skydark-7 dark:hover:bg-skydark-8 font-bold text-slate-11 dark:text-slatedark-11 hover:bg-blue-8"
+          className='w-12 flex-shrink-0 cursor-pointer content-center rounded-r border border-slate-6 border-l-0 bg-blue-7 text-center font-bold text-slate-11 hover:bg-blue-8 dark:bg-skydark-7 dark:text-slatedark-11 dark:hover:bg-skydark-8'
           onClick={() => verifyPassword(password, path)}
         >
           &rarr;

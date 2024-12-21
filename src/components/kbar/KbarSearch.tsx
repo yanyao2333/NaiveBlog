@@ -5,7 +5,7 @@ import type { Action } from 'kbar'
 import { KBarProvider } from 'kbar'
 // @ts-ignore
 import { useRouter } from 'nextjs-toploader/app'
-import { MDXDocument } from 'pliny/src/utils/contentlayer'
+import type { MDXDocument } from 'pliny/src/utils/contentlayer'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 export const KBarSearchProvider = ({ children }) => {
@@ -26,12 +26,12 @@ export const KBarSearchProvider = ({ children }) => {
           keywords: post.body.raw,
           section: 'Blog',
           subtitle: formatDate(post.date),
-          perform: () => router.push('/' + post.path),
+          perform: () => router.push(`/${post.path}`),
         })
       }
       return actions
     },
-    [router]
+    [router],
   )
 
   useEffect(() => {
@@ -47,16 +47,19 @@ export const KBarSearchProvider = ({ children }) => {
     if (!dataLoaded && searchDocumentsPath) {
       fetchData()
     }
-  }, [router, searchDocumentsPath, mapPosts, dataLoaded])
+  }, [mapPosts, dataLoaded])
 
   const memoizedProvider = useMemo(
     () => (
       <KBarProvider actions={defaultActions}>
-        <KBarModal actions={searchActions} isLoading={!dataLoaded} />
+        <KBarModal
+          actions={searchActions}
+          isLoading={!dataLoaded}
+        />
         {children}
       </KBarProvider>
     ),
-    [defaultActions, searchActions, dataLoaded, children]
+    [defaultActions, searchActions, dataLoaded, children],
   )
 
   return memoizedProvider

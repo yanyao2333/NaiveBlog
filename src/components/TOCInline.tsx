@@ -1,5 +1,5 @@
 /** From https://github.com/timlrx/pliny */
-import { Toc, TocItem } from '@/mdx-plugins/toc'
+import type { Toc, TocItem } from '@/mdx-plugins/toc'
 
 export interface TOCInlineProps {
   toc: Toc
@@ -18,7 +18,7 @@ export const createNestedList = (items: TocItem[]): NestedTocItem[] => {
   const nestedList: NestedTocItem[] = []
   const stack: NestedTocItem[] = []
 
-  items.forEach((item) => {
+  for (const item of items) {
     const newItem: NestedTocItem = { ...item, children: [] }
 
     while (stack.length > 0 && stack[stack.length - 1].depth >= newItem.depth) {
@@ -35,7 +35,7 @@ export const createNestedList = (items: TocItem[]): NestedTocItem[] => {
     }
 
     stack.push(newItem)
-  })
+  }
 
   return nestedList
 }
@@ -70,12 +70,13 @@ const TOCInline = ({
   collapse = false,
 }: TOCInlineProps) => {
   const re = Array.isArray(exclude)
-    ? new RegExp('^(' + exclude.join('|') + ')$', 'i')
-    : new RegExp('^(' + exclude + ')$', 'i')
+    ? new RegExp(`^(${exclude.join('|')})$`, 'i')
+    : new RegExp(`^(${exclude})$`, 'i')
 
   const filteredToc = toc.filter((heading) => {
     const isExcluded = re.test(heading.value)
-    const isWithinRange = heading.depth >= fromHeading && heading.depth <= toHeading
+    const isWithinRange =
+      heading.depth >= fromHeading && heading.depth <= toHeading
 
     if (isExcluded) {
       // 如果父标题被排除，则排除所有子标题
@@ -93,8 +94,11 @@ const TOCInline = ({
     return (
       <ul className={''}>
         {items.map((item, index) => (
-          <li key={index}>
-            <a className=" underline-offset-2" href={item.url}>
+          <li key={`${item.value}_${index}`}>
+            <a
+              className=' underline-offset-2'
+              href={item.url}
+            >
               {item.value}
             </a>
             {createList(item.children)}
@@ -110,8 +114,8 @@ const TOCInline = ({
     <>
       {asDisclosure ? (
         <details open={!collapse}>
-          <summary className="ml-6 pb-2 pt-2 text-xl font-bold">目录</summary>
-          <div className="ml-6">{createList(nestedList)}</div>
+          <summary className='ml-6 pt-2 pb-2 font-bold text-xl'>目录</summary>
+          <div className='ml-6'>{createList(nestedList)}</div>
         </details>
       ) : (
         createList(nestedList)
