@@ -16,6 +16,7 @@ import { CommentsList } from './memoComments'
 export const MemoRowComponent = memo(function MemoRowComponent({
   memo,
 }: { memo: Memo }) {
+  console.log('Rendering memo:', memo.name);
   const [showComments, setShowComments] = useState(false)
   const [comments, setComments] = useState<Memo[]>([])
   const [isLoadingComments, setIsLoadingComments] = useState(false)

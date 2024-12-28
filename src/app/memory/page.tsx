@@ -108,7 +108,7 @@ export default function MemosPage() {
           ? memos.map((memo) => (
               <MemoRowComponent
                 memo={memo}
-                key={memo.uid}
+                key={memo.name}
               />
             ))
           : null}
