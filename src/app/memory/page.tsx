@@ -5,10 +5,11 @@ import clsx from 'clsx'
 import 'lightgallery/css/lg-thumbnail.css'
 import 'lightgallery/css/lg-zoom.css'
 import 'lightgallery/css/lightgallery.css'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { clearNextPageToken, fetchMemos } from './fetchFunctions'
 import { MemoRowComponent } from './singleMemoRow'
+import Link from 'next/link'
 
 /**
  * Memos页面
@@ -76,11 +77,29 @@ export default function MemosPage() {
     }
   }, [])
 
+  const subtitle = useMemo(
+    () => (
+      <>
+        <p>人生三大乐事：梗图、发癫与暴论</p>
+        <Link
+          href={
+            process.env.NEXT_PUBLIC_MEMOS_ENDPOINT
+              ? process.env.NEXT_PUBLIC_MEMOS_ENDPOINT
+              : '#'
+          }
+        >
+          test
+        </Link>
+      </>
+    ),
+    [],
+  )
+
   return (
     <div className='flex w-full flex-col'>
       <PageTitle
         title='Memories'
-        subtitle='人生三大乐事：梗图、发癫与暴论'
+        subtitle={subtitle}
       />
       <div
         className={clsx('flex w-full flex-col', hasLoaded && ' appear-animate')}
