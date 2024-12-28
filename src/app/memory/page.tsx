@@ -5,11 +5,12 @@ import clsx from 'clsx'
 import 'lightgallery/css/lg-thumbnail.css'
 import 'lightgallery/css/lg-zoom.css'
 import 'lightgallery/css/lightgallery.css'
+import { ArrowUpRightFromCircle } from 'lucide-react'
+import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { clearNextPageToken, fetchMemos } from './fetchFunctions'
 import { MemoRowComponent } from './singleMemoRow'
-import Link from 'next/link'
 
 /**
  * Memos页面
@@ -82,25 +83,34 @@ export default function MemosPage() {
       <>
         <p>人生三大乐事：梗图、发癫与暴论</p>
         <Link
+          className='text-slate-11 text-sm hover:text-blue-11 dark:text-slatedark-11'
           href={
             process.env.NEXT_PUBLIC_MEMOS_ENDPOINT
               ? process.env.NEXT_PUBLIC_MEMOS_ENDPOINT
               : '#'
           }
         >
-          test
+          访问 Memos 网页 &nbsp;
+          <ArrowUpRightFromCircle className='inline size-3' />
         </Link>
       </>
     ),
     [],
   )
 
-  return (
-    <div className='flex w-full flex-col'>
+  const memoizedPageTitle = useMemo(
+    () => (
       <PageTitle
         title='Memories'
         subtitle={subtitle}
       />
+    ),
+    [subtitle],
+  )
+
+  return (
+    <div className='flex w-full flex-col'>
+      {memoizedPageTitle}
       <div
         className={clsx('flex w-full flex-col', hasLoaded && ' appear-animate')}
       >

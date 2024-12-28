@@ -16,7 +16,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       { status: 400 },
     )
   }
-  console.log(process.env.MEMOS_ACCESS_TOKEN)
+  // console.log(process.env.MEMOS_ACCESS_TOKEN)
   const apiEndpoint = process.env.NEXT_PUBLIC_MEMOS_ENDPOINT?.replace(/\/$/, '')
   const response = await fetch(`${apiEndpoint}/api/v1/${name}/comments`, {
     headers: {

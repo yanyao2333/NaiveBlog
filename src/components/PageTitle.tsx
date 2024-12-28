@@ -26,14 +26,14 @@ const PageTitle = ({
         {title}
       </h1>
       {subtitle ? (
-        <p
+        <div
           className={twMerge(
             className,
             'break-words text-slate-11 leading-7 sm:text-lg dark:text-slatedark-11',
           )}
         >
           {subtitle}
-        </p>
+        </div>
       ) : null}
     </div>
   )
