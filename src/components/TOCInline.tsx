@@ -123,7 +123,11 @@ const TOCInline = ({
         {items.map((item, index) => (
           <li key={`${item.value}_${index}`}>
             <a
-              className=' underline-offset-2'
+              className={`underline-offset-2 ${
+                activeId === item.url.slice(1)
+                  ? 'text-blue-11 dark:text-skydark-11 font-semibold'
+                  : 'text-slate-11 hover:text-blue-11 dark:text-slatedark-11 dark:hover:text-skydark-11'
+              }`}
               href={item.url}
             >
               {item.value}
