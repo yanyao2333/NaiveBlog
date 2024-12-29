@@ -178,7 +178,10 @@ const TOCInline = ({
   return (
     <>
       {asDisclosure ? (
-        <details open={!collapse}>
+        <details
+          open={!collapse}
+          className='h-min'
+        >
           <summary className='ml-6 pt-2 pb-2 font-bold text-xl'>目录</summary>
           <div className='ml-6'>{createList(nestedList)}</div>
         </details>

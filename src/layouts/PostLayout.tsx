@@ -1,6 +1,6 @@
+import ScrollTopAndComment from '@/components/ArticlePageButtonGroup'
 import Image from '@/components/Image'
 import PageTitle from '@/components/PageTitle'
-import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import TOCInline from '@/components/TOC'
 import '@/css/markdown.css'
 import categoryMapping from '@/data/category-mapping'
@@ -119,7 +119,7 @@ export default function PostLayout({
 
   return (
     <>
-      <ScrollTopAndComment />
+      <ScrollTopAndComment toc={content.toc as unknown as Toc} />
       <article>
         <div className='mx-auto lg:divide-y lg:divide-slate-5 lg:dark:divide-slatedark-5'>
           <header className='pt-6 lg:pb-6'>

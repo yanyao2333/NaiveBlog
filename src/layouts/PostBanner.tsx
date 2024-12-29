@@ -1,6 +1,6 @@
+import ScrollTopAndComment from '@/components/ArticlePageButtonGroup'
 import Image from '@/components/Image'
 import PageTitle from '@/components/PageTitle'
-import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import SectionContainer from '@/components/SectionContainer'
 import '@/css/markdown.css'
 import siteMetadata from '@/data/siteMetadata'

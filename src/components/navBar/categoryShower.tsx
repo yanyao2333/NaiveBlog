@@ -95,7 +95,7 @@ const CategoryDrawer = memo(function CategoryDrawer() {
       >
         <FolderArchive className='size-4' /> 分类
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent aria-describedby='categoryDrawer'>
         <DrawerHeader>
           <DrawerTitle>想去哪？</DrawerTitle>
           {/* <DrawerDescription></DrawerDescription> */}

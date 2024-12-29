@@ -128,7 +128,7 @@ const TagDrawer = memo(function TagDrawer() {
       >
         <TagIcon className='size-4' /> 标签
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent aria-describedby='tagDrawer'>
         <DrawerHeader>
           <DrawerTitle>想去哪？</DrawerTitle>
           {/* <DrawerDescription></DrawerDescription> */}
