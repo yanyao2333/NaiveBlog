@@ -1,6 +1,5 @@
 'use client'
 import type { Toc, TocItem } from '@/mdx-plugins/toc'
-/** From https://github.com/timlrx/pliny */
 import { useEffect, useRef, useState } from 'react'
 
 export interface TOCInlineProps {
@@ -71,23 +70,51 @@ const TOCInline = ({
   exclude = '',
   collapse = false,
 }: TOCInlineProps) => {
+  const re = Array.isArray(exclude)
+    ? new RegExp(`^(${exclude.join('|')})$`, 'i')
+    : new RegExp(`^(${exclude})$`, 'i')
+
+  const filteredToc = toc.filter((heading) => {
+    const isExcluded = re.test(heading.value)
+    const isWithinRange =
+      heading.depth >= fromHeading && heading.depth <= toHeading
+
+    if (isExcluded) {
+      return false
+    }
+
+    return isWithinRange
+  })
+
   const [activeId, setActiveId] = useState<string | null>(null)
   const observer = useRef<IntersectionObserver | null>(null)
+  const lastIntersectingId = useRef<string | null>(null)
+  const clickedId = useRef<string | null>(null)
 
   useEffect(() => {
     const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
 
     observer.current = new IntersectionObserver(
       (entries) => {
+        const intersectingHeadings: { id: string; ratio: number }[] = []
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
+            intersectingHeadings.push({
+              id: entry.target.id,
+              ratio: entry.intersectionRatio,
+            })
           }
+        }
+
+        if (intersectingHeadings.length > 0) {
+          intersectingHeadings.sort((a, b) => b.ratio - a.ratio)
+          lastIntersectingId.current = intersectingHeadings[0].id
+          if (!clickedId.current) setActiveId(lastIntersectingId.current)
         }
       },
       {
-        rootMargin: '0px 0px -80% 0px',
-        threshold: 1,
+        rootMargin: '-80px 0px 0px 0px',
+        threshold: 0.9,
       },
     )
 
@@ -99,22 +126,22 @@ const TOCInline = ({
       observer.current?.disconnect()
     }
   }, [])
-  const re = Array.isArray(exclude)
-    ? new RegExp(`^(${exclude.join('|')})$`, 'i')
-    : new RegExp(`^(${exclude})$`, 'i')
 
-  const filteredToc = toc.filter((heading) => {
-    const isExcluded = re.test(heading.value)
-    const isWithinRange =
-      heading.depth >= fromHeading && heading.depth <= toHeading
+  const handleItemClick = (id: string) => {
+    clickedId.current = id
+    setActiveId(id)
+    window.location.hash = `#${id}`
 
-    if (isExcluded) {
-      // 如果父标题被排除，则排除所有子标题
-      return false
+    const targetElement = document.getElementById(id)
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+      })
     }
-
-    return isWithinRange
-  })
+    setTimeout(() => {
+      clickedId.current = null
+    }, 500)
+  }
 
   const createList = (items: NestedTocItem[] | undefined) => {
     if (!items || items.length === 0) {
@@ -132,6 +159,10 @@ const TOCInline = ({
                   : 'text-slate-11 hover:text-blue-11 dark:text-slatedark-11 dark:hover:text-skydark-11'
               }`}
               href={item.url}
+              onClick={(e) => {
+                e.preventDefault() // Prevent default anchor behavior
+                handleItemClick(item.url.slice(1))
+              }}
             >
               {item.value}
             </a>

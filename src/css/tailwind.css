@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 留出导航栏的间隔 */
+html {
+  scroll-padding-top: 80px;
+}
+
 /* add fade-in-out animation to tooltips */
 .TooltipContent {
   animation-duration: 0.7s;
