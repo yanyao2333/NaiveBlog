@@ -4,8 +4,14 @@
 
 import siteMetadata from '@/data/siteMetadata'
 import { useEffect, useState } from 'react'
+import { TOCDrawer } from './TOCDrawer'
+import type { Toc } from '@/mdx-plugins/toc'
 
-const ScrollTopAndComment = () => {
+interface ScrollTopAndCommentProps {
+  toc?: Toc
+}
+
+const ScrollTopAndComment = ({ toc }: ScrollTopAndCommentProps) => {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -28,6 +34,7 @@ const ScrollTopAndComment = () => {
     <div
       className={`fixed right-8 bottom-8 flex-col gap-3 ${show ? 'flex' : 'hidden'} z-50`}
     >
+      {toc && <TOCDrawer toc={toc} />}
       {siteMetadata.comments?.provider && (
         <button
           aria-label='Scroll To Comment'
