@@ -1,7 +1,7 @@
 import Image from '@/components/Image'
 import PageTitle from '@/components/PageTitle'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-import TOCInline from '@/components/TOCInline'
+import TOCInline from '@/components/TOC'
 import '@/css/markdown.css'
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import TOCInline, { type TOCInlineProps, createNestedList } from '../TOCInline'
+import TOCInline, { type TOCInlineProps, createNestedList } from '../TOC'
 
 describe('内联目录', () => {
   const mockToc: TOCInlineProps['toc'] = [
