@@ -14,13 +14,13 @@ export type TocItem = {
 }
 
 export type Toc = TocItem[]
-const slugger = new GithubSlugger()
 
 /**
  * Extracts TOC headings from markdown file and adds it to the file's data object.
  */
 export function remarkTocHeadings() {
   return (tree: Parent, file: VFile) => {
+    const slugger = new GithubSlugger()
     const toc: Toc = []
     visit(tree, 'heading', (node: Heading) => {
       const textContent = toStringMdast(node)
