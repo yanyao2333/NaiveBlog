@@ -1,4 +1,5 @@
 /** From https://github.com/timlrx/pliny */
+import { useEffect, useRef, useState } from 'react'
 import type { Toc, TocItem } from '@/mdx-plugins/toc'
 
 export interface TOCInlineProps {
@@ -69,6 +70,32 @@ const TOCInline = ({
   exclude = '',
   collapse = false,
 }: TOCInlineProps) => {
+  const [activeId, setActiveId] = useState<string | null>(null)
+  const observer = useRef<IntersectionObserver | null>(null)
+
+  useEffect(() => {
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
+    
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id)
+          }
+        })
+      },
+      {
+        rootMargin: '0px 0px -80% 0px',
+        threshold: 1,
+      }
+    )
+
+    headings.forEach((heading) => observer.current?.observe(heading))
+
+    return () => {
+      observer.current?.disconnect()
+    }
+  }, [])
   const re = Array.isArray(exclude)
     ? new RegExp(`^(${exclude.join('|')})$`, 'i')
     : new RegExp(`^(${exclude})$`, 'i')
