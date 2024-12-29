@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import ScrollTopAndComment from '../ScrollTopAndComment'
+import ScrollTopAndComment from '../ArticlePageButtonGroup'
 
 // Mock siteMetadata
 vi.mock('../../data/siteMetadata', () => ({
