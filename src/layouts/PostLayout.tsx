@@ -1,9 +1,11 @@
 import Image from '@/components/Image'
 import PageTitle from '@/components/PageTitle'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import TOCInline from '@/components/TOCInline'
 import '@/css/markdown.css'
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
+import type { Toc } from '@/mdx-plugins/toc'
 import { cn } from '@/utils/classname'
 import type { Authors, Blog } from 'contentlayer/generated'
 import { slug as _slug } from 'github-slugger'
@@ -205,7 +207,7 @@ export default function PostLayout({
                 </ul>
               </dd>
             </dl>
-            <div className='divide-y divide-slate-5 lg:col-span-3 lg:row-span-2 lg:pb-0 dark:divide-slatedark-5'>
+            <div className='divide-y divide-slate-5 lg:col-span-2 lg:row-span-2 lg:pb-0 dark:divide-slatedark-5'>
               <div className='prose prose-slate dark:prose-invert mx-auto pt-10 pb-8'>
                 {children}
               </div>
@@ -230,8 +232,8 @@ export default function PostLayout({
                 </div>
               )}
             </div>
-            <footer>
-              <div className='divide-slate-5 font-medium text-sm leading-5 lg:col-start-1 lg:row-start-2 lg:divide-y dark:divide-slatedark-5'>
+            <footer className='lg:col-start-1 lg:row-start-2 lg:divide-y'>
+              <div className='divide-slate-5 font-medium text-sm leading-5 lg:divide-y dark:divide-slatedark-5'>
                 <div className='divide-slate-5 py-4 lg:divide-y lg:py-8 dark:divide-slatedark-5'>
                   <div className='mb-8'>
                     <h2 className='pb-2 text-slate-11 text-sm uppercase tracking-wide dark:text-slatedark-11'>
@@ -240,13 +242,13 @@ export default function PostLayout({
                     {categories.map((category, index) => (
                       <>
                         <span
-                          key={category.name}
+                          key={`${category.name}_span`}
                           className={cn(index !== 0 && 'mr-3')}
                         >
                           {index !== 0 && '>'}
                         </span>
                         <Link
-                          key={category.name}
+                          key={`${category.name}_link`}
                           href={category.url}
                           className='mr-3 font-medium text-slate-12 text-sm uppercase hover:text-blue-11 dark:text-slatedark-12 dark:hover:text-skydark-11'
                         >
@@ -339,6 +341,14 @@ export default function PostLayout({
                 </NextLink>
               </div>
             </footer>
+            <div className='hidden lg:col-span-1 lg:row-span-2 lg:block lg:pb-0 '>
+              <div className='prose dark:prose-invert sticky top-20 pt-10 text-sm'>
+                <h2 className='not-prose ml-5 pb-2 text-lg text-slate-11 uppercase tracking-wide dark:text-slatedark-11'>
+                  TOC
+                </h2>
+                <TOCInline toc={content.toc as unknown as Toc} />
+              </div>
+            </div>
           </div>
         </div>
       </article>

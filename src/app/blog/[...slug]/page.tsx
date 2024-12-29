@@ -2,7 +2,6 @@ import LightGalleryWrapper from '@/components/LightGalleryWrapper'
 import { components } from '@/components/MDXComponents'
 import { MdxComponentRenderer } from '@/components/MdxRenderer'
 import PasswordInput from '@/components/PasswordInput'
-import TOCInline from '@/components/TOCInline'
 import '@/css/prism.css'
 import siteMetadata from '@/data/siteMetadata'
 import PostBanner from '@/layouts/PostBanner'
@@ -15,7 +14,6 @@ import 'katex/dist/katex.css'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { allCoreContent, coreContent } from 'pliny/utils/contentlayer'
-import type { Toc } from 'src/mdx-plugins/toc'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -150,8 +148,8 @@ export default async function Page(props: {
         next={next}
         prev={prev}
       >
-        <TOCInline toc={post.toc as unknown as Toc} />
-        {post.toc.length > 0 && <hr />}
+        {/* <TOCInline toc={post.toc as unknown as Toc} />
+        {post.toc.length > 0 && <hr />} */}
         <LightGalleryWrapper>
           <MdxComponentRenderer
             doc={post}

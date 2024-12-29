@@ -1,6 +1,7 @@
+'use client'
+import type { Toc, TocItem } from '@/mdx-plugins/toc'
 /** From https://github.com/timlrx/pliny */
 import { useEffect, useRef, useState } from 'react'
-import type { Toc, TocItem } from '@/mdx-plugins/toc'
 
 export interface TOCInlineProps {
   toc: Toc
@@ -75,22 +76,24 @@ const TOCInline = ({
 
   useEffect(() => {
     const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
-    
+
     observer.current = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id)
           }
-        })
+        }
       },
       {
         rootMargin: '0px 0px -80% 0px',
         threshold: 1,
-      }
+      },
     )
 
-    headings.forEach((heading) => observer.current?.observe(heading))
+    for (const heading of headings) {
+      observer.current?.observe(heading)
+    }
 
     return () => {
       observer.current?.disconnect()
@@ -125,7 +128,7 @@ const TOCInline = ({
             <a
               className={`underline-offset-2 ${
                 activeId === item.url.slice(1)
-                  ? 'text-blue-11 dark:text-skydark-11 font-semibold'
+                  ? 'font-semibold text-blue-11 dark:text-skydark-11'
                   : 'text-slate-11 hover:text-blue-11 dark:text-slatedark-11 dark:hover:text-skydark-11'
               }`}
               href={item.url}
