@@ -2,14 +2,14 @@ import { genPageMetadata } from '@/app/seo'
 import Image from '@/components/Image'
 import PageTitle from '@/components/PageTitle'
 import SocialIcon from '@/components/svgs/social-icons'
-import { type Authors, allAuthors } from 'contentlayer/generated'
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
-import { coreContent } from 'pliny/utils/contentlayer'
+// import { MDXLayoutRenderer } from 'pliny/mdx-components'
+import { MDXContent } from '@content-collections/mdx/react'
+import { type Author, allAuthors } from 'content-collections'
 
 export const metadata = genPageMetadata({ title: 'About' })
 
 export default function Page() {
-  const author = allAuthors.find((p) => p.slug === 'default') as Authors
+  const author = allAuthors.find((p) => p.slug === 'default') as Author
   const {
     name,
     avatar,
@@ -19,7 +19,7 @@ export default function Page() {
     twitter,
     linkedin,
     github,
-  } = coreContent(author)
+  } = author
 
   return (
     <div>
@@ -64,7 +64,7 @@ export default function Page() {
           </div>
         </div>
         <article className='prose prose-slate dark:prose-invert max-w-none pt-8 pb-8 xl:col-span-2'>
-          <MDXLayoutRenderer code={author.body.code} />
+          <MDXContent code={author.mdx} />
         </article>
       </div>
     </div>

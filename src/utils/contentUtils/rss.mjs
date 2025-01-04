@@ -9,10 +9,12 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
-import { allBlogs } from '../../.contentlayer/generated/index.mjs'
-import siteMetadata from '../../data/siteMetadata.js'
-import categoryData from '../../temp/category-data.json' assert { type: 'json' }
-import tagData from '../../temp/tag-data.json' assert { type: 'json' }
+import { allBlogs } from '../../../.content-collections/index.mjs'
+import siteMetadata from '../../../data/siteMetadata.js'
+import categoryData from '../../../temp/category-data.json' assert {
+  type: 'json',
+}
+import tagData from '../../../temp/tag-data.json' assert { type: 'json' }
 
 const generateRssItemDescription = async (config, post) => {
   const body = post.body.raw
@@ -90,7 +92,7 @@ export function filterPosts(categoryFullName, allPosts) {
     if (node.fullPath === categoryFullName) {
       filteredPosts = filteredPosts.concat(
         sortPosts(
-          allBlogs.filter((post) => post._raw.sourceFileDir === node.fullPath),
+          allBlogs.filter((post) => post._meta.directory === node.fullPath),
         ),
       )
     }
@@ -98,7 +100,7 @@ export function filterPosts(categoryFullName, allPosts) {
       filteredPosts = filteredPosts.concat(
         sortPosts(
           allBlogs.filter(
-            (post) => post._raw.sourceFileDir === node.children[key].fullPath,
+            (post) => post._meta.directory === node.children[key].fullPath,
           ),
         ),
       )

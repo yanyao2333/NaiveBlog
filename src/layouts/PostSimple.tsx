@@ -3,15 +3,15 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import '@/css/markdown.css'
 import siteMetadata from '@/data/siteMetadata'
-import type { Blog } from 'contentlayer/generated'
+import type { CoreContent } from '@/utils/contentUtils/postsUtils'
+import { formatDate } from '@/utils/time'
+import type { Post } from 'content-collections'
 import Link from 'next/link'
 import { Comments as CommentsComponent } from 'pliny/comments'
-import type { CoreContent } from 'pliny/utils/contentlayer'
-import { formatDate } from 'pliny/utils/formatDate'
 import type { ReactNode } from 'react'
 
 interface LayoutProps {
-  content: CoreContent<Blog>
+  content: CoreContent<Post>
   children: ReactNode
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
@@ -36,7 +36,7 @@ export default function PostLayout({
                 <div>
                   <dt className='sr-only'>Published on</dt>
                   <dd className='font-medium text-base text-gray-500 leading-6 dark:text-gray-400'>
-                    <time dateTime={date}>
+                    <time dateTime={date.toISOString()}>
                       {formatDate(date, siteMetadata.locale)}
                     </time>
                   </dd>
@@ -62,7 +62,7 @@ export default function PostLayout({
                     />
                   </svg>
                   预计阅读时长：
-                  {Math.ceil(content.readingTime.minutes)}
+                  {Math.ceil(content.readingTime)}
                   分钟
                 </div>
               </div>

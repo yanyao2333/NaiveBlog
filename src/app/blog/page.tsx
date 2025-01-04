@@ -1,15 +1,15 @@
 import { genPageMetadata } from '@/app/seo'
 import PostsListLayout from '@/layouts/PostsListLayout'
-import { sortPosts } from '@/utils/postsUtils'
-import { allBlogs } from 'contentlayer/generated'
-import { allCoreContent } from 'pliny/utils/contentlayer'
+import { sortPostsByDate } from '@/utils/contentUtils/postsUtils'
+import { allCoreContent } from '@/utils/contentUtils/postsUtils'
+import { allPosts } from 'content-collections'
 
 const POSTS_PER_PAGE = 5
 
 export const metadata = genPageMetadata({ title: 'Blog' })
 
 export default function BlogPage() {
-  const posts = allCoreContent(sortPosts(allBlogs))
+  const posts = allCoreContent(sortPostsByDate(allPosts))
   const pageNumber = 1
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),

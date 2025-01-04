@@ -28,7 +28,10 @@ import categoryMapping from './data/category-mapping'
 import siteMetadata from './data/siteMetadata'
 import { remarkImgToJsx } from './src/mdx-plugins/remark-img-to-jsx'
 import { extractTocHeadings } from './src/mdx-plugins/toc'
-import { filterVisiablePosts, sortPosts } from './src/utils/postsUtils'
+import {
+  filterVisiablePosts,
+  sortPosts,
+} from './src/utils/contentUtils/postsUtils'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'

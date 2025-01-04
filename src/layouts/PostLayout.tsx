@@ -7,11 +7,11 @@ import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
 import type { Toc } from '@/mdx-plugins/toc'
 import { cn } from '@/utils/classname'
-import type { Authors, Blog } from 'contentlayer/generated'
+import type { CoreContent } from '@/utils/contentUtils/postsUtils'
+import type { Author, Post } from 'content-collections'
 import { slug as _slug } from 'github-slugger'
 import { default as Link, default as NextLink } from 'next/link'
 import { Comments as CommentsComponent } from 'pliny/comments'
-import type { CoreContent } from 'pliny/utils/contentlayer'
 import type { ReactNode } from 'react'
 
 const editUrl = (path: string) =>
@@ -25,8 +25,8 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
 }
 
 interface LayoutProps {
-  content: CoreContent<Blog>
-  authorDetails: CoreContent<Authors>[]
+  content: CoreContent<Post>
+  authorDetails: CoreContent<Author>[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
   children: ReactNode
@@ -112,7 +112,7 @@ export default function PostLayout({
   children,
   hideTOC,
 }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags, pinned } = content
+  const { _meta, path, slug, date, title, tags, pinned } = content
   const basePath = path.split('/')[0]
   const paths = path.split('/')
   // 去掉最后一个元素，因为它是文章名
@@ -130,7 +130,7 @@ export default function PostLayout({
                 <div>
                   <dt className='sr-only'>Published on</dt>
                   <dd className='font-medium text-base text-slate-11 leading-6 dark:text-slatedark-11'>
-                    <time dateTime={date}>
+                    <time dateTime={date.toISOString()}>
                       {new Date(date).toLocaleDateString(
                         siteMetadata.locale,
                         postDateTemplate,
@@ -160,7 +160,7 @@ export default function PostLayout({
                     />
                   </svg>
                   预计阅读时长：
-                  {Math.ceil(content.readingTime.minutes)}
+                  {Math.ceil(content.readingTime)}
                   分钟
                 </div>
               </div>
@@ -218,7 +218,7 @@ export default function PostLayout({
                 {/*  Discuss on Twitter*/}
                 {/*</Link>*/}
                 {/*{` • `}*/}
-                <NextLink href={editUrl(filePath)}>
+                <NextLink href={editUrl(_meta.filePath)}>
                   View on GitHub (If you have access)
                 </NextLink>
               </div>

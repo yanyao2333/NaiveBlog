@@ -12,7 +12,8 @@
       "src/css/LXGWWenKai-Regular/*",
       ".million",
       ".aider*",
-      "temp"
+      "temp",
+      ".content-collections"
     ]
   },
   "vcs": {

@@ -1,13 +1,13 @@
 import PostsListLayout from '@/layouts/PostsListLayout'
-import { sortPosts } from '@/utils/postsUtils'
-import { allBlogs } from 'contentlayer/generated'
+import { sortPostsByDate } from '@/utils/contentUtils/postsUtils'
+import { allCoreContent } from '@/utils/contentUtils/postsUtils'
+import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
-import { allCoreContent } from 'pliny/utils/contentlayer'
 
 const POSTS_PER_PAGE = 5
 
 export const generateStaticParams = async () => {
-  const totalPages = Math.ceil(allBlogs.length / POSTS_PER_PAGE)
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE)
   return Array.from({ length: totalPages }, (_, i) => ({
     page: (i + 1).toString(),
   }))
@@ -17,7 +17,7 @@ export default async function Page(props: {
   params: Promise<{ page: string }>
 }) {
   const params = await props.params
-  const posts = allCoreContent(sortPosts(allBlogs))
+  const posts = allCoreContent(sortPostsByDate(allPosts))
   const pageNumber = Number.parseInt(params.page as string)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),

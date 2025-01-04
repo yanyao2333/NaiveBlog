@@ -4,15 +4,15 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import '@/css/markdown.css'
 import siteMetadata from '@/data/siteMetadata'
-import type { Blog } from 'contentlayer/generated'
+import type { CoreContent } from '@/utils/contentUtils/postsUtils'
+import type { Post } from 'content-collections'
 import Link from 'next/link'
 import { Comments as CommentsComponent } from 'pliny/comments'
 import Bleed from 'pliny/ui/Bleed'
-import type { CoreContent } from 'pliny/utils/contentlayer'
 import type { ReactNode } from 'react'
 
 interface LayoutProps {
-  content: CoreContent<Blog>
+  content: CoreContent<Post>
   children: ReactNode
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
@@ -68,7 +68,7 @@ export default function PostMinimal({
                   />
                 </svg>
                 预计阅读时长：
-                {Math.ceil(content.readingTime.minutes)}
+                {Math.ceil(content.readingTime)}
                 分钟
               </div>
             </div>

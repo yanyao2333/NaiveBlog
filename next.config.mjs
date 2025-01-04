@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
+import { withContentCollections } from '@content-collections/next'
 import MillionLint from '@million/lint'
 import withBundleAnalyzer from '@next/bundle-analyzer'
-import { withContentlayer } from 'next-contentlayer2'
 
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
@@ -106,6 +105,10 @@ const nextConfig = {
 const withBundleAnalyzerConfig = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
-const config = withContentlayer(withBundleAnalyzerConfig(nextConfig))
+// const config = withContentlayer(withBundleAnalyzerConfig(nextConfig))
 
-export default MillionLint.next({ rsc: true })(config)
+const config = MillionLint.next({ rsc: true })(
+  withBundleAnalyzerConfig(nextConfig),
+)
+
+export default withContentCollections(nextConfig)

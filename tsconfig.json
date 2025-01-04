@@ -28,7 +28,7 @@
       "@/temp/*": ["temp/*"],
       "@/public/*": ["public/*"],
       "@/mdx-plugins/*": ["src/mdx-plugins/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "contentlayer/generated": ["./.contentlayer/generated"],
       // "@/data/*": [
       //   "data/*"
       // ],
@@ -44,6 +44,7 @@
       //             "@/utils/*": [
       //               "css/*"
       //             ],
+      "content-collections": ["./.content-collections/generated"]
     },
     "plugins": [
       {

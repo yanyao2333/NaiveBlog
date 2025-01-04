@@ -9,8 +9,6 @@ const siteMetadata = {
   siteUrl: 'https://www.yanyaolab.xyz',
   siteRepo: 'https://github.com/yanyao2333/blog-main',
   siteContentRepo: 'https://github.com/yanyao2333/blog-content',
-  siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/og.jpg`,
   email: 'me@yanyaolab.xyz',
   github: 'https://github.com/yanyao2333',
   locale: 'zh-CN',
@@ -39,5 +37,8 @@ const siteMetadata = {
     },
   },
 }
+
+siteMetadata.siteLogo = `${siteMetadata.siteUrl}/static/images/logo.png`
+siteMetadata.socialBanner = `${siteMetadata.siteUrl}/static/images/og.jpg`
 
 module.exports = siteMetadata

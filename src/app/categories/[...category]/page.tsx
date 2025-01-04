@@ -3,12 +3,15 @@ import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
 import PostsListLayout from '@/layouts/PostsListLayout'
 import categoryData from '@/temp/category-data.json'
-import { sortPosts } from '@/utils/postsUtils'
-import type { TreeNode } from 'contentlayer.config'
-import { type Blog, allBlogs } from 'contentlayer/generated'
+import type { CategoryTreeNode } from '@/utils/contentUtils/postMetaGen'
+import { sortPostsByDate } from '@/utils/contentUtils/postsUtils'
+import {
+  type CoreContent,
+  allCoreContent,
+} from '@/utils/contentUtils/postsUtils'
+import { type Post, allPosts } from 'content-collections'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { type CoreContent, allCoreContent } from 'pliny/utils/contentlayer'
 
 export async function generateMetadata(props: {
   params: Promise<{ category: string[] }>
@@ -30,13 +33,13 @@ export async function generateMetadata(props: {
 // 过滤文章：根据分类全路径查找节点，递归查找所有子节点下的文章
 function filterPosts(
   categoryFullName: string,
-  allPosts: CoreContent<Blog>[],
-): CoreContent<Blog>[] {
+  allPosts: CoreContent<Post>[],
+): CoreContent<Post>[] {
   // 递归查找节点
   function findNodeByFullPath(
-    root: TreeNode,
+    root: CategoryTreeNode,
     fullPath: string,
-  ): TreeNode | null {
+  ): CategoryTreeNode | null {
     if (root.fullPath === fullPath) {
       return root
     }
@@ -54,16 +57,16 @@ function filterPosts(
 
   // 搜索当前分类及其子分类下的所有文章
   function deeplyFilterPosts(
-    node: TreeNode,
-    allPosts: CoreContent<Blog>[],
-  ): CoreContent<Blog>[] {
-    let filteredPosts: CoreContent<Blog>[] = []
+    node: CategoryTreeNode,
+    allPosts: CoreContent<Post>[],
+  ): CoreContent<Post>[] {
+    let filteredPosts: CoreContent<Post>[] = []
     if (node.fullPath === categoryFullName) {
       filteredPosts = filteredPosts.concat(
         allCoreContent(
-          sortPosts(
-            allBlogs.filter((post) => {
-              return post._raw.sourceFileDir === node.fullPath ? post : null
+          sortPostsByDate(
+            allPosts.filter((post) => {
+              return post._meta.directory === node.fullPath
             }),
           ),
         ),
@@ -72,11 +75,9 @@ function filterPosts(
     for (const key in node.children) {
       filteredPosts = filteredPosts.concat(
         allCoreContent(
-          sortPosts(
-            allBlogs.filter((post) => {
-              return post._raw.sourceFileDir === node.children[key].fullPath
-                ? post
-                : null
+          sortPostsByDate(
+            allPosts.filter((post) => {
+              return post._meta.directory === node.children[key].fullPath
             }),
           ),
         ),
@@ -97,7 +98,7 @@ function filterPosts(
 
 export const generateStaticParams = async () => {
   function getAllCategoriesFullPath(
-    node: TreeNode,
+    node: CategoryTreeNode,
     fullPath: string,
   ): string[][] {
     const result: string[][] = []
@@ -126,8 +127,8 @@ export default async function CategoryPage(props: {
 }) {
   const params = await props.params
   const categoryFullName = params.category.join('/')
-  const filteredPosts = sortPosts(
-    filterPosts(categoryFullName, allCoreContent(allBlogs)) as Blog[],
+  const filteredPosts = sortPostsByDate(
+    filterPosts(categoryFullName, allCoreContent(allPosts)) as Post[],
   )
   if (filteredPosts.length === 0) {
     return notFound()
@@ -136,7 +137,7 @@ export default async function CategoryPage(props: {
     <PostsListLayout
       posts={filteredPosts}
       title={
-        categoryFullName === 'blog'
+        categoryFullName === 'Post'
           ? '所有博文'
           : categoryFullName
               .split('/')

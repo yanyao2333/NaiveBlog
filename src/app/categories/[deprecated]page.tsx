@@ -2,7 +2,7 @@ import { genPageMetadata } from '@/app/seo'
 import PageTitle from '@/components/PageTitle'
 import CategoryTreeView from '@/components/categoryTreeView'
 import categoryData from '@/temp/category-data.json'
-import type { TreeNode } from 'contentlayer.config'
+import type { CategoryTreeNode } from '@/utils/contentUtils/postMetaGen'
 import Link from 'next/link'
 
 export const metadata = genPageMetadata({
@@ -10,7 +10,7 @@ export const metadata = genPageMetadata({
   description: 'Browse posts by category',
 })
 
-function TreeNodeComponent({ node }: { node: TreeNode }) {
+function TreeNodeComponent({ node }: { node: CategoryTreeNode }) {
   return (
     <>
       {node.name && (
