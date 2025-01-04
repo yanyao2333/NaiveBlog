@@ -30,6 +30,7 @@ interface LayoutProps {
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
   children: ReactNode
+  hideTOC?: boolean
 }
 
 function generateCategoryTree(categories: string[]) {
@@ -109,6 +110,7 @@ export default function PostLayout({
   next,
   prev,
   children,
+  hideTOC,
 }: LayoutProps) {
   const { filePath, path, slug, date, title, tags, pinned } = content
   const basePath = path.split('/')[0]
@@ -346,7 +348,9 @@ export default function PostLayout({
                 <h2 className='not-prose ml-5 pb-2 text-lg text-slate-11 uppercase tracking-wide dark:text-slatedark-11'>
                   TOC
                 </h2>
-                <TOCInline toc={content.toc as unknown as Toc} />
+                {!hideTOC ? (
+                  <TOCInline toc={content.toc as unknown as Toc} />
+                ) : null}
               </div>
             </div>
           </div>

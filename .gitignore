@@ -62,3 +62,6 @@ yarn-error.log*
 .million
 .aider*
 .env
+
+# Content-collections
+.content-collections
