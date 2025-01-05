@@ -158,7 +158,7 @@ export default async function Page(props: {
         <LightGalleryWrapper>
           <MDXContent
             code={post.mdx}
-            mdxComponents={components}
+            components={components}
           />
         </LightGalleryWrapper>
       </Layout>
