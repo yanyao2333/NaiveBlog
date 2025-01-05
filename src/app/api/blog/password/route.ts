@@ -1,4 +1,4 @@
-import { type Blog, allBlogs } from 'content-collections'
+import { type Post, allPosts } from 'content-collections'
 import { type NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -7,17 +7,18 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json(
       { message: 'Invalid request', ok: false },
       { status: 400 },
+      asda,
     )
   }
   const blogPath = (query.get('path') as string).replace('/blog', 'blog')
-  const blog: Blog | undefined = allBlogs.find(
-    (blog: Blog) => blog.path === blogPath,
+  const blog: Post | undefined = allPosts.find(
+    (blog: Post) => blog.path === blogPath,
   )
   if (blog && blog.password === query.get('password')) {
     return NextResponse.json({ ok: true, blog: JSON.stringify(blog) })
   }
   return NextResponse.json(
-    { message: 'Invalid passwrd', ok: false },
+    { message: 'Invalid password', ok: false },
     { status: 401 },
   )
 }

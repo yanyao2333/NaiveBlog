@@ -194,7 +194,7 @@ export default function PostsListLayout({
                           </svg>
                           <span>
                             &nbsp; 预计阅读时长：
-                            {Math.ceil(post.readingTime.minutes)}
+                            {Math.ceil(post.readingTime)}
                             分钟
                           </span>
                         </div>

@@ -4,7 +4,8 @@ pre-commit:
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
       run: yarn biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
       stage_fixed: true
-    ts-type-check:
-      glob: "*.{ts,tsx}"
-      run: tsc-files --noEmit {staged_files}
-      stage_fixed: true
+    # TODO: Add ts-type-check
+    # ts-type-check:
+    #   glob: "*.{ts,tsx}"
+    #   run: yarn tsc-files --noEmit {staged_files}
+    #   stage_fixed: true

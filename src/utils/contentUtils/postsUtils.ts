@@ -29,11 +29,14 @@ export function dateSortDesc(a: Date, b: Date) {
 /**
  *  按日期排序文章，可选择将置顶文章放在前面
  *  允许用户将置顶文章排在前面，同时保证所有文章按时间倒序排列
- * @param {Post[]} allBlogs
+ * @param {T[]} allBlogs
  * @param {boolean} [putPinnedFirst=true]
- * @returns {Post[]}
+ * @returns {T[]}
  */
-export function sortPostsByDate(allBlogs: Post[], putPinnedFirst = true) {
+export function sortPostsByDate<T extends CoreContent<Post> | Post>(
+  allBlogs: T[],
+  putPinnedFirst = true,
+): T[] {
   if (putPinnedFirst) {
     const pinnedPosts = allBlogs.filter((blog) => blog.pinned)
     const unpinnedPosts = allBlogs.filter((blog) => !blog.pinned)

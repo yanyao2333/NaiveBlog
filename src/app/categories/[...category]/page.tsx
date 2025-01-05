@@ -63,23 +63,19 @@ function filterPosts(
     let filteredPosts: CoreContent<Post>[] = []
     if (node.fullPath === categoryFullName) {
       filteredPosts = filteredPosts.concat(
-        allCoreContent(
-          sortPostsByDate(
-            allPosts.filter((post) => {
-              return post._meta.directory === node.fullPath
-            }),
-          ),
+        sortPostsByDate(
+          allPosts.filter((post) => {
+            return post._meta.directory === node.fullPath
+          }),
         ),
       )
     }
     for (const key in node.children) {
       filteredPosts = filteredPosts.concat(
-        allCoreContent(
-          sortPostsByDate(
-            allPosts.filter((post) => {
-              return post._meta.directory === node.children[key].fullPath
-            }),
-          ),
+        sortPostsByDate(
+          allPosts.filter((post) => {
+            return post._meta.directory === node.children[key].fullPath
+          }),
         ),
       )
       filteredPosts = filteredPosts.concat(
@@ -128,7 +124,7 @@ export default async function CategoryPage(props: {
   const params = await props.params
   const categoryFullName = params.category.join('/')
   const filteredPosts = sortPostsByDate(
-    filterPosts(categoryFullName, allCoreContent(allPosts)) as Post[],
+    filterPosts(categoryFullName, allCoreContent(allPosts)),
   )
   if (filteredPosts.length === 0) {
     return notFound()
