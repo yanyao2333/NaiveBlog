@@ -17,7 +17,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ ok: true, blog: JSON.stringify(blog) })
   }
   return NextResponse.json(
-    { message: 'Invalid password', ok: false },
+    { message: 'Invalid passwrd', ok: false },
     { status: 401 },
   )
 }
