@@ -2,7 +2,7 @@ import PageTitle from '@/components/PageTitle'
 import YiYan from '@/components/YiYan'
 import RecentlyMemos from '@/components/homeComponents/RecentlyMemos'
 import RecentlyPosts from '@/components/homeComponents/RecentlyPosts'
-import SocialIcon from '@/components/svgs/social-icons'
+import { Github } from '@/components/svgs/social-icons/icons'
 import {
   Tooltip,
   TooltipContent,
@@ -10,7 +10,9 @@ import {
 } from '@/components/ui/tooltip'
 import siteMetadata from '@/data/siteMetadata'
 import clsx from 'clsx'
+import { Mail, Rss } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function SocialButtonTooltip({
   text,
@@ -45,25 +47,19 @@ export default function Home() {
             />
             <div className='mb-3 flex justify-center space-x-4'>
               <SocialButtonTooltip text='Email'>
-                <SocialIcon
-                  kind='mail'
-                  href={`mailto:${siteMetadata.email}`}
-                  size={6}
-                />
+                <Link href={`mailto:${siteMetadata.email}`}>
+                  <Mail className='size-6' />
+                </Link>
               </SocialButtonTooltip>
               <SocialButtonTooltip text='Github'>
-                <SocialIcon
-                  kind='github'
-                  href={siteMetadata.github}
-                  size={6}
-                />
+                <Link href={siteMetadata.github}>
+                  <Github className='size-6' />
+                </Link>
               </SocialButtonTooltip>
               <SocialButtonTooltip text='RSS'>
-                <SocialIcon
-                  kind='rss'
-                  href={`${siteMetadata.siteUrl}/feed.xml`}
-                  size={6}
-                />
+                <Link href='/feed.xml'>
+                  <Rss className='size-6' />
+                </Link>
               </SocialButtonTooltip>
             </div>
           </div>
