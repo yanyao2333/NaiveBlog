@@ -1,11 +1,11 @@
 'use client'
 import { KBarModal } from '@/components/kbar/KBarModal'
 import { formatDate } from '@/utils/time'
+import type { Post } from 'content-collections'
 import type { Action } from 'kbar'
 import { KBarProvider } from 'kbar'
 // @ts-ignore
 import { useRouter } from 'nextjs-toploader/app'
-import type { MDXDocument } from 'pliny/src/utils/contentlayer'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 export const KBarSearchProvider = ({ children }) => {
@@ -17,13 +17,13 @@ export const KBarSearchProvider = ({ children }) => {
   const defaultActions = useMemo(() => [], [])
 
   const mapPosts = useCallback(
-    (posts: MDXDocument[]) => {
+    (posts: Post[]) => {
       const actions: Action[] = []
       for (const post of posts) {
         actions.push({
           id: post.path,
           name: post.title,
-          keywords: post.body.raw,
+          keywords: post.content,
           section: 'Blog',
           subtitle: formatDate(post.date),
           perform: () => router.push(`/${post.path}`),

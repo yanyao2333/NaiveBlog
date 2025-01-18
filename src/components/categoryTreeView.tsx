@@ -1,6 +1,6 @@
 'use client'
+import type { CategoryTreeNode } from '@/utils/contentUtils/postMetaGen'
 import clsx from 'clsx'
-import type { TreeNode } from 'contentlayer.config'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -24,7 +24,7 @@ function TreeNodeComponent({
   expanded,
   closeFunction,
 }: {
-  node: TreeNode
+  node: CategoryTreeNode
   pathname: string
   expanded?: boolean
   closeFunction?: () => void
@@ -100,7 +100,7 @@ function CategoryTreeView({
   expanded,
   closeFunction, // 用于点击按钮跳转后关闭一些东西
 }: {
-  root: TreeNode
+  root: CategoryTreeNode
   pathname: string
   expanded?: boolean
   closeFunction?: () => void

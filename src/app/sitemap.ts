@@ -1,15 +1,15 @@
 import siteMetadata from '@/data/siteMetadata'
 import categoryData from '@/temp/category-data.json'
 import tagData from '@/temp/tag-data.json'
-import type { TreeNode } from 'contentlayer.config'
-import { allBlogs } from 'contentlayer/generated'
+import type { CategoryTreeNode } from '@/utils/contentUtils/postMetaGen'
+import { allPosts } from 'content-collections'
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = siteMetadata.siteUrl
 
   // 生成每篇博文的路由
-  const blogRoutes = allBlogs
+  const blogRoutes = allPosts
     .filter((post) => !post.draft)
     .map((post) => ({
       url: `${siteUrl}/${post.path}`,
@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 生成每个分类的路由
   function getAllCategoriesFullPath(
-    node: TreeNode,
+    node: CategoryTreeNode,
     fullPath: string,
   ): string[][] {
     const result: string[][] = []

@@ -1,19 +1,19 @@
 import LightGalleryWrapper from '@/components/LightGalleryWrapper'
 import { components } from '@/components/MDXComponents'
-import { MdxComponentRenderer } from '@/components/MdxRenderer'
 import PasswordInput from '@/components/PasswordInput'
 import '@/css/prism.css'
 import siteMetadata from '@/data/siteMetadata'
 import PostBanner from '@/layouts/PostBanner'
 import PostLayout from '@/layouts/PostLayout'
 import PostSimple from '@/layouts/PostSimple'
-import { sortPosts } from '@/utils/postsUtils'
-import type { Authors, Blog } from 'contentlayer/generated'
-import { allAuthors, allBlogs } from 'contentlayer/generated'
+import { sortPostsByDate } from '@/utils/contentUtils/postsUtils'
+import type { Author, Post } from 'content-collections'
+import { allAuthors, allPosts } from 'content-collections'
 import 'katex/dist/katex.css'
+import { allCoreContent, coreContent } from '@/utils/contentUtils/postsUtils'
+import { MDXContent } from '@content-collections/mdx/react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { allCoreContent, coreContent } from 'pliny/utils/contentlayer'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -27,11 +27,13 @@ export async function generateMetadata(props: {
 }): Promise<Metadata | undefined> {
   const params = await props.params
   const slug = decodeURI(params.slug.join('/'))
-  const post = allBlogs.find((p) => p.slug === slug)
+  const post = allPosts.find((p) => p.slug === slug)
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
-    return coreContent(authorResults as Authors)
+    //FIXME: 给 Author 添加 coreContent 处理措施
+    // return coreContent(authorResults as Author)
+    return authorResults as Author
   })
   if (!post) {
     return
@@ -75,7 +77,7 @@ export async function generateMetadata(props: {
 }
 
 export const generateStaticParams = async () => {
-  return allBlogs.map((p) => ({
+  return allPosts.map((p) => ({
     slug: p.slug.split('/').map((name) => decodeURI(name)),
   }))
 }
@@ -86,7 +88,7 @@ export default async function Page(props: {
   const params = await props.params
   const slug = decodeURI(params.slug.join('/'))
   // Filter out drafts in production
-  const sortedCoreContents = allCoreContent(sortPosts(allBlogs))
+  const sortedCoreContents = allCoreContent(sortPostsByDate(allPosts))
   const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
   if (postIndex === -1) {
     return notFound()
@@ -94,14 +96,17 @@ export default async function Page(props: {
 
   const prev = sortedCoreContents[postIndex + 1]
   const next = sortedCoreContents[postIndex - 1]
-  const post = allBlogs.find((p) => p.slug === slug) as Blog
+  const post = allPosts.find((p) => p.slug === slug) as Post
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
-    return coreContent(authorResults as Authors)
+    //FIXME: 给 Author 添加 coreContent 处理措施
+    // return coreContent(authorResults as Author)
+    return authorResults as Author
   })
   const mainContent = coreContent(post)
   const jsonLd = post.structuredData
+  //@ts-expect-error
   jsonLd.author = authorDetails.map((author) => {
     return {
       '@type': 'Person',
@@ -151,9 +156,9 @@ export default async function Page(props: {
         {/* <TOCInline toc={post.toc as unknown as Toc} />
         {post.toc.length > 0 && <hr />} */}
         <LightGalleryWrapper>
-          <MdxComponentRenderer
-            doc={post}
-            mdxComponents={components}
+          <MDXContent
+            code={post.mdx}
+            components={components}
           />
         </LightGalleryWrapper>
       </Layout>

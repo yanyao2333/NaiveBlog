@@ -2,12 +2,12 @@ import { genPageMetadata } from '@/app/seo'
 import siteMetadata from '@/data/siteMetadata'
 import PostsListLayout from '@/layouts/PostsListLayout'
 import tagData from '@/temp/tag-data.json'
-import { sortPosts } from '@/utils/postsUtils'
-import { allBlogs } from 'contentlayer/generated'
+import { sortPostsByDate } from '@/utils/contentUtils/postsUtils'
+import { allCoreContent } from '@/utils/contentUtils/postsUtils'
+import { allPosts } from 'content-collections'
 import { slug } from 'github-slugger'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { allCoreContent } from 'pliny/utils/contentlayer'
 
 export async function generateMetadata(props: {
   params: Promise<{ tag: string }>
@@ -43,8 +43,8 @@ export default async function TagPage(props: {
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   const filteredPosts = allCoreContent(
-    sortPosts(
-      allBlogs.filter((post) => post.tags?.map((t) => slug(t)).includes(tag)),
+    sortPostsByDate(
+      allPosts.filter((post) => post.tags?.map((t) => slug(t)).includes(tag)),
     ),
   )
   if (filteredPosts.length === 0) {

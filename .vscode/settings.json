@@ -1,0 +1,5 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.fontFamily": "'Monolisa'",
+  "editor.defaultFormatter": "biomejs.biome"
+}

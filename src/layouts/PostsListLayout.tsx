@@ -6,11 +6,11 @@ import Tag from '@/components/Tag'
 import CategoryTreeView from '@/components/categoryTreeView'
 import siteMetadata from '@/data/siteMetadata'
 import categoryData from '@/temp/category-data.json'
+import type { CoreContent } from '@/utils/contentUtils/postsUtils'
 import { formatDate } from '@/utils/time'
-import type { Blog } from 'contentlayer/generated'
+import type { Post } from 'content-collections'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import type { CoreContent } from 'pliny/utils/contentlayer'
 import { memo } from 'react'
 
 interface PaginationProps {
@@ -19,10 +19,10 @@ interface PaginationProps {
 }
 
 interface ListLayoutProps {
-  posts: CoreContent<Blog>[]
+  posts: CoreContent<Post>[]
   title?: string
   subtitle?: string
-  initialDisplayPosts?: CoreContent<Blog>[]
+  initialDisplayPosts?: CoreContent<Post>[]
   pagination?: PaginationProps
 }
 
@@ -86,7 +86,7 @@ const MemoizedPagination = memo(function Pagination({
 
 // 判断是否在某个 分类/标签 页面上
 function isOnThisPage(url: string, category?: string, tag?: string) {
-  if (url === '/blog' && category === 'blog') return true
+  if (url === '/Post' && category === 'Post') return true
   if (url.startsWith('/categories') && category) {
     const lastNode = url.slice(1, url.length).split('/').pop()
     return lastNode === category
@@ -145,7 +145,7 @@ export default function PostsListLayout({
                       <dt className='sr-only'>Published on</dt>
                       <dd className='font-medium text-base text-slate-11 leading-6 dark:text-slatedark-11'>
                         <time
-                          dateTime={date}
+                          dateTime={date.toISOString()}
                           suppressHydrationWarning
                         >
                           {formatDate(date, siteMetadata.locale)}{' '}
@@ -194,7 +194,7 @@ export default function PostsListLayout({
                           </svg>
                           <span>
                             &nbsp; 预计阅读时长：
-                            {Math.ceil(post.readingTime.minutes)}
+                            {Math.ceil(post.readingTime)}
                             分钟
                           </span>
                         </div>

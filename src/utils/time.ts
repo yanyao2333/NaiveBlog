@@ -13,8 +13,13 @@ export function isTimeDifferenceGreaterThan(targetTimestamp, diffMilliseconds) {
   return timeDifference >= diffMilliseconds
 }
 
-export const formatDate = (date: string, locale = 'zh-CN') => {
-  const dateObj = new Date(date)
+export const formatDate = (date: string | Date, locale = 'zh-CN') => {
+  let dateObj: Date
+  if (typeof date === 'string') {
+    dateObj = new Date(date)
+  } else {
+    dateObj = date
+  }
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',

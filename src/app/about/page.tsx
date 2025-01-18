@@ -1,15 +1,16 @@
 import { genPageMetadata } from '@/app/seo'
 import Image from '@/components/Image'
+import LightGalleryWrapper from '@/components/LightGalleryWrapper'
+import { components } from '@/components/MDXComponents'
 import PageTitle from '@/components/PageTitle'
 import SocialIcon from '@/components/svgs/social-icons'
-import { type Authors, allAuthors } from 'contentlayer/generated'
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
-import { coreContent } from 'pliny/utils/contentlayer'
+import { MDXContent } from '@content-collections/mdx/react'
+import { type Author, allAuthors } from 'content-collections'
 
 export const metadata = genPageMetadata({ title: 'About' })
 
 export default function Page() {
-  const author = allAuthors.find((p) => p.slug === 'default') as Authors
+  const author = allAuthors.find((p) => p.slug === 'default') as Author
   const {
     name,
     avatar,
@@ -19,13 +20,13 @@ export default function Page() {
     twitter,
     linkedin,
     github,
-  } = coreContent(author)
+  } = author
 
   return (
     <div>
       <PageTitle
         title='About'
-        subtitle='我几把谁？你几把谁？ta几把谁？'
+        subtitle='我是谁？'
       />
       <div className='items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0'>
         <div className='flex flex-col items-center space-x-2 pt-8'>
@@ -64,7 +65,12 @@ export default function Page() {
           </div>
         </div>
         <article className='prose prose-slate dark:prose-invert max-w-none pt-8 pb-8 xl:col-span-2'>
-          <MDXLayoutRenderer code={author.body.code} />
+          <LightGalleryWrapper>
+            <MDXContent
+              code={author.mdx}
+              components={components}
+            />
+          </LightGalleryWrapper>
         </article>
       </div>
     </div>

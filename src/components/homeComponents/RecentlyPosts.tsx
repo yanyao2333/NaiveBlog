@@ -1,11 +1,11 @@
-import { sortPosts } from '@/utils/postsUtils'
+import { sortPostsByDate } from '@/utils/contentUtils/postsUtils'
+import { allCoreContent } from '@/utils/contentUtils/postsUtils'
 import { formatDate } from '@/utils/time'
-import { allBlogs } from 'contentlayer/generated'
+import { allPosts } from 'content-collections'
 import Link from 'next/link'
-import { allCoreContent } from 'pliny/utils/contentlayer'
 
 export default function RecentlyPosts() {
-  const coreContents = allCoreContent(sortPosts(allBlogs, 'date', false))
+  const coreContents = allCoreContent(sortPostsByDate(allPosts, false))
   const posts = coreContents.slice(0, 5)
   // if (posts.length != 0 && new Date(posts[0].date).getFullYear() >= 2040) {
   //   posts.shift()

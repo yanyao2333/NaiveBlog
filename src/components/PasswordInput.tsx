@@ -1,9 +1,9 @@
 'use client'
 
 import { components } from '@/components/MDXComponents'
-import type { Blog } from 'contentlayer/generated'
+import { MDXContent } from '@content-collections/mdx/react'
+import type { Post } from 'content-collections'
 import { usePathname } from 'next/navigation'
-import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -11,7 +11,7 @@ export default function PasswordInput() {
   const [password, setPassword] = useState('')
   const path = usePathname()
   const [verified, setVerified] = useState(false)
-  const [blog, setBlog] = useState<Blog | undefined>(undefined)
+  const [blog, setBlog] = useState<Post | undefined>(undefined)
 
   function verifyPassword(password: string, path: string) {
     fetch(`/api/blog/password?password=${password}&path=${path}`, {
@@ -39,8 +39,8 @@ export default function PasswordInput() {
 
   if (verified && blog) {
     return (
-      <MDXLayoutRenderer
-        code={blog.body.code}
+      <MDXContent
+        code={blog.mdx}
         components={components}
         toc={blog.toc}
       />

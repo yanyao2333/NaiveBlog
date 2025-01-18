@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { allBlogs } from 'contentlayer/generated'
+import { allPosts } from 'content-collections'
 import { ImageResponse } from 'next/og'
 
 async function loadGoogleFont(font: string, text: string) {
@@ -41,7 +41,7 @@ export async function GET(
   const slug = (await params).slug
   console.log(slug)
 
-  const post = allBlogs.find((p) => p.slug === slug.join('/'))
+  const post = allPosts.find((p) => p.slug === slug.join('/'))
 
   let title: string
   let description: string
