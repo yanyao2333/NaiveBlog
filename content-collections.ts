@@ -4,6 +4,7 @@ import {
   createCategoryTree,
   createSearchIndex,
   createTagCount,
+  generateRssFeed,
 } from '@/utils/contentUtils/postMetaGen'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
@@ -159,6 +160,7 @@ const Posts = defineCollection({
     if (!existsSync('temp')) {
       mkdirSync('temp')
     }
+    await generateRssFeed(docs)
     createTagCount(docs)
     createSearchIndex(docs)
     createCategoryTree(docs)

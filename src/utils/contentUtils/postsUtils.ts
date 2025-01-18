@@ -8,8 +8,9 @@ import type { Post } from 'content-collections'
  * @returns {Post[]}
  */
 export function filterVisiablePosts(allBlogs: Post[]) {
-  if (isProduction)
+  if (isProduction) {
     return allBlogs.filter((blog) => !(blog.draft || blog.private))
+  }
   return allBlogs
 }
 

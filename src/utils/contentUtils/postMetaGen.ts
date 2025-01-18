@@ -2,8 +2,16 @@
 
 import { writeFileSync } from 'node:fs'
 import categoryMapping from '@/data/category-mapping'
+import config from '@/data/siteMetadata'
 import type { Post } from 'content-collections'
 import { slug } from 'github-slugger'
+import rehypeSanitize from 'rehype-sanitize'
+import rehypeStringify from 'rehype-stringify'
+import remarkGfm from 'remark-gfm'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import RSS from 'rss'
+import { unified } from 'unified'
 import { filterVisiablePosts, sortPostsByDate } from './postsUtils'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -81,9 +89,51 @@ export function createTagCount(allBlogs: Post[]) {
 
 export function createSearchIndex(allBlogs: Post[]) {
   const blogs = sortPostsByDate(filterVisiablePosts(allBlogs))
-  for (const blog of blogs) {
-    blog.content = ''
-  }
+  // WTF is this doing?!?!?!?! I debug this for 10 minutes just to find out why the docs' content is being removed!!!!!!!
+  // for (const blog of blogs) {
+  // blog.content = ''
+  // }
   writeFileSync('public/search.json', JSON.stringify(blogs))
   console.log('✅ Search index generated successfully')
+}
+
+async function generateRssItemDescription(post: Post) {
+  const body = post.content
+  const tip = `> rss 内容与网站采用的渲染流程不同，可能导致排版错乱或效果欠佳，建议到博客：<a href="${config.siteUrl}/blog/${post.slug}">${config.siteUrl}/blog/${post.slug}</a> 查看\n\n`
+
+  const file = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeSanitize)
+    .use(rehypeStringify)
+    .process(tip + body)
+
+  return file.toString()
+}
+
+export async function generateRssFeed(allBlogs: Post[]) {
+  const feed = new RSS({
+    title: config.title,
+    site_url: config.siteUrl,
+    feed_url: `${config.siteUrl}/feed.xml`,
+  })
+
+  const visiablePosts = filterVisiablePosts(allBlogs)
+
+  for (const post of visiablePosts) {
+    feed.item({
+      title: post.title,
+      guid: post.slug,
+      url: `${config.siteUrl}/blog/${post.slug}`,
+      date: post.date,
+      description: await generateRssItemDescription(post),
+    })
+  }
+
+  const rss = feed.xml({ indent: true })
+  writeFileSync('public/feed.xml', rss)
+  console.log('✅ RSS feed generated successfully!')
+
+  return true
 }
