@@ -1,7 +1,6 @@
 import ClientReady from '@/components/ClientReady'
 import Footer from '@/components/Footer'
 import SectionContainer from '@/components/SectionContainer'
-import SettingsPanel from '@/components/SettingPanel'
 import { KBarSearchProvider } from '@/components/kbar/KbarSearch'
 import FloatNavBar from '@/components/navBar/main'
 import { TooltipProvider } from '@/components/ui/tooltip'
@@ -171,7 +170,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   <main className='mx-auto min-h-screen w-full pt-20'>
                     {children}
                   </main>
-                  <SettingsPanel />
+                  {/* 只是觉得不太好看 */}
+                  {/* <SettingsPanel /> */}
                 </SectionContainer>
                 <Footer />
               </div>
