@@ -5,7 +5,7 @@ import TOCInline from '@/components/TOC'
 import '@/css/markdown.css'
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
-import type { Toc } from '@/mdx-plugins/toc'
+import type { TocItem } from '@/mdx-plugins/toc'
 import { cn } from '@/utils/classname'
 import type { CoreContent } from '@/utils/contentUtils/postsUtils'
 import type { Author, Post } from 'content-collections'
@@ -30,7 +30,7 @@ interface LayoutProps {
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
   children: ReactNode
-  hideTOC?: boolean
+  toc?: TocItem[]
 }
 
 function generateCategoryTree(categories: string[]) {
@@ -110,9 +110,15 @@ export default function PostLayout({
   next,
   prev,
   children,
-  hideTOC,
+  toc,
 }: LayoutProps) {
-  const { _meta, path, slug, date, title, tags, pinned } = content
+  const { _meta, path, slug, title, tags, pinned } = content
+  let { date } = content
+
+  // 如果 content 经过了 server component -> client component 的传递，那么 date 会被序列化成字符串，所以这里需要做一个判断。
+  if (typeof date === 'string') {
+    date = new Date(date)
+  }
   const basePath = path.split('/')[0]
   const paths = path.split('/')
   // 去掉最后一个元素，因为它是文章名
@@ -121,7 +127,7 @@ export default function PostLayout({
 
   return (
     <>
-      <ScrollTopAndComment toc={content.toc as unknown as Toc} />
+      <ScrollTopAndComment toc={toc} />
       <article>
         <div className='mx-auto lg:divide-y lg:divide-slate-5 lg:dark:divide-slatedark-5'>
           <header className='pt-6 lg:pb-6'>
@@ -345,12 +351,12 @@ export default function PostLayout({
             </footer>
             <div className='hidden lg:col-span-1 lg:row-span-2 lg:block lg:pb-0 '>
               <div className='prose dark:prose-invert sticky top-20 pt-10 text-sm'>
-                <h2 className='not-prose ml-5 pb-2 text-lg text-slate-11 uppercase tracking-wide dark:text-slatedark-11'>
-                  TOC
-                </h2>
-                {!hideTOC ? (
-                  <TOCInline toc={content.toc as unknown as Toc} />
+                {toc ? (
+                  <h2 className='not-prose ml-5 pb-2 text-lg text-slate-11 uppercase tracking-wide dark:text-slatedark-11'>
+                    TOC
+                  </h2>
                 ) : null}
+                <TOCInline toc={toc} />
               </div>
             </div>
           </div>

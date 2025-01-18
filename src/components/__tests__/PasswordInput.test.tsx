@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { usePathname } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import PasswordInput from '../PasswordInput'
+import PasswordInput from '../ArticalWithPassword'
 
 // Mock next/navigation
 vi.mock('next/navigation', () => ({

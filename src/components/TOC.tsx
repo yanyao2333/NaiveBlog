@@ -3,7 +3,7 @@ import type { Toc, TocItem } from '@/mdx-plugins/toc'
 import { useEffect, useRef, useState } from 'react'
 
 export interface TOCInlineProps {
-  toc: Toc
+  toc?: Toc
   fromHeading?: number
   toHeading?: number
   asDisclosure?: boolean
@@ -70,6 +70,9 @@ const TOCInline = ({
   exclude = '',
   collapse = false,
 }: TOCInlineProps) => {
+  if (!toc) {
+    return null
+  }
   const re = Array.isArray(exclude)
     ? new RegExp(`^(${exclude.join('|')})$`, 'i')
     : new RegExp(`^(${exclude})$`, 'i')

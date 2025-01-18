@@ -1,6 +1,6 @@
+import ArticalWithPassword from '@/components/ArticalWithPassword'
 import LightGalleryWrapper from '@/components/LightGalleryWrapper'
 import { components } from '@/components/MDXComponents'
-import PasswordInput from '@/components/PasswordInput'
 import '@/css/prism.css'
 import siteMetadata from '@/data/siteMetadata'
 import PostBanner from '@/layouts/PostBanner'
@@ -124,18 +124,16 @@ export default async function Page(props: {
           // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Layout
-          content={mainContent}
-          authorDetails={authorDetails}
-          next={next}
-          prev={prev}
-        >
-          {post.password ? (
-            <PasswordInput />
-          ) : (
-            '该文章为私密且没有设置密码，不能给你看哦~'
-          )}
-        </Layout>
+        {post.password ? (
+          <ArticalWithPassword
+            corePostContent={mainContent}
+            prev={prev}
+            next={next}
+            authorDetails={authorDetails}
+          />
+        ) : (
+          '该文章为私密且没有设置密码，不能给你看哦~'
+        )}
       </>
     )
   }
@@ -152,6 +150,7 @@ export default async function Page(props: {
         authorDetails={authorDetails}
         next={next}
         prev={prev}
+        toc={post.toc}
       >
         {/* <TOCInline toc={post.toc as unknown as Toc} />
         {post.toc.length > 0 && <hr />} */}
