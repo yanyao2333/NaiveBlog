@@ -1,3 +1,4 @@
+import MyStatus from '@/components/MyStatus'
 import PageTitle from '@/components/PageTitle'
 import YiYan from '@/components/YiYan'
 import RecentlyMemos from '@/components/homeComponents/RecentlyMemos'
@@ -63,16 +64,19 @@ export default function Home() {
               </SocialButtonTooltip>
             </div>
           </div>
-          <Image
-            src={
-              'https://cdn.jsdelivr.net/gh/yanyao2333/NaiveBlog@main/public/static/images/logo.png'
-            }
-            alt='Website logo'
-            height={640}
-            width={640}
-            priority
-            className='size-60 rounded-full transition-transform duration-700 ease-in-out hover:rotate-180 md:size-72'
-          />
+          <div className='relative rounded-full'>
+            <Image
+              src={
+                'https://cdn.jsdelivr.net/gh/yanyao2333/NaiveBlog@main/public/static/images/logo.png'
+              }
+              alt='Website logo'
+              height={640}
+              width={640}
+              priority
+              className='size-60 rounded-full ring-2 ring-slate-7 md:size-72 dark:ring-slatedark-7'
+            />
+            <MyStatus />
+          </div>
         </div>
         <div className='mt-auto mb-2 animate-bounce text-center text-lg'>
           &darr;
