@@ -38,7 +38,7 @@ function setupEventSource(url: string, setStatus: SetStatus) {
   evtSource = new EventSource(url)
   if (evtSource.readyState === evtSource.CLOSED) return
   evtSource.onmessage = (e: MessageEvent) => {
-    console.log(e.data)
+    // console.log(e.data)
     setStatus(JSON.parse(e.data))
   }
   evtSource.onopen = () => {
