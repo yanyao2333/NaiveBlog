@@ -66,7 +66,7 @@ export default function RecentlyPosts() {
           <li className='ms-6 flex min-w-max justify-between'>
             <div />
             <Link
-              href='/memory'
+              href='/blog'
               className='mt-2 min-w-max text-slate-11 text-sm dark:text-slatedark-11'
             >
               查看更多 &rarr;

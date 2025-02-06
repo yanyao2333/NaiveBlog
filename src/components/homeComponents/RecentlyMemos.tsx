@@ -3,6 +3,7 @@ import type { Memo, MemoListResponse } from '@/types/memos'
 import moment from 'moment/min/moment-with-locales'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import toast from 'react-hot-toast'
 
 async function fetchMemos() {
   if (!process.env.NEXT_PUBLIC_MEMOS_ENDPOINT) {
@@ -53,6 +54,11 @@ export default function RecentlyMemos() {
     moment.locale(navigator.language)
     setIsLoading(true)
     fetchMemos().then((data) => {
+      if (!data) {
+        toast.error('获取 memos 失败！')
+        setIsLoading(false)
+        return
+      }
       setMemos(data)
       setIsLoading(false)
     })
