@@ -1,6 +1,7 @@
 import { remarkTagToJsx } from '@/mdx-plugins/remark-tag-to-jsx'
 import type { Memo, MemoListResponse } from '@/types/memos'
 import remarkMediaCard from '@zhouhua-dev/remark-media-card'
+import toast from 'react-hot-toast'
 import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
@@ -55,6 +56,10 @@ export async function fetchMemos() {
   const response = await fetch(
     `${apiEndpoint}/${apiPath}?${filter}&${pageSize}&${pageToken}&${view}`,
   )
+  if (!response.ok) {
+    toast.error('获取 memos 时发生错误！')
+    return false
+  }
   const jsonResp: MemoListResponse = await response.json()
   nextPageToken = jsonResp.nextPageToken
   // 处理Memos内容

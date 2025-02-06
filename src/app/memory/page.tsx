@@ -31,6 +31,12 @@ export default function MemosPage() {
       return
     }
     fetchMemos().then((data) => {
+      if (data === false) {
+        setIsLoading(true)
+        setHasLoaded(true)
+        setMemos([])
+        return
+      }
       setMemos(data)
       setIsLoading(false)
       setHasLoaded(true)
@@ -46,6 +52,12 @@ export default function MemosPage() {
         setTimeout(() => {
           setIsLoading(true)
           fetchMemos().then((data) => {
+            if (data === false) {
+              setIsLoading(false)
+              setHasLoaded(true)
+              setMemos([])
+              return
+            }
             setMemos(memos.concat(data))
             setIsLoading(false)
           })
@@ -66,6 +78,12 @@ export default function MemosPage() {
   function onClickFetchMore() {
     setIsLoading(true)
     fetchMemos().then((data) => {
+      if (data === false) {
+        setIsLoading(false)
+        setHasLoaded(true)
+        setMemos([])
+        return
+      }
       setMemos(memos.concat(data))
       setIsLoading(false)
     })
