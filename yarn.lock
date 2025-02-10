@@ -10262,9 +10262,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdx-bundler@npm:^10.0.2":
-  version: 10.0.2
-  resolution: "mdx-bundler@npm:10.0.2"
+"mdx-bundler@npm:^10.0.2, mdx-bundler@npm:^10.0.3":
+  version: 10.1.0
+  resolution: "mdx-bundler@npm:10.1.0"
   dependencies:
     "@babel/runtime": "npm:^7.23.2"
     "@esbuild-plugins/node-resolve": "npm:^0.2.2"
@@ -10277,26 +10277,7 @@ __metadata:
     vfile: "npm:^6.0.1"
   peerDependencies:
     esbuild: 0.*
-  checksum: 10/44e4f64980be5d1cfb9ebe1fc65fd252090e465dabadeefab593feb9606055047b901cb679039951497809b79656a68ccabdc24e741a8d65df03a7309cf79e6b
-  languageName: node
-  linkType: hard
-
-"mdx-bundler@npm:^10.0.3":
-  version: 10.0.3
-  resolution: "mdx-bundler@npm:10.0.3"
-  dependencies:
-    "@babel/runtime": "npm:^7.23.2"
-    "@esbuild-plugins/node-resolve": "npm:^0.2.2"
-    "@fal-works/esbuild-plugin-global-externals": "npm:^2.1.2"
-    "@mdx-js/esbuild": "npm:^3.0.0"
-    gray-matter: "npm:^4.0.3"
-    remark-frontmatter: "npm:^5.0.0"
-    remark-mdx-frontmatter: "npm:^4.0.0"
-    uuid: "npm:^9.0.1"
-    vfile: "npm:^6.0.1"
-  peerDependencies:
-    esbuild: 0.*
-  checksum: 10/628506a8434d166fb259438b307fc9d7f79b0c7cf8372fc4b1db68df8ce59dfc24077139223c9a716c993636eb8086ee0eb53c01d0c06f935541ca0038d072fd
+  checksum: 10/141d7af4fc4d029318cd2a01cdf7f7865ed04a50d628e1ef1f69a232947d9b2625d041013372fc3c4c1e558d2d65a94b153ee47849470796f03b02d6854e8f73
   languageName: node
   linkType: hard
 
