@@ -47,7 +47,7 @@ export default function ErrorComponent({
           ) : null}
           <br />
           如果可以，请将上方相关内容（包含复制的堆栈信息）发送给开发者
-          me@yanyaolab.xyz
+          me@roitium.com
         </p>
       </div>
       <button

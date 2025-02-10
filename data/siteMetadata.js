@@ -6,10 +6,10 @@ const siteMetadata = {
   description: 'Be young & simple, even sometimes naive. ',
   language: 'zh-cn',
   theme: 'light', // system, dark or light
-  siteUrl: 'https://www.yanyaolab.xyz',
+  siteUrl: 'https://www.roitium.com',
   siteRepo: 'https://github.com/yanyao2333/blog-main',
   siteContentRepo: 'https://github.com/yanyao2333/blog-content',
-  email: 'me@yanyaolab.xyz',
+  email: 'me@roitium.com',
   github: 'https://github.com/yanyao2333',
   locale: 'zh-CN',
   stickyNav: false,
