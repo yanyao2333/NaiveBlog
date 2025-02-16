@@ -15,7 +15,6 @@ import {
 interface TOCDrawerProps extends TOCInlineProps {}
 
 export const TOCDrawer = ({ toc, ...props }: TOCDrawerProps) => {
-  //FIXME: 需要增加一个功能：当文章为私密或有密码时不显示 TOC
   return (
     <Drawer>
       <DrawerTrigger className='rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 lg:hidden dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600'>
