@@ -28,6 +28,8 @@
       "@/temp/*": ["temp/*"],
       "@/public/*": ["public/*"],
       "@/mdx-plugins/*": ["src/mdx-plugins/*"],
+      "@/services/*": ["src/services/*"],
+      "@/hooks/*": ["src/hooks/*"],
       "contentlayer/generated": ["./.contentlayer/generated"],
       // "@/data/*": [
       //   "data/*"

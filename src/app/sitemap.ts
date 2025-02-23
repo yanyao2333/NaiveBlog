@@ -1,8 +1,8 @@
 import siteMetadata from '@/data/siteMetadata'
+import { allPosts } from '@/services/content/core'
+import type { CategoryTreeNode } from '@/services/content/metaGen'
 import categoryData from '@/temp/category-data.json'
 import tagData from '@/temp/tag-data.json'
-import type { CategoryTreeNode } from '@/utils/contentUtils/postMetaGen'
-import { allPosts } from 'content-collections'
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {

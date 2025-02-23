@@ -5,7 +5,7 @@ import {
   createSearchIndex,
   createTagCount,
   generateRssFeed,
-} from '@/utils/contentUtils/postMetaGen'
+} from '@/services/content/metaGen'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import remarkMediaCard from '@zhouhua-dev/remark-media-card'

@@ -2,9 +2,9 @@
 
 import { components } from '@/components/MDXComponents'
 import PostLayout from '@/layouts/PostLayout'
-import { type CoreContent, coreContent } from '@/utils/contentUtils/postsUtils'
+import type { Author, Post } from '@/services/content/core'
+import { type CoreContent, coreContent } from '@/services/content/utils'
 import { MDXContent } from '@content-collections/mdx/react'
-import type { Author, Post } from 'content-collections'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import toast from 'react-hot-toast'

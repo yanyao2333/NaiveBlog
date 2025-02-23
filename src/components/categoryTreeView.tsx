@@ -1,5 +1,5 @@
 'use client'
-import type { CategoryTreeNode } from '@/utils/contentUtils/postMetaGen'
+import type { CategoryTreeNode } from '@/services/content/metaGen'
 import clsx from 'clsx'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'

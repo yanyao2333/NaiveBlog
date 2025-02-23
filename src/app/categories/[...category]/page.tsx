@@ -2,14 +2,11 @@ import { genPageMetadata } from '@/app/seo'
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
 import PostsListLayout from '@/layouts/PostsListLayout'
+import { type Post, allPosts } from '@/services/content/core'
+import type { CategoryTreeNode } from '@/services/content/metaGen'
+import { sortPostsByDate } from '@/services/content/utils'
+import { type CoreContent, allCoreContent } from '@/services/content/utils'
 import categoryData from '@/temp/category-data.json'
-import type { CategoryTreeNode } from '@/utils/contentUtils/postMetaGen'
-import { sortPostsByDate } from '@/utils/contentUtils/postsUtils'
-import {
-  type CoreContent,
-  allCoreContent,
-} from '@/utils/contentUtils/postsUtils'
-import { type Post, allPosts } from 'content-collections'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 

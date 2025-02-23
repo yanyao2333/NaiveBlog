@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { allPosts } from 'content-collections'
+import { allPosts } from '@/services/content/core'
 import { ImageResponse } from 'next/og'
 
 async function loadGoogleFont(font: string, text: string) {

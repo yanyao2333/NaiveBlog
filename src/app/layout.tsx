@@ -108,6 +108,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <head>
+        {process.env.NODE_ENV === 'development' && (
+          <script
+            crossOrigin='anonymous'
+            src='//unpkg.com/react-scan/dist/auto.global.js'
+          />
+        )}
         <link
           rel='apple-touch-icon'
           sizes='76x76'

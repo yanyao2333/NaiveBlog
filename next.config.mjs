@@ -1,11 +1,10 @@
 import { withContentCollections } from '@content-collections/next'
-import MillionLint from '@million/lint'
 import withBundleAnalyzer from '@next/bundle-analyzer'
 
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is openpanel.dev vercel.live va.vercel-scripts.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is openpanel.dev vercel.live va.vercel-scripts.com unpkg.com;
   style-src 'self' https://vercel.live 'unsafe-inline';
   img-src * blob: data: https://vercel.live https://vercel.com;
   media-src *.s3.amazonaws.com;
@@ -107,8 +106,8 @@ const withBundleAnalyzerConfig = withBundleAnalyzer({
 })
 // const config = withContentlayer(withBundleAnalyzerConfig(nextConfig))
 
-const config = MillionLint.next({ rsc: true })(
-  withBundleAnalyzerConfig(nextConfig),
-)
+// const config = MillionLint.next({ rsc: true })(
+//   withBundleAnalyzerConfig(nextConfig),
+// )
 
-export default withContentCollections(nextConfig)
+export default withContentCollections(withBundleAnalyzerConfig(nextConfig))
