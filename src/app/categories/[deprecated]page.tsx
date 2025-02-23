@@ -1,8 +1,8 @@
 import { genPageMetadata } from '@/app/seo'
 import PageTitle from '@/components/PageTitle'
 import CategoryTreeView from '@/components/categoryTreeView'
+import type { CategoryTreeNode } from '@/services/content/metaGen'
 import categoryData from '@/temp/category-data.json'
-import type { CategoryTreeNode } from '@/utils/contentUtils/postMetaGen'
 import Link from 'next/link'
 
 export const metadata = genPageMetadata({

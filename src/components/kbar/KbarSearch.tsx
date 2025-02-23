@@ -1,7 +1,7 @@
 'use client'
 import { KBarModal } from '@/components/kbar/KBarModal'
+import type { Post } from '@/services/content/core'
 import { formatDate } from '@/utils/time'
-import type { Post } from 'content-collections'
 import type { Action } from 'kbar'
 import { KBarProvider } from 'kbar'
 // @ts-ignore

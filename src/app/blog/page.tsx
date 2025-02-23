@@ -1,8 +1,8 @@
 import { genPageMetadata } from '@/app/seo'
 import PostsListLayout from '@/layouts/PostsListLayout'
-import { sortPostsByDate } from '@/utils/contentUtils/postsUtils'
-import { allCoreContent } from '@/utils/contentUtils/postsUtils'
-import { allPosts } from 'content-collections'
+import { allPosts } from '@/services/content/core'
+import { sortPostsByDate } from '@/services/content/utils'
+import { allCoreContent } from '@/services/content/utils'
 
 const POSTS_PER_PAGE = 5
 

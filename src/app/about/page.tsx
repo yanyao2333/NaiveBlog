@@ -4,8 +4,8 @@ import LightGalleryWrapper from '@/components/LightGalleryWrapper'
 import { components } from '@/components/MDXComponents'
 import PageTitle from '@/components/PageTitle'
 import SocialIcon from '@/components/svgs/social-icons'
+import { type Author, allAuthors } from '@/services/content/core'
 import { MDXContent } from '@content-collections/mdx/react'
-import { type Author, allAuthors } from 'content-collections'
 
 export const metadata = genPageMetadata({ title: 'About' })
 

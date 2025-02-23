@@ -1,6 +1,6 @@
-const isProduction = process.env.NODE_ENV === 'production'
-import type { Post } from 'content-collections'
+import type { Post } from './core'
 
+const isProduction = process.env.NODE_ENV === 'production'
 /**
  *  在生产环境下，过滤掉草稿和隐私文章
  *  防止未完成或私有的内容在生产环境被公开

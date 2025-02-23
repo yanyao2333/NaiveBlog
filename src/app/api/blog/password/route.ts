@@ -1,4 +1,4 @@
-import { type Post, allPosts } from 'content-collections'
+import { type Post, allPosts } from '@/services/content/core'
 import { type NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
