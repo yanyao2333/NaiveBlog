@@ -94,7 +94,7 @@
     "@types/react": "^19.0.0",
     "@types/read-time-estimate": "^0",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "3.0.6",
+    "@vitest/coverage-v8": "3.0.7",
     "@vitest/ui": "^3.0.0",
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
