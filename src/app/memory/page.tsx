@@ -127,7 +127,7 @@ export default function MemosPage() {
   )
 
   return (
-    <div className='flex w-full flex-col'>
+    <div className='flex w-full flex-col lg:mx-auto lg:max-w-screen-lg'>
       {memoizedPageTitle}
       <div
         className={clsx('flex w-full flex-col', hasLoaded && ' appear-animate')}

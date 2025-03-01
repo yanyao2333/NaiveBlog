@@ -7,7 +7,7 @@ export const metadata = genPageMetadata({ title: 'Projects' })
 
 export default function Projects() {
   return (
-    <>
+    <div className='lg:mx-auto lg:max-w-screen-lg'>
       <div className='min-w-full'>
         <PageTitle
           title='Projects'
@@ -27,6 +27,6 @@ export default function Projects() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

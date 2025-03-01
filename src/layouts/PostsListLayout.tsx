@@ -109,7 +109,7 @@ export default function PostsListLayout({
     initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
-    <div className='min-h-full w-full'>
+    <div className='min-h-full lg:mx-auto lg:max-w-screen-lg'>
       <PageTitle
         title={title ? title : '博文'}
         subtitle={subtitle ? subtitle : '思考、发癫与记录'}
