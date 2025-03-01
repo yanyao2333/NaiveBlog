@@ -9,3 +9,9 @@ pre-commit:
     #   glob: "*.{ts,tsx}"
     #   run: yarn tsc-files --noEmit {staged_files}
     #   stage_fixed: true
+remotes:
+  - git_url: https://github.com/boozt-platform/lefthook.git
+    ref: v1.3.0
+    configs:
+      # lint commit messages based by the conventional commits
+      - hooks/commitlint/.lefthook.yaml
