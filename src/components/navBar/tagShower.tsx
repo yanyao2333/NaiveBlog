@@ -61,7 +61,7 @@ function TagDialogModal({ isOpen, setIsOpen }) {
       open={isOpen}
       as='div'
       key={'tagDialog'}
-      className='relative z-10 focus:outline-none'
+      className='relative z-10 focus:outline-hidden'
       onClose={handleClose}
     >
       <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
@@ -71,7 +71,7 @@ function TagDialogModal({ isOpen, setIsOpen }) {
             className={clsx(
               'w-full max-w-md rounded-xl bg-white/5 p-6 text-gray-800 backdrop-blur-2xl duration-300 ease-out',
               'ring-1 ring-gray-200/90',
-              'data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0',
+              'data-closed:transform-[scale(95%)] data-closed:opacity-0',
             )}
           >
             <DialogTitle

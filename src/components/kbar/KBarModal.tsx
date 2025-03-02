@@ -19,7 +19,7 @@ export const KBarModal = ({
 
   return (
     <KBarPortal>
-      <KBarPositioner className='bg-gray-300/50 p-4 backdrop-blur backdrop-filter dark:bg-black/50'>
+      <KBarPositioner className='bg-gray-300/50 p-4 backdrop-blur-sm backdrop-filter dark:bg-black/50'>
         <KBarAnimator className='w-full max-w-xl'>
           <div className='overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 dark:border-gray-800 dark:bg-gray-900'>
             <div className='flex items-center space-x-4 p-4'>
@@ -39,8 +39,8 @@ export const KBarModal = ({
                   />
                 </svg>
               </span>
-              <KBarSearch className='h-8 w-full bg-transparent text-gray-600 placeholder-gray-400 focus:outline-none dark:text-gray-200 dark:placeholder-gray-500' />
-              <kbd className='inline-block whitespace-nowrap rounded border border-gray-400 px-1.5 align-middle font-medium text-gray-400 text-xs leading-4 tracking-wide'>
+              <KBarSearch className='h-8 w-full bg-transparent text-gray-600 placeholder-gray-400 focus:outline-hidden dark:text-gray-200 dark:placeholder-gray-500' />
+              <kbd className='inline-block whitespace-nowrap rounded-sm border border-gray-400 px-1.5 align-middle font-medium text-gray-400 text-xs leading-4 tracking-wide'>
                 ESC
               </kbd>
             </div>
