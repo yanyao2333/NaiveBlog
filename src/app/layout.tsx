@@ -15,6 +15,7 @@ import NextTopLoader from 'nextjs-toploader'
 import type { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import 'remark-github-blockquote-alert/alert.css'
+import { unstable_ViewTransition as ViewTransition } from 'react'
 import { ThemeProviders } from './theme-providers'
 
 // const misansFont = localFont({
@@ -174,7 +175,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <FloatNavBar />
                 <SectionContainer>
                   <main className='mx-auto min-h-screen w-full pt-20'>
-                    {children}
+                    <ViewTransition name='page'>{children}</ViewTransition>
                   </main>
                   {/* 只是觉得不太好看 */}
                   {/* <SettingsPanel /> */}

@@ -67,6 +67,9 @@ const nextConfig = {
   eslint: {
     dirs: ['app', 'components', 'layouts', 'scripts'],
   },
+  experimental: {
+    viewTransition: true,
+  },
   images: {
     remotePatterns: [
       {
