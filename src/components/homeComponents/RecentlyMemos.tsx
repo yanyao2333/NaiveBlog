@@ -81,7 +81,7 @@ export default function RecentlyMemos() {
               >
                 {/* 偏移 7px（半径加 border-s） */}
                 <div className='-start-[7px] absolute mt-2 flex h-3 w-3 items-center justify-center rounded-full border-2 border-blue-7 bg-slate-2 dark:border-skydark-7 dark:bg-slatedark-2' />
-                <div className='mr-2 flex flex-col justify-between rounded-lg bg-slate-3 p-4 shadow-sm ring-1 ring-slate-7/50 dark:bg-slatedark-3 dark:ring-slatedark-7/50'>
+                <div className='mr-2 flex flex-col justify-between rounded-lg bg-slate-3 p-4 shadow-xs ring-1 ring-slate-7/50 dark:bg-slatedark-3 dark:ring-slatedark-7/50'>
                   <time className='mb-2 self-start font-normal text-slate-11 text-xs dark:text-slatedark-11'>
                     {moment(memo.createTime).fromNow()}
                   </time>

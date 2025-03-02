@@ -154,7 +154,7 @@
   },
   "commit_footer": {
     "enable": true,
-    "initial_value": [],
+    "initial_value": ["trailer"],
     "options": ["closes", "trailer", "breaking-change", "deprecated", "custom"]
   },
   "breaking_change": {

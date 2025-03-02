@@ -45,7 +45,7 @@ export default function SettingsPanel() {
           设置
         </div>
         <div className='border-slate-7 border-t-2 bg-slate-3 dark:border-slatedark-7 dark:bg-slatedark-3'>
-          <div className='mx-7 my-5 grid min-h-7 max-w-full grid-cols-3 overflow-hidden rounded-full border-1 border-slate-7 text-center shadow'>
+          <div className='mx-7 my-5 grid min-h-7 max-w-full grid-cols-3 overflow-hidden rounded-full border-1 border-slate-7 text-center shadow-sm'>
             <button
               onClick={() => onClickThemeBtn('light')}
               disabled={theme === 'light'}

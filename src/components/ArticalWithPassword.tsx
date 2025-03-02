@@ -107,7 +107,7 @@ export default function ArticalWithPassword({
                 verifyPassword(password, path)
               }
             }}
-            className='w-12 flex-shrink-0 cursor-pointer content-center rounded-r border border-slate-6 border-l-0 bg-blue-7 text-center font-bold text-slate-11 hover:bg-blue-8 dark:bg-skydark-7 dark:text-slatedark-11 dark:hover:bg-skydark-8'
+            className='w-12 shrink-0 cursor-pointer content-center rounded-r border border-slate-6 border-l-0 bg-blue-7 text-center font-bold text-slate-11 hover:bg-blue-8 dark:bg-skydark-7 dark:text-slatedark-11 dark:hover:bg-skydark-8'
             onClick={() => verifyPassword(password, path)}
           >
             &rarr;

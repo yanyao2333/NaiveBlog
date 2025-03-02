@@ -58,7 +58,7 @@ const xsl = `<?xml version="1.0" encoding="utf-8"?>
                 }
                 .feed-icon {
                     margin-right: 1.25rem;
-                    flex-shrink: 0;
+                    shrink: 0;
                     width: 1em;
                     height: 1em;
                 }

@@ -38,7 +38,7 @@ export default function PostMinimal({
           <div className='space-y-1 pb-10 text-center dark:border-gray-700'>
             <div className='w-full'>
               <Bleed>
-                <div className='relative aspect-[2/1] w-full'>
+                <div className='relative aspect-2/1 w-full'>
                   <Image
                     src={displayImage}
                     alt={title}
