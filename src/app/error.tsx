@@ -31,7 +31,7 @@ export default function ErrorComponent({
             <>
               错误堆栈：
               <button
-                className='w-12 cursor-pointer content-center rounded border border-slate-6 border-l-0 bg-blue-7 text-center font-bold text-slate-11 text-xs hover:bg-blue-8 dark:bg-skydark-7 dark:text-slatedark-11 dark:hover:bg-skydark-8'
+                className='w-12 cursor-pointer content-center rounded-sm border border-slate-6 border-l-0 bg-blue-7 text-center font-bold text-slate-11 text-xs hover:bg-blue-8 dark:bg-skydark-7 dark:text-slatedark-11 dark:hover:bg-skydark-8'
                 onClick={() => copy(error.stack as string)}
               >
                 复制
@@ -51,7 +51,7 @@ export default function ErrorComponent({
         </p>
       </div>
       <button
-        className='w-12 cursor-pointer content-center rounded border border-slate-6 border-l-0 bg-blue-7 text-center font-bold text-slate-11 hover:bg-blue-8 dark:bg-skydark-7 dark:text-slatedark-11 dark:hover:bg-skydark-8'
+        className='w-12 cursor-pointer content-center rounded-sm border border-slate-6 border-l-0 bg-blue-7 text-center font-bold text-slate-11 hover:bg-blue-8 dark:bg-skydark-7 dark:text-slatedark-11 dark:hover:bg-skydark-8'
         onClick={reset}
       >
         刷新

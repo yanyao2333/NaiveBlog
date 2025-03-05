@@ -34,7 +34,7 @@ function SocialButtonTooltip({
 
 export default function Home() {
   return (
-    <div className='lg:mx-auto lg:max-w-screen-lg'>
+    <div className='lg:mx-auto lg:max-w-(--breakpoint-lg)'>
       {/* 在 100vh 的基础上减小 4.8rem，让下方箭头显示出来，并留出一部分空白*/}
       <div className='flex min-h-[calc(100vh-4.8rem)] flex-col'>
         <div className='my-auto flex flex-col items-center justify-between gap-12 lg:flex-row lg:gap-0'>

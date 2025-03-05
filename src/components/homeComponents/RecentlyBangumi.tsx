@@ -17,7 +17,7 @@ function AnimeComponent({ item }: { item: Item }) {
     >
       {/* Tooltip 显示的内容 */}
       {showTooltip && (
-        <div className='absolute bottom-full z-80 mb-2 w-max rounded bg-gray-800 px-2 py-1 text-sm text-white'>
+        <div className='absolute bottom-full z-80 mb-2 w-max rounded-sm bg-gray-800 px-2 py-1 text-sm text-white'>
           yeppppp
         </div>
       )}

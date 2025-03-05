@@ -169,9 +169,9 @@ const generatePopover = (
       transition
       anchor={{ to: 'bottom', gap: 12 }}
       className={clsx(
-        'rounded-xl bg-slate-2/90 text-sm shadow-md backdrop-blur-sm transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)]',
+        'rounded-xl bg-slate-2/90 text-sm shadow-md backdrop-blur-xs transition duration-200 ease-in-out [--anchor-gap:var(--spacing-5)]',
         'dark:bg-slatedark-2/90',
-        'data-[closed]:-translate-y-1 data-[closed]:opacity-0',
+        'data-closed:-translate-y-1 data-closed:opacity-0',
       )}
     >
       {link.children.map((child) => generatePopoverButton(child, iconMode))}
@@ -216,9 +216,8 @@ const FloatNavBar = () => {
   return (
     <div
       className={clsx(
-        'fixed inset-x-0 top-5 z-[100] mx-auto flex max-w-fit items-center justify-center rounded-full bg-slate-2/90 px-5 leading-5 shadow-md shadow-slate-9/50 ring-1 ring-slate-7/50 backdrop-blur-sm',
+        'fixed inset-x-0 top-5 z-100 mx-auto flex max-w-fit items-center justify-center rounded-full bg-slate-2/90 px-5 leading-5 shadow-md shadow-slate-9/50 ring-1 ring-slate-7/50 backdrop-blur-xs',
         'dark:bg-slatedark-3/90 dark:shadow-slatedark-9/50 dark:ring-slatedark-7/50',
-        'md:space-x-4',
       )}
     >
       <div

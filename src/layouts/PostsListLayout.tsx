@@ -109,14 +109,14 @@ export default function PostsListLayout({
     initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
-    <div className='min-h-full lg:mx-auto lg:max-w-screen-lg'>
+    <div className='min-h-full lg:mx-auto lg:max-w-(--breakpoint-lg)'>
       <PageTitle
         title={title ? title : '博文'}
         subtitle={subtitle ? subtitle : '思考、发癫与记录'}
       />
       <div className='flex sm:space-x-24'>
         {/* 大屏端侧边栏 */}
-        <div className='hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-slate-3 pt-5 shadow-md lg:flex dark:bg-slatedark-3'>
+        <div className='hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded-sm bg-slate-3 pt-5 shadow-md lg:flex dark:bg-slatedark-3'>
           <div className='flex w-full flex-col px-6 py-4'>
             <span className='px-3 font-bold text-slate-11 text-xl uppercase dark:text-slatedark-11'>
               分类

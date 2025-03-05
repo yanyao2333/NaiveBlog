@@ -23,7 +23,7 @@ export default function Page() {
   } = author
 
   return (
-    <div className='lg:mx-auto lg:max-w-screen-lg'>
+    <div className='lg:mx-auto lg:max-w-(--breakpoint-lg)'>
       <PageTitle
         title='About'
         subtitle='我是谁？'

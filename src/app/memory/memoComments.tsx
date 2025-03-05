@@ -90,7 +90,7 @@ const CommentComponent = memo(function CommentComponent({
           </div>
         )}
       </div>
-      <div className='prose prose-slate dark:prose-invert prose-p:my-2 ml-[47px] rounded-e-lg rounded-bl-lg bg-slate-3 pr-2 pl-2 text-slate-12 shadow-sm ring-1 ring-slate-7/50 dark:bg-slatedark-3 dark:text-slatedark-12 dark:ring-slatedark-7/50'>
+      <div className='prose prose-slate dark:prose-invert prose-p:my-2 ml-[47px] rounded-e-lg rounded-bl-lg bg-slate-3 pr-2 pl-2 text-slate-12 shadow-xs ring-1 ring-slate-7/50 dark:bg-slatedark-3 dark:text-slatedark-12 dark:ring-slatedark-7/50'>
         {comment.parsedContent ? (
           <article
             className='break-words'
@@ -120,7 +120,7 @@ const CommentComponent = memo(function CommentComponent({
                     src={`${imgUrl}?thumbnail=true`}
                     height={128}
                     width={128}
-                    className='h-36 w-36 rounded-xl border object-cover shadow-sm hover:shadow-xl'
+                    className='h-36 w-36 rounded-xl border object-cover shadow-xs hover:shadow-xl'
                   />
                 </a>
               )
