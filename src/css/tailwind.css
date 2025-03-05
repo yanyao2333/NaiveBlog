@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import "tailwindcss-radix-colors/dist/sky.css"; 
 @import "tailwindcss-radix-colors/dist/slate.css";
 @import "tailwindcss-radix-colors/dist/gray.css";  
 @import "tailwindcss-radix-colors/dist/blue.css"; 
@@ -8,8 +7,6 @@
 @plugin '@tailwindcss/forms';
 @source '../../data/**/*.mdx';
 @source '../../node_modules/pliny/**/*.js';
-
-@config '../../tailwind.config.ts';
 
 @theme {
   /* 容器 */
@@ -22,38 +19,8 @@
   --leading-13: 3.25rem;
   --leading-14: 3.5rem;
 
-  /* 颜色 */
-    /*
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-    */
-
-  /* 使用 Tailwind 默认调色板中的颜色 */
-  /* --color-primary-50: oklch(0.977 0.013 236.62);
+  /* 来自 tailwindcss 官方调色盘颜色 primary -> sky, gray -> gray，其他所有颜色都使用 radix 颜色系统，这部分依赖 tw 原生调色盘的属于是历史遗留问题了... */
+  --color-primary-50: oklch(0.977 0.013 236.62);
   --color-primary-100: oklch(0.951 0.026 236.824);
   --color-primary-200: oklch(0.901 0.058 230.902);
   --color-primary-300: oklch(0.828 0.111 230.318);
@@ -75,17 +42,7 @@
   --color-gray-700: oklch(0.373 0.034 259.733);
   --color-gray-800: oklch(0.278 0.033 256.848);
   --color-gray-900: oklch(0.21 0.034 264.665);
-  --color-gray-950: oklch(0.13 0.028 261.692); */
-
-  /* Z-index */
-  /* Tailwind v4 中没有 z-index 的命名空间，可以直接在需要的地方使用，或者自定义 */
-
-  /* 圆角 */
-    /*
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-    */
+  --color-gray-950: oklch(0.13 0.028 261.692);
 
   /* 关键帧 */
   --animate-accordion-down: accordion-down 0.2s ease-out;
@@ -110,60 +67,48 @@
   }
 }
 
-/* Typography (作为组件样式) */
-.typography {
-  & p {
-    /* 使用 Tailwind 的默认字号和颜色 */
-    font-size: var(--text-base);
-    color: var(--color-gray-700);
-
-    & a {
-      /* 使用 primary 颜色，并设置 hover 样式 */
-      color: var(--color-primary-500);
-      &:hover {
-        color: hsl(208, 88%, 43%); /* 直接使用 HSL 值 */
-      }
-      & code {
-        color: hsl(208, 88%, 43%);
-      }
-    }
-  }
-
-  & h1, & h2 {
+/* Typography plugin (from configuration) */
+@utility prose {
+  h1, h2 {
     font-weight: 700;
-    /* Tailwind v4 没有 letterSpacing 的命名空间 */
-    /* letter-spacing: theme('letterSpacing.tight'); */
+    letter-spacing: -0.025em;
   }
 
-  & h3 {
+  h3 {
     font-weight: 600;
   }
 
-  & code {
+  code {
     color: hsl(208, 88%, 43%);
+      &::before,
+    &::after {
+      display : none ;
+    }
+  }
+    a {
+    &:hover {
+      color: hsl(208, 88%, 43%);
+    }
   }
 }
 
-.typography-invert {
-  & a {
-    color: var(--color-primary-500);
+
+@utility prose-invert {
+  /* invert variant */
+  code {
+    color: hsl(210, 100%, 72%);
+      &::before,
+    &::after {
+      display : none ;
+    }
+  }
+   a {
     &:hover {
       color: hsl(210, 100%, 72%);
     }
-    & code {
-      color: hsl(210, 100%, 72%);
-    }
   }
-  & code {
-    color: hsl(210, 100%, 72%);
-  }
-  /* 如果需要，可以在这里设置 h1-h6 的颜色 */
-  /*
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--color-gray-100);
-  }
-  */
 }
+
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
