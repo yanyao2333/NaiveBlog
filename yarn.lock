@@ -10654,8 +10654,8 @@ __metadata:
   linkType: hard
 
 "mdx-bundler@npm:^10.0.2, mdx-bundler@npm:^10.0.3":
-  version: 10.1.0
-  resolution: "mdx-bundler@npm:10.1.0"
+  version: 10.1.1
+  resolution: "mdx-bundler@npm:10.1.1"
   dependencies:
     "@babel/runtime": "npm:^7.23.2"
     "@esbuild-plugins/node-resolve": "npm:^0.2.2"
@@ -10668,7 +10668,7 @@ __metadata:
     vfile: "npm:^6.0.1"
   peerDependencies:
     esbuild: 0.*
-  checksum: 10/141d7af4fc4d029318cd2a01cdf7f7865ed04a50d628e1ef1f69a232947d9b2625d041013372fc3c4c1e558d2d65a94b153ee47849470796f03b02d6854e8f73
+  checksum: 10/b5f9a5b8c6e316a91dc1e9f8bc68fbf4a5ebb90aeb89d98cd7685accab418aac33eacebadf0ace56f4f5ff93037370e431ed469bb50c9178068f7ef938c8c867
   languageName: node
   linkType: hard
 
