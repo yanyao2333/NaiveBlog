@@ -2215,12 +2215,12 @@ __metadata:
   linkType: hard
 
 "@content-collections/core@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "@content-collections/core@npm:0.8.0"
+  version: 0.8.1
+  resolution: "@content-collections/core@npm:0.8.1"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     camelcase: "npm:^8.0.0"
-    esbuild: "npm:^0.21.4"
+    esbuild: "npm:^0.25.0"
     gray-matter: "npm:^4.0.3"
     p-limit: "npm:^6.1.0"
     picomatch: "npm:^4.0.2"
@@ -2231,7 +2231,7 @@ __metadata:
     zod: "npm:^3.23.8"
   peerDependencies:
     typescript: ^5.0.2
-  checksum: 10/d72132b5741a786492715a462719cf4398a37d06afafc8a9500ad9014fada6d5a6a2cb5261004bc72901d94a4df0128e1da8be81024c19fbdeda20eec5c640fd
+  checksum: 10/3cc1ba05cd028c68064ad6f4042f8df9f1c4e190ff4465a37fc0a552f8cf8a488357dd00f7d076a7770e501f69c154800bffe07c67e9e63c6d9baabc5489f9fe
   languageName: node
   linkType: hard
 
