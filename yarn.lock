@@ -2215,8 +2215,8 @@ __metadata:
   linkType: hard
 
 "@content-collections/core@npm:^0.8.0":
-  version: 0.8.1
-  resolution: "@content-collections/core@npm:0.8.1"
+  version: 0.8.2
+  resolution: "@content-collections/core@npm:0.8.2"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     camelcase: "npm:^8.0.0"
@@ -2231,7 +2231,7 @@ __metadata:
     zod: "npm:^3.23.8"
   peerDependencies:
     typescript: ^5.0.2
-  checksum: 10/3cc1ba05cd028c68064ad6f4042f8df9f1c4e190ff4465a37fc0a552f8cf8a488357dd00f7d076a7770e501f69c154800bffe07c67e9e63c6d9baabc5489f9fe
+  checksum: 10/0e376f01df73c14adf8b4c9f59c3cdb5eb83a630d57c6b2686ac5ce9f40b657e3ec58eb0015d34963ef494ee6ee8bfa8dab6d1e4b54d8ddf4e17702e7c7a627d
   languageName: node
   linkType: hard
 
