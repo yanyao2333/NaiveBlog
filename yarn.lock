@@ -2245,8 +2245,8 @@ __metadata:
   linkType: hard
 
 "@content-collections/mdx@npm:^0.2.0":
-  version: 0.2.1
-  resolution: "@content-collections/mdx@npm:0.2.1"
+  version: 0.2.2
+  resolution: "@content-collections/mdx@npm:0.2.2"
   dependencies:
     esbuild: "npm:^0.25.0"
     mdx-bundler: "npm:^10.0.3"
@@ -2255,7 +2255,7 @@ __metadata:
     "@content-collections/core": 0.x
     react: ">= 18"
     react-dom: ">= 18"
-  checksum: 10/d2ce4eb4cdba3495c84a9b55961b8c46ea0ffcdc07ce90edfc9cdbe4ef4ac0da563d0688b45ed90f8815d90f038c9f051eddce7435f8e3ff024632cfcdfe3232
+  checksum: 10/b1efd309c45cd707ae179d7ff63d5d943479750c9f73903563cce98b57b84078357509daa18b51a921fd1ffde24a90aafebbd4b3ee81ab59f3dd8656f5d44689
   languageName: node
   linkType: hard
 
