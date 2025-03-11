@@ -2260,14 +2260,14 @@ __metadata:
   linkType: hard
 
 "@content-collections/next@npm:^0.2.4":
-  version: 0.2.5
-  resolution: "@content-collections/next@npm:0.2.5"
+  version: 0.2.6
+  resolution: "@content-collections/next@npm:0.2.6"
   dependencies:
     "@content-collections/integrations": "npm:0.2.1"
   peerDependencies:
     "@content-collections/core": 0.x
     next: ^12 || ^13 || ^14 || ^15
-  checksum: 10/00178d6a2f13f7c783782b3d34a147af7389b0eff8d3a68ad2eeec368ad3142bdfcd411b4b63e4fcd942b9c208907e3ec2e961860caa84277d4565418795d039
+  checksum: 10/5a8fcf0dfc875c57f1d2896fd4f1d5cd841f7c72a90714c80e680f4809611414f8e8e72b433bddce3661fb3d4295d5dfe67a5c78d4a242fb73a7e73676f4a320
   languageName: node
   linkType: hard
 
