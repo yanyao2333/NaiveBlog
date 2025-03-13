@@ -38,7 +38,7 @@
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
     "hast-util-from-html-isomorphic": "^2.0.0",
-    "image-size": "2.0.0",
+    "image-size": "2.0.1",
     "lefthook": "^1.10.1",
     "lightgallery": "^2.8.2",
     "lucide-react": "^0.477.0",
