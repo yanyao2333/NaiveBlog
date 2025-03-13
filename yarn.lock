@@ -11593,12 +11593,12 @@ __metadata:
   linkType: hard
 
 "next-themes@npm:^0.4.4":
-  version: 0.4.5
-  resolution: "next-themes@npm:0.4.5"
+  version: 0.4.6
+  resolution: "next-themes@npm:0.4.6"
   peerDependencies:
     react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
     react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
-  checksum: 10/7d185b0c918a88b45d82f329c8e55f210328c03eb3f2c0808e9f8d358df40c010f8aaf0ede5bfaf2df5fe398982630355fd79f8224a7ac888891aa7ab5eda043
+  checksum: 10/48540e77a8f1967fa27338e91037df296f84d8979ba3003f71eed8d9a2f4f29b3cc6797d27b501547fd39cf33611a2accb432eec92ad8a457abe1a142cc5a02e
   languageName: node
   linkType: hard
 
