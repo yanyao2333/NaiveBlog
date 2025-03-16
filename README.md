@@ -2,7 +2,7 @@
 > Too young, too simple, sometimes naïve!
 > —— 🐸
 
-技术栈：Next.js 15 + Tailwind CSS + MDX + ContentLayer2
+技术栈：Next.js 15 + Tailwind CSS + MDX + Content-Collections
 
 基于 [timlrx/tailwind-nextjs-starter-blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) 修改
 
