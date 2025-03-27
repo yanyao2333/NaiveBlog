@@ -13,7 +13,8 @@
     "prepare": "husky",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "knip": "knip"
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",
@@ -91,6 +92,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@types/mdx": "^2.0.13",
+    "@types/node": "^22.13.14",
     "@types/react": "^19.0.0",
     "@types/read-time-estimate": "^0",
     "@vitejs/plugin-react": "^4.3.4",
@@ -99,7 +101,8 @@
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "jsdom": "^26.0.0",
-    "typescript": "^5.5.4",
+    "knip": "^5.46.2",
+    "typescript": "^5.8.2",
     "vitest": "^3.0.0"
   },
   "packageManager": "yarn@4.7.0"
