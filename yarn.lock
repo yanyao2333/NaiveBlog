@@ -11135,8 +11135,8 @@ __metadata:
   linkType: hard
 
 "nextjs-toploader@npm:^3.7.15":
-  version: 3.7.15
-  resolution: "nextjs-toploader@npm:3.7.15"
+  version: 3.8.16
+  resolution: "nextjs-toploader@npm:3.8.16"
   dependencies:
     nprogress: "npm:^0.2.0"
     prop-types: "npm:^15.8.1"
@@ -11144,7 +11144,7 @@ __metadata:
     next: ">= 6.0.0"
     react: ">= 16.0.0"
     react-dom: ">= 16.0.0"
-  checksum: 10/8d6621a46277aa1b8f682436bda2a50e19de150eeff186e77127c3ad8817d541a9059abedca4f874e03be5fb8c8e41e97568ca488f2866aa3b620a3557122a84
+  checksum: 10/74e68e2f4576b60e6d55f93f316b9a46440e80c2a1d651869a71c5a6136033022f15d5c7ae875a060dddad018fff3e132174210d5bbf93cfa052fa6b6749cab7
   languageName: node
   linkType: hard
 
