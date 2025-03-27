@@ -7,7 +7,6 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import '@/css/LXGWWenKai-Regular/result.css'
 import '@/css/tailwind.css'
 import siteMetadata from '@/data/siteMetadata'
-import { OpenPanelComponent } from '@openpanel/nextjs'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
@@ -161,10 +160,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ClientReady />
         <NextTopLoader showSpinner={false} />
         <Toaster />
-        <OpenPanelComponent
-          clientId='e67f1761-a8ed-46f2-b8ab-dab5884e4fe0'
-          trackScreenViews={true}
-        />
         <SpeedInsights />
         <Analytics />
         <TooltipProvider delayDuration={0}>
