@@ -8780,12 +8780,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"image-size@npm:2.0.1":
-  version: 2.0.1
-  resolution: "image-size@npm:2.0.1"
+"image-size@npm:2.0.2":
+  version: 2.0.2
+  resolution: "image-size@npm:2.0.2"
   bin:
     image-size: bin/image-size.js
-  checksum: 10/8b9d1f3cfebfd1887dcd7761901fa4cb116b52ea036f25dcfc7b2ab426693d9029cc216a59498d41db81511a5cb283bd4d229da2c64980e88056975b0d7d6eef
+  checksum: 10/d15203279fe7ada01252d8c56ba97516385d6d5ac2cbf3d734580fc88db4f5272b9b3f7f378ad63abc7d06b5500c43b90d9f84626e2bda1cab403c16eb469592
   languageName: node
   linkType: hard
 
@@ -10957,7 +10957,7 @@ __metadata:
     github-slugger: "npm:^2.0.0"
     gray-matter: "npm:^4.0.3"
     hast-util-from-html-isomorphic: "npm:^2.0.0"
-    image-size: "npm:2.0.1"
+    image-size: "npm:2.0.2"
     jsdom: "npm:^26.0.0"
     knip: "npm:^5.46.2"
     lefthook: "npm:^1.10.1"
