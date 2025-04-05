@@ -89,11 +89,15 @@ export function createTagCount(allBlogs: Post[]) {
 
 export function createSearchIndex(allBlogs: Post[]) {
   const blogs = sortPostsByDate(filterVisiablePosts(allBlogs))
-  // WTF is this doing?!?!?!?! I debug this for 10 minutes just to find out why the docs' content is being removed!!!!!!!
-  // for (const blog of blogs) {
-  // blog.content = ''
-  // }
-  writeFileSync('public/search.json', JSON.stringify(blogs))
+  const newBlogs = blogs.map((blog) => {
+    return {
+      content: blog.content,
+      date: blog.date,
+      path: blog.path,
+      title: blog.title,
+    }
+  })
+  writeFileSync('public/search.json', JSON.stringify(newBlogs))
   console.log('✅ Search index generated successfully')
 }
 
