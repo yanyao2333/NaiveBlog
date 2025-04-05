@@ -1,4 +1,8 @@
-import moment from 'moment/min/moment-with-locales'
+import dayjs from 'dayjs'
+import './zh-cn'
+import calendar from 'dayjs/plugin/calendar'
+import LocalizedFormat from 'dayjs/plugin/localizedFormat'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 /**
  * 比较目标时间戳与当前时间是否相差指定的毫秒数
@@ -28,20 +32,39 @@ export const formatDate = (date: string | Date, locale = 'zh-CN') => {
   return dateObj.toLocaleDateString(locale, options)
 }
 
+// 加载插件
+dayjs.extend(relativeTime)
+dayjs.extend(calendar)
+dayjs.extend(LocalizedFormat)
+
 /**
- * 使用 moment.js 将时间字符串格式化为语义化的时间字符串
- * @param timeString 时间字符串
- * @returns 格式化后的时间字符串
+ * 使用 dayjs 将时间字符串格式化为语义化的时间字符串
  */
-export function formatToSemanticTime(timeString, locale) {
-  const targetTime = moment(timeString).locale(locale)
-  const diffDays = moment().diff(targetTime, 'days')
-  switch (true) {
-    case diffDays < 1:
-      return targetTime.fromNow()
-    case diffDays >= 1 && diffDays < 7:
-      return targetTime.calendar()
-    case diffDays >= 7:
-      return targetTime.format('llll')
+export function formatToSemanticTime(
+  timeInput: string | Date | dayjs.Dayjs,
+  locale?: string,
+) {
+  let targetTime: dayjs.Dayjs
+  const newLocale = locale?.toLowerCase()
+  if (newLocale !== 'zh-cn' && newLocale !== 'en') {
+    targetTime = dayjs(timeInput)
+  } else {
+    targetTime = newLocale
+      ? dayjs(timeInput).locale(newLocale)
+      : dayjs(timeInput)
   }
+
+  if (!targetTime.isValid()) {
+    return 'Invalid Date'
+  }
+
+  const now = dayjs()
+
+  if (now.isSame(targetTime, 'day')) {
+    return targetTime.fromNow()
+  }
+  if (now.diff(targetTime, 'day') < 7) {
+    return targetTime.calendar(now)
+  }
+  return targetTime.format('llll')
 }

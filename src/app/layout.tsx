@@ -14,6 +14,7 @@ import NextTopLoader from 'nextjs-toploader'
 import type { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import 'remark-github-blockquote-alert/alert.css'
+import Script from 'next/script'
 import { unstable_ViewTransition as ViewTransition } from 'react'
 import { ThemeProviders } from './theme-providers'
 
@@ -109,9 +110,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <head>
         {process.env.NODE_ENV === 'development' && (
-          <script
+          <Script
             crossOrigin='anonymous'
-            src='//unpkg.com/react-scan/dist/auto.global.js'
+            src='https://unpkg.com/react-scan/dist/auto.global.js'
           />
         )}
         <link
