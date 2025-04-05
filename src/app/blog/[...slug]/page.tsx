@@ -3,9 +3,7 @@ import LightGalleryWrapper from '@/components/LightGalleryWrapper'
 import { components } from '@/components/MDXComponents'
 import '@/css/prism.css'
 import siteMetadata from '@/data/siteMetadata'
-import PostBanner from '@/layouts/PostBanner'
 import PostLayout from '@/layouts/PostLayout'
-import PostSimple from '@/layouts/PostSimple'
 import type { Author, Post } from '@/services/content/core'
 import { allAuthors, allPosts } from '@/services/content/core'
 import { sortPostsByDate } from '@/services/content/utils'
@@ -14,13 +12,6 @@ import { allCoreContent, coreContent } from '@/services/content/utils'
 import { MDXContent } from '@content-collections/mdx/react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-
-const defaultLayout = 'PostLayout'
-const layouts = {
-  PostSimple,
-  PostLayout,
-  PostBanner,
-}
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string[] }>
@@ -114,8 +105,6 @@ export default async function Page(props: {
     }
   })
 
-  const Layout = layouts[post.layout || defaultLayout]
-
   if (post.private) {
     return (
       <>
@@ -145,7 +134,7 @@ export default async function Page(props: {
         // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Layout
+      <PostLayout
         content={mainContent}
         authorDetails={authorDetails}
         next={next}
@@ -160,7 +149,7 @@ export default async function Page(props: {
             components={components}
           />
         </LightGalleryWrapper>
-      </Layout>
+      </PostLayout>
     </>
   )
 }

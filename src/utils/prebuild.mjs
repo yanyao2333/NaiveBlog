@@ -47,14 +47,16 @@ const syncContentFromGit = async (contentDir) => {
         recursive: true,
       },
     )
-    readdirSync(`${contentDir}/blog`, { recursive: true }).forEach((file) => {
+    // 将 md 文件重命名为 mdx 文件
+    const files = readdirSync(`${contentDir}/blog`, { recursive: true })
+    for (const file of files) {
       if (file.endsWith('.md')) {
         renameSync(
           `${contentDir}/blog/${file}`,
           `${contentDir}/blog/${file.replace('.md', '.mdx')}`,
         )
       }
-    })
+    }
     console.log('✅ Fetched content files from git successfully!')
   } finally {
     if (existsSync(`${contentDir}/blog-tmp`)) {

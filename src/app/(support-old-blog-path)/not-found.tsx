@@ -13,13 +13,6 @@ export default function NotFound() {
           <br />
           或许你可以点击上方导航栏看看有没有你在找的标签或分类？
         </p>
-        {/*<p className="mb-8">别乱跑！否则就回不去了哦~</p>*/}
-        {/*<Link*/}
-        {/*  href="/"*/}
-        {/*  className="focus:shadow-outline-blue inline rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium leading-5 text-white shadow-sm transition-colors duration-150 hover:bg-blue-700 focus:outline-hidden dark:hover:bg-blue-500"*/}
-        {/*>*/}
-        {/*  我要回去！*/}
-        {/*</Link>*/}
       </div>
     </div>
   )

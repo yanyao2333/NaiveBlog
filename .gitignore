@@ -65,3 +65,6 @@ yarn-error.log*
 
 # Content-collections
 .content-collections
+
+# vscode
+.vscode
