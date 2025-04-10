@@ -6,7 +6,7 @@
     "start": "next dev",
     "dev": "cross-env NEXT_PUBLIC_COMMIT_HASH=$(git rev-parse HEAD) INIT_CWD=$PWD NODE_OPTIONS='--inspect --trace-deprecation' next dev",
     "dev:tp": "cross-env NEXT_PUBLIC_COMMIT_HASH=$(git rev-parse HEAD) INIT_CWD=$PWD NODE_OPTIONS='--inspect --trace-deprecation' next dev --turbopack",
-    "build": "cross-env NODE_OPTIONS='--experimental-json-modules' node src/utils/prebuild.mjs && cross-env NEXT_PUBLIC_COMMIT_HASH=$(git rev-parse HEAD) INIT_CWD=$PWD next build",
+    "build": "cross-env NODE_OPTIONS='--experimental-json-modules' node src/utils/prebuild.mjs && cross-env NEXT_PUBLIC_COMMIT_HASH=$(git rev-parse HEAD) INIT_CWD=$PWD next build --turbopack",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
