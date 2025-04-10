@@ -3652,37 +3652,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nodelib/fs.scandir@npm:4.0.1":
-  version: 4.0.1
-  resolution: "@nodelib/fs.scandir@npm:4.0.1"
-  dependencies:
-    "@nodelib/fs.stat": "npm:4.0.0"
-    run-parallel: "npm:^1.2.0"
-  checksum: 10/44b2b2b34e48ca88ee004413f5033db31cd6d5ecf8c7bbef0e33b6672d603f3e23b57d5fbb1bd5f83f8992df58381be6600006d92a903f085e698a37bdfe3c89
-  languageName: node
-  linkType: hard
-
 "@nodelib/fs.stat@npm:2.0.5, @nodelib/fs.stat@npm:^2.0.2":
   version: 2.0.5
   resolution: "@nodelib/fs.stat@npm:2.0.5"
   checksum: 10/012480b5ca9d97bff9261571dbbec7bbc6033f69cc92908bc1ecfad0792361a5a1994bc48674b9ef76419d056a03efadfce5a6cf6dbc0a36559571a7a483f6f0
-  languageName: node
-  linkType: hard
-
-"@nodelib/fs.stat@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@nodelib/fs.stat@npm:4.0.0"
-  checksum: 10/1f87199fdab938d2ed6f5e10debc006f7965081e2cd147ed3d2333049a030cad1949bd76556a5f5364f062c3e1edcc3d0981189b065336fc92c503ead463f4e1
-  languageName: node
-  linkType: hard
-
-"@nodelib/fs.walk@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@nodelib/fs.walk@npm:3.0.1"
-  dependencies:
-    "@nodelib/fs.scandir": "npm:4.0.1"
-    fastq: "npm:^1.15.0"
-  checksum: 10/7b76a0139dec52e3f2a3a0bb4f13dbf72a6b79d8076ec4b5deea9e75bd1b79d7abda53776f93b5aefda9a5e40f0e31f49f6e35bf5460a402f0aee7bcf3b26d85
   languageName: node
   linkType: hard
 
@@ -4937,19 +4910,6 @@ __metadata:
   version: 2.0.0-alpha.18
   resolution: "@rrweb/utils@npm:2.0.0-alpha.18"
   checksum: 10/d0ca790639816b13dcd353b9669059373c1f56585a5ad4a03c7559fd1d6cdae104e63f50f0076053b67ae1635be0f7b0e9bcb42ab9f9e094358952760499133d
-  languageName: node
-  linkType: hard
-
-"@snyk/github-codeowners@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@snyk/github-codeowners@npm:1.1.0"
-  dependencies:
-    commander: "npm:^4.1.1"
-    ignore: "npm:^5.1.8"
-    p-map: "npm:^4.0.0"
-  bin:
-    github-codeowners: dist/cli.js
-  checksum: 10/34120ef622616fef1ed8af12869d8c1803842aafa3fbacca263805ee7c85f58d11bdc301ef698c9b41268b275b9fd090f5d9f6d89c556abe9d52196e72d1c510
   languageName: node
   linkType: hard
 
@@ -6719,13 +6679,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "commander@npm:4.1.1"
-  checksum: 10/3b2dc4125f387dab73b3294dbcb0ab2a862f9c0ad748ee2b27e3544d25325b7a8cdfbcc228d103a98a716960b14478114a5206b5415bd48cdafa38797891562c
-  languageName: node
-  linkType: hard
-
 "commander@npm:^7.2.0":
   version: 7.2.0
   resolution: "commander@npm:7.2.0"
@@ -7435,7 +7388,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enhanced-resolve@npm:^5.18.0, enhanced-resolve@npm:^5.18.1":
+"enhanced-resolve@npm:^5.18.1":
   version: 5.18.1
   resolution: "enhanced-resolve@npm:5.18.1"
   dependencies:
@@ -7954,15 +7907,6 @@ __metadata:
   peerDependencies:
     "@babel/types": ^7
   checksum: 10/6b6e9cc82e475eb96033cb6a5bdd18dce4b0ab98d9bd7aa22ca04ae142be9bf74427b34b2d70aa97bc68797f315a67898230a5182a34d8ba334ac6e0b5af3ba3
-  languageName: node
-  linkType: hard
-
-"fastq@npm:^1.15.0":
-  version: 1.19.1
-  resolution: "fastq@npm:1.19.1"
-  dependencies:
-    reusify: "npm:^1.0.4"
-  checksum: 10/75679dc226316341c4f2a6b618571f51eac96779906faecd8921b984e844d6ae42fabb2df69b1071327d398d5716693ea9c9c8941f64ac9e89ec2032ce59d730
   languageName: node
   linkType: hard
 
@@ -8896,13 +8840,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ignore@npm:^5.1.8":
-  version: 5.3.2
-  resolution: "ignore@npm:5.3.2"
-  checksum: 10/cceb6a457000f8f6a50e1196429750d782afce5680dd878aa4221bd79972d68b3a55b4b1458fc682be978f4d3c6a249046aa0880637367216444ab7b014cfc98
-  languageName: node
-  linkType: hard
-
 "image-size@npm:2.0.2":
   version: 2.0.2
   resolution: "image-size@npm:2.0.2"
@@ -9485,13 +9422,12 @@ __metadata:
   linkType: hard
 
 "knip@npm:^5.46.2":
-  version: 5.46.2
-  resolution: "knip@npm:5.46.2"
+  version: 5.50.2
+  resolution: "knip@npm:5.50.2"
   dependencies:
-    "@nodelib/fs.walk": "npm:3.0.1"
-    "@snyk/github-codeowners": "npm:1.1.0"
+    "@nodelib/fs.walk": "npm:^1.2.3"
     easy-table: "npm:1.2.0"
-    enhanced-resolve: "npm:^5.18.0"
+    enhanced-resolve: "npm:^5.18.1"
     fast-glob: "npm:^3.3.3"
     jiti: "npm:^2.4.2"
     js-yaml: "npm:^4.1.0"
@@ -9501,7 +9437,6 @@ __metadata:
     pretty-ms: "npm:^9.0.0"
     smol-toml: "npm:^1.3.1"
     strip-json-comments: "npm:5.0.1"
-    summary: "npm:2.1.0"
     zod: "npm:^3.22.4"
     zod-validation-error: "npm:^3.0.3"
   peerDependencies:
@@ -9510,7 +9445,7 @@ __metadata:
   bin:
     knip: bin/knip.js
     knip-bun: bin/knip-bun.js
-  checksum: 10/2bbec7ffe7c4b60b6d039cc12c8ae82ad5e4b64978ad64777c0ac029e3c8dea0338da03dcbb7246880f548eff74d6552533372f07a93d3932288d5f7fbf28f5d
+  checksum: 10/b16ea9257f2e1b0f6a368ef2ba92bdb4df1e5161b2013b4a075594fe7e6ec101bbc17d974e192605151cf40cddc17f7603505641e9bff6956b7409acb257977c
   languageName: node
   linkType: hard
 
@@ -13053,7 +12988,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"run-parallel@npm:^1.1.9, run-parallel@npm:^1.2.0":
+"run-parallel@npm:^1.1.9":
   version: 1.2.0
   resolution: "run-parallel@npm:1.2.0"
   dependencies:
@@ -13784,13 +13719,6 @@ __metadata:
   version: 0.7.5
   resolution: "sugar-high@npm:0.7.5"
   checksum: 10/23e84b313d81c6192a2cab687f8ab9e829e0175f6cbb55319b34ed9809c2802dd56ec225bdf6036f69978fbfe622e28fff5fa71eb3a01efefa63fe46bb5b922d
-  languageName: node
-  linkType: hard
-
-"summary@npm:2.1.0":
-  version: 2.1.0
-  resolution: "summary@npm:2.1.0"
-  checksum: 10/10ac12ce12c013b56ad44c37cfac206961f0993d98867b33b1b03a27b38a1cf8dd2db0b788883356c5335bbbb37d953772ef4a381d6fc8f408faf99f2bc54af5
   languageName: node
   linkType: hard
 
