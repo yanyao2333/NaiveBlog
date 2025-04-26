@@ -104,14 +104,14 @@ const nextConfig = {
       },
     },
   },
-  // webpack: (config, options) => {
-  //   config.module.rules.push({
-  //     test: /\.svg$/,
-  //     use: ['@svgr/webpack'],
-  //   })
-  //   config.resolve.alias['./locale'] = 'moment/locale'
-  //   return config
-  // },
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
+    // config.resolve.alias['./locale'] = 'moment/locale'
+    return config
+  },
 }
 const withBundleAnalyzerConfig = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
