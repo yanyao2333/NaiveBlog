@@ -1,13 +1,13 @@
 'use client'
 
-import { components } from '@/components/MDXComponents'
-import PostLayout from '@/layouts/PostLayout'
-import type { Author, Post } from '@/services/content/core'
-import { type CoreContent, coreContent } from '@/services/content/utils'
 import { MDXContent } from '@content-collections/mdx/react'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { components } from '@/components/MDXComponents'
+import PostLayout from '@/layouts/PostLayout'
+import type { Author, Post } from '@/services/content/core'
+import { type CoreContent, coreContent } from '@/services/content/utils'
 import LightGalleryWrapper from './LightGalleryWrapper'
 
 export default function ArticalWithPassword({

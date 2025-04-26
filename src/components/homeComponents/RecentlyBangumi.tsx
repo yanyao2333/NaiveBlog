@@ -1,9 +1,9 @@
 'use client'
 
-import type { BangumiUserCollection, Item } from '@/types/bangumi'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import type { BangumiUserCollection, Item } from '@/types/bangumi'
 
 function AnimeComponent({ item }: { item: Item }) {
   const [showTooltip, setShowTooltip] = useState(false)

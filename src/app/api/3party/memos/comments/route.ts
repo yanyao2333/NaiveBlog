@@ -1,5 +1,5 @@
-import type { Memo } from '@/types/memos'
 import { type NextRequest, NextResponse } from 'next/server'
+import type { Memo } from '@/types/memos'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const query = request.nextUrl.searchParams

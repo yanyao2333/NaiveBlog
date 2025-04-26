@@ -1,10 +1,6 @@
 // 为文章生成一些元数据的辅助函数
 
 import { writeFileSync } from 'node:fs'
-import categoryMapping from '@/data/category-mapping'
-import config from '@/data/siteMetadata'
-import type { Post } from '@/services/content/core'
-import { filterVisiablePosts, sortPostsByDate } from '@/services/content/utils'
 import { slug } from 'github-slugger'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
@@ -13,6 +9,10 @@ import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import RSS from 'rss'
 import { unified } from 'unified'
+import categoryMapping from '@/data/category-mapping'
+import config from '@/data/siteMetadata'
+import type { Post } from '@/services/content/core'
+import { filterVisiablePosts, sortPostsByDate } from '@/services/content/utils'
 
 const isProduction = process.env.NODE_ENV === 'production'
 

@@ -14,7 +14,10 @@ import {
 export const KBarModal = ({
   actions,
   isLoading,
-}: { actions: Action[]; isLoading: boolean }) => {
+}: {
+  actions: Action[]
+  isLoading: boolean
+}) => {
   useRegisterActions(actions, [actions])
 
   return (

@@ -1,4 +1,4 @@
-import { RedirectType, permanentRedirect } from 'next/navigation'
+import { permanentRedirect, RedirectType } from 'next/navigation'
 import type { NextRequest } from 'next/server'
 import postMappingData from './old-blog-posts-mapping.json'
 

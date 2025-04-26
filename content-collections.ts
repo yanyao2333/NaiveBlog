@@ -1,11 +1,5 @@
 import { existsSync, mkdirSync } from 'node:fs'
 import path from 'node:path'
-import {
-  createCategoryTree,
-  createSearchIndex,
-  createTagCount,
-  generateRssFeed,
-} from '@/services/content/metaGen'
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import remarkMediaCard from '@zhouhua-dev/remark-media-card'
@@ -25,6 +19,12 @@ import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkMath from 'remark-math'
+import {
+  createCategoryTree,
+  createSearchIndex,
+  createTagCount,
+  generateRssFeed,
+} from '@/services/content/metaGen'
 import siteMetadata from './data/siteMetadata'
 import { remarkImgToJsx } from './src/mdx-plugins/remark-img-to-jsx'
 import { extractTocHeadings } from './src/mdx-plugins/toc'

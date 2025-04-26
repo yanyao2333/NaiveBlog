@@ -1,6 +1,6 @@
 'use client'
-import type { Toc, TocItem } from '@/mdx-plugins/toc'
 import { useEffect, useRef, useState } from 'react'
+import type { Toc, TocItem } from '@/mdx-plugins/toc'
 
 export interface TOCInlineProps {
   toc?: Toc

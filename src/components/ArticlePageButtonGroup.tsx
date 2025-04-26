@@ -2,10 +2,10 @@
 
 // 该组件是博文页面右下角的按钮组件，包括返回顶部和跳转评论区，以及手机端的显示 TOC 按钮。
 
-import siteMetadata from '@/data/siteMetadata'
 import { useEffect, useState } from 'react'
-import { TOCDrawer } from './TOCDrawer'
+import siteMetadata from '@/data/siteMetadata'
 import type { Toc } from '@/mdx-plugins/toc'
+import { TOCDrawer } from './TOCDrawer'
 
 interface ScrollTopAndCommentProps {
   toc?: Toc

@@ -1,3 +1,4 @@
+import { MDXContent } from '@content-collections/mdx/react'
 import { genPageMetadata } from '@/app/seo'
 import Image from '@/components/Image'
 import LightGalleryWrapper from '@/components/LightGalleryWrapper'
@@ -5,7 +6,6 @@ import { components } from '@/components/MDXComponents'
 import PageTitle from '@/components/PageTitle'
 import SocialIcon from '@/components/svgs/social-icons'
 import { type Author, allAuthors } from '@/services/content/core'
-import { MDXContent } from '@content-collections/mdx/react'
 
 export const metadata = genPageMetadata({ title: 'About' })
 

@@ -1,3 +1,6 @@
+import { slug } from 'github-slugger'
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { genPageMetadata } from '@/app/seo'
 import siteMetadata from '@/data/siteMetadata'
 import PostsListLayout from '@/layouts/PostsListLayout'
@@ -5,9 +8,6 @@ import { allPosts } from '@/services/content/core'
 import { sortPostsByDate } from '@/services/content/utils'
 import { allCoreContent } from '@/services/content/utils'
 import tagData from '@/temp/tag-data.json'
-import { slug } from 'github-slugger'
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 
 export async function generateMetadata(props: {
   params: Promise<{ tag: string }>

@@ -1,12 +1,12 @@
-import Logo from '@/public/static/images/logo.png'
-import type { Memo } from '@/types/memos'
-import { formatToSemanticTime } from '@/utils/time'
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import LightGallery from 'lightgallery/react'
 import Image from 'next/image'
 import { memo, useState } from 'react'
 import toast from 'react-hot-toast'
+import Logo from '@/public/static/images/logo.png'
+import type { Memo } from '@/types/memos'
+import { formatToSemanticTime } from '@/utils/time'
 import { fetchComments } from './fetchFunctions'
 
 /**

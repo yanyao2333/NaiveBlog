@@ -1,8 +1,8 @@
 'use client'
 
-import siteMetadata from '@/data/siteMetadata'
 import { Comments as CommentsComponent } from 'pliny/comments'
 import { useState } from 'react'
+import siteMetadata from '@/data/siteMetadata'
 
 // 已废弃，直接加载评论组件
 export default function Comments({ slug }: { slug: string }) {

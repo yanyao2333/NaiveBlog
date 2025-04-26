@@ -1,6 +1,6 @@
+import { type NextRequest, NextResponse } from 'next/server'
 import type { PlayList } from '@/types/neteasePlayList'
 import { isTimeDifferenceGreaterThan } from '@/utils/time'
-import { type NextRequest, NextResponse } from 'next/server'
 
 const playListCache: { [id: string]: PlayList } = {}
 

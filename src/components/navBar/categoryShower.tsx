@@ -1,3 +1,9 @@
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import clsx from 'clsx'
+import { FolderArchive, Package } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { memo, useState } from 'react'
+import useMediaQuery from 'src/hooks/useMediaQuery'
 import {
   Drawer,
   DrawerClose,
@@ -9,12 +15,6 @@ import {
 } from '@/components/ui/drawer'
 import categoryData from '@/temp/category-data.json'
 import { cn } from '@/utils/classname'
-import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import clsx from 'clsx'
-import { FolderArchive, Package } from 'lucide-react'
-import { usePathname } from 'next/navigation'
-import { memo, useState } from 'react'
-import useMediaQuery from 'src/hooks/useMediaQuery'
 import CategoryTreeView from '../categoryTreeView'
 
 function CategoryDialogModal({ isOpen, setIsOpen }) {

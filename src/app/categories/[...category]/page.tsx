@@ -1,14 +1,14 @@
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { genPageMetadata } from '@/app/seo'
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
 import PostsListLayout from '@/layouts/PostsListLayout'
-import { type Post, allPosts } from '@/services/content/core'
+import { allPosts, type Post } from '@/services/content/core'
 import type { CategoryTreeNode } from '@/services/content/metaGen'
 import { sortPostsByDate } from '@/services/content/utils'
-import { type CoreContent, allCoreContent } from '@/services/content/utils'
+import { allCoreContent, type CoreContent } from '@/services/content/utils'
 import categoryData from '@/temp/category-data.json'
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 
 export async function generateMetadata(props: {
   params: Promise<{ category: string[] }>

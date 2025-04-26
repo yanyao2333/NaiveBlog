@@ -1,24 +1,27 @@
-import MyStatus from '@/components/MyStatus'
-import PageTitle from '@/components/PageTitle'
-import YiYan from '@/components/YiYan'
+import clsx from 'clsx'
+import { Mail, Rss } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 import RecentlyMemos from '@/components/homeComponents/RecentlyMemos'
 import RecentlyPosts from '@/components/homeComponents/RecentlyPosts'
+import MyStatus from '@/components/MyStatus'
+import PageTitle from '@/components/PageTitle'
 import { Github } from '@/components/svgs/social-icons/icons'
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import YiYan from '@/components/YiYan'
 import siteMetadata from '@/data/siteMetadata'
-import clsx from 'clsx'
-import { Mail, Rss } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
 
 function SocialButtonTooltip({
   text,
   children,
-}: { text: string; children: React.ReactNode }) {
+}: {
+  text: string
+  children: React.ReactNode
+}) {
   return (
     <Tooltip>
       <TooltipTrigger>{children}</TooltipTrigger>

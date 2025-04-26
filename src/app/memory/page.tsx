@@ -1,7 +1,7 @@
 'use client'
+import clsx from 'clsx'
 import PageTitle from '@/components/PageTitle'
 import type { Memo } from '@/types/memos'
-import clsx from 'clsx'
 import 'lightgallery/css/lg-thumbnail.css'
 import 'lightgallery/css/lg-zoom.css'
 import 'lightgallery/css/lightgallery.css'
@@ -159,7 +159,7 @@ export default function MemosPage() {
             </span>
           </div>
         ) : (
-          <>加载更多 &darr;</>
+          '加载更多 &darr;'
         )}
       </button>
     </div>

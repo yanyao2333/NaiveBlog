@@ -1,9 +1,9 @@
 'use client'
-import type { Memo, MemoListResponse } from '@/types/memos'
-import { formatToSemanticTime } from '@/utils/time'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
+import type { Memo, MemoListResponse } from '@/types/memos'
+import { formatToSemanticTime } from '@/utils/time'
 
 async function fetchMemos() {
   if (!process.env.NEXT_PUBLIC_MEMOS_ENDPOINT) {

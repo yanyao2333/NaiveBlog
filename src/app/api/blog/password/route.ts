@@ -1,5 +1,5 @@
-import { type Post, allPosts } from '@/services/content/core'
 import { type NextRequest, NextResponse } from 'next/server'
+import { allPosts, type Post } from '@/services/content/core'
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const query = request.nextUrl.searchParams

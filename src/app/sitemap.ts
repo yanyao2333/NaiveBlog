@@ -1,9 +1,9 @@
+import type { MetadataRoute } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import { allPosts } from '@/services/content/core'
 import type { CategoryTreeNode } from '@/services/content/metaGen'
 import categoryData from '@/temp/category-data.json'
 import tagData from '@/temp/tag-data.json'
-import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = siteMetadata.siteUrl

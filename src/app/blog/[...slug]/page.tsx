@@ -8,10 +8,10 @@ import type { Author, Post } from '@/services/content/core'
 import { allAuthors, allPosts } from '@/services/content/core'
 import { sortPostsByDate } from '@/services/content/utils'
 import 'katex/dist/katex.css'
-import { allCoreContent, coreContent } from '@/services/content/utils'
 import { MDXContent } from '@content-collections/mdx/react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { allCoreContent, coreContent } from '@/services/content/utils'
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string[] }>

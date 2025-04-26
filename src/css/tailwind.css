@@ -1,8 +1,8 @@
 @import 'tailwindcss';
-@import "tailwindcss-radix-colors/dist/slate.css";
-@import "tailwindcss-radix-colors/dist/gray.css";  
-@import "tailwindcss-radix-colors/dist/blue.css"; 
-@import "tailwindcss-radix-colors/dist/grass.css"; 
+@import 'tailwindcss-radix-colors/dist/slate.css';
+@import 'tailwindcss-radix-colors/dist/gray.css';
+@import 'tailwindcss-radix-colors/dist/blue.css';
+@import 'tailwindcss-radix-colors/dist/grass.css';
 @plugin '@tailwindcss/typography';
 @plugin '@tailwindcss/forms';
 @source '../../data/**/*.mdx';
@@ -69,7 +69,8 @@
 
 /* Typography plugin (from configuration) */
 @utility prose {
-  h1, h2 {
+  h1,
+  h2 {
     font-weight: 700;
     letter-spacing: -0.025em;
   }
@@ -80,35 +81,33 @@
 
   code {
     color: hsl(208, 88%, 43%);
-      &::before,
+    &::before,
     &::after {
-      display : none ;
+      display: none;
     }
   }
-    a {
+  a {
     &:hover {
       color: hsl(208, 88%, 43%);
     }
   }
 }
 
-
 @utility prose-invert {
   /* invert variant */
   code {
     color: hsl(210, 100%, 72%);
-      &::before,
+    &::before,
     &::after {
-      display : none ;
+      display: none;
     }
   }
-   a {
+  a {
     &:hover {
       color: hsl(210, 100%, 72%);
     }
   }
 }
-
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,

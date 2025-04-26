@@ -1,12 +1,12 @@
-import Logo from '@/public/static/images/logo.png'
-import type { Memo } from '@/types/memos'
-import { formatToSemanticTime } from '@/utils/time'
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import LightGallery from 'lightgallery/react'
 import Image from 'next/image'
 import { memo, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
+import Logo from '@/public/static/images/logo.png'
+import type { Memo } from '@/types/memos'
+import { formatToSemanticTime } from '@/utils/time'
 import { fetchComments } from './fetchFunctions'
 import { CommentsList } from './memoComments'
 
@@ -15,7 +15,9 @@ import { CommentsList } from './memoComments'
  */
 export const MemoRowComponent = memo(function MemoRowComponent({
   memo,
-}: { memo: Memo }) {
+}: {
+  memo: Memo
+}) {
   const [showComments, setShowComments] = useState(false)
   const [comments, setComments] = useState<Memo[]>([])
   const [isLoadingComments, setIsLoadingComments] = useState(false)

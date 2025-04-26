@@ -1,12 +1,12 @@
 'use client'
-import { KBarModal } from '@/components/kbar/KBarModal'
-import type { Post } from '@/services/content/core'
-import { formatDate } from '@/utils/time'
 import type { Action } from 'kbar'
 import { KBarProvider } from 'kbar'
 // @ts-ignore
 import { useRouter } from 'nextjs-toploader/app'
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { KBarModal } from '@/components/kbar/KBarModal'
+import type { Post } from '@/services/content/core'
+import { formatDate } from '@/utils/time'
 
 export const KBarSearchProvider = ({ children }) => {
   const router = useRouter()

@@ -1,8 +1,8 @@
+import Link from 'next/link'
 import { allPosts } from '@/services/content/core'
 import { sortPostsByDate } from '@/services/content/utils'
 import { allCoreContent } from '@/services/content/utils'
 import { formatDate } from '@/utils/time'
-import Link from 'next/link'
 
 export default function RecentlyPosts() {
   const coreContents = allCoreContent(sortPostsByDate(allPosts, false))

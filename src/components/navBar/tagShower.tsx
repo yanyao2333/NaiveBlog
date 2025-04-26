@@ -1,3 +1,9 @@
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import clsx from 'clsx'
+import { TagIcon } from 'lucide-react'
+import Link from 'next/link'
+import { memo, useCallback, useState } from 'react'
+import useMediaQuery from 'src/hooks/useMediaQuery'
 import {
   Drawer,
   DrawerClose,
@@ -9,12 +15,6 @@ import {
 } from '@/components/ui/drawer'
 import tagData from '@/temp/tag-data.json'
 import { cn } from '@/utils/classname'
-import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import clsx from 'clsx'
-import { TagIcon } from 'lucide-react'
-import Link from 'next/link'
-import { memo, useCallback, useState } from 'react'
-import useMediaQuery from 'src/hooks/useMediaQuery'
 import Tag from '../Tag'
 
 function TagsContent({ close }) {

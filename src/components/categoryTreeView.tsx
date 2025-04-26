@@ -1,9 +1,9 @@
 'use client'
-import type { CategoryTreeNode } from '@/services/content/metaGen'
 import clsx from 'clsx'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import type { CategoryTreeNode } from '@/services/content/metaGen'
 
 // 判断是否在某个 分类/标签 页面上
 function isOnThisPage(url: string, category?: string, tag?: string) {
