@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
 enum StatusCode {

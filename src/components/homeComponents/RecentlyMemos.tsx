@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import type { Memo, MemoListResponse } from '@/types/memos'
 import { formatToSemanticTime } from '@/utils/time'
 

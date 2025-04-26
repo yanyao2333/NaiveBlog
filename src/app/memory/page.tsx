@@ -8,7 +8,7 @@ import 'lightgallery/css/lightgallery.css'
 import { ArrowUpRightFromCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import { clearNextPageToken, fetchMemos } from './fetchFunctions'
 import { MemoRowComponent } from './singleMemoRow'
 

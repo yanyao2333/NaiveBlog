@@ -3,7 +3,7 @@
 import { MDXContent } from '@content-collections/mdx/react'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import { components } from '@/components/MDXComponents'
 import PostLayout from '@/layouts/PostLayout'
 import type { Author, Post } from '@/services/content/core'

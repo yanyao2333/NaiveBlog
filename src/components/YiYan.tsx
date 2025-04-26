@@ -2,7 +2,7 @@
 /*调用一言接口获取不同的简介内容*/
 
 import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 
 export default function YiYan() {
   const [data, setData] = useState<{ hitokoto: string; from: string }>({

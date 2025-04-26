@@ -1,5 +1,5 @@
 import remarkMediaCard from '@zhouhua-dev/remark-media-card'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import rehypeStringify from 'rehype-stringify'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
