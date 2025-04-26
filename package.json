@@ -4,17 +4,13 @@
   "private": true,
   "scripts": {
     "start": "next dev",
-    "dev": "cross-env NEXT_PUBLIC_COMMIT_HASH=$(git rev-parse HEAD) INIT_CWD=$PWD NODE_OPTIONS='--inspect --trace-deprecation' next dev",
-    "dev:tp": "cross-env NEXT_PUBLIC_COMMIT_HASH=$(git rev-parse HEAD) INIT_CWD=$PWD NODE_OPTIONS='--inspect --trace-deprecation' next dev --turbopack",
+    "dev": "cross-env NEXT_PUBLIC_COMMIT_HASH=$(git rev-parse HEAD) INIT_CWD=$PWD NODE_OPTIONS='--inspect --trace-deprecation' next dev --turbopack",
+    "dev:without-tp": "cross-env NEXT_PUBLIC_COMMIT_HASH=$(git rev-parse HEAD) INIT_CWD=$PWD NODE_OPTIONS='--inspect --trace-deprecation' next dev",
     "build": "cross-env NODE_OPTIONS='--experimental-json-modules' node src/utils/prebuild.mjs && cross-env NEXT_PUBLIC_COMMIT_HASH=$(git rev-parse HEAD) INIT_CWD=$PWD next build --turbopack",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
-    "prepare": "husky",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage",
-    "knip": "knip"
+    "prepare": "husky"
   },
   "dependencies": {
     "@headlessui/react": "2.2.2",
@@ -28,6 +24,7 @@
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "@zhouhua-dev/remark-media-card": "^1.1.6",
+    "babel-plugin-react-compiler": "^19.1.0-rc.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
@@ -84,7 +81,6 @@
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "jsdom": "^26.0.0",
-    "knip": "^5.46.2",
     "typescript": "^5.8.2"
   },
   "packageManager": "yarn@4.9.1"
