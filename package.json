@@ -25,8 +25,6 @@
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/postcss": "^4.0.9",
     "@tailwindcss/typography": "^0.5.15",
-    "@testing-library/user-event": "^14.5.2",
-    "@types/rss": "^0.0.32",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "@zhouhua-dev/remark-media-card": "^1.1.6",
@@ -74,27 +72,20 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
     "@content-collections/cli": "^0.1.6",
     "@content-collections/core": "^0.8.0",
     "@content-collections/mdx": "^0.2.0",
     "@content-collections/next": "^0.2.4",
     "@svgr/webpack": "^8.1.0",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.1.0",
     "@types/mdx": "^2.0.13",
     "@types/node": "^22.13.14",
     "@types/react": "^19.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "3.1.1",
-    "@vitest/ui": "^3.0.0",
+    "@types/rss": "^0.0.32",
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "jsdom": "^26.0.0",
     "knip": "^5.46.2",
-    "typescript": "^5.8.2",
-    "vitest": "^3.0.0"
+    "typescript": "^5.8.2"
   },
   "packageManager": "yarn@4.9.1"
 }
