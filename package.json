@@ -21,6 +21,8 @@
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/postcss": "^4.0.9",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/mdast": "^4.0.4",
+    "@types/unist": "^3.0.3",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "@zhouhua-dev/remark-media-card": "^1.1.6",
@@ -73,7 +75,8 @@
     "tsc-files": "^1.1.4",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
-    "vaul": "^1.1.2"
+    "vaul": "^1.1.2",
+    "vfile": "^6.0.3"
   },
   "devDependencies": {
     "@content-collections/cli": "^0.1.6",
