@@ -96,7 +96,6 @@ const Posts = defineCollection({
         remarkCodeTitles,
         remarkMath,
         remarkImgToJsx,
-        //@ts-expect-error
         remarkAlert,
         remarkMediaCard,
       ],
@@ -113,11 +112,8 @@ const Posts = defineCollection({
           },
         ],
         rehypeKatex,
-        //@ts-expect-error
         [rehypeCitation, { path: path.join(root, 'data') }],
-        //@ts-expect-error
         [rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
-        //@ts-expect-error
         rehypePresetMinify,
       ],
     })

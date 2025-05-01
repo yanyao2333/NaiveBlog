@@ -67,7 +67,8 @@
             "functions": ["clsx", "cva", "cn"]
           }
         },
-        "noImgElement": "off"
+        "noImgElement": "off",
+        "noFloatingPromises": "error"
       },
       "complexity": {
         "noForEach": "warn"

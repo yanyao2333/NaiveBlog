@@ -1,0 +1,8 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@vercel/speed-insights'
+  - contentlayer2
+  - esbuild
+  - lefthook
+  - protobufjs
+  - sharp
