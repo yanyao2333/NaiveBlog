@@ -159,7 +159,8 @@ export default function MemosPage() {
             </span>
           </div>
         ) : (
-          '加载更多 &darr;'
+          // biome-ignore lint/complexity/noUselessFragments: 使用 Fragment 转义实体
+          <>加载更多 &darr;</>
         )}
       </button>
     </div>
