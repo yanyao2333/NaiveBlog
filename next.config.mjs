@@ -104,7 +104,7 @@ const nextConfig = {
       },
     },
   },
-  webpack: (config, options) => {
+  webpack: (config, _) => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],

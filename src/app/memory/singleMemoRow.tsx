@@ -101,7 +101,7 @@ export const MemoRowComponent = memo(function MemoRowComponent({
         {memo.parsedContent ? (
           <article
             className='break-words'
-            // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: ignore it
             dangerouslySetInnerHTML={{ __html: memo.parsedContent }}
           />
         ) : (
@@ -121,7 +121,6 @@ export const MemoRowComponent = memo(function MemoRowComponent({
                   href={imgUrl}
                   key={resource.name}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     alt={resource.filename}
                     src={`${imgUrl}?thumbnail=true`}

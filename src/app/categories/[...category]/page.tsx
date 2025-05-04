@@ -6,8 +6,11 @@ import siteMetadata from '@/data/siteMetadata'
 import PostsListLayout from '@/layouts/PostsListLayout'
 import { allPosts, type Post } from '@/services/content/core'
 import type { CategoryTreeNode } from '@/services/content/metaGen'
-import { sortPostsByDate } from '@/services/content/utils'
-import { allCoreContent, type CoreContent } from '@/services/content/utils'
+import {
+  allCoreContent,
+  type CoreContent,
+  sortPostsByDate,
+} from '@/services/content/utils'
 import categoryData from '@/temp/category-data.json'
 
 export async function generateMetadata(props: {

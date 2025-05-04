@@ -84,4 +84,7 @@ const runBashCommand = (command) =>
     })
   })
 
-syncContentFromGit(`${process.cwd()}/data`)
+syncContentFromGit(`${process.cwd()}/data`).catch((error) => {
+  console.error(error)
+  process.exit(1)
+})

@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 'use client'
 import 'lightgallery/css/lg-thumbnail.css'
 import 'lightgallery/css/lg-zoom.css'

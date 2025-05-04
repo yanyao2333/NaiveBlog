@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { type JSX, useEffect, useRef, useState } from 'react'
 import type { Toc, TocItem } from '@/mdx-plugins/toc'
 
 export interface TOCInlineProps {
@@ -70,32 +70,21 @@ const TOCInline = ({
   exclude = '',
   collapse = false,
 }: TOCInlineProps) => {
-  if (!toc) {
-    return null
-  }
-  const re = Array.isArray(exclude)
-    ? new RegExp(`^(${exclude.join('|')})$`, 'i')
-    : new RegExp(`^(${exclude})$`, 'i')
-
-  const filteredToc = toc.filter((heading) => {
-    const isExcluded = re.test(heading.value)
-    const isWithinRange =
-      heading.depth >= fromHeading && heading.depth <= toHeading
-
-    if (isExcluded) {
-      return false
-    }
-
-    return isWithinRange
-  })
-
   const [activeId, setActiveId] = useState<string | null>(null)
   const observer = useRef<IntersectionObserver | null>(null)
   const lastIntersectingId = useRef<string | null>(null)
   const clickedId = useRef<string | null>(null)
 
   useEffect(() => {
+    if (!toc) {
+      return
+    }
+
     const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
+    // 确保 headings 存在才继续
+    if (headings.length === 0) {
+      return
+    }
 
     observer.current = new IntersectionObserver(
       (entries) => {
@@ -116,8 +105,8 @@ const TOCInline = ({
         }
       },
       {
-        rootMargin: '-80px 0px 0px 0px',
-        threshold: 0.9,
+        rootMargin: '-80px 0px 0px 0px', // 视口顶部偏移 80px
+        threshold: 0.9, // 90% 可见时触发
       },
     )
 
@@ -125,28 +114,60 @@ const TOCInline = ({
       observer.current?.observe(heading)
     }
 
+    // 清理函数
     return () => {
       observer.current?.disconnect()
     }
-  }, [])
+  }, [toc])
+
+  // 在 Hooks 调用之后处理早期返回
+  if (!toc) {
+    return null
+  }
+
+  const re = Array.isArray(exclude)
+    ? new RegExp(`^(${exclude.join('|')})$`, 'i')
+    : new RegExp(`^(${exclude})$`, 'i')
+
+  const filteredToc = toc.filter((heading) => {
+    // 确保 heading.value 存在且是字符串
+    const headingValue = heading.value || ''
+    const isExcluded = exclude ? re.test(headingValue) : false
+    const isWithinRange =
+      heading.depth >= fromHeading && heading.depth <= toHeading
+
+    if (isExcluded) {
+      return false
+    }
+
+    return isWithinRange
+  })
+
+  // 如果过滤后没有内容，也可以选择返回 null
+  if (filteredToc.length === 0) {
+    return null
+  }
 
   const handleItemClick = (id: string) => {
     clickedId.current = id
     setActiveId(id)
-    window.location.hash = `#${id}`
-
+    // eslint-disable-next-line react-compiler/react-compiler
+    window.location.hash = `#${activeId}`
     const targetElement = document.getElementById(id)
     if (targetElement) {
       targetElement.scrollIntoView({
-        behavior: 'smooth',
+        behavior: 'smooth', // 平滑滚动
       })
     }
+    // 清除 clickedId 状态，以便 IntersectionObserver 可以再次更新 activeId
     setTimeout(() => {
       clickedId.current = null
     }, 500)
   }
 
-  const createList = (items: NestedTocItem[] | undefined) => {
+  const createList = (
+    items: NestedTocItem[] | undefined,
+  ): JSX.Element | null => {
     if (!items || items.length === 0) {
       return null
     }
@@ -154,7 +175,7 @@ const TOCInline = ({
     return (
       <ul className={''}>
         {items.map((item, index) => (
-          <li key={`${item.value}_${index}`}>
+          <li key={`${item.url}_${index}`}>
             <a
               className={`underline-offset-2 ${
                 activeId === item.url.slice(1)
@@ -163,12 +184,13 @@ const TOCInline = ({
               }`}
               href={item.url}
               onClick={(e) => {
-                e.preventDefault() // Prevent default anchor behavior
+                e.preventDefault() // 阻止默认的锚点跳转
                 handleItemClick(item.url.slice(1))
               }}
             >
               {item.value}
             </a>
+            {/* 递归调用渲染子列表 */}
             {createList(item.children)}
           </li>
         ))}
@@ -182,8 +204,8 @@ const TOCInline = ({
     <>
       {asDisclosure ? (
         <details
-          open={!collapse}
           className='h-min'
+          open={!collapse}
         >
           <summary className='ml-6 pt-2 pb-2 font-bold text-xl'>目录</summary>
           <div className='ml-6'>{createList(nestedList)}</div>

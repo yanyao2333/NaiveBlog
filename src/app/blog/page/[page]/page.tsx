@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
 import PostsListLayout from '@/layouts/PostsListLayout'
 import { allPosts } from '@/services/content/core'
-import { sortPostsByDate } from '@/services/content/utils'
-import { allCoreContent } from '@/services/content/utils'
+import { allCoreContent, sortPostsByDate } from '@/services/content/utils'
 
 const POSTS_PER_PAGE = 5
 

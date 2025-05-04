@@ -39,12 +39,12 @@ export default function RecentlyMemos() {
   useEffect(() => {
     const ref = scrollRef.current
     if (ref) {
-      // @ts-ignore
+      // @ts-expect-error 111
       ref.addEventListener('scroll', handleScroll, { passive: true })
     }
     return () => {
       if (ref) {
-        // @ts-ignore
+        // @ts-expect-error 111
         ref.removeEventListener('scroll', handleScroll)
       }
     }
@@ -52,15 +52,22 @@ export default function RecentlyMemos() {
 
   useEffect(() => {
     setIsLoading(true)
-    fetchMemos().then((data) => {
-      if (!data) {
+    fetchMemos()
+      .then((data) => {
+        if (!data) {
+          toast.error('获取 memos 失败！')
+          setIsLoading(false)
+          return
+        }
+        setMemos(data)
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        console.error(error)
         toast.error('获取 memos 失败！')
         setIsLoading(false)
         return
-      }
-      setMemos(data)
-      setIsLoading(false)
-    })
+      })
   }, [])
 
   return (

@@ -97,7 +97,7 @@ export default async function Page(props: {
   })
   const mainContent = coreContent(post)
   const jsonLd = post.structuredData
-  //@ts-expect-error
+  //@ts-expect-error 111
   jsonLd.author = authorDetails.map((author) => {
     return {
       '@type': 'Person',
@@ -110,7 +110,7 @@ export default async function Page(props: {
       <>
         <script
           type='application/ld+json'
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: ignore it
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {post.password ? (
@@ -131,7 +131,7 @@ export default async function Page(props: {
     <>
       <script
         type='application/ld+json'
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: ignore it
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PostLayout

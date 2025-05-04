@@ -94,7 +94,7 @@ const CommentComponent = memo(function CommentComponent({
         {comment.parsedContent ? (
           <article
             className='break-words'
-            // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: ignore it
             dangerouslySetInnerHTML={{ __html: comment.parsedContent }}
           />
         ) : (
@@ -114,7 +114,6 @@ const CommentComponent = memo(function CommentComponent({
                   href={imgUrl}
                   key={resource.name}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     alt={resource.filename}
                     src={`${imgUrl}?thumbnail=true`}
@@ -156,7 +155,6 @@ const CommentComponent = memo(function CommentComponent({
 export const CommentsList = memo(function CommentsList({
   comments,
   level = 0,
-  onCommentClick,
 }: {
   comments: Memo[]
   level?: number

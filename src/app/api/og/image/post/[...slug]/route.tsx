@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 import { ImageResponse } from 'next/og'
 import { allPosts } from '@/services/content/core'
 
@@ -10,11 +8,8 @@ const size = {
   height: 630,
 }
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ slug: string[] }> },
-) {
-  // Font
+export async function GET({ params }: { params: Promise<{ slug: string[] }> }) {
+  //ont
   // const interSemiBold = fetch(new URL('./Inter-SemiBold.ttf', import.meta.url)).then((res) =>
   //   res.arrayBuffer()
   // )

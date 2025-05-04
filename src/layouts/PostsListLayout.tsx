@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 'use client'
 
 import Link from 'next/link'
@@ -85,7 +84,7 @@ const MemoizedPagination = memo(function Pagination({
 })
 
 // 判断是否在某个 分类/标签 页面上
-function isOnThisPage(url: string, category?: string, tag?: string) {
+function _isOnThisPage(url: string, category?: string, tag?: string) {
   if (url === '/Post' && category === 'Post') return true
   if (url.startsWith('/categories') && category) {
     const lastNode = url.slice(1, url.length).split('/').pop()

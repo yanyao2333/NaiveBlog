@@ -12,7 +12,7 @@ import {
   DrawerTrigger,
 } from './ui/drawer'
 
-interface TOCDrawerProps extends TOCInlineProps {}
+type TOCDrawerProps = TOCInlineProps
 
 export const TOCDrawer = ({ toc, ...props }: TOCDrawerProps) => {
   return (

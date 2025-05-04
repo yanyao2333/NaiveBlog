@@ -44,7 +44,7 @@ export const remarkTagToJsx: Plugin = () => (tree) => {
     }
 
     if (parts.length > 0) {
-      // @ts-ignore
+      // @ts-expect-error 111
       parent.children.splice(index, 1, ...parts)
     }
   })

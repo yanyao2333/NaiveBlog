@@ -36,7 +36,7 @@ interface HeaderNavLinkWithChildren extends Omit<HeaderNavLink, 'children'> {
   children: HeaderNavLink[]
 }
 
-const headerNavLinks: HeaderNavLink[] = [
+const _headerNavLinks: HeaderNavLink[] = [
   { href: '/', title: '主页', logo: <Home className='size-4' /> },
   {
     href: '/blog',
@@ -114,7 +114,7 @@ const buttonStyles = (selected: boolean) => ({
   icon: buttonVariants({ variant: 'icon', selected }),
 })
 
-const generatePopoverButton = (child: HeaderNavLink, iconMode: boolean) => {
+const generatePopoverButton = (child: HeaderNavLink) => {
   // if (child.hrefComponent) {
   //   return child.hrefComponent
   // }
@@ -174,7 +174,7 @@ const generatePopover = (
         'data-closed:-translate-y-1 data-closed:opacity-0',
       )}
     >
-      {link.children.map((child) => generatePopoverButton(child, iconMode))}
+      {link.children.map((child) => generatePopoverButton(child))}
       <CategoryShower />
       <TagShower />
     </PopoverPanel>

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { allPosts } from '@/services/content/core'
-import { sortPostsByDate } from '@/services/content/utils'
-import { allCoreContent } from '@/services/content/utils'
+import { allCoreContent, sortPostsByDate } from '@/services/content/utils'
 import { formatDate } from '@/utils/time'
 
 export default function RecentlyPosts() {
