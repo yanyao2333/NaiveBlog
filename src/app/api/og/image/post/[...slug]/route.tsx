@@ -8,7 +8,10 @@ const size = {
   height: 630,
 }
 
-export async function GET({ params }: { params: Promise<{ slug: string[] }> }) {
+export async function GET(
+  _req,
+  { params }: { params: Promise<{ slug: string[] }> },
+) {
   //ont
   // const interSemiBold = fetch(new URL('./Inter-SemiBold.ttf', import.meta.url)).then((res) =>
   //   res.arrayBuffer()
