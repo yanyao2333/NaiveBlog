@@ -4,6 +4,7 @@ import TOCInline from '@/components/TOC'
 import Image from './Image'
 import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
+import GCPlay from '@/components/mdxContentComponents/gc'
 
 export const components: MDXComponents = {
   Image,
@@ -11,4 +12,5 @@ export const components: MDXComponents = {
   a: CustomLink,
   pre: Pre,
   table: TableWrapper,
+  GCPlay: GCPlay
 }
