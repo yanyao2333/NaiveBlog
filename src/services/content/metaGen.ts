@@ -121,15 +121,6 @@ export async function generateRssFeed(allBlogs: Post[]) {
     title: config.title,
     site_url: config.siteUrl,
     feed_url: `${config.siteUrl}/feed.xml`,
-    description: 'feedId:142953123219007488+userId:62129560289424384',
-    custom_elements: [
-      {
-        follow_challenge: [
-          { feed_id: '142953123219007488' },
-          { user_id: '62129560289424384' },
-        ],
-      },
-    ],
   })
 
   const visiablePosts = filterVisiablePosts(allBlogs)
