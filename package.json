@@ -103,5 +103,5 @@
     "jsdom": "^26.0.0",
     "typescript": "^5.8.2"
   },
-  "packageManager": "pnpm@10.10.0"
+  "packageManager": "pnpm@10.11.0"
 }
