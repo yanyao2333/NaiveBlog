@@ -19,6 +19,12 @@ const projectsData: Project[] = [
     imgSrc: '/static/images/projects/bili-gpt-helper.png',
     href: 'https://github.com/yanyao2333/BiliGPTHelper',
   },
+  {
+    title: 'BBPlayer',
+    description: 'A Bilibili music player built with React Native + Expo.',
+    imgSrc: '/static/images/projects/BBPlayer.png',
+    href: 'https://github.com/yanyao2333/BBPlayer',
+  },
 ]
 
 export default projectsData

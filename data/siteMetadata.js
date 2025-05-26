@@ -1,4 +1,4 @@
-/** @type {import("pliny/config").PlinyConfig } */
+/** @type {import("../src/types/siteMetadata").PlinyConfig } */
 const siteMetadata = {
   title: 'Roitiumの自留地',
   author: 'Roitium',
@@ -13,7 +13,6 @@ const siteMetadata = {
   github: 'https://github.com/yanyao2333',
   locale: 'zh-CN',
   stickyNav: false,
-  analytics: {},
   comments: {
     provider: 'giscus',
     giscusConfig: {
@@ -31,9 +30,9 @@ const siteMetadata = {
     },
   },
   search: {
-    provider: 'kbar', // kbar or algolia
+    provider: 'kbar',
     kbarConfig: {
-      searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // path to load documents to search
+      searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`,
     },
   },
 }

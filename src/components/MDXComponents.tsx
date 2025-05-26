@@ -1,10 +1,10 @@
 import type { MDXComponents } from 'mdx/types'
-import Pre from 'pliny/ui/Pre'
+import GCPlay from '@/components/mdxContentComponents/gc'
 import TOCInline from '@/components/TOC'
 import Image from './Image'
 import CustomLink from './Link'
+import Pre from './mdxContentComponents/pre'
 import TableWrapper from './TableWrapper'
-import GCPlay from '@/components/mdxContentComponents/gc'
 
 export const components: MDXComponents = {
   Image,
@@ -12,5 +12,5 @@ export const components: MDXComponents = {
   a: CustomLink,
   pre: Pre,
   table: TableWrapper,
-  GCPlay: GCPlay
+  GCPlay: GCPlay,
 }

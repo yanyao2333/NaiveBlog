@@ -5,8 +5,8 @@ import TOCInline from '@/components/TOC'
 import '@/css/markdown.css'
 import { slug as _slug } from 'github-slugger'
 import { default as Link, default as NextLink } from 'next/link'
-import { Comments as CommentsComponent } from 'pliny/comments'
 import type { ReactNode } from 'react'
+import Giscus from '@/components/Comments'
 import categoryMapping from '@/data/category-mapping'
 import siteMetadata from '@/data/siteMetadata'
 import type { TocItem } from '@/mdx-plugins/toc'
@@ -57,7 +57,7 @@ export default function PostLayout({
   children,
   toc,
 }: LayoutProps) {
-  const { _meta, path, slug, title, tags, pinned } = content
+  const { _meta, path, title, tags, pinned } = content
   let { date } = content
 
   // 如果 content 经过了 server component -> client component 的传递，那么 date 会被序列化成字符串，所以这里需要做一个判断。
@@ -126,10 +126,7 @@ export default function PostLayout({
                   className='pt-6 pb-6 text-center text-slate-11 dark:text-slatedark-11'
                   id='comment'
                 >
-                  <CommentsComponent
-                    commentsConfig={siteMetadata.comments}
-                    slug={slug}
-                  />
+                  <Giscus />
                 </div>
               )}
             </div>

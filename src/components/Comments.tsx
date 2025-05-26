@@ -1,27 +1,43 @@
 'use client'
-
-import { Comments as CommentsComponent } from 'pliny/comments'
-import { useState } from 'react'
+import GiscusComponent from '@giscus/react'
+import { useTheme } from 'next-themes'
+import { memo } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 
-// 已废弃，直接加载评论组件
-export default function Comments({ slug }: { slug: string }) {
-  const [loadComments, setLoadComments] = useState(false)
-
-  if (!siteMetadata.comments?.provider) {
+const Giscus = memo(() => {
+  const configs = siteMetadata.comments?.giscusConfig
+  const { theme: nextTheme, resolvedTheme } = useTheme()
+  if (!configs) {
     return null
   }
-  console.log(siteMetadata.comments)
+  const commentsTheme =
+    configs?.themeURL === ''
+      ? nextTheme === 'dark' || resolvedTheme === 'dark'
+        ? configs.darkTheme
+        : configs.theme
+      : configs?.themeURL
+
+  const COMMENTS_ID = 'comments-container'
+
   return (
-    <>
-      {loadComments ? (
-        <CommentsComponent
-          commentsConfig={siteMetadata.comments}
-          slug={slug}
-        />
-      ) : (
-        <button onClick={() => setLoadComments(true)}>Load Comments</button>
-      )}
-    </>
+    <GiscusComponent
+      id={COMMENTS_ID}
+      // @ts-expect-error 我们只限制了为 string
+      repo={configs?.repo}
+      repoId={configs?.repositoryId}
+      category={configs?.categories}
+      categoryId={configs?.categoryId}
+      mapping={configs?.mapping}
+      reactionsEnabled={configs?.reactions}
+      emitMetadata={configs?.metadata}
+      inputPosition={'bottom'}
+      theme={commentsTheme}
+      lang={configs?.lang}
+      loading='lazy'
+    />
   )
-}
+})
+
+Giscus.displayName = 'Giscus'
+
+export default Giscus

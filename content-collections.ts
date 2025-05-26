@@ -5,10 +5,6 @@ import { compileMDX } from '@content-collections/mdx'
 import remarkMediaCard from '@zhouhua-dev/remark-media-card'
 import { slug } from 'github-slugger'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
-import {
-  remarkCodeTitles,
-  remarkExtractFrontmatter,
-} from 'pliny/mdx-plugins/index.js'
 import readingTime from 'reading-time'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeCitation from 'rehype-citation'
@@ -19,6 +15,7 @@ import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkMath from 'remark-math'
+import { remarkCodeTitles } from '@/mdx-plugins/remark-code-titles'
 import {
   createCategoryTree,
   createSearchIndex,
@@ -87,11 +84,9 @@ const Posts = defineCollection({
     password: z.nullable(z.string()).optional(),
     pinned: z.boolean().optional(),
   }),
-  //FIXME: 有空需要处理一下这几个插件的类型问题
   transform: async (doc, context) => {
     const mdx = await compileMDX(context, doc, {
       remarkPlugins: [
-        remarkExtractFrontmatter,
         remarkGfm,
         remarkCodeTitles,
         remarkMath,
