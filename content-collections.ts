@@ -25,6 +25,10 @@ import {
 import siteMetadata from './data/siteMetadata'
 import { remarkImgToJsx } from './src/mdx-plugins/remark-img-to-jsx'
 import { extractTocHeadings } from './src/mdx-plugins/toc'
+import { suppressDeprecatedWarnings } from '@content-collections/core'
+import { z } from 'zod'
+
+suppressDeprecatedWarnings('legacySchema')
 
 const root = process.cwd()
 
@@ -65,7 +69,7 @@ const Posts = defineCollection({
   name: 'posts',
   directory: 'data',
   include: 'blog/**/*.mdx',
-  schema: (z) => ({
+  schema: z.object({
     title: z.string(),
     date: z.string().transform((str) => new Date(str)),
     tags: z.array(z.string()).optional(),

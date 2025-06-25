@@ -76,6 +76,7 @@ export default function Home() {
               height={640}
               width={640}
               priority
+              sizes='(max-width: 768px) 240px, 288px'
               className='size-60 rounded-full ring-2 ring-slate-7 md:size-72 dark:ring-slatedark-7'
             />
             <MyStatus />
