@@ -12,6 +12,8 @@ import { toast } from 'sonner'
 import { clearNextPageToken, fetchMemos } from './fetchFunctions'
 import { MemoRowComponent } from './singleMemoRow'
 
+const DISABLE_LOAD_MORE = true // 是否禁用加载更多功能
+
 /**
  * Memos页面
  * @returns Memos页面
@@ -46,6 +48,7 @@ export default function MemosPage() {
 
 	// 使用 IntersectionObserver 自动加载更多
 	useEffect(() => {
+		if (DISABLE_LOAD_MORE) return
 		const current = loadMoreRef.current
 		const observer = new IntersectionObserver((entries) => {
 			if (entries[0].isIntersecting && !isLoading) {
@@ -76,6 +79,7 @@ export default function MemosPage() {
 
 	// 加载更多Memos
 	function onClickFetchMore() {
+		if (DISABLE_LOAD_MORE) return
 		setIsLoading(true)
 		fetchMemos().then((data) => {
 			if (data === false) {
@@ -159,8 +163,9 @@ export default function MemosPage() {
 						</span>
 					</div>
 				) : (
-					// biome-ignore lint/complexity/noUselessFragments: 使用 Fragment 转义实体
-					<>加载更多 &darr;</>
+					<span className='text-sm text-slate-11 dark:text-slatedark-11'>
+						未登录用户只能查看最近 memos
+					</span>
 				)}
 			</button>
 		</div>
