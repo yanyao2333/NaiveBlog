@@ -8,10 +8,10 @@ const isProduction = process.env.NODE_ENV === 'production'
  * @returns {Post[]}
  */
 export function filterVisiablePosts(allBlogs: Post[]) {
-  if (isProduction) {
-    return allBlogs.filter((blog) => !(blog.draft || blog.private))
-  }
-  return allBlogs
+	if (isProduction) {
+		return allBlogs.filter((blog) => !(blog.draft || blog.private))
+	}
+	return allBlogs
 }
 
 /**
@@ -22,9 +22,9 @@ export function filterVisiablePosts(allBlogs: Post[]) {
  * @returns {number}
  */
 export function dateSortDesc(a: Date, b: Date) {
-  if (a > b) return -1
-  if (a < b) return 1
-  return 0
+	if (a > b) return -1
+	if (a < b) return 1
+	return 0
 }
 
 /**
@@ -35,18 +35,18 @@ export function dateSortDesc(a: Date, b: Date) {
  * @returns {T[]}
  */
 export function sortPostsByDate<T extends CoreContent<Post> | Post>(
-  allBlogs: T[],
-  putPinnedFirst = true,
+	allBlogs: T[],
+	putPinnedFirst = true,
 ): T[] {
-  if (putPinnedFirst) {
-    const pinnedPosts = allBlogs.filter((blog) => blog.pinned)
-    const unpinnedPosts = allBlogs.filter((blog) => !blog.pinned)
+	if (putPinnedFirst) {
+		const pinnedPosts = allBlogs.filter((blog) => blog.pinned)
+		const unpinnedPosts = allBlogs.filter((blog) => !blog.pinned)
 
-    pinnedPosts.sort((a, b) => dateSortDesc(a.date, b.date))
-    unpinnedPosts.sort((a, b) => dateSortDesc(a.date, b.date))
-    return [...pinnedPosts, ...unpinnedPosts]
-  }
-  return allBlogs.sort((a, b) => dateSortDesc(a.date, b.date))
+		pinnedPosts.sort((a, b) => dateSortDesc(a.date, b.date))
+		unpinnedPosts.sort((a, b) => dateSortDesc(a.date, b.date))
+		return [...pinnedPosts, ...unpinnedPosts]
+	}
+	return allBlogs.sort((a, b) => dateSortDesc(a.date, b.date))
 }
 
 export type CoreContent<T> = Omit<T, 'mdx' | 'content' | '_id' | 'toc'>
@@ -58,7 +58,7 @@ export type CoreContent<T> = Omit<T, 'mdx' | 'content' | '_id' | 'toc'>
  * @return {*}  {CoreContent<T>}
  */
 export function coreContent<T extends Post>(content: T): CoreContent<T> {
-  return omit(content, ['mdx', 'content', '_id', 'toc'])
+	return omit(content, ['mdx', 'content', '_id', 'toc'])
 }
 
 /**
@@ -71,14 +71,14 @@ export function coreContent<T extends Post>(content: T): CoreContent<T> {
  * @return {*}  {Omit<Obj, Keys>}
  */
 export const omit = <Obj, Keys extends keyof Obj>(
-  obj: Obj,
-  keys: Keys[],
+	obj: Obj,
+	keys: Keys[],
 ): Omit<Obj, Keys> => {
-  const result = Object.assign({}, obj)
-  for (const key of keys) {
-    delete result[key]
-  }
-  return result
+	const result = Object.assign({}, obj)
+	for (const key of keys) {
+		delete result[key]
+	}
+	return result
 }
 
 /**
@@ -89,11 +89,11 @@ export const omit = <Obj, Keys extends keyof Obj>(
  * @return {*}  {CoreContent<T>[]}
  */
 export function allCoreContent<T extends Post>(
-  contents: T[],
+	contents: T[],
 ): CoreContent<T>[] {
-  if (isProduction)
-    return contents
-      .map((c) => coreContent(c))
-      .filter((c) => !('draft' in c && c.draft === true))
-  return contents.map((c) => coreContent(c))
+	if (isProduction)
+		return contents
+			.map((c) => coreContent(c))
+			.filter((c) => !('draft' in c && c.draft === true))
+	return contents.map((c) => coreContent(c))
 }

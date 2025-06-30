@@ -9,104 +9,104 @@
 @source '../../node_modules/pliny/**/*.js';
 
 @theme {
-  /* 容器 */
-  --container-padding: 2rem;
-  --breakpoint-2xl: 1400px;
+	/* 容器 */
+	--container-padding: 2rem;
+	--breakpoint-2xl: 1400px;
 
-  /* 行高 */
-  --leading-11: 2.75rem;
-  --leading-12: 3rem;
-  --leading-13: 3.25rem;
-  --leading-14: 3.5rem;
+	/* 行高 */
+	--leading-11: 2.75rem;
+	--leading-12: 3rem;
+	--leading-13: 3.25rem;
+	--leading-14: 3.5rem;
 
-  /* 来自 tailwindcss 官方调色盘颜色 primary -> sky, gray -> gray，其他所有颜色都使用 radix 颜色系统，这部分依赖 tw 原生调色盘的属于是历史遗留问题了... */
-  --color-primary-50: oklch(0.977 0.013 236.62);
-  --color-primary-100: oklch(0.951 0.026 236.824);
-  --color-primary-200: oklch(0.901 0.058 230.902);
-  --color-primary-300: oklch(0.828 0.111 230.318);
-  --color-primary-400: oklch(0.746 0.16 232.661);
-  --color-primary-500: oklch(0.685 0.169 237.323);
-  --color-primary-600: oklch(0.588 0.158 241.966);
-  --color-primary-700: oklch(0.5 0.134 242.749);
-  --color-primary-800: oklch(0.443 0.11 240.79);
-  --color-primary-900: oklch(0.391 0.09 240.876);
-  --color-primary-950: oklch(0.293 0.066 243.157);
+	/* 来自 tailwindcss 官方调色盘颜色 primary -> sky, gray -> gray，其他所有颜色都使用 radix 颜色系统，这部分依赖 tw 原生调色盘的属于是历史遗留问题了... */
+	--color-primary-50: oklch(0.977 0.013 236.62);
+	--color-primary-100: oklch(0.951 0.026 236.824);
+	--color-primary-200: oklch(0.901 0.058 230.902);
+	--color-primary-300: oklch(0.828 0.111 230.318);
+	--color-primary-400: oklch(0.746 0.16 232.661);
+	--color-primary-500: oklch(0.685 0.169 237.323);
+	--color-primary-600: oklch(0.588 0.158 241.966);
+	--color-primary-700: oklch(0.5 0.134 242.749);
+	--color-primary-800: oklch(0.443 0.11 240.79);
+	--color-primary-900: oklch(0.391 0.09 240.876);
+	--color-primary-950: oklch(0.293 0.066 243.157);
 
-  --color-gray-50: oklch(0.985 0.002 247.839);
-  --color-gray-100: oklch(0.967 0.003 264.542);
-  --color-gray-200: oklch(0.928 0.006 264.531);
-  --color-gray-300: oklch(0.872 0.01 258.338);
-  --color-gray-400: oklch(0.707 0.022 261.325);
-  --color-gray-500: oklch(0.551 0.027 264.364);
-  --color-gray-600: oklch(0.446 0.03 256.802);
-  --color-gray-700: oklch(0.373 0.034 259.733);
-  --color-gray-800: oklch(0.278 0.033 256.848);
-  --color-gray-900: oklch(0.21 0.034 264.665);
-  --color-gray-950: oklch(0.13 0.028 261.692);
+	--color-gray-50: oklch(0.985 0.002 247.839);
+	--color-gray-100: oklch(0.967 0.003 264.542);
+	--color-gray-200: oklch(0.928 0.006 264.531);
+	--color-gray-300: oklch(0.872 0.01 258.338);
+	--color-gray-400: oklch(0.707 0.022 261.325);
+	--color-gray-500: oklch(0.551 0.027 264.364);
+	--color-gray-600: oklch(0.446 0.03 256.802);
+	--color-gray-700: oklch(0.373 0.034 259.733);
+	--color-gray-800: oklch(0.278 0.033 256.848);
+	--color-gray-900: oklch(0.21 0.034 264.665);
+	--color-gray-950: oklch(0.13 0.028 261.692);
 
-  /* 关键帧 */
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
+	/* 关键帧 */
+	--animate-accordion-down: accordion-down 0.2s ease-out;
+	--animate-accordion-up: accordion-up 0.2s ease-out;
 
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
+	@keyframes accordion-down {
+		from {
+			height: 0;
+		}
+		to {
+			height: var(--radix-accordion-content-height);
+		}
+	}
 
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
+	@keyframes accordion-up {
+		from {
+			height: var(--radix-accordion-content-height);
+		}
+		to {
+			height: 0;
+		}
+	}
 }
 
 /* Typography plugin (from configuration) */
 @utility prose {
-  h1,
-  h2 {
-    font-weight: 700;
-    letter-spacing: -0.025em;
-  }
+	h1,
+	h2 {
+		font-weight: 700;
+		letter-spacing: -0.025em;
+	}
 
-  h3 {
-    font-weight: 600;
-  }
+	h3 {
+		font-weight: 600;
+	}
 
-  code {
-    color: hsl(208, 88%, 43%);
-    &::before,
-    &::after {
-      display: none;
-    }
-  }
-  a {
-    &:hover {
-      color: hsl(208, 88%, 43%);
-    }
-  }
+	code {
+		color: hsl(208, 88%, 43%);
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+	a {
+		&:hover {
+			color: hsl(208, 88%, 43%);
+		}
+	}
 }
 
 @utility prose-invert {
-  /* invert variant */
-  code {
-    color: hsl(210, 100%, 72%);
-    &::before,
-    &::after {
-      display: none;
-    }
-  }
-  a {
-    &:hover {
-      color: hsl(210, 100%, 72%);
-    }
-  }
+	/* invert variant */
+	code {
+		color: hsl(210, 100%, 72%);
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+	a {
+		&:hover {
+			color: hsl(210, 100%, 72%);
+		}
+	}
 }
 
 /*
@@ -118,114 +118,114 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentColor);
+	}
 }
 
 /* 留出导航栏的间隔 */
 html {
-  scroll-padding-top: 80px;
+	scroll-padding-top: 80px;
 }
 
 /* add fade in & out to ViewTransition on page*/
 @keyframes slide-out {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-2px);
-  }
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-2px);
+	}
 }
 
 @keyframes slide-in {
-  from {
-    opacity: 0;
-    transform: translateY(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 ::view-transition-new(page) {
-  animation: slide-in 0.5s ease-out both;
-  animation-delay: 300ms;
+	animation: slide-in 0.5s ease-out both;
+	animation-delay: 300ms;
 }
 ::view-transition-old(page) {
-  animation: slide-out 0.5s ease-out both;
+	animation: slide-out 0.5s ease-out both;
 }
 
 /* add fade-in-out animation to tooltips */
 .TooltipContent {
-  animation-duration: 0.7s;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+	animation-duration: 0.7s;
+	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 .TooltipContent[data-side='top'] {
-  animation-name: slideUp;
+	animation-name: slideUp;
 }
 .TooltipContent[data-side='bottom'] {
-  animation-name: slideUp;
+	animation-name: slideUp;
 }
 
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 /* add fade-in animation to main page title */
 @keyframes title-fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
 
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .title-animate-fade-in {
-  animation: title-fade-in 1s ease-out forwards;
+	animation: title-fade-in 1s ease-out forwards;
 }
 
 @keyframes appear {
-  0% {
-    opacity: 0;
-  }
+	0% {
+		opacity: 0;
+	}
 
-  100% {
-    opacity: 1;
-  }
+	100% {
+		opacity: 1;
+	}
 }
 
 .appear-animate {
-  animation: appear 0.7s ease-out;
+	animation: appear 0.7s ease-out;
 }
 /*!* width *!*/
 /*::-webkit-scrollbar {*/
@@ -249,68 +249,68 @@ html {
 /*}*/
 
 .task-list-item::before {
-  @apply hidden;
+	@apply hidden;
 }
 
 .task-list-item {
-  @apply list-none;
+	@apply list-none;
 }
 
 .footnotes {
-  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
+	@apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
 }
 
 .data-footnote-backref {
-  @apply no-underline;
+	@apply no-underline;
 }
 
 .csl-entry {
-  @apply my-5;
+	@apply my-5;
 }
 
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+	-ms-overflow-style: none;
+	/* IE and Edge */
+	scrollbar-width: none;
+	/* Firefox */
 }
 
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-  transition:
-    background-color 600000s 0s,
-    color 600000s 0s;
+	transition:
+		background-color 600000s 0s,
+		color 600000s 0s;
 }
 
 .katex-display {
-  overflow: auto hidden;
+	overflow: auto hidden;
 }
 
 .content-header-link-icon {
-  @apply pr-1 lg:-ml-6;
-  @apply -ml-4;
-  opacity: 0;
+	@apply pr-1 lg:-ml-6;
+	@apply -ml-4;
+	opacity: 0;
 }
 
 .content-header:hover .content-header-link-icon,
 .content-header-link-icon:hover {
-  opacity: 1;
+	opacity: 1;
 }
 
 .linkicon {
-  @apply size-3 lg:size-5;
-  display: inline-block;
-  vertical-align: middle;
+	@apply size-3 lg:size-5;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 article {
-  font-family: 'LXGW WenKai', serif;
-  font-weight: 'normal';
+	font-family: 'LXGW WenKai', serif;
+	font-weight: 'normal';
 }
 
 /* @layer base {

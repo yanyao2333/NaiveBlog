@@ -9,18 +9,18 @@ import type { ReactNode } from 'react'
 
 // 提供给博文界面的 light gallery 包装
 export default function LightGalleryWrapper({
-  children,
+	children,
 }: {
-  children: ReactNode
+	children: ReactNode
 }) {
-  return (
-    <LightGallery
-      speed={500}
-      plugins={[lgThumbnail, lgZoom]}
-      licenseKey={process.env.NEXT_PUBLIC_LIGHT_GALLERY_LICENSE_KEY}
-      selector={'img'}
-    >
-      {children}
-    </LightGallery>
-  )
+	return (
+		<LightGallery
+			speed={500}
+			plugins={[lgThumbnail, lgZoom]}
+			licenseKey={process.env.NEXT_PUBLIC_LIGHT_GALLERY_LICENSE_KEY}
+			selector={'img'}
+		>
+			{children}
+		</LightGallery>
+	)
 }

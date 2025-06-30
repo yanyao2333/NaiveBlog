@@ -8,9 +8,9 @@ import { visit } from 'unist-util-visit'
 import type { VFile } from 'vfile'
 
 export type TocItem = {
-  value: string
-  url: string
-  depth: number
+	value: string
+	url: string
+	depth: number
 }
 
 export type Toc = TocItem[]
@@ -19,20 +19,20 @@ export type Toc = TocItem[]
  * Extracts TOC headings from markdown file and adds it to the file's data object.
  */
 export function remarkTocHeadings() {
-  return (tree: Parent, file: VFile) => {
-    const slugger = new GithubSlugger()
-    const toc: Toc = []
-    visit(tree, 'heading', (node: Heading) => {
-      const textContent = toStringMdast(node)
-      const slugUrl = slugger.slug(textContent)
-      toc.push({
-        value: textContent,
-        url: `#${slugUrl}`,
-        depth: node.depth,
-      })
-    })
-    file.data.toc = toc
-  }
+	return (tree: Parent, file: VFile) => {
+		const slugger = new GithubSlugger()
+		const toc: Toc = []
+		visit(tree, 'heading', (node: Heading) => {
+			const textContent = toStringMdast(node)
+			const slugUrl = slugger.slug(textContent)
+			toc.push({
+				value: textContent,
+				url: `#${slugUrl}`,
+				depth: node.depth,
+			})
+		})
+		file.data.toc = toc
+	}
 }
 
 /**
@@ -42,7 +42,7 @@ export function remarkTocHeadings() {
  * @return {*}  {Promise<Toc>}
  */
 export async function extractTocHeadings(markdown: string): Promise<Toc> {
-  const vfile = await remark().use(remarkTocHeadings).process(markdown)
-  // @ts-expect-error 111
-  return vfile.data.toc
+	const vfile = await remark().use(remarkTocHeadings).process(markdown)
+	// @ts-expect-error 111
+	return vfile.data.toc
 }

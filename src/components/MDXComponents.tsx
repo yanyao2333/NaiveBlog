@@ -7,10 +7,10 @@ import Pre from './mdxContentComponents/pre'
 import TableWrapper from './TableWrapper'
 
 export const components: MDXComponents = {
-  Image,
-  TOCInline,
-  a: CustomLink,
-  pre: Pre,
-  table: TableWrapper,
-  GCPlay: GCPlay,
+	Image,
+	TOCInline,
+	a: CustomLink,
+	pre: Pre,
+	table: TableWrapper,
+	GCPlay: GCPlay,
 }
