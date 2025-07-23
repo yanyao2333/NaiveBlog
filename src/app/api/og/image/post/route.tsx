@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { allPosts } from '@/services/content/core'
+import { NextRequest } from 'next/server'
 
 export const runtime = 'edge'
 
@@ -8,37 +8,22 @@ const size = {
 	height: 630,
 }
 
-export async function GET(
-	_req,
-	{ params }: { params: Promise<{ slug: string[] }> },
-) {
-	//ont
-	// const interSemiBold = fetch(new URL('./Inter-SemiBold.ttf', import.meta.url)).then((res) =>
-	//   res.arrayBuffer()
-	// )
+export async function GET(request: NextRequest) {
+	const { searchParams } = request.nextUrl
+	let title = searchParams.get('title')
+	let description = searchParams.get('description')
+	let date = searchParams.get('date')
 	const websiteLogo = await fetch(
-		new URL(
-			'../../../../../../../public/static/images/logo.png',
-			import.meta.url,
-		),
+		new URL('../../../../../../public/static/images/logo.png', import.meta.url),
 	).then((res) => res.arrayBuffer())
-	const slug = (await params).slug
-	console.log(slug)
 
-	const post = allPosts.find((p) => p.slug === slug.join('/'))
-
-	let title: string
-	let description: string
-	let date: string
-
-	if (!post) {
+	if (!title || !description || !date) {
 		title = 'Roitiumの自留地'
 		description = 'Roitiumの自留地'
 		date = ''
 	} else {
-		title = post.title
-		description = post.summary || '还没有简介欸'
-		date = new Date(post.date).toLocaleDateString('zh-CN', {
+		description = description || '还没有简介欸'
+		date = new Date(date).toLocaleDateString('zh-CN', {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric',
