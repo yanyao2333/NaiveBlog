@@ -105,8 +105,8 @@ importers:
         specifier: ^0.16.22
         version: 0.16.22
       kbar:
-        specifier: 0.1.0-beta.45
-        version: 0.1.0-beta.45(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        specifier: 0.1.0-beta.48
+        version: 0.1.0-beta.48(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       lefthook:
         specifier: ^1.11.14
         version: 1.12.2
@@ -3779,11 +3779,11 @@ packages:
     resolution: {integrity: sha512-XCHRdUw4lf3SKBaJe4EvgqIuWwkPSo9XoeO8GjQW94Bp7TWv9hNhzZjZ+OH9yf1UmLygb7DIT5GSFQiyt16zYg==}
     hasBin: true
 
-  kbar@0.1.0-beta.45:
-    resolution: {integrity: sha512-kXvjthqPLoWZXlxLJPrFKioskNdQv1O3Ukg5mqq2ExK3Ix1qvYT3W/ACDRIv/e/CHxPWZoTriB4oFbQ6UCSX5g==}
+  kbar@0.1.0-beta.48:
+    resolution: {integrity: sha512-HD5A1dqfK6XGeoH4fRWTmRt4y76sDbtGxY4Dh2xNa5MYtvtKsqfz+nRZ0tKgcrjjGYN4rf5TLXMJuiE7Pb8rXg==}
     peerDependencies:
-      react: ^16.0.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -9360,7 +9360,7 @@ snapshots:
     dependencies:
       commander: 8.3.0
 
-  kbar@0.1.0-beta.45(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
+  kbar@0.1.0-beta.48(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:
       '@radix-ui/react-portal': 1.1.9(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       fast-equals: 2.0.4
