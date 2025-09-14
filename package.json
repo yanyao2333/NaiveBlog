@@ -29,7 +29,7 @@
 		"@vercel/analytics": "^1.5.0",
 		"@vercel/speed-insights": "^1.2.0",
 		"@zhouhua-dev/remark-media-card": "^1.1.6",
-		"babel-plugin-react-compiler": "19.1.0-rc.2",
+		"babel-plugin-react-compiler": "19.1.0-rc.3",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"dayjs": "^1.11.13",
